@@ -1,0 +1,47 @@
+/*creating color variables*/
+$yellow: #F3C709;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.yellowText {
+  color: $yellow;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: $yellow !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5) !important;
+}
+
+.form-check-input:checked {
+  background-color: $yellow !important;
+  border-color: $yellow !important;
+}
+
+.form-check-input:focus {
+  box-shadow: none !important;
+}
+
+.w300Px{
+  width: 300px;
+}
+
+.languagesController {
+  background-color: transparent !important;
+
+  span {
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover, &.activeLang {
+      opacity: .7;
+    }
+  }
+}

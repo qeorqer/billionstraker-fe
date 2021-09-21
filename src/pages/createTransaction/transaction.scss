@@ -1,0 +1,23 @@
+.paymentCard, .paymentCash {
+  input{
+    margin-top: 0;
+  }
+
+  label {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    width: 50px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: transparent;
+  }
+}
+
+.paymentCard label{
+  background-image: url('card1.png');
+}
+
+.paymentCash label{
+  background-image: url('cash2.png');
+}

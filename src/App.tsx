@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import Profile from "./pages/profile/Profile"
+import Auth from './pages/auth/Auth'
+import { useAppDispatch, useAppSelector } from './hooks/react-redux.hook'
+import { checkAuth } from "./store/reducers/user.reducer"
+import CreateTransaction from "./pages/createTransaction/CreateTransaction";
+import { Slide, ToastContainer } from 'react-toastify'
+import { userData } from "./store/selectors"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './App.scss'
+import AppHeader from "./components/header/AppHeader";
+import AppRouter from "./components/router/AppRouter";
 
-function App() {
+const App = () => {
+  const dispatch = useAppDispatch()
+  const userSelector = useAppSelector(userData)
+
+  const isAuth: boolean = userSelector.isAuth
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      dispatch(checkAuth());
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {isAuth && <AppHeader/>}
+      <AppRouter isAuth={isAuth}/>
+      <ToastContainer
+        transition={Slide}
+      />
+    </>
+  )
 }
 
-export default App;
+export default App

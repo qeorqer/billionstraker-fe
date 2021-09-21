@@ -1,0 +1,148 @@
+@import '/src/App.scss';
+
+header {
+  background: #30333C;
+  padding: 20px 0;
+
+  @media (max-width: 1200px) {
+    padding: 15px 0;
+  }
+
+  .logo {
+    img {
+      max-width: 30px;
+      margin-right: 5px;
+    }
+
+    a {
+      align-items: center;
+      display: flex;
+      color: $yellow;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  .menu {
+    ul {
+      display: flex;
+      list-style: none;
+
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px !important;
+        padding-bottom: 10px !important;
+      }
+    }
+
+    li {
+      margin-right: 15px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: .3s;
+
+      &:after {
+        content: "";
+        width: 0;
+        height: 2px;
+        background-color: $yellow;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: -10px;
+        opacity: 0;
+        transition: inherit;
+      }
+
+      &.active, &:hover {
+        color: $yellow;
+
+        &:after {
+          width: 65%;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .dropdownMenu {
+    text-align: right;
+    position: relative;
+    width: 100%;
+
+    .menuTogglerContainer {
+      display: inline-flex;
+      cursor: pointer;
+      height: 30px;
+      align-items: center;
+
+      span {
+        width: 30px;
+        height: 3px;
+        background-color: $yellow;
+        display: block;
+        position: relative;
+        transition: .3s transform, opacity, top;
+
+        &:before, &:after {
+          content: "";
+          width: 30px;
+          height: 3px;
+          background-color: inherit;
+          position: absolute;
+          display: block;
+          transition: inherit;
+        }
+
+        &:before {
+          bottom: 8px;
+        }
+
+        &:after {
+          top: 8px;
+        }
+
+        &.open {
+          transform: rotate(45deg);
+
+          &:before {
+            opacity: 0;
+          }
+
+          &:after {
+            top: 0;
+            transform: rotate(-90deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+.dropdown-item {
+  cursor: pointer;
+
+  &:active {
+    background-color: rgba(255, 255, 255, .15) !important;
+  }
+}
+
+.dropdown.show .menuTogglerContainer span {
+  transform: rotate(45deg);
+
+  &:before {
+    opacity: 0;
+  }
+
+  &:after {
+    top: 0;
+    transform: rotate(-90deg);
+  }
+}

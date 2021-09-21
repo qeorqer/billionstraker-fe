@@ -1,20 +1,34 @@
 {
-  "name": "millionstracker-fe",
+  "name": "billionstracker-fe",
   "version": "0.1.0",
+  "description": "app for budget tracking",
   "private": true,
+  "author": "George Pustovit <gorapus@gmail.com>",
+  "license": "ISC",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.17",
-    "@types/react": "^17.0.15",
-    "@types/react-dom": "^17.0.9",
+    "@wojtekmaj/react-daterange-picker": "^3.3.0",
+    "axios": "^0.21.1",
+    "bootstrap": "^5.1.0",
+    "date-fns": "^2.23.0",
+    "formik": "^2.2.9",
+    "i18next": "^20.6.1",
+    "i18next-browser-languagedetector": "^6.1.2",
+    "i18next-http-backend": "^1.3.1",
+    "i18next-xhr-backend": "^3.2.2",
+    "moment": "^2.29.1",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.0.0-beta.4",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.12.0",
+    "react-minimal-pie-chart": "^8.2.0",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-toastify": "^8.0.2",
+    "react-tooltip": "^4.2.21",
     "typescript": "^4.3.5",
-    "web-vitals": "^1.1.2"
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,5 +53,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-transition-group": "^4.4.2",
+    "@types/yup": "^0.29.13",
+    "@types/react-calendar": "^3.4.3",
+    "@types/react-date-range": "^1.1.7",
+    "@types/react-router-dom": "^5.1.8"
   }
 }

@@ -1,0 +1,62 @@
+@import '/src/App.scss';
+
+.signUp {
+  min-height: 100vh;
+  background: #30333C;
+  color: #fff;
+
+  .row {
+    margin-bottom: 0;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 35px;
+  }
+
+  img{
+    @media (max-width: 576px) {
+      margin-top: 30px;
+    }
+  }
+}
+
+.authFormGroup {
+  position: relative;
+
+  input {
+    height: 40px;
+  }
+}
+
+.authFormContainer {
+  text-align: center;
+
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  button {
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    height: 40px;
+  }
+
+  p {
+    cursor: pointer;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+.invalid-tooltip {
+  display: block !important;
+}
