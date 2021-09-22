@@ -12,7 +12,6 @@ const Transactions = () => {
   const {t} = useTranslation()
   const LIMIT = 10;
   const [numberToSkip, setNumberToSkip] = useState<number>(0)
-  console.log(numberToSkip, numberOfTransactions)
 
   const getAllTransactions = () => {
     dispatch(getAllUserTransactions({ limit: LIMIT, numberToSkip: numberToSkip }))

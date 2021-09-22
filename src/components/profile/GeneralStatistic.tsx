@@ -26,7 +26,7 @@ const GeneralStatistic: FC = () => {
           <p className='fs-5 fw-bold'>{t('Spent for the whole time')}: <span
             className='fst-italic yellowText'>{generalStatistic.userExpenses}</span></p>
           <p className='fs-6 mb-0 fw-bold'>{t('On')} <span
-            className='yellowText'>Billionstracker</span> {t('Since')}<span
+            className='yellowText'>Billionstracker</span> {t('Since')} <span
             className='fst-italic yellowText'>{moment(user.created).locale(lang).format('LL')}</span></p>
         </div>
       ) : (

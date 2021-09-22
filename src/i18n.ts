@@ -41,6 +41,9 @@ i18n
   .use(initReactI18next) // pass the i18n instance to react-i18next.
 
   .init({
+    backend: {
+      loadPath: "/billionstraker-fe/locales/{{lng}}/{{ns}}.json",
+    },
     lng: localStorage. getItem('i18nextLng') || 'en',
     fallbackLng,
     whitelist: availableLanguages,
