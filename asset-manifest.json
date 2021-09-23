@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/billionstraker-fe/static/css/main.a719fb4e.chunk.css",
-    "main.js": "/billionstraker-fe/static/js/main.7c6e79cb.chunk.js",
-    "main.js.map": "/billionstraker-fe/static/js/main.7c6e79cb.chunk.js.map",
+    "main.js": "/billionstraker-fe/static/js/main.66669f67.chunk.js",
+    "main.js.map": "/billionstraker-fe/static/js/main.66669f67.chunk.js.map",
     "runtime-main.js": "/billionstraker-fe/static/js/runtime-main.a99cafbf.js",
     "runtime-main.js.map": "/billionstraker-fe/static/js/runtime-main.a99cafbf.js.map",
     "static/css/2.b1c9b14e.chunk.css": "/billionstraker-fe/static/css/2.b1c9b14e.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.b1c9b14e.chunk.css",
     "static/js/2.0f4307e6.chunk.js",
     "static/css/main.a719fb4e.chunk.css",
-    "static/js/main.7c6e79cb.chunk.js"
+    "static/js/main.66669f67.chunk.js"
   ]
 }
