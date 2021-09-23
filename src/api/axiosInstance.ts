@@ -3,7 +3,7 @@ import { loginResponseType } from '../types/auth.type';
 
 const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:5003/api',
+  baseURL: 'https://young-peak-28727.herokuapp.com/api',
   headers: {
     "Content-type": "application/json"
   }
