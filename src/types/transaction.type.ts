@@ -12,7 +12,8 @@ export type transactionType = {
 }
 
 export type addTransactionResponseType = {
-  message: string,
+  messageRu: string,
+  messageEn: string,
   updatedUser: userType
 }
 

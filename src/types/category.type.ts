@@ -6,6 +6,7 @@ export type categoryType = {
 }
 
 export type categoryResponseType = {
-  message: string,
+  messageRu: string,
+  messageEn: string,
   categories: categoryType[]
 }

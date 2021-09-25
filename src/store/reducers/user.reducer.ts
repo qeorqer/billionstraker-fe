@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import axios, {AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import * as api from '../../api/index'
 import { authData } from "../../types/auth.type"
 import { loginResponseType, signUpResponseType } from '../../types/auth.type'
@@ -60,7 +60,7 @@ export const checkAuth = createAsyncThunk(
 //todo: think again about logic of adding transaction
 export const addTransaction = createAsyncThunk(
   'transaction/addTransaction',
-  async (body:{transaction:transactionType}): Promise<AxiosResponse<addTransactionResponseType>> => await api.addTransaction(body),
+  async (body: { transaction: transactionType }): Promise<AxiosResponse<addTransactionResponseType>> => await api.addTransaction(body),
 )
 
 export type userState = {
@@ -71,7 +71,7 @@ export type userState = {
 }
 
 const initialState: userState = {
-  user: {  } as userType,
+  user: {} as userType,
   isAuth: false,
   loading: false,
   lang: localStorage.getItem('i18nextLng') || 'en'
@@ -87,18 +87,23 @@ const userReducer = createSlice({
   },
   extraReducers: (builder => {
     builder.addCase(signUp.fulfilled, (state, action) => {
-      toast(action.payload.message, {
-        position: "top-right",
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
-        type: 'success'
-      })
+      toast(localStorage.getItem('i18nextLng') === 'en'
+        ? action.payload.messageEn
+        : action.payload.messageRu
+        , {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success'
+        })
     })
 
     builder.addCase(signUp.rejected, (state, action) => {
-      toast(action.payload?.message, {
+      toast(localStorage.getItem('i18nextLng') === 'en'
+        ? action.payload?.messageEn
+        : action.payload?.messageRu, {
         position: "top-right",
         autoClose: 2500,
         hideProgressBar: true,
@@ -122,7 +127,9 @@ const userReducer = createSlice({
 
     builder.addCase(logIn.rejected, (state, action) => {
       state.loading = false
-      toast(action.payload?.message, {
+      toast(localStorage.getItem('i18nextLng') === 'en'
+        ? action.payload?.messageEn
+        : action.payload?.messageRu, {
         position: "top-right",
         autoClose: 2500,
         hideProgressBar: true,
@@ -155,10 +162,12 @@ const userReducer = createSlice({
       state.isAuth = true
     })
 
-    builder.addCase(addTransaction.fulfilled, (state, action) =>{
+    builder.addCase(addTransaction.fulfilled, (state, action) => {
       state.user = action.payload.data.updatedUser
 
-      toast(action.payload?.data.message, {
+      toast(localStorage.getItem('i18nextLng') === 'en'
+        ? action.payload?.data.messageEn
+        : action.payload?.data.messageRu, {
         position: "top-right",
         autoClose: 2500,
         hideProgressBar: true,

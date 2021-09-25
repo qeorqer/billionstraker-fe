@@ -7,7 +7,8 @@ export type loginResponseType ={
 }
 
 export type signUpResponseType = {
-  message: string
+  messageRu: string,
+  messageEn: string,
 }
 
 export type authData = {
