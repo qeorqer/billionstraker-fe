@@ -66,7 +66,7 @@ export const addTransaction = createAsyncThunk(
 export type userState = {
   user: userType,
   isAuth: boolean,
-  loading: boolean,
+  isRefreshloading: boolean,
   isSignUpSignInLoading: boolean
   lang: string,
 }
@@ -74,7 +74,7 @@ export type userState = {
 const initialState: userState = {
   user: {} as userType,
   isAuth: false,
-  loading: false,
+  isRefreshloading: false,
   isSignUpSignInLoading: false,
   lang: localStorage.getItem('i18nextLng') || 'en'
 }
@@ -155,16 +155,15 @@ const userReducer = createSlice({
     })
 
     builder.addCase(checkAuth.pending, (state) => {
-      state.loading = true
+      state.isRefreshloading = true
     })
 
     builder.addCase(checkAuth.rejected, (state) => {
-      state.loading = false
+      state.isRefreshloading = false
     })
 
-
     builder.addCase(checkAuth.fulfilled, (state, action) => {
-      state.loading = false
+      state.isRefreshloading = false
 
       localStorage.setItem('token', action.payload.data.accessToken)
       state.user = action.payload.data.user

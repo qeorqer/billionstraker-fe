@@ -13,9 +13,9 @@ type propsType = {
 }
 
 const AppRouter: FC<propsType> = ({ isAuth }) => {
-  const {loading} = useAppSelector(userData)
+  const {isRefreshloading} = useAppSelector(userData)
 
-  if(loading){
+  if(isRefreshloading){
     return <Loader fullHeight={true}/>
   }
 
