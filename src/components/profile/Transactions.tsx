@@ -5,11 +5,12 @@ import { transactionData } from "../../store/selectors";
 import Transaction from './Transaction';
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import Loader from "../loader/Loader";
 
 const Transactions = () => {
-  const { loading, transactions, numberOfTransactions } = useAppSelector(transactionData)
+  const { isTransactionsloading, transactions, numberOfTransactions } = useAppSelector(transactionData)
   const dispatch = useAppDispatch()
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const LIMIT = 10;
   const [numberToSkip, setNumberToSkip] = useState<number>(0)
 
@@ -23,8 +24,8 @@ const Transactions = () => {
     getAllTransactions()
   }, [])
 
-  if (loading) {
-    return <div className='mt-3'><h1 className='text-center'>Loading...</h1></div>
+  if (isTransactionsloading && !numberOfTransactions) {
+    return <Loader/>
   }
 
   return (
@@ -37,9 +38,13 @@ const Transactions = () => {
               transactions.map((transaction) => <Transaction key={transaction._id} transaction={transaction}/>)
             }
 
+            {
+              isTransactionsloading && <Loader/>
+            }
+
             {numberToSkip <= numberOfTransactions &&
             <Button
-              disabled={loading}
+              disabled={isTransactionsloading}
               variant='warning'
               className='mt-4 mx-auto d-block text-white'
               onClick={getAllTransactions}

@@ -6,6 +6,7 @@ import Auth from "../../pages/auth/Auth";
 import { useAppSelector } from "../../hooks/react-redux.hook";
 import { userData } from "../../store/selectors";
 import Statistic from "../../pages/statistic/Statistic";
+import Loader from "../loader/Loader";
 
 type propsType = {
   isAuth: boolean
@@ -15,7 +16,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
   const {loading} = useAppSelector(userData)
 
   if(loading){
-    return <div><h1>Loading...</h1></div>
+    return <Loader fullHeight={true}/>
   }
 
   return (

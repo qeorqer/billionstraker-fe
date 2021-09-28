@@ -9,13 +9,13 @@ export const getAllUserTransactions = createAsyncThunk(
 )
 
 export type transactionState = {
-  loading: boolean,
+  isTransactionsloading: boolean,
   numberOfTransactions: number,
   transactions: transactionType[],
 }
 
 const initialState: transactionState = {
-  loading: false,
+  isTransactionsloading: false,
   numberOfTransactions: 0,
   transactions: [] as transactionType[],
 }
@@ -30,13 +30,17 @@ const transactionReducer = createSlice({
   },
   extraReducers: (builder => {
     builder.addCase(getAllUserTransactions.pending, (state) => {
-      state.loading = true
+      state.isTransactionsloading = true
     })
 
     builder.addCase(getAllUserTransactions.fulfilled, (state, action) => {
-      state.loading = false
+      state.isTransactionsloading = false
       state.transactions = [...state.transactions, ...action.payload.data.transactions]
       state.numberOfTransactions = action.payload.data.numberOfTransactions || 0
+    })
+
+    builder.addCase(getAllUserTransactions.rejected, (state) => {
+      state.isTransactionsloading = false
     })
   })
 })

@@ -8,16 +8,22 @@ import moment from "moment";
 //@ts-ignore
 //todo: learn how to work when there is no ts for library
 import DateRangePicker from '@wojtekmaj/react-daterange-picker'
-import './statistic.scss'
 import Diagram from "../../components/statistic/Diagram";
 import { List } from "../../components/statistic/List";
 import { useTranslation } from "react-i18next";
+import Loader from "../../components/loader/Loader";
+import './statistic.scss'
 
 
 const Statistic: FC = () => {
   const dispatch = useAppDispatch()
-  const { wholeStatistic, statisticForRange } = useAppSelector(statisticData)
-  const {t} = useTranslation()
+  const {
+    wholeStatistic,
+    statisticForRange,
+    isWholeStatisticLoading,
+    isStatisticForRangeLoading
+  } = useAppSelector(statisticData)
+  const { t } = useTranslation()
   const { user, lang } = useAppSelector(userData)
   const [monthsRange, setMonthsRange] = useState<Date[]>([new Date(user.created), new Date()]);
   const [useDiagram, setUseDiagram] = useState<boolean>(true)
@@ -26,6 +32,10 @@ const Statistic: FC = () => {
     dispatch(getWholeStatistic())
     dispatch(getStatisticForRange({ from: monthsRange[0], to: monthsRange[1] }))
   }, [])
+
+  if (isWholeStatisticLoading || isStatisticForRangeLoading) {
+    return <Loader/>
+  }
 
   return (
     <Container className='py-4'>
@@ -98,7 +108,8 @@ const Statistic: FC = () => {
                 <span className='fst-italic yellowText'>
               {wholeStatistic.userIncomesThisMonth}
           </span></p>
-              <p className='fs-6 mb-0 fw-bold'>{t('On')} <span className='yellowText'>Billionstracker</span> {t('Since')} <span
+              <p className='fs-6 mb-0 fw-bold'>{t('On')} <span
+                className='yellowText'>Billionstracker</span> {t('Since')} <span
                 className='fst-italic yellowText'>{moment(user.created).locale(lang).format('LL')}</span></p>
             </div>
           </Col>

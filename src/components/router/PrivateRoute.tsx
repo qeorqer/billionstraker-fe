@@ -2,6 +2,7 @@ import React, { Component, FC, ReactNode } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useAppSelector } from "../../hooks/react-redux.hook";
 import { userData } from "../../store/selectors";
+import Loader from "../loader/Loader";
 
 
 interface propsType extends RouteProps{
@@ -14,7 +15,7 @@ const PrivateRoute:FC<propsType> = ({...rest}) => {
   const isPending: boolean = userSelector.loading
 
   if(isPending){
-    return <div>LOADING...</div>
+    return <Loader />
   }
 
   console.log(isAuth);

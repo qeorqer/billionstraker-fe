@@ -67,13 +67,15 @@ export type userState = {
   user: userType,
   isAuth: boolean,
   loading: boolean,
-  lang: string
+  isSignUpSignInLoading: boolean
+  lang: string,
 }
 
 const initialState: userState = {
   user: {} as userType,
   isAuth: false,
   loading: false,
+  isSignUpSignInLoading: false,
   lang: localStorage.getItem('i18nextLng') || 'en'
 }
 
@@ -87,6 +89,7 @@ const userReducer = createSlice({
   },
   extraReducers: (builder => {
     builder.addCase(signUp.fulfilled, (state, action) => {
+      state.isSignUpSignInLoading = false
       toast(localStorage.getItem('i18nextLng') === 'en'
         ? action.payload.messageEn
         : action.payload.messageRu
@@ -101,6 +104,7 @@ const userReducer = createSlice({
     })
 
     builder.addCase(signUp.rejected, (state, action) => {
+      state.isSignUpSignInLoading = false
       toast(localStorage.getItem('i18nextLng') === 'en'
         ? action.payload?.messageEn
         : action.payload?.messageRu, {
@@ -113,12 +117,16 @@ const userReducer = createSlice({
       })
     })
 
+    builder.addCase(signUp.pending, (state) => {
+      state.isSignUpSignInLoading = true
+    })
+
     builder.addCase(logIn.pending, (state) => {
-      state.loading = true
+      state.isSignUpSignInLoading = true
     })
 
     builder.addCase(logIn.fulfilled, (state, action) => {
-      state.loading = false
+      state.isSignUpSignInLoading = false
 
       localStorage.setItem('token', action.payload.accessToken)
       state.user = action.payload.user
@@ -126,7 +134,8 @@ const userReducer = createSlice({
     })
 
     builder.addCase(logIn.rejected, (state, action) => {
-      state.loading = false
+      state.isSignUpSignInLoading = false
+
       toast(localStorage.getItem('i18nextLng') === 'en'
         ? action.payload?.messageEn
         : action.payload?.messageRu, {

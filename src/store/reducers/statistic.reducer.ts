@@ -30,13 +30,19 @@ export type statisticState = {
   generalStatistic: generalStatisticType | null,
   wholeStatistic: wholeStatisticType | null,
   statisticForRange: statisticForRangeType | null
+  isGeneralStatisticLoading: boolean,
+  isWholeStatisticLoading: boolean,
+  isStatisticForRangeLoading: boolean,
 }
 
 const initialState: statisticState = {
   loading: false,
   generalStatistic: null,
   wholeStatistic: null,
-  statisticForRange: null
+  statisticForRange: null,
+  isGeneralStatisticLoading: false,
+  isWholeStatisticLoading: false,
+  isStatisticForRangeLoading: false,
 }
 
 const statisticReducer = createSlice({
@@ -44,16 +50,43 @@ const statisticReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder => {
+    builder.addCase(getGeneralStatistic.pending, (state) => {
+      state.isGeneralStatisticLoading = true
+    })
+
     builder.addCase(getGeneralStatistic.fulfilled, (state, action) => {
+      state.isGeneralStatisticLoading = false
       state.generalStatistic = action.payload.data.statistic
     })
 
+    builder.addCase(getGeneralStatistic.rejected, (state)=>{
+      state.isGeneralStatisticLoading = false
+    })
+
+    builder.addCase(getWholeStatistic.pending, (state) => {
+      state.isWholeStatisticLoading = true
+    })
+
     builder.addCase(getWholeStatistic.fulfilled, (state, action) => {
+      state.isWholeStatisticLoading = false
       state.wholeStatistic = action.payload.data.statistic
     })
 
+    builder.addCase(getWholeStatistic.rejected, (state) => {
+      state.isWholeStatisticLoading = false
+    })
+
+    builder.addCase(getStatisticForRange.pending, (state) => {
+      state.isStatisticForRangeLoading = true
+    })
+
     builder.addCase(getStatisticForRange.fulfilled, (state, action) => {
+      state.isStatisticForRangeLoading = false
       state.statisticForRange = action.payload.data.statistic
+    })
+
+    builder.addCase(getStatisticForRange.rejected, (state) => {
+      state.isStatisticForRangeLoading = false
     })
   })
 })
