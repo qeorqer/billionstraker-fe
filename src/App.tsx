@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import Profile from "./pages/profile/Profile"
-import Auth from './pages/auth/Auth'
 import { useAppDispatch, useAppSelector } from './hooks/react-redux.hook'
 import { checkAuth } from "./store/reducers/user.reducer"
-import CreateTransaction from "./pages/createTransaction/CreateTransaction";
 import { Slide, ToastContainer } from 'react-toastify'
 import { userData } from "./store/selectors"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-import './App.scss'
 import AppHeader from "./components/header/AppHeader";
 import AppRouter from "./components/router/AppRouter";
+import 'react-toastify/dist/ReactToastify.css';
+import './App.scss'
 
 const App = () => {
   const dispatch = useAppDispatch()

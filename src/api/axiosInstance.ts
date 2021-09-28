@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { loginResponseType } from '../types/auth.type';
+import { toast } from "react-toastify";
 
 const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: 'https://young-peak-28727.herokuapp.com/api',
+  baseURL: 'http://localhost:5003/api',
   headers: {
     "Content-type": "application/json"
   }
@@ -28,7 +29,18 @@ axiosInstance.interceptors.response.use((config) => {
       localStorage.setItem('token', response.data.accessToken);
       return axiosInstance.request(originalRequest);
     } catch (e) {
-      console.log('НЕ АВТОРИЗОВАН')
+      toast(localStorage.getItem('i18nextLng') === 'en'
+        ? 'Your session has expired'
+        : 'Время сессии истекло', {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'warning'
+      })
+
+
     }
   }
   throw error;

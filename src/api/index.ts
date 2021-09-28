@@ -13,11 +13,11 @@ import {
   getWholeStatisticResponseType
 } from "../types/statistic.type";
 
-/* auth requests */
-export const signUp = (body: authData): Promise<AxiosResponse<signUpResponseType>> => api.post('/auth/signUp', body)
-export const logIn = (body: authData): Promise<AxiosResponse<loginResponseType>> => api.post('/auth/logIn', body)
-export const logOut = (): Promise<AxiosResponse<void>> => api.post('/auth/logOut')
-export const refresh = (): Promise<AxiosResponse<loginResponseType>> => api.get('/auth/refresh')
+/* user requests */
+export const signUp = (body: authData): Promise<AxiosResponse<signUpResponseType>> => api.post('/user/signUp', body)
+export const logIn = (body: authData): Promise<AxiosResponse<loginResponseType>> => api.post('/user/logIn', body)
+export const logOut = (): Promise<AxiosResponse<void>> => api.post('/user/logOut')
+export const refresh = (): Promise<AxiosResponse<loginResponseType>> => api.get('/user/refresh')
 
 /*transaction requests*/
 export const addTransaction = (body: { transaction: transactionType }): Promise<AxiosResponse<addTransactionResponseType>> => api.post('/transaction/addNewTransaction', body)
