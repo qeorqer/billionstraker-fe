@@ -10,9 +10,7 @@ import './App.scss'
 
 const App = () => {
   const dispatch = useAppDispatch()
-  const userSelector = useAppSelector(userData)
-
-  const isAuth: boolean = userSelector.isAuth
+  const { isAuth } = useAppSelector(userData)
 
   useEffect(() => {
     const token = localStorage.getItem('token');

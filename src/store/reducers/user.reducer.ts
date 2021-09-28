@@ -90,6 +90,7 @@ const userReducer = createSlice({
   extraReducers: (builder => {
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.isSignUpSignInLoading = false
+
       toast(localStorage.getItem('i18nextLng') === 'en'
         ? action.payload.messageEn
         : action.payload.messageRu
@@ -105,6 +106,7 @@ const userReducer = createSlice({
 
     builder.addCase(signUp.rejected, (state, action) => {
       state.isSignUpSignInLoading = false
+
       toast(localStorage.getItem('i18nextLng') === 'en'
         ? action.payload?.messageEn
         : action.payload?.messageRu, {

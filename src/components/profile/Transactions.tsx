@@ -12,17 +12,12 @@ const Transactions = () => {
   const dispatch = useAppDispatch()
   const { t } = useTranslation()
   const LIMIT = 10;
-  const [numberToSkip, setNumberToSkip] = useState<number>(0)
+  const [numberToSkip, setNumberToSkip] = useState<number>(10)
 
   const getAllTransactions = () => {
     dispatch(getAllUserTransactions({ limit: LIMIT, numberToSkip: numberToSkip }))
     setNumberToSkip(LIMIT + numberToSkip)
   }
-
-  useEffect(() => {
-    dispatch(resetTransactions())
-    getAllTransactions()
-  }, [])
 
   if (isTransactionsloading && !numberOfTransactions) {
     return <Loader/>

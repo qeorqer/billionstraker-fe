@@ -1,21 +1,15 @@
 import moment from 'moment';
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { Col } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "../../hooks/react-redux.hook";
-import { getGeneralStatistic } from "../../store/reducers/statistic.reducer";
+import { useAppSelector } from "../../hooks/react-redux.hook";
 import { statisticData, userData } from "../../store/selectors";
 import { useTranslation } from "react-i18next";
 import 'moment/locale/ru'
 
 const GeneralStatistic: FC = () => {
-  const dispatch = useAppDispatch()
   const { generalStatistic } = useAppSelector(statisticData)
   const { user, lang } = useAppSelector(userData)
   const { t } = useTranslation()
-
-  useEffect(() => {
-    dispatch(getGeneralStatistic())
-  }, [])
 
   return (
     <Col md='6' xs='12'>
