@@ -7,15 +7,16 @@ import { useAppSelector } from "../../hooks/react-redux.hook";
 import { userData } from "../../store/selectors";
 import Statistic from "../../pages/statistic/Statistic";
 import Loader from "../loader/Loader";
+import Init from "../../pages/initPage/Init";
 
 type propsType = {
-  isAuth: boolean
+  isAuth: boolean | null
 }
 
 const AppRouter: FC<propsType> = ({ isAuth }) => {
-  const {isRefreshloading} = useAppSelector(userData)
+  const { isRefreshLoading } = useAppSelector(userData)
 
-  if(isRefreshloading){
+  if (isAuth === null || isRefreshLoading) {
     return <Loader fullHeight={true}/>
   }
 
@@ -26,6 +27,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
             <Route path='/statistic' component={Statistic}/>
             <Route path='/createTransaction' component={CreateTransaction}/>
             <Route path='/home' component={Profile}/>
+            <Route path='/initialization' component={Init}/>
             <Redirect to='/home'/>
           </Switch>
         ) :

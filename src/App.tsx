@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from './hooks/react-redux.hook'
-import { checkAuth } from "./store/reducers/user.reducer"
+import { checkAuth, setAuth } from "./store/reducers/user.reducer"
 import { Slide, ToastContainer } from 'react-toastify'
 import { userData } from "./store/selectors"
 import AppHeader from "./components/header/AppHeader";
@@ -17,6 +17,8 @@ const App = () => {
 
     if (token) {
       dispatch(checkAuth());
+    } else{
+      dispatch(setAuth(false))
     }
   }, []);
 

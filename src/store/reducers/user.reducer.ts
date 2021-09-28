@@ -65,16 +65,16 @@ export const addTransaction = createAsyncThunk(
 
 export type userState = {
   user: userType,
-  isAuth: boolean,
-  isRefreshloading: boolean,
+  isAuth: boolean | null,
+  isRefreshLoading: boolean,
   isSignUpSignInLoading: boolean
   lang: string,
 }
 
 const initialState: userState = {
   user: {} as userType,
-  isAuth: false,
-  isRefreshloading: false,
+  isAuth: null,
+  isRefreshLoading: false,
   isSignUpSignInLoading: false,
   lang: localStorage.getItem('i18nextLng') || 'en'
 }
@@ -85,6 +85,9 @@ const userReducer = createSlice({
   reducers: {
     changeLang: (state: userState, action: PayloadAction<string>) => {
       state.lang = action.payload
+    },
+    setAuth: (state: userState, action: PayloadAction<boolean>) => {
+      state.isAuth = action.payload
     }
   },
   extraReducers: (builder => {
@@ -157,15 +160,15 @@ const userReducer = createSlice({
     })
 
     builder.addCase(checkAuth.pending, (state) => {
-      state.isRefreshloading = true
+      state.isRefreshLoading = true
     })
 
     builder.addCase(checkAuth.rejected, (state) => {
-      state.isRefreshloading = false
+      state.isRefreshLoading = false
     })
 
     builder.addCase(checkAuth.fulfilled, (state, action) => {
-      state.isRefreshloading = false
+      state.isRefreshLoading = false
 
       localStorage.setItem('token', action.payload.data.accessToken)
       state.user = action.payload.data.user
@@ -190,6 +193,6 @@ const userReducer = createSlice({
   })
 })
 
-export const { changeLang } = userReducer.actions
+export const { changeLang, setAuth } = userReducer.actions
 
 export default userReducer.reducer
