@@ -30,7 +30,7 @@ const Auth = () => {
                   <LoginForm/>
                   <p
                     onClick={() => setShowSignIn(false)}
-                    className='my-2 cursor-poiner'
+                    className='my-2 cursor-pointer'
                   >{t('New to billionstracker')}? <span>{t('Sign up')}</span></p>
                 </>
               ) : (
@@ -39,7 +39,7 @@ const Auth = () => {
                   <SignUpForm/>
                   <p
                     onClick={() => setShowSignIn(true)}
-                    className='my-2 cursor-poiner'
+                    className='my-2 cursor-pointer'
                   >{t('Already on billionstracker')}? <span>{t('Sign in')}</span></p>
                 </>
               )

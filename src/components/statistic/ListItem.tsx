@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Card, Col, Row } from "react-bootstrap";
+import { formattingNumber } from '../../helpers/index.js';
 import { listForRangeItem } from "./List";
 
 type propsType = {
   listItem: listForRangeItem
 }
-
 
 const ListItem:FC<propsType> = ({listItem}) => {
   return (
@@ -13,7 +13,7 @@ const ListItem:FC<propsType> = ({listItem}) => {
       <Card.Body>
         <Row>
         <Col xs='4' sm='4' className='mb-2 mb-sm-0'>{listItem.title}</Col>
-        <Col xs='4' sm='4'>{listItem.value}</Col>
+        <Col xs='4' sm='4'>{formattingNumber(listItem.value)}</Col>
         <Col xs='4' sm='4'>{listItem.percentage}%</Col>
       </Row>
       </Card.Body>

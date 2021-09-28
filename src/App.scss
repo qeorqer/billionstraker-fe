@@ -29,7 +29,7 @@ body {
   box-shadow: none !important;
 }
 
-.w300Px{
+.w300Px {
   width: 300px;
 }
 
@@ -44,4 +44,8 @@ body {
       opacity: .7;
     }
   }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

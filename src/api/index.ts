@@ -1,12 +1,8 @@
 import api from './axiosInstance'
-import { authData, loginResponseType, signUpResponseType } from "../types/auth.type";
+import { authData, loginResponseType, updateUserResponseType, signUpResponseType } from "../types/user.type";
 import { AxiosResponse } from 'axios';
 import { categoryResponseType } from "../types/category.type";
-import {
-  addTransactionResponseType,
-  getTransactionsResponseType,
-  transactionType
-} from "../types/transaction.type";
+import { addTransactionResponseType, getTransactionsResponseType, transactionType } from "../types/transaction.type";
 import {
   getGeneralStatisticResponseType,
   getStatisticForRangeResponseType,
@@ -18,6 +14,8 @@ export const signUp = (body: authData): Promise<AxiosResponse<signUpResponseType
 export const logIn = (body: authData): Promise<AxiosResponse<loginResponseType>> => api.post('/user/logIn', body)
 export const logOut = (): Promise<AxiosResponse<void>> => api.post('/user/logOut')
 export const refresh = (): Promise<AxiosResponse<loginResponseType>> => api.get('/user/refresh')
+export const setFirstEnter = (): Promise<AxiosResponse<updateUserResponseType>> => api.patch('/user/setFirstEnter')
+export const setInitialValues = (body:{card:number, cash:number}): Promise<AxiosResponse<updateUserResponseType>> => api.patch('/user/setInitialValues', body)
 
 /*transaction requests*/
 export const addTransaction = (body: { transaction: transactionType }): Promise<AxiosResponse<addTransactionResponseType>> => api.post('/transaction/addNewTransaction', body)

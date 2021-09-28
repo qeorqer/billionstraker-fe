@@ -1,9 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios, { AxiosResponse } from 'axios'
 import * as api from '../../api/index'
-import { authData } from "../../types/auth.type"
-import { loginResponseType, signUpResponseType } from '../../types/auth.type'
-import { userType } from "../../types/user.type"
+import {
+  authData,
+  loginResponseType,
+  updateUserResponseType,
+  signUpResponseType,
+  userType
+} from "../../types/user.type"
 import { toast } from "react-toastify";
 import { addTransactionResponseType, transactionType } from "../../types/transaction.type";
 
@@ -61,6 +65,17 @@ export const checkAuth = createAsyncThunk(
 export const addTransaction = createAsyncThunk(
   'transaction/addTransaction',
   async (body: { transaction: transactionType }): Promise<AxiosResponse<addTransactionResponseType>> => await api.addTransaction(body),
+)
+
+export const setFirstEnter = createAsyncThunk(
+  'user/setFirstEnter',
+  async (): Promise<AxiosResponse<updateUserResponseType>> => await api.setFirstEnter()
+)
+
+
+export const setInitialValues = createAsyncThunk(
+  'user/setInitialValues',
+  async (body:{card: number, cash: number}): Promise<AxiosResponse<updateUserResponseType>> => await api.setInitialValues(body)
 )
 
 export type userState = {
@@ -190,6 +205,24 @@ const userReducer = createSlice({
       })
     })
 
+    builder.addCase(setFirstEnter.fulfilled, (state, action) => {
+      state.user = action.payload.data.user
+    })
+
+    builder.addCase(setInitialValues.fulfilled, (state, action) => {
+      state.user = action.payload.data.user
+
+      toast(localStorage.getItem('i18nextLng') === 'en'
+        ? action.payload?.data.messageEn
+        : action.payload?.data.messageRu, {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'success'
+      })
+    })
   })
 })
 

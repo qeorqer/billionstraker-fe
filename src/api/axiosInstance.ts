@@ -1,6 +1,9 @@
 import axios from 'axios'
-import { loginResponseType } from '../types/auth.type';
+import { loginResponseType } from '../types/user.type';
 import { toast } from "react-toastify";
+import { useAppDispatch } from "../hooks/react-redux.hook";
+import { useHistory } from 'react-router-dom';
+import { setAuth } from '../store/reducers/user.reducer';
 
 const axiosInstance = axios.create({
   withCredentials: true,
@@ -12,20 +15,20 @@ const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use((config) => {
-  if(localStorage.getItem('token')){
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
+  if (localStorage.getItem('token')) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
   }
   return config;
 })
 
 axiosInstance.interceptors.response.use((config) => {
   return config;
-},async (error) => {
+}, async (error) => {
   const originalRequest = error.config;
   if (error.response.status === 401 && error.config && !error.config._isRetry) {
     originalRequest._isRetry = true;
     try {
-      const response = await axios.get<loginResponseType>('http://localhost:5003/api/refresh', {withCredentials: true})
+      const response = await axios.get<loginResponseType>('http://localhost:5003/api/refresh', { withCredentials: true })
       localStorage.setItem('token', response.data.accessToken);
       return axiosInstance.request(originalRequest);
     } catch (e) {
@@ -39,9 +42,15 @@ axiosInstance.interceptors.response.use((config) => {
         theme: 'dark',
         type: 'warning'
       })
-
-
     }
+
+    localStorage.removeItem('token');
+
+    const dispatch = useAppDispatch()
+    const history = useHistory()
+
+    dispatch(setAuth(false))
+    history.push('/')
   }
   throw error;
 })

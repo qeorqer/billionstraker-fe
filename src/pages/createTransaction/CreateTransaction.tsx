@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, FormControl, Row } from "react-bootstrap"
 import { categoryData, userData } from "../../store/selectors"
 import { formattingNumber } from "../../helpers/index.js"
@@ -21,7 +21,8 @@ const CreateTransaction = () => {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
-  const validateSumReg = /^[0-9]+$/;
+
+  const validateSumReg = /^((?!(0))[0-9]+)$/;
 
   const handleChangeSum = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (validateSumReg.test(event.target.value) || event.target.value === '') {
@@ -35,7 +36,7 @@ const CreateTransaction = () => {
 
   const handleSubmit = () => {
     if (!sum || !categoryId || !title) {
-     return toast(t('All fields are required'), {
+      return toast(t('All fields are required'), {
         position: "top-right",
         autoClose: 2500,
         hideProgressBar: true,
@@ -56,18 +57,29 @@ const CreateTransaction = () => {
           type: 'error'
         })
       }
-    }
-        const newTransaction: transactionType = {
-          title: title,
-          ownerId: user._id,
-          isCard: useCard,
-          isExpense: isExpense,
-          sum: Number(sum),
-          category: categoryId,
-          date: new Date()
-        }
 
-        dispatch(addTransaction({ transaction: newTransaction }))
+      if(Number(sum) === 0){
+        return toast(t('You don\'t have this much'), {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'error'
+        })
+      }
+    }
+    const newTransaction: transactionType = {
+      title: title,
+      ownerId: user._id,
+      isCard: useCard,
+      isExpense: isExpense,
+      sum: Number(sum),
+      category: categoryId,
+      date: new Date()
+    }
+
+    dispatch(addTransaction({ transaction: newTransaction }))
   }
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import React, { FC, useState } from "react";
 import { expenseIncomeType } from "../../types/statistic.type";
 import { useAppSelector } from "../../hooks/react-redux.hook";
 import { userData } from "../../store/selectors";
+import { formattingNumber } from "../../helpers/index.js";
 
 type propsType = {
   statisticForRange: expenseIncomeType[]
@@ -25,7 +26,7 @@ const Diagram:FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const dataForRange: rangeDataType[] = statisticForRange.map((el, index) => ({
       value: el.total,
       color: hovered === index ? 'grey' : colors[index],
-      tooltip: `${lang === 'en' ? el._id.nameEn : el._id.nameRu}, ${el.total}`
+      tooltip: `${lang === 'en' ? el._id.nameEn : el._id.nameRu}, ${formattingNumber(el.total)}`
     }))
 
   return (

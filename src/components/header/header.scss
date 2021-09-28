@@ -28,13 +28,22 @@ header {
       display: flex;
       list-style: none;
 
+      @media(max-width: 1000px) {
+        font-size: 12px;
+      }
+
       @media (max-width: 768px) {
         flex-wrap: wrap;
         justify-content: center;
         margin-top: 10px !important;
         padding-bottom: 10px !important;
       }
+
+      @media(max-width: 330px) {
+        font-size: 11px;
+      }
     }
+
 
     li {
       margin-right: 15px;

@@ -45,5 +45,13 @@
   "Load more": "Загрузить еще",
   "Spent during this period": "Потратил за это время",
   "All fields are required": "Нужно заполнить все поля",
-  "You don't have this much": "А столько у тебя нет("
+  "You don't have this much": "А столько у тебя нет(",
+  "Here you can set initial values for your balance": "Тут можно задать стартовые значения",
+  "Set your card balance": "Установить баланс на карте",
+  "Set your cash balance": "Установить количество наличных",
+  "Sum on card": "На карте",
+  "Sum in cash": "Налом",
+  "Set initial values": "Установть стартовые значения",
+  "Initialize": "Инициализировать",
+  "Skip": "Забить"
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik'
 import * as Yup from 'yup'
-import { authData } from '../../types/auth.type'
+import { authData } from '../../types/user.type'
 import { Button, FormControl, FormGroup } from 'react-bootstrap'
 import { logIn } from '../../store/reducers/user.reducer'
 import { connect } from "react-redux";
