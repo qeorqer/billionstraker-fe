@@ -45,5 +45,13 @@
   "Load more": "Load more",
   "Spent during this period": "Spent during this period",
   "All fields are required": "All fields are required",
-  "You don't have this much": "You don't have this much"
+  "You don't have this much": "You don't have this much",
+  "Here you can set initial values for your balance": "Here you can set initial values for your balance",
+  "Set your card balance": "Set your card balance",
+  "Set your cash balance": "Set your card balance",
+  "Sum on card": "Sum on card",
+  "Sum in cash": "Sum in cash",
+  "Set initial values": "Set initial values",
+  "Initialize": "Initialize",
+  "Skip": "Skip"
 }
