@@ -1,13 +1,12 @@
 import axios from 'axios'
 import { loginResponseType } from '../types/user.type';
 import { toast } from "react-toastify";
-import { useAppDispatch } from "../hooks/react-redux.hook";
-import { useHistory } from 'react-router-dom';
-import { setAuth } from '../store/reducers/user.reducer';
+
+const baseUrl:string = 'https://young-beyond-74584.herokuapp.com'
 
 const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:5003/api',
+  baseURL: `${baseUrl}/api`,
   headers: {
     "Content-type": "application/json"
   }
@@ -28,7 +27,7 @@ axiosInstance.interceptors.response.use((config) => {
   if (error.response.status === 401 && error.config && !error.config._isRetry) {
     originalRequest._isRetry = true;
     try {
-      const response = await axios.get<loginResponseType>('http://localhost:5003/api/refresh', { withCredentials: true })
+      const response = await axios.get<loginResponseType>(`${baseUrl}/api/user/refresh`, { withCredentials: true })
       localStorage.setItem('token', response.data.accessToken);
       return axiosInstance.request(originalRequest);
     } catch (e) {
@@ -43,14 +42,6 @@ axiosInstance.interceptors.response.use((config) => {
         type: 'warning'
       })
     }
-
-    localStorage.removeItem('token');
-
-    const dispatch = useAppDispatch()
-    const history = useHistory()
-
-    dispatch(setAuth(false))
-    history.push('/')
   }
   throw error;
 })
