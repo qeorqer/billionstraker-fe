@@ -34,7 +34,7 @@ const SignUpFormMarkup: React.FC<FormikProps<signupForm>> = (
           controlId="login"
           className='authFormGroup mb-4'>
           <FormControl
-            type={'text'}
+            type={'email'}
             value={field.value}
             onChange={field.onChange}
             placeholder={t('login')}
@@ -147,7 +147,7 @@ const SignUpForm = (props: propsType) => (
           .oneOf([Yup.ref("password")], "Password does not match")
       })
     }
-    onSubmit={(values: signupForm) => props.dispatch(signUp({ login: values.login.toLowerCase(), password: values.password }))}
+    onSubmit={(values: signupForm) => props.dispatch(signUp({ login: values.login.trim().toLowerCase(), password: values.password }))}
     render={(props: FormikProps<signupForm>) => <SignUpFormMarkup {...props} />}
   />
 )

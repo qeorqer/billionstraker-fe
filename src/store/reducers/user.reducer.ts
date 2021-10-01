@@ -174,6 +174,12 @@ const userReducer = createSlice({
       state.isAuth = false
     })
 
+    builder.addCase(logOut.rejected, (state) => {
+      localStorage.removeItem('token')
+      state.user = {} as userType
+      state.isAuth = false
+    })
+
     builder.addCase(checkAuth.pending, (state) => {
       state.isRefreshLoading = true
     })

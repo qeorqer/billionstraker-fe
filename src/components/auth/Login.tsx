@@ -29,7 +29,7 @@ const LogInFormMarkup: React.FC<FormikProps<authData>> = (
             controlId="login"
             className='authFormGroup mb-4'>
             <FormControl
-              type={'text'}
+              type={'email'}
               value={field.value}
               onChange={field.onChange}
               placeholder={t('login')}
@@ -113,7 +113,7 @@ const LoginForm = (props: propsType) => (
           .min(6, 'Password must contain at least 6 symbols')
       })
     }
-    onSubmit={(values: authData) => props.dispatch(logIn({ login: values.login.toLowerCase(), password: values.password }))}
+    onSubmit={(values: authData) => props.dispatch(logIn({ login: values.login.trim().toLowerCase(), password: values.password }))}
     render={(props: FormikProps<authData>) => <LogInFormMarkup {...props} />}
   />
 )
