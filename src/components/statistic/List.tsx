@@ -6,7 +6,7 @@ import { userData } from "../../store/selectors";
 
 type propsType = {
   statisticForRange: expenseIncomeType[]
-  userExpensesThisMonth: number
+  totalSpent: number
 }
 
 export type listForRangeItem = {
@@ -15,13 +15,13 @@ export type listForRangeItem = {
   percentage: number | string
 }
 
-export const List: FC<propsType> = ({ statisticForRange, userExpensesThisMonth }) => {
+export const List: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const { lang } = useAppSelector(userData)
 
   const dataForRange: listForRangeItem[] = statisticForRange.map((el, index) => ({
     title: lang === 'en' ? el._id.nameEn : el._id.nameRu,
     value: el.total,
-    percentage: Math.round((100 * el.total) / userExpensesThisMonth) || '>1'
+    percentage: Math.round((100 * el.total) / totalSpent) || '>1'
   }))
 
 

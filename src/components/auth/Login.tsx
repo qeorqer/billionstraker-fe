@@ -113,7 +113,7 @@ const LoginForm = (props: propsType) => (
           .min(6, 'Password must contain at least 6 symbols')
       })
     }
-    onSubmit={(values: authData) => props.dispatch(logIn(values))}
+    onSubmit={(values: authData) => props.dispatch(logIn({ login: values.login.toLowerCase(), password: values.password }))}
     render={(props: FormikProps<authData>) => <LogInFormMarkup {...props} />}
   />
 )

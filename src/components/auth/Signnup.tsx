@@ -147,7 +147,7 @@ const SignUpForm = (props: propsType) => (
           .oneOf([Yup.ref("password")], "Password does not match")
       })
     }
-    onSubmit={(values: signupForm) => props.dispatch(signUp(values))}
+    onSubmit={(values: signupForm) => props.dispatch(signUp({ login: values.login.toLowerCase(), password: values.password }))}
     render={(props: FormikProps<signupForm>) => <SignUpFormMarkup {...props} />}
   />
 )
