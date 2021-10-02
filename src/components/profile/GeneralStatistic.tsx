@@ -25,7 +25,7 @@ const GeneralStatistic: FC = () => {
         </div>
       ) : (
         <div className='d-flex justify-content-center align-items-center h-100 fw-bold my-3 my-md-0 '>
-          <p>Some of your statistic will be here</p>
+          <p>{t('Some of your statistic will be here')}</p>
         </div>
       )
 

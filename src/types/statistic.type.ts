@@ -8,7 +8,7 @@ export type generalStatisticType = {
 export type getGeneralStatisticResponseType = {
   messageRu: string,
   messageEn: string,
-  statistic: generalStatisticType| null
+  statistic: generalStatisticType | null
 }
 
 export type wholeStatisticType = {
@@ -16,12 +16,14 @@ export type wholeStatisticType = {
   userExpensesThisMonth: number,
   userIncomes: number,
   userIncomesThisMonth: number,
+  averageExpensePerMonth: number,
+  averageIncomePerMonth: number
 }
 
 export type getWholeStatisticResponseType = {
   messageRu: string,
   messageEn: string,
-  statistic: wholeStatisticType| null
+  statistic: wholeStatisticType | null
 }
 
 export type expenseIncomeType = {
