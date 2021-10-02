@@ -17,7 +17,6 @@ const Init = () => {
 
   const handleChange = (setter: React.Dispatch<React.SetStateAction<number | string>>) => (event: React.ChangeEvent<HTMLInputElement>) => {
     if (validateSumReg.test(event.target.value) || event.target.value === '') {
-      console.log(event.target.value)
       setter(event.target.value)
     }
   }
