@@ -17,11 +17,12 @@ const Init = () => {
 
   const handleChange = (setter: React.Dispatch<React.SetStateAction<number | string>>) => (event: React.ChangeEvent<HTMLInputElement>) => {
     if (validateSumReg.test(event.target.value) || event.target.value === '') {
+      console.log(event.target.value)
       setter(event.target.value)
     }
   }
 
-  const validateSumReg = /^[0-9]+$/;
+  const validateSumReg = /^[0-9]$/;
 
   useEffect(() => {
     if (user.isFirstEnter) {
@@ -59,7 +60,7 @@ const Init = () => {
           <Col xs='12' lg='6' className='mb-3 mb-lg-0' >
             <p className='fs-5 fw-bold'>{t('Set your card balance')}:</p>
             <FormControl
-              type='text'
+              type='number'
               placeholder={t('Sum on card')}
               value={card}
               onChange={handleChange(setCard)}
@@ -68,7 +69,7 @@ const Init = () => {
           <Col xs='12' lg='6'>
             <p className='fs-5 fw-bold'>{t('Set your cash balance')}:</p>
             <FormControl
-              type='text'
+              type='number'
               placeholder={t('Sum in cash')}
               value={cash}
               onChange={handleChange(setCash)}

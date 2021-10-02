@@ -184,7 +184,7 @@ const CreateTransaction = () => {
               <Col xs='6' className='d-flex flex-wrap'>
                 <p className='mb-1  fs-5'>{t('Enter the sum of transaction')}:</p>
                 <FormControl
-                  type='text'
+                  type='number'
                   placeholder={t('Transaction sum')}
                   value={sum}
                   onChange={handleChangeSum}
