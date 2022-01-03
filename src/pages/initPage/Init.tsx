@@ -21,7 +21,7 @@ const Init = () => {
     }
   }
 
-  const validateSumReg = /^[0-9]$/;
+  const validateSumReg = /^[0-9]+$/;
 
   useEffect(() => {
     if (user.isFirstEnter) {
