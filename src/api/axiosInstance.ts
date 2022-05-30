@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const baseUrl:string = 'https://young-beyond-74584.herokuapp.com'
+export const baseUrl:string = process.env.REACT_APP_BASE_URL!;
 
 export const axiosInstance = axios.create({
   withCredentials: true,
