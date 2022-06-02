@@ -1,11 +1,12 @@
+import { AxiosResponse } from 'axios';
+
 import api from './axiosInstance';
 import {
   authData,
   loginResponseType,
-  updateUserResponseType,
   signUpResponseType,
+  updateUserResponseType,
 } from '../types/user.type';
-import { AxiosResponse } from 'axios';
 import { categoryResponseType } from '../types/category.type';
 import {
   addTransactionResponseType,
@@ -29,9 +30,7 @@ export const logOut = (): Promise<AxiosResponse<void>> =>
   api.post('/user/logOut');
 export const refresh = (): Promise<AxiosResponse<loginResponseType>> =>
   api.get('/user/refresh');
-export const setFirstEnter = (): Promise<
-  AxiosResponse<updateUserResponseType>
-> => api.patch('/user/setFirstEnter');
+export const setFirstEnter = (): Promise<AxiosResponse<updateUserResponseType>> => api.patch('/user/setFirstEnter');
 export const setInitialValues = (body: {
   card: number;
   cash: number;
@@ -50,12 +49,8 @@ export const getAllUserTransactions = (body: {
   api.post('/transaction/getAllUserTransactions', body);
 
 /*statistic requests*/
-export const getGeneralStatistic = (): Promise<
-  AxiosResponse<getGeneralStatisticResponseType>
-> => api.get('/statistic/getGeneralStatistic');
-export const getWholeStatistic = (): Promise<
-  AxiosResponse<getWholeStatisticResponseType>
-> => api.get('/statistic/getWholeStatistic');
+export const getGeneralStatistic = (): Promise<AxiosResponse<getGeneralStatisticResponseType>> => api.get('/statistic/getGeneralStatistic');
+export const getWholeStatistic = (): Promise<AxiosResponse<getWholeStatisticResponseType>> => api.get('/statistic/getWholeStatistic');
 export const getStatisticForRange = (body: {
   from: Date;
   to: Date;
