@@ -79,5 +79,5 @@ export const getCategories = (): Promise<AxiosResponse<categoryResponseType>> =>
 export const createBalance = (body: { name: string; amount: number }): Promise<AxiosResponse<createBalanceResponseType>> =>
   api.post('/balance/createBalance', body);
 
-export const getBalances = (body: { name: string; amount: number }): Promise<AxiosResponse<getBalanceResponseType>> =>
-  api.post('/balance/getBalances', body);
+export const getBalances = (): Promise<AxiosResponse<getBalanceResponseType>> =>
+  api.get('/balance/getBalances');

@@ -8,11 +8,11 @@ export type balanceType = {
 export type createBalanceResponseType = {
   messageRu: string;
   messageEn: string;
-  categories: balanceType;
+  balance: balanceType;
 };
 
 export type getBalanceResponseType = {
   messageRu: string;
   messageEn: string;
-  categories: balanceType[];
+  balances: balanceType[];
 };
