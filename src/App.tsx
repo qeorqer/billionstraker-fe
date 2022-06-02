@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { Slide, toast, ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import './App.scss';
 import { useAppDispatch, useAppSelector } from './hooks/react-redux.hook';
 import { checkAuth, logOut, setAuth } from './store/reducers/user.reducer';
-import { Slide, toast, ToastContainer } from 'react-toastify';
 import { userData } from './store/selectors';
 import AppHeader from './components/header/AppHeader';
 import AppRouter from './components/router/AppRouter';
-import 'react-toastify/dist/ReactToastify.css';
-import './App.scss';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import { loginResponseType } from './types/user.type';
 import axiosInstance, { baseUrl } from './api/axiosInstance';
 

@@ -19,7 +19,11 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks"
+  ],
   "settings": {
     "import/resolver": {
       "typescript": {}
@@ -27,11 +31,15 @@
   },
   "rules": {
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["warn"],
+    "@typescript-eslint/no-use-before-define": [
+      "warn"
+    ],
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [".tsx"]
+        "extensions": [
+          ".tsx"
+        ]
       }
     ],
     "import/extensions": [
@@ -43,17 +51,32 @@
       }
     ],
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["warn"],
+    "@typescript-eslint/no-shadow": [
+      "warn"
+    ],
     "@typescript-eslint/explicit-function-return-type": [
       "warn",
       {
         "allowExpressions": true
       }
     ],
-    "max-len": ["warn", { "code": 80 }],
+    "max-len": [
+      "warn",
+      {
+        "code": 80
+      }
+    ],
     "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
-    "import/prefer-default-export": "off",
-    "react/prop-types": "off"
+    "import/prefer-default-export": "warn",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "react/prop-types": "off",
+    "no-param-reassign": "off",
+    "no-underscore-dangle": "off"
   }
 }
