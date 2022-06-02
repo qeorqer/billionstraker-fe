@@ -6,10 +6,9 @@ import { initReactI18next } from 'react-i18next';
 const fallbackLng = ['en'];
 const availableLanguages = ['en', 'ru'];
 
-
 const options = {
   // order and from where user language should be detected
-  order: [ 'navigator', 'htmlTag', 'path', 'subdomain'],
+  order: ['navigator', 'htmlTag', 'path', 'subdomain'],
 
   // keys or params to lookup language from
   lookupQuerystring: 'lng',
@@ -30,8 +29,8 @@ const options = {
   htmlTag: document.documentElement,
 
   // only detect languages that are in the whitelist
-  checkWhitelist: true
-}
+  checkWhitelist: true,
+};
 
 i18n
   .use(Backend) // load translation using xhr -> see /public/locales. We will add locales in the next step
@@ -42,15 +41,15 @@ i18n
 
   .init({
     backend: {
-      loadPath: "/billionstraker-fe/locales/{{lng}}/{{ns}}.json",
+      loadPath: '/billionstraker-fe/locales/{{lng}}/{{ns}}.json',
     },
-    lng: localStorage. getItem('i18nextLng') || 'en',
+    lng: localStorage.getItem('i18nextLng') || 'en',
     fallbackLng,
     whitelist: availableLanguages,
     detection: options,
 
     interpolation: {
-      escapeValue: false
+      escapeValue: false,
     },
   });
 

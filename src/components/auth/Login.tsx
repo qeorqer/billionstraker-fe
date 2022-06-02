@@ -1,33 +1,30 @@
-import React from 'react'
-import { Field, FieldProps, Form, Formik, FormikProps } from 'formik'
-import * as Yup from 'yup'
-import { authData } from '../../types/user.type'
-import { Button, FormControl, FormGroup } from 'react-bootstrap'
-import { logIn } from '../../store/reducers/user.reducer'
-import { connect } from "react-redux";
-import { AppDispatch } from "../../store";
-import { useTranslation } from "react-i18next";
+import React from 'react';
+import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
+import * as Yup from 'yup';
+import { authData } from '../../types/user.type';
+import { Button, FormControl, FormGroup } from 'react-bootstrap';
+import { logIn } from '../../store/reducers/user.reducer';
+import { connect } from 'react-redux';
+import { AppDispatch } from '../../store';
+import { useTranslation } from 'react-i18next';
 
-const LogInFormMarkup: React.FC<FormikProps<authData>> = (
-  {
-    values,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-    isSubmitting,
-  }) => {
-  const {t} = useTranslation()
+const LogInFormMarkup: React.FC<FormikProps<authData>> = ({
+  values,
+  errors,
+  touched,
+  handleChange,
+  handleBlur,
+  handleSubmit,
+  isSubmitting,
+}) => {
+  const { t } = useTranslation();
 
-  return(
+  return (
     <Form onSubmit={handleSubmit}>
       <Field
-        name='login'
+        name="login"
         render={({ field }: FieldProps) => (
-          <FormGroup
-            controlId="login"
-            className='authFormGroup mb-4'>
+          <FormGroup controlId="login" className="authFormGroup mb-4">
             <FormControl
               type={'email'}
               value={field.value}
@@ -35,50 +32,41 @@ const LogInFormMarkup: React.FC<FormikProps<authData>> = (
               placeholder={t('login')}
               isValid={false}
             />
-            {
-              touched.login &&
-              errors.login &&
-              <FormControl.Feedback
-                type="invalid" tooltip
-              >
+            {touched.login && errors.login && (
+              <FormControl.Feedback type="invalid" tooltip>
                 {errors.login}
               </FormControl.Feedback>
-            }
+            )}
           </FormGroup>
         )}
       />
 
-
       <Field
-        type='password'
-        name='password'
+        type="password"
+        name="password"
         onChange={handleChange}
         onBlur={handleBlur}
         value={values.password}
         render={({ field }: FieldProps) => (
-          <FormGroup controlId="password" className='authFormGroup mb-4'>
+          <FormGroup controlId="password" className="authFormGroup mb-4">
             <FormControl
               type={'password'}
               value={field.value}
               onChange={field.onChange}
               placeholder={t('password')}
             />
-            {
-              touched.password &&
-              errors.password &&
-              <FormControl.Feedback
-                type="invalid" tooltip
-              >
+            {touched.password && errors.password && (
+              <FormControl.Feedback type="invalid" tooltip>
                 {errors.password}
               </FormControl.Feedback>
-            }
+            )}
           </FormGroup>
         )}
       />
 
       <Button
-        type='submit'
-        variant='warning'
+        type="submit"
+        variant="warning"
         disabled={
           isSubmitting ||
           Boolean(errors.login && touched.login) ||
@@ -88,34 +76,39 @@ const LogInFormMarkup: React.FC<FormikProps<authData>> = (
         {t('Sign in')}
       </Button>
     </Form>
-  )
-}
+  );
+};
 
 const init: authData = {
   login: '',
-  password: ''
-}
+  password: '',
+};
 
 type propsType = {
-  dispatch: AppDispatch
-}
+  dispatch: AppDispatch;
+};
 
 const LoginForm = (props: propsType) => (
   <Formik
     initialValues={init}
-    validationSchema={
-      Yup.object().shape({
-        login: Yup.string()
-          .email('Email not valid')
-          .required('Email is required'),
-        password: Yup.string()
-          .required('Password is required')
-          .min(6, 'Password must contain at least 6 symbols')
-      })
+    validationSchema={Yup.object().shape({
+      login: Yup.string()
+        .email('Email not valid')
+        .required('Email is required'),
+      password: Yup.string()
+        .required('Password is required')
+        .min(6, 'Password must contain at least 6 symbols'),
+    })}
+    onSubmit={(values: authData) =>
+      props.dispatch(
+        logIn({
+          login: values.login.trim().toLowerCase(),
+          password: values.password,
+        }),
+      )
     }
-    onSubmit={(values: authData) => props.dispatch(logIn({ login: values.login.trim().toLowerCase(), password: values.password }))}
     render={(props: FormikProps<authData>) => <LogInFormMarkup {...props} />}
   />
-)
+);
 
-export default connect()(LoginForm)
+export default connect()(LoginForm);
