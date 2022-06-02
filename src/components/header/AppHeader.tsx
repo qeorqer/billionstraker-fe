@@ -22,8 +22,8 @@ const AppHeader = () => {
   //todo: fix any
   const customToggle = React.forwardRef<HTMLDivElement>(
     ({ onClick }: any, ref) => (
-      <div className='dropdownMenu'>
-        <div className='menuTogglerContainer' ref={ref} onClick={onClick}>
+      <div className="dropdownMenu">
+        <div className="menuTogglerContainer" ref={ref} onClick={onClick}>
           <span />
         </div>
       </div>
@@ -34,47 +34,47 @@ const AppHeader = () => {
     <header>
       <Container>
         <Row>
-          <Col md='3' xs='6' className='logo'>
-            <Link to='/'>
-              <img src={logo} alt='app logo' />
+          <Col md="3" xs="6" className="logo">
+            <Link to="/">
+              <img src={logo} alt="app logo" />
               Billionstracker
             </Link>
           </Col>
-          <Col md='6' xs='12' className='menu order-1 order-md-0'>
-            <ul className='m-0 p-0'>
+          <Col md="6" xs="12" className="menu order-1 order-md-0">
+            <ul className="m-0 p-0">
               <li>
-                <NavLink to='/home'>{t('Profile')}</NavLink>
+                <NavLink to="/home">{t('Profile')}</NavLink>
               </li>
               <li>
-                <NavLink to='/createTransaction'>
+                <NavLink to="/createTransaction">
                   {t('New transaction')}
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/statistic'>{t('Statistic')}</NavLink>
+                <NavLink to="/statistic">{t('Statistic')}</NavLink>
               </li>
             </ul>
           </Col>
-          <Col md='3' xs='6'>
+          <Col md="3" xs="6">
             <Dropdown>
               <Dropdown.Toggle
                 as={customToggle}
-                id='dropdown-custom-components'
+                id="dropdown-custom-components"
               />
-              <Dropdown.Menu variant='dark'>
+              <Dropdown.Menu variant="dark">
                 <Dropdown.Item
-                  as='span'
-                  className='d-flex justify-content-around languagesController'
+                  as="span"
+                  className="d-flex justify-content-around languagesController"
                 >
                   <LanguageSwitcher />
                 </Dropdown.Item>
-                <Dropdown.Item as='span' onClick={() => history.push('/home')}>
+                <Dropdown.Item as="span" onClick={() => history.push('/home')}>
                   {t('Home')}
                 </Dropdown.Item>
-                <Dropdown.Item href='https://t.me/qeorqe' target='_blank'>
+                <Dropdown.Item href="https://t.me/qeorqe" target="_blank">
                   {t('Support')}{' '}
                 </Dropdown.Item>
-                <Dropdown.Item as='span' onClick={handleLogout}>
+                <Dropdown.Item as="span" onClick={handleLogout}>
                   {t('Log out')}
                 </Dropdown.Item>
               </Dropdown.Menu>
