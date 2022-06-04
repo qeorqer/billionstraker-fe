@@ -16,7 +16,10 @@ export const getBalances = createAsyncThunk(
 
 export const createBalance = createAsyncThunk(
   'balance/createBalance',
-  async (body: { name: string, amount: number }): Promise<AxiosResponse<createBalanceResponseType>> =>
+  async (body: {
+    name: string;
+    amount: number;
+  }): Promise<AxiosResponse<createBalanceResponseType>> =>
     await api.createBalance(body),
 );
 

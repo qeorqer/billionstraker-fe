@@ -68,7 +68,10 @@ const AppHeader = () => {
                 >
                   <LanguageSwitcher />
                 </Dropdown.Item>
-                <Dropdown.Item as="span" onClick={() => history.push('/balances')}>
+                <Dropdown.Item
+                  as="span"
+                  onClick={() => history.push('/balances')}
+                >
                   {t('balances')}
                 </Dropdown.Item>
                 <Dropdown.Item href="https://t.me/qeorqe" target="_blank">

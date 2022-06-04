@@ -24,11 +24,13 @@ import {
 } from '../types/balance.type';
 
 /* user requests */
-export const signUp = (body: authData): Promise<AxiosResponse<signUpResponseType>> =>
-  api.post('/user/signUp', body);
+export const signUp = (
+  body: authData,
+): Promise<AxiosResponse<signUpResponseType>> => api.post('/user/signUp', body);
 
-export const logIn = (body: authData): Promise<AxiosResponse<loginResponseType>> =>
-  api.post('/user/logIn', body);
+export const logIn = (
+  body: authData,
+): Promise<AxiosResponse<loginResponseType>> => api.post('/user/logIn', body);
 
 export const logOut = (): Promise<AxiosResponse<void>> =>
   api.post('/user/logOut');
@@ -36,8 +38,9 @@ export const logOut = (): Promise<AxiosResponse<void>> =>
 export const refresh = (): Promise<AxiosResponse<loginResponseType>> =>
   api.get('/user/refresh');
 
-export const setFirstEnter = (): Promise<AxiosResponse<updateUserResponseType>> =>
-  api.patch('/user/setFirstEnter');
+export const setFirstEnter = (): Promise<
+  AxiosResponse<updateUserResponseType>
+> => api.patch('/user/setFirstEnter');
 
 export const setInitialValues = (body: {
   card: number;
@@ -58,12 +61,13 @@ export const getAllUserTransactions = (body: {
   api.post('/transaction/getAllUserTransactions', body);
 
 /* statistic requests */
-export const getGeneralStatistic = (): Promise<AxiosResponse<getGeneralStatisticResponseType>> =>
-  api.get('/statistic/getGeneralStatistic');
+export const getGeneralStatistic = (): Promise<
+  AxiosResponse<getGeneralStatisticResponseType>
+> => api.get('/statistic/getGeneralStatistic');
 
-
-export const getWholeStatistic = (): Promise<AxiosResponse<getWholeStatisticResponseType>> =>
-  api.get('/statistic/getWholeStatistic');
+export const getWholeStatistic = (): Promise<
+  AxiosResponse<getWholeStatisticResponseType>
+> => api.get('/statistic/getWholeStatistic');
 
 export const getStatisticForRange = (body: {
   from: Date;
@@ -76,7 +80,10 @@ export const getCategories = (): Promise<AxiosResponse<categoryResponseType>> =>
   api.get('/category/getCategories');
 
 /* balance requests */
-export const createBalance = (body: { name: string; amount: number }): Promise<AxiosResponse<createBalanceResponseType>> =>
+export const createBalance = (body: {
+  name: string;
+  amount: number;
+}): Promise<AxiosResponse<createBalanceResponseType>> =>
   api.post('/balance/createBalance', body);
 
 export const getBalances = (): Promise<AxiosResponse<getBalanceResponseType>> =>
