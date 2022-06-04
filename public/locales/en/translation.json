@@ -57,5 +57,12 @@
   "Average spent per month": "Average spent per month",
   "Average earned per month": "Average earned per month",
   "Average spent per day": "Average spent per day",
-  "balances": "Balances"
+  "balances": "Balances",
+  "all your balances": "All your balances",
+  "your balances will be here": "Your balances will be here",
+  "add new balance": "Add new balance",
+  "name the balance": "Name the balance",
+  "set amount": "set amount",
+  "create": "Create",
+  "balance": "Balance"
 }

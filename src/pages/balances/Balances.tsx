@@ -1,45 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  FormControl,
+  Row,
+} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
 import {
-  setFirstEnter,
-  setInitialValues,
-} from '../../store/reducers/user.reducer';
-import { userData } from '../../store/selectors';
+  createBalance,
+  getBalances,
+} from '../../store/reducers/balance.reducer';
 
 const Balances = () => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
   const { t } = useTranslation();
-  const { user } = useAppSelector(userData);
-  const [card, setCard] = useState<number | string>('');
-  const [cash, setCash] = useState<number | string>('');
+  const { balances } = useAppSelector(state => state.balanceData);
+  const [name, setName] = useState<string>('');
+  const [amount, setAmount] = useState<number | string>('');
 
-  const handleChange =
-    (setter: React.Dispatch<React.SetStateAction<number | string>>) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (
-        validateSumReg.test(event.target.value) ||
-        event.target.value === ''
-      ) {
-        setter(event.target.value);
-      }
-    };
+  const handleChangeAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const validateSumReg = /^[0-9]+$/;
 
-  const validateSumReg = /^[0-9]+$/;
+    if (
+      validateSumReg.test(event.target.value) ||
+      event.target.value === ''
+    ) {
+      setAmount(event.target.value);
+    }
+  };
+
 
   useEffect(() => {
-    if (user.isFirstEnter) {
-      dispatch(setFirstEnter());
-    }
+    dispatch(getBalances());
   }, []);
 
   const handleInit = () => {
-    if (card === '' || cash === '') {
+    if (!name || !amount) {
       return toast(t('All fields are required'), {
         position: 'top-right',
         autoClose: 2500,
@@ -50,51 +51,57 @@ const Balances = () => {
       });
     }
 
-    dispatch(setInitialValues({ card: Number(card), cash: Number(cash) }));
-    history.push('/');
+    dispatch(createBalance({ name, amount: Number(amount) }));
   };
 
 
   return (
     <>
-      <Container className="py-4">
-        <p className="fs-4 fw-bold text-center py-2">
-          {t('Here you can set initial values for your balance')}
+      <Container className='py-4'>
+        <p className='fs-4 fw-bold text-center py-2'>
+          {t(balances.length ? 'all your balances' : 'your balances will be here')}
         </p>
-        <Row className="text-center">
-          <Col xs="12" lg="6" className="mb-3 mb-lg-0">
-            <p className="fs-5 fw-bold">{t('Set your card balance')}:</p>
+        {
+          balances.length && (
+            <Row className='mb-3'>
+              {balances.map((balance) => (
+                <Col xs={12} lg={3} md={4} sm={6} className='mb-3'>
+                  <Card>
+                    <Card.Body>
+                      <Card.Title>{balance.name}</Card.Title>
+                      <Card.Text>
+                        {`${t('balance')}: ${balance.amount}`}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          )}
+        <Row className='text-center'>
+          <Col xs='12' lg='6' className='mb-3 mb-lg-0 mx-auto'>
+            <p className='fs-5 fw-bold'>{t('add new balance')}:</p>
             <FormControl
-              type="number"
-              placeholder={t('Sum on card')}
-              value={card}
-              onChange={handleChange(setCard)}
+              type='text'
+              placeholder={t('name the balance')}
+              value={name}
+              onChange={e => setName(e.target.value)}
+              className='mb-3'
             />
-          </Col>
-          <Col xs="12" lg="6">
-            <p className="fs-5 fw-bold">{t('Set your cash balance')}:</p>
             <FormControl
-              type="number"
-              placeholder={t('Sum in cash')}
-              value={cash}
-              onChange={handleChange(setCash)}
+              type='number'
+              placeholder={t('set amount')}
+              value={amount}
+              onChange={handleChangeAmount}
+              className='mb-3'
             />
-          </Col>
-          <Col xs="12" className="mt-3 text-center">
-            <p className="fs-5 mb-1 mt-4">{t('Set initial values')}:</p>
             <Button
-              variant="warning"
-              className="w300Px text-white"
+              variant='warning'
+              className='w300Px text-white'
               onClick={handleInit}
             >
-              {t('Initialize')}
+              {t('create')}
             </Button>
-            <p
-              className="mt-2 yellowText text-decoration-underline cursor-pointer"
-              onClick={() => history.push('/')}
-            >
-              {t('Skip')}
-            </p>
           </Col>
         </Row>
       </Container>

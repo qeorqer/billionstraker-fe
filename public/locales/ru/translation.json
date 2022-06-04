@@ -57,5 +57,12 @@
   "Average spent per month": "В среднем тратишь в месяц",
   "Average earned per month": "В среднем получаешь в месяц",
   "Average spent per day": "В среднем тратишь в день",
-  "balances": "Счета"
+  "balances": "Счета",
+  "all your balances": "Все счета",
+  "your balances will be here": "Счета будут тут",
+  "add new balance": "Добавить счет",
+  "name the balance": "Назови счет",
+  "set amount": "Установи баланс",
+  "create": "Создать",
+  "balance": "Остаток"
 }
