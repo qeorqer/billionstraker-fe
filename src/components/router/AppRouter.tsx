@@ -30,7 +30,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
           <Route path="/createTransaction" component={CreateTransaction} />
           <Route path="/home" component={Profile} />
           <Route path="/initialization" component={Init} />
-          <Route path="/currencies" component={Currencies} />
+          <Route path="/balances" component={Currencies} />
           <Redirect to="/home" />
         </Switch>
       ) : (
