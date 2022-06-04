@@ -64,5 +64,6 @@
   "name the balance": "Назови счет",
   "set amount": "Установи баланс",
   "create": "Создать",
-  "balance": "Остаток"
+  "balance": "Остаток",
+  "name should be unique": "Название должно быть уникальным"
 }

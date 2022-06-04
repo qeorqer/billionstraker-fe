@@ -35,9 +35,21 @@ const Balances = () => {
     dispatch(getBalances());
   }, []);
 
-  const handleInit = () => {
+  const handleAddBalance = () => {
     if (!name || !amount) {
       return toast(t('All fields are required'), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
+    }
+
+    const isNameAlreadyUsed = balances.some((balance) => balance.name.toLowerCase().trim() === name);
+    if (isNameAlreadyUsed) {
+      return toast(t('name should be unique'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,
@@ -61,7 +73,7 @@ const Balances = () => {
           )}
         </p>
         {balances.length && (
-          <Row className="mb-3">
+          <Row className="mb-3  justify-content-center d-flex">
             {balances.map((balance) => (
               <Col xs={12} lg={3} md={4} sm={6} className="mb-3">
                 <Card>
@@ -96,7 +108,7 @@ const Balances = () => {
             <Button
               variant="warning"
               className="w300Px text-white"
-              onClick={handleInit}
+              onClick={handleAddBalance}
             >
               {t('create')}
             </Button>

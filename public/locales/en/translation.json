@@ -64,5 +64,6 @@
   "name the balance": "Name the balance",
   "set amount": "set amount",
   "create": "Create",
-  "balance": "Balance"
+  "balance": "Balance",
+  "name should be unique": "Name should be unique"
 }
