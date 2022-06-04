@@ -9,7 +9,7 @@ import { userData } from '../../store/selectors';
 import Statistic from '../../pages/statistic/Statistic';
 import Loader from '../loader/Loader';
 import Init from '../../pages/initPage/Init';
-import Currencies from '../../pages/currencies/Currencies';
+import Balances from '../../pages/balances/Balances';
 
 type propsType = {
   isAuth: boolean | null;
@@ -30,7 +30,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
           <Route path="/createTransaction" component={CreateTransaction} />
           <Route path="/home" component={Profile} />
           <Route path="/initialization" component={Init} />
-          <Route path="/balances" component={Currencies} />
+          <Route path="/balances" component={Balances} />
           <Redirect to="/home" />
         </Switch>
       ) : (

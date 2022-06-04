@@ -11,7 +11,7 @@ import {
 } from '../../store/reducers/user.reducer';
 import { userData } from '../../store/selectors';
 
-const Currencies = () => {
+const Balances = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { t } = useTranslation();
@@ -102,4 +102,4 @@ const Currencies = () => {
   );
 };
 
-export default Currencies;
+export default Balances;
