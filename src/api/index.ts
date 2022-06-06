@@ -52,7 +52,7 @@ export const setInitialValues = (body: {
 export const addTransaction = (body: {
   transaction: transactionType;
 }): Promise<AxiosResponse<addTransactionResponseType>> =>
-  api.post('/transaction/addNewTransaction', body);
+  api.post('/transaction/createTransaction', body);
 
 export const getAllUserTransactions = (body: {
   limit: number;

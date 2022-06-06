@@ -7,6 +7,9 @@ import {
   FormControl,
   Row,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+
 import { categoryData, userData } from '../../store/selectors';
 import { formattingNumber } from '../../helpers/index.js';
 import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
@@ -14,17 +17,17 @@ import { addTransaction } from '../../store/reducers/user.reducer';
 import { transactionType } from '../../types/transaction.type';
 import { getCategories } from '../../store/reducers/category.reducer';
 import './transaction.scss';
-import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
 
 const CreateTransaction = () => {
   const { user, lang } = useAppSelector(userData);
   const { categories } = useAppSelector(categoryData);
+
   const [useCard, setUseCard] = useState<boolean>(true);
   const [isExpense, setIsExpense] = useState<boolean>(true);
   const [categoryId, setCategoryId] = useState<string>('');
   const [sum, setSum] = useState<number | string>('');
   const [title, setTitle] = useState<string>('');
+
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
@@ -75,6 +78,7 @@ const CreateTransaction = () => {
         });
       }
     }
+
     const newTransaction: transactionType = {
       title: title,
       ownerId: user._id,
@@ -99,11 +103,10 @@ const CreateTransaction = () => {
           <p className="mb-1 fs-4 text-center fw-bold">
             {t('Select operation type')}:
           </p>
-          <Col xs="12" lg="5" className="mx-auto d-flex">
+          <Col xs="12" lg="4" className="mx-auto d-flex">
             <div className="w-50 text-center">
               <Button
                 variant={isExpense ? 'danger' : 'outline-danger'}
-                className="w-75"
                 onClick={() => {
                   setIsExpense(true);
                   setCategoryId('');
@@ -115,13 +118,23 @@ const CreateTransaction = () => {
             <div className="w-50 text-center">
               <Button
                 variant={!isExpense ? 'success' : 'outline-success'}
-                className="w-75"
                 onClick={() => {
                   setIsExpense(false);
                   setCategoryId('');
                 }}
               >
                 {t('income')}
+              </Button>
+            </div>
+            <div className="w-50 text-center">
+              <Button
+                variant={!isExpense ? 'primary' : 'outline-primary'}
+                onClick={() => {
+                  setIsExpense(false);
+                  setCategoryId('');
+                }}
+              >
+                {t('exchange')}
               </Button>
             </div>
           </Col>
