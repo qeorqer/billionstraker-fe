@@ -12,7 +12,6 @@ import {
 import { getCategories } from '../../store/reducers/category.reducer';
 import { getBalances } from '../../store/reducers/balance.reducer';
 
-import './transaction.scss';
 import { handleExpense } from './utils';
 import CreateTransaction from './view';
 

@@ -12,8 +12,6 @@ import { transactionTypes } from '../../types/transaction.type';
 import { balanceType } from '../../types/balance.type';
 import { categoryType } from '../../types/category.type';
 
-import './transaction.scss';
-
 type propsType = {
   t: (text: string) => string,
   transactionType: transactionTypes,
