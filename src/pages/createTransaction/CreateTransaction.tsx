@@ -11,20 +11,26 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { categoryData, userData } from '../../store/selectors';
-import { formattingNumber } from '../../helpers/index.js';
 import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
 import { addTransaction } from '../../store/reducers/user.reducer';
-import { transactionType } from '../../types/transaction.type';
+import {
+  transactionType,
+  transactionTypes,
+} from '../../types/transaction.type';
 import { getCategories } from '../../store/reducers/category.reducer';
+import { getBalances } from '../../store/reducers/balance.reducer';
 import './transaction.scss';
 
 const CreateTransaction = () => {
   const { user, lang } = useAppSelector(userData);
   const { categories } = useAppSelector(categoryData);
+  const { balances } = useAppSelector((state) => state.balanceData);
 
   const [useCard, setUseCard] = useState<boolean>(true);
-  const [isExpense, setIsExpense] = useState<boolean>(true);
+  const [transactionType, setTransactionType] =
+    useState<transactionTypes>('expense');
   const [categoryId, setCategoryId] = useState<string>('');
+  const [balanceId, setBalanceId] = useState<string>('');
   const [sum, setSum] = useState<number | string>('');
   const [title, setTitle] = useState<string>('');
 
@@ -44,7 +50,7 @@ const CreateTransaction = () => {
   };
 
   const handleSubmit = () => {
-    if (!sum || !categoryId || !title) {
+    if (!sum || !categoryId || !title || !balanceId) {
       return toast(t('All fields are required'), {
         position: 'top-right',
         autoClose: 2500,
@@ -55,7 +61,7 @@ const CreateTransaction = () => {
       });
     }
 
-    if (isExpense) {
+    if (transactionType === 'expense') {
       if ((useCard && user.card < sum) || (!useCard && user.cash < sum)) {
         return toast(t("You don't have this much"), {
           position: 'top-right',
@@ -83,7 +89,7 @@ const CreateTransaction = () => {
       title: title,
       ownerId: user._id,
       isCard: useCard,
-      isExpense: isExpense,
+      isExpense: true,
       sum: Number(sum),
       category: categoryId,
       date: new Date(),
@@ -94,6 +100,7 @@ const CreateTransaction = () => {
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getBalances());
   }, []);
 
   return (
@@ -106,9 +113,11 @@ const CreateTransaction = () => {
           <Col xs="12" lg="4" className="mx-auto d-flex">
             <div className="w-50 text-center">
               <Button
-                variant={isExpense ? 'danger' : 'outline-danger'}
+                variant={
+                  transactionType === 'expense' ? 'danger' : 'outline-danger'
+                }
                 onClick={() => {
-                  setIsExpense(true);
+                  setTransactionType('expense');
                   setCategoryId('');
                 }}
               >
@@ -117,9 +126,11 @@ const CreateTransaction = () => {
             </div>
             <div className="w-50 text-center">
               <Button
-                variant={!isExpense ? 'success' : 'outline-success'}
+                variant={
+                  transactionType === 'profit' ? 'success' : 'outline-success'
+                }
                 onClick={() => {
-                  setIsExpense(false);
+                  setTransactionType('profit');
                   setCategoryId('');
                 }}
               >
@@ -128,9 +139,11 @@ const CreateTransaction = () => {
             </div>
             <div className="w-50 text-center">
               <Button
-                variant={!isExpense ? 'primary' : 'outline-primary'}
+                variant={
+                  transactionType === 'exchange' ? 'primary' : 'outline-primary'
+                }
                 onClick={() => {
-                  setIsExpense(false);
+                  setTransactionType('exchange');
                   setCategoryId('');
                 }}
               >
@@ -139,43 +152,59 @@ const CreateTransaction = () => {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col xs="12" lg="5" className="mx-auto d-md-flex mt-3">
-            <p className="fs-5 mb-0 w-50 text-md-center text-nowrap">
+        {/*  <Row>
+          <Col xs='12' lg='5' className='mx-auto d-md-flex mt-3'>
+            <p className='fs-5 mb-0 w-50 text-md-center text-nowrap'>
               {t('Card balance')}:
-              <span className="yellowText"> {formattingNumber(user.card)}</span>
+              <span className='yellowText'> {formattingNumber(user.card)}</span>
             </p>
-            <p className="fs-5 w-50 text-md-center text-nowrap">
+            <p className='fs-5 w-50 text-md-center text-nowrap'>
               {t('Cash balance')}:
-              <span className="yellowText"> {formattingNumber(user.cash)}</span>
+              <span className='yellowText'> {formattingNumber(user.cash)}</span>
             </p>
           </Col>
-        </Row>
+        </Row>*/}
         <Row>
-          <Col xs="12" lg="7" className="mx-auto">
+          <Col xs="12" lg="7" className="mx-auto  mt-3">
             <Row>
               <Col xs="12" sm="6" className="d-flex flex-wrap">
                 <p className="mb-1 fs-5 text-center w-100">
-                  {t('Select card or cash')}:
+                  {t('select balance')}:
                 </p>
-                <Form.Check
+                <Form.Select
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setBalanceId(e.target.value)
+                  }
+                >
+                  `
+                  <option className="d-none" value="">
+                    {t('select balance')}
+                  </option>
+                  {balances &&
+                    balances.map((balance) => (
+                      <option key={balance._id} value={balance._id}>
+                        {balance.name}
+                      </option>
+                    ))}
+                </Form.Select>
+                {/*<Form.Check
                   checked={useCard}
-                  type="radio"
-                  name="cardOrCash"
-                  id="default-radio2"
-                  className="paymentCard d-flex align-items-center w-50 justify-content-center"
-                  label=""
+                  type='radio'
+                  name='cardOrCash'
+                  id='default-radio2'
+                  className='paymentCard d-flex align-items-center w-50 justify-content-center'
+                  label=''
                   onChange={() => setUseCard(true)}
                 />
                 <Form.Check
                   checked={!useCard}
-                  type="radio"
-                  name="cardOrCash"
-                  id="default-radio1"
-                  label=""
-                  className="paymentCash d-flex align-items-center w-50 justify-content-center"
+                  type='radio'
+                  name='cardOrCash'
+                  id='default-radio1'
+                  label=''
+                  className='paymentCash d-flex align-items-center w-50 justify-content-center'
                   onChange={() => setUseCard(false)}
-                />
+                />*/}
               </Col>
               <Col xs="12" sm="6">
                 <p className="mb-1 fs-5 text-center w-100">
@@ -191,10 +220,10 @@ const CreateTransaction = () => {
                   </option>
                   {categories &&
                     categories
-                      .filter((category) => category.isExpense === isExpense)
-                      .map((el) => (
-                        <option key={el._id} value={el._id}>
-                          {lang === 'en' ? el.nameEn : el.nameRu}
+                      //.filter((category) => category.isExpense === isExpense)
+                      .map((category) => (
+                        <option key={category._id} value={category._id}>
+                          {lang === 'en' ? category.nameEn : category.nameRu}
                         </option>
                       ))}
                 </Form.Select>

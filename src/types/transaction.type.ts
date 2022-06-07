@@ -21,3 +21,5 @@ export type getTransactionsResponseType = {
   transactions: transactionType[];
   numberOfTransactions?: number;
 };
+
+export type transactionTypes = 'expense' | 'profit' | 'exchange';

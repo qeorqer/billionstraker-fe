@@ -47,7 +47,9 @@ const Balances = () => {
       });
     }
 
-    const isNameAlreadyUsed = balances.some((balance) => balance.name.toLowerCase().trim() === name);
+    const isNameAlreadyUsed = balances.some(
+      (balance) => balance.name.toLowerCase().trim() === name,
+    );
     if (isNameAlreadyUsed) {
       return toast(t('name should be unique'), {
         position: 'top-right',
