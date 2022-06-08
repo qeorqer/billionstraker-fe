@@ -74,7 +74,7 @@ const Balances = () => {
               : 'your balances will be here',
           )}
         </p>
-        {balances.length && (
+        {balances.length ? (
           <Row className="mb-3  justify-content-center d-flex">
             {balances.map((balance) => (
               <Col xs={12} lg={3} md={4} sm={6} className="mb-3">
@@ -89,7 +89,7 @@ const Balances = () => {
               </Col>
             ))}
           </Row>
-        )}
+        ) : null}
         <Row className="text-center">
           <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
             <p className="fs-5 fw-bold">{t('add new balance')}:</p>

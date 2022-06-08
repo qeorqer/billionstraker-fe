@@ -7,6 +7,7 @@ import {
   createBalanceResponseType,
   getBalanceResponseType,
 } from '../../types/balance.type';
+import { toast } from 'react-toastify';
 
 export const getBalances = createAsyncThunk(
   'balance/getBalances',
@@ -41,6 +42,18 @@ const balanceReducer = createSlice({
     });
 
     builder.addCase(createBalance.fulfilled, (state, action) => {
+
+      toast('creating balance success',
+        {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success',
+        },
+      );
+
       state.balances = [...state.balances, action.payload.data.balance];
     });
   },

@@ -67,5 +67,6 @@
   "set amount": "set amount",
   "create": "Create",
   "balance": "Balance",
-  "name should be unique": "Name should be unique"
+  "name should be unique": "Name should be unique",
+  "creating balance success": "Balance added successfully"
 }

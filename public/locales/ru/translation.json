@@ -67,5 +67,6 @@
   "set amount": "Установи баланс",
   "create": "Создать",
   "balance": "Остаток",
-  "name should be unique": "Название должно быть уникальным"
+  "name should be unique": "Название должно быть уникальным",
+  "creating balance success": "Баланс добавлен успешно"
 }
