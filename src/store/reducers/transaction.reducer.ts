@@ -63,6 +63,10 @@ const transactionReducer = createSlice({
     builder.addCase(getAllUserTransactions.rejected, (state) => {
       state.isTransactionsloading = false;
     });
+
+    builder.addCase(createTransaction.fulfilled, (state, action) => {
+      state.transactions = [...state.transactions, action.payload.data.transaction];
+    })
   },
 });
 

@@ -8,6 +8,7 @@ import {
   createBalanceResponseType,
   getBalanceResponseType,
 } from '../../types/balance.type';
+import { createTransaction } from './transaction.reducer';
 
 export const getBalances = createAsyncThunk(
   'balance/getBalances',
@@ -42,7 +43,6 @@ const balanceReducer = createSlice({
     });
 
     builder.addCase(createBalance.fulfilled, (state, action) => {
-
       toast('creating balance success',
         {
           position: 'top-right',
@@ -55,6 +55,15 @@ const balanceReducer = createSlice({
       );
 
       state.balances = [...state.balances, action.payload.data.balance];
+    });
+
+    builder.addCase(createTransaction.fulfilled, (state, action) => {
+      const updatedBalance = action.payload.data.balances;
+
+      state.balances = state.balances.map((balance) => {
+        const balanceForUpdate = updatedBalance.find((item) => item._id === balance._id);
+        return balanceForUpdate ? balanceForUpdate : balance;
+      })
     });
   },
 });
