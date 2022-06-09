@@ -51,8 +51,9 @@ export const setInitialValues = (body: {
 /* transaction requests */
 export const addTransaction = (body: {
   transaction: transactionType;
+  balanceId: string;
 }): Promise<AxiosResponse<addTransactionResponseType>> =>
-  api.post('/transaction/Index', body);
+  api.post('/transaction/createTransaction', body);
 
 export const getAllUserTransactions = (body: {
   limit: number;

@@ -4,23 +4,21 @@ import { toast } from 'react-toastify';
 
 import { categoryData, userData } from '../../store/selectors';
 import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
-import { addTransaction } from '../../store/reducers/user.reducer';
 import {
   transactionType,
   transactionTypes,
 } from '../../types/transaction.type';
 import { getCategories } from '../../store/reducers/category.reducer';
 import { getBalances } from '../../store/reducers/balance.reducer';
+import { createTransaction } from '../../store/reducers/transaction.reducer';
 
-import { handleExpense } from './utils';
 import CreateTransaction from './view';
 
 const CreateTransactionPage = () => {
-  const { user, lang } = useAppSelector(userData);
+  const { lang } = useAppSelector(userData);
   const { categories } = useAppSelector(categoryData);
   const { balances } = useAppSelector((state) => state.balanceData);
 
-  const [useCard, setUseCard] = useState<boolean>(true);
   const [transactionType, setTransactionType] = useState<transactionTypes>('expense');
   const [categoryId, setCategoryId] = useState<string>('');
   const [balanceId, setBalanceId] = useState<string>('');
@@ -50,27 +48,22 @@ const CreateTransactionPage = () => {
       });
     }
 
-    console.log(sum, categoryId, title, balanceId);
-    return;
-
-    switch (transactionType) {
-      case 'exchange':
-        handleExpense();
+    const balance = balances.find((balance) => balance._id === balanceId);
+    if (!balance) {
+      return toast(t('the balance does not exist'), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
     }
 
-    if (transactionType === 'expense') {
-      if ((useCard && user.card < sum) || (!useCard && user.cash < sum)) {
-        return toast(t('You don\'t have this much'), {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
-          type: 'error',
-        });
-      }
+    console.log(sum, categoryId, title, balanceId);
 
-      if (Number(sum) === 0) {
+    if (transactionType === 'expense') {
+      if (balance.amount < sum) {
         return toast(t('You don\'t have this much'), {
           position: 'top-right',
           autoClose: 2500,
@@ -84,15 +77,14 @@ const CreateTransactionPage = () => {
 
     const newTransaction: transactionType = {
       title: title,
-      ownerId: user._id,
-      isCard: useCard,
-      isExpense: true,
       sum: Number(sum),
       category: categoryId,
+      balance: balance.name,
       date: new Date(),
+      transactionType: transactionType,
     };
 
-    dispatch(addTransaction({ transaction: newTransaction }));
+    dispatch(createTransaction({ transaction: newTransaction, balanceId: balanceId }));
   };
 
   useEffect(() => {

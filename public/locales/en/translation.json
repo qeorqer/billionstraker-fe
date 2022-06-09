@@ -68,5 +68,6 @@
   "create": "Create",
   "balance": "Balance",
   "name should be unique": "Name should be unique",
-  "creating balance success": "Balance added successfully"
+  "creating balance success": "Balance added successfully",
+  "the balance does not exist": "The balance does not exist"
 }

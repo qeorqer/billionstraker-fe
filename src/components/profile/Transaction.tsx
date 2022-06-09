@@ -28,7 +28,7 @@ const Transaction: FC<propsType> = ({ transaction }) => {
             {formatTransactionDate(transaction.date, lang)}
           </Col>
           <Col xs="4" sm="4">
-            {transaction.isExpense ? (
+            {transaction.transactionType === 'expense' ? (
               <span className="text-danger">
                 -{formattingNumber(transaction.sum)}
               </span>

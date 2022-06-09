@@ -2,9 +2,19 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import * as api from '../../api/index';
 import {
+  addTransactionResponseType,
   getTransactionsResponseType,
   transactionType,
 } from '../../types/transaction.type';
+
+export const createTransaction = createAsyncThunk(
+  'transaction/createTransaction',
+  async (body: {
+    transaction: transactionType;
+    balanceId: string;
+  }): Promise<AxiosResponse<addTransactionResponseType>> =>
+    await api.addTransaction(body),
+);
 
 export const getAllUserTransactions = createAsyncThunk(
   'transaction/getAllUserTransactions',
