@@ -4,7 +4,7 @@ import React, { FC, useState } from 'react';
 import { expenseIncomeType } from '../../types/statistic.type';
 import { useAppSelector } from '../../hooks/react-redux.hook';
 import { userData } from '../../store/selectors';
-import { formattingNumber } from '../../helpers/index.js';
+import { formattingNumber } from '../../utils/formattingNumber.js';
 
 type propsType = {
   statisticForRange: expenseIncomeType[];

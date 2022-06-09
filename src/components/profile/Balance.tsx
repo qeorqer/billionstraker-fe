@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Col } from 'react-bootstrap';
-import { formattingNumber } from '../../helpers/index.js';
+import { formattingNumber } from '../../utils/formattingNumber.js';
 import { useSelector } from 'react-redux';
 import { userData } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { transactionType } from '../../types/transaction.type';
 import { Card, Col, Row } from 'react-bootstrap';
-import { formatTransactionDate } from '../../helpers/time';
-import { formattingNumber } from '../../helpers/index.js';
+import { formatTransactionDate } from '../../utils/time';
+import { formattingNumber } from '../../utils/formattingNumber.js';
 import { useAppSelector } from '../../hooks/react-redux.hook';
 import { userData } from '../../store/selectors';
 
