@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
-import { formattingNumber } from '../../utils/formattingNumber.js';
+import { formattingNumber } from '../../utils/formattingNumber`';
 import { listForRangeItem } from './List';
 
 type propsType = {

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { transactionType } from '../../types/transaction.type';
 import { Card, Col, Row } from 'react-bootstrap';
 import { formatTransactionDate } from '../../utils/time';
-import { formattingNumber } from '../../utils/formattingNumber.js';
+import { formattingNumber } from '../../utils/formattingNumber';
 import { useAppSelector } from '../../hooks/react-redux.hook';
 import { userData } from '../../store/selectors';
 
