@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import CreateTransaction from '../pages/CreateTransaction';
-import BalancesPage from '../pages/balances';
+import BalancesPage from '../pages/Balances';
 import Profile from '../pages/profile/Profile';
 import Auth from '../pages/auth/Auth';
 import { useAppSelector } from '../hooks/react-redux.hook';
