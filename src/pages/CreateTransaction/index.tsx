@@ -60,8 +60,6 @@ const CreateTransactionPage = () => {
       });
     }
 
-    console.log(sum, categoryId, title, balanceId);
-
     if (transactionType === 'expense') {
       if (balance.amount < sum) {
         return toast(t('You don\'t have this much'), {
