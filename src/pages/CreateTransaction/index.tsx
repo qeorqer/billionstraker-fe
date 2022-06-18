@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
@@ -32,14 +32,15 @@ const CreateTransactionPage = () => {
 
   const validateSumReg = /^((?!(0))[0-9]+)$/;
 
-  const handleChangeSum = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeSum = (setter: Dispatch<SetStateAction<string | number>>) => (event: React.ChangeEvent<HTMLInputElement>) => {
     if (validateSumReg.test(event.target.value) || event.target.value === '') {
-      setSum(event.target.value);
+      setter(event.target.value);
     }
   };
 
   const handleSubmit = () => {
-    if (!sum || !categoryId || !title || !balanceId) {
+    //todo: add for category
+    if ((!sum || !title || !balanceId)) {
       return toast(t('All fields are required'), {
         position: 'top-right',
         autoClose: 2500,
@@ -48,6 +49,62 @@ const CreateTransactionPage = () => {
         theme: 'dark',
         type: 'error',
       });
+    }
+
+    if (transactionType === 'exchange' && (!exchangeSum || !exchangeBalanceId)) {
+      return toast(t('All fields are required'), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
+    }
+
+
+    if (transactionType === 'exchange') {
+      const balance = balances.find((balance) => balance._id === exchangeBalanceId);
+      const balanceToSubtract = balances.find((balance) => balance._id === balanceId);
+      if (!balance || !balanceToSubtract) {
+        return toast(t('the balance does not exist'), {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'error',
+        });
+      }
+
+      if (balanceToSubtract.amount < sum) {
+        return toast(t('You don\'t have this much'), {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'error',
+        });
+      }
+
+      const newTransaction: transactionType = {
+        title: title,
+        sum: Number(exchangeSum),
+        sumToSubtract: Number(sum),
+        balance: balance.name,
+        balanceToSubtract: balanceToSubtract.name,
+        transactionType: transactionType,
+        date: new Date(),
+      };
+
+      dispatch(createTransaction({
+        transaction: newTransaction,
+        balanceId: exchangeBalanceId,
+        balanceToSubtractId: balanceId,
+      }));
+
+      return;
     }
 
     const balance = balances.find((balance) => balance._id === balanceId);
@@ -84,7 +141,10 @@ const CreateTransactionPage = () => {
       transactionType: transactionType,
     };
 
-    dispatch(createTransaction({ transaction: newTransaction, balanceId: balanceId }));
+    dispatch(createTransaction({
+      transaction: newTransaction,
+      balanceId: balanceId,
+    }));
   };
 
   useEffect(() => {
@@ -108,8 +168,8 @@ const CreateTransactionPage = () => {
       title={title}
       sum={sum}
       exchangeSum={exchangeSum}
-      handleChangeSum={handleChangeSum}
-      handleChangeExchangeSum={handleChangeSum}
+      handleChangeSum={handleChangeSum(setSum)}
+      handleChangeExchangeSum={handleChangeSum(setExchangeSum)}
       handleSubmit={handleSubmit}
     />
   );

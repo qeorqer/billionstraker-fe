@@ -52,6 +52,7 @@ export const setInitialValues = (body: {
 export const addTransaction = (body: {
   transaction: transactionType;
   balanceId: string;
+  balanceToSubtractId?: string;
 }): Promise<AxiosResponse<addTransactionResponseType>> =>
   api.post('/transaction/createTransaction', body);
 

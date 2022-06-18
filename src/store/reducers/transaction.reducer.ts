@@ -14,6 +14,7 @@ export const createTransaction = createAsyncThunk(
   async (body: {
     transaction: transactionType;
     balanceId: string;
+    balanceToSubtractId?: string;
   }): Promise<AxiosResponse<addTransactionResponseType>> =>
     await api.addTransaction(body),
 );
