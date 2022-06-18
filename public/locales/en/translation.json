@@ -69,5 +69,6 @@
   "balance": "Balance",
   "name should be unique": "Name should be unique",
   "creating balance success": "Balance added successfully",
-  "the balance does not exist": "The balance does not exist"
+  "the balance does not exist": "The balance does not exist",
+  "transaction created successfully": "Transaction created successfully"
 }

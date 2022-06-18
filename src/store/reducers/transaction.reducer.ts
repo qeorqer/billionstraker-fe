@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
+
 import * as api from '../../api/index';
 import {
   addTransactionResponseType,
@@ -66,6 +68,17 @@ const transactionReducer = createSlice({
 
     builder.addCase(createTransaction.fulfilled, (state, action) => {
       state.transactions = [...state.transactions, action.payload.data.transaction];
+
+
+      toast('transaction created successfully', {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success',
+        },
+      );
     })
   },
 });

@@ -69,5 +69,6 @@
   "balance": "Остаток",
   "name should be unique": "Название должно быть уникальным",
   "creating balance success": "Баланс добавлен успешно",
-  "the balance does not exist": "Ошибка, баланс не сущуествует"
+  "the balance does not exist": "Ошибка, баланс не сущуествует",
+  "transaction created successfully": "Транзакция успешно добавлена"
 }
