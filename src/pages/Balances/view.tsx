@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap';
 
 import { balanceType } from '../../types/balance.type';
+import BalancesList from '../../components/shared/Balances';
 
 type propsType = {
   t: (text: string) => string,
@@ -19,6 +20,7 @@ type propsType = {
   handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void,
   handleAddBalance: () => void,
 }
+
 const Balances: React.FC<propsType> = (
   {
     t,
@@ -39,22 +41,9 @@ const Balances: React.FC<propsType> = (
             : 'your balances will be here',
         )}
       </p>
-      {balances.length ? (
-        <Row className='mb-3  justify-content-center d-flex'>
-          {balances.map((balance) => (
-            <Col xs={12} lg={3} md={4} sm={6} className='mb-3'>
-              <Card>
-                <Card.Body>
-                  <Card.Title>{balance.name}</Card.Title>
-                  <Card.Text>
-                    {`${t('balance')}: ${balance.amount}`}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      ) : null}
+      <BalancesList
+        balances={balances}
+      />
       <Row className='text-center'>
         <Col xs='12' lg='6' className='mb-3 mb-lg-0 mx-auto'>
           <p className='fs-5 fw-bold'>{t('add new balance')}:</p>

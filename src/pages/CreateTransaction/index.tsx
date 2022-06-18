@@ -22,7 +22,9 @@ const CreateTransactionPage = () => {
   const [transactionType, setTransactionType] = useState<transactionTypes>('expense');
   const [categoryId, setCategoryId] = useState<string>('');
   const [balanceId, setBalanceId] = useState<string>('');
+  const [exchangeBalanceId, setExchangeBalanceId] = useState<string>('');
   const [sum, setSum] = useState<number | string>('');
+  const [exchangeSum, setExchangeSum] = useState<number | string>('');
   const [title, setTitle] = useState<string>('');
 
   const { t } = useTranslation();
@@ -97,13 +99,17 @@ const CreateTransactionPage = () => {
       setTransactionType={setTransactionType}
       setCategoryId={setCategoryId}
       setBalanceId={setBalanceId}
+      balanceId={balanceId}
+      setExchangeBalanceId={setExchangeBalanceId}
       setTitle={setTitle}
       balances={balances}
       categories={categories}
       lang={lang}
       title={title}
       sum={sum}
+      exchangeSum={exchangeSum}
       handleChangeSum={handleChangeSum}
+      handleChangeExchangeSum={handleChangeSum}
       handleSubmit={handleSubmit}
     />
   );
