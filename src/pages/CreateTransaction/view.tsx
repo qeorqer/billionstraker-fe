@@ -211,6 +211,7 @@ const CreateTransaction: React.FC<propsType> =
                   selected={date}
                   onChange={(newDate) => setDate(newDate || new Date())}
                   className='form-control'
+                  dateFormat="dd/MM/yyyy"
                 />
               </Col>
             </Row>
