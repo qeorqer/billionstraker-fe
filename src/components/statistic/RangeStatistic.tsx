@@ -8,7 +8,7 @@ import { List } from './List';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import { useAppSelector } from '../../hooks/react-redux.hook';
 import { useTranslation } from 'react-i18next';
-import { statisticData } from '../../store/selectors';
+import { statisticData, userData } from '../../store/selectors';
 import { statisticForRangeType } from '../../types/statistic.type';
 import './rangeStatistic.scss';
 
@@ -24,6 +24,7 @@ const RangeStatistic: FC<propsType> = ({
   setMonthsRange,
 }) => {
   const { t } = useTranslation();
+  const { lang } = useAppSelector(userData);
   const { isStatisticForRangeLoading } = useAppSelector(statisticData);
   const [useDiagram, setUseDiagram] = useState<boolean>(true);
 
@@ -35,7 +36,7 @@ const RangeStatistic: FC<propsType> = ({
           onChange={setMonthsRange}
           maxDetail="year"
           value={monthsRange}
-          locale="en"
+          locale={lang}
           calendarIcon={null}
           clearIcon={null}
           format="MM.y"
