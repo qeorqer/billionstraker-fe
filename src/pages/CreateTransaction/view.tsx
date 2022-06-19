@@ -210,6 +210,7 @@ const CreateTransaction: React.FC<propsType> =
                 <DatePicker
                   selected={date}
                   onChange={(newDate) => setDate(newDate || new Date())}
+                  className='form-control'
                 />
               </Col>
             </Row>
