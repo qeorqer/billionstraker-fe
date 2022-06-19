@@ -71,5 +71,6 @@
   "creating balance success": "Balance added successfully",
   "the balance does not exist": "The balance does not exist",
   "transaction created successfully": "Transaction created successfully",
-  "create balances first": "Create balances first"
+  "create balances first": "Create balances first",
+  "select date": "Select date"
 }

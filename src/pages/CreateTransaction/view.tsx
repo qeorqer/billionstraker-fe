@@ -7,11 +7,13 @@ import {
   FormControl,
   Row,
 } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
 
 import { transactionTypes } from '../../types/transaction.type';
 import { balanceType } from '../../types/balance.type';
 import { categoryType } from '../../types/category.type';
 import Balances from '../../components/shared/Balances';
+import "react-datepicker/dist/react-datepicker.css";
 
 type propsType = {
   t: (text: string) => string,
@@ -31,6 +33,8 @@ type propsType = {
   handleChangeSum: (event: React.ChangeEvent<HTMLInputElement>) => void,
   handleChangeExchangeSum: (event: React.ChangeEvent<HTMLInputElement>) => void,
   handleSubmit: () => void,
+  date: Date,
+  setDate: Dispatch<SetStateAction<Date>>
 }
 
 const CreateTransaction: React.FC<propsType> =
@@ -52,6 +56,8 @@ const CreateTransaction: React.FC<propsType> =
      handleChangeSum,
      handleChangeExchangeSum,
      handleSubmit,
+     date,
+     setDate,
    }) => (
     <>
       <Container className='py-md-4 my-4'>
@@ -113,10 +119,11 @@ const CreateTransaction: React.FC<propsType> =
         <Balances
           balances={balances}
         />
+
         <Row>
           <Col xs='12' lg='7' className='mx-auto  mt-3'>
             <Row>
-              <Col xs='12' sm='6' className='d-flex flex-wrap'>
+              <Col xs='12' sm='4' className='d-flex flex-wrap'>
                 <p className='mb-1 fs-5 text-center w-100'>
                   {t('select balance')}:
                 </p>
@@ -140,7 +147,7 @@ const CreateTransaction: React.FC<propsType> =
                   ))}
                 </Form.Select>
               </Col>
-              <Col xs='12' sm='6'>
+              <Col xs='12' sm='4'>
                 {
                   transactionType === 'exchange' ? (
                     <>
@@ -195,6 +202,15 @@ const CreateTransaction: React.FC<propsType> =
                     </>
                   )
                 }
+              </Col>
+              <Col xs='12' sm='4' className='d-flex flex-wrap'>
+                <p className='mb-1 fs-5 text-center w-100'>
+                  {t('select date')}:
+                </p>
+                <DatePicker
+                  selected={date}
+                  onChange={(newDate) => setDate(newDate || new Date())}
+                />
               </Col>
             </Row>
 

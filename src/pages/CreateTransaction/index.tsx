@@ -26,6 +26,7 @@ const CreateTransactionPage = () => {
   const [sum, setSum] = useState<number | string>('');
   const [exchangeSum, setExchangeSum] = useState<number | string>('');
   const [title, setTitle] = useState<string>('');
+  const [date, setDate] = useState<Date>(new Date());
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -86,7 +87,7 @@ const CreateTransactionPage = () => {
         balance: balance.name,
         balanceToSubtract: balanceToSubtract.name,
         transactionType: transactionType,
-        date: new Date(),
+        date: date,
       };
 
       dispatch(createTransaction({
@@ -128,7 +129,7 @@ const CreateTransactionPage = () => {
       sum: Number(sum),
       category: categoryId,
       balance: balance.name,
-      date: new Date(),
+      date: date,
       transactionType: transactionType,
     };
 
@@ -162,6 +163,8 @@ const CreateTransactionPage = () => {
       handleChangeSum={handleChangeSum(setSum)}
       handleChangeExchangeSum={handleChangeSum(setExchangeSum)}
       handleSubmit={handleSubmit}
+      date={date}
+      setDate={setDate}
     />
   );
 };

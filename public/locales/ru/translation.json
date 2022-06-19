@@ -71,5 +71,6 @@
   "creating balance success": "Баланс добавлен успешно",
   "the balance does not exist": "Ошибка, баланс не сущуествует",
   "transaction created successfully": "Транзакция успешно добавлена",
-  "create balances first": "Сперва создай баланс"
+  "create balances first": "Сперва создай баланс",
+  "select date": "Выбери дату"
 }
