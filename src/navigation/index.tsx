@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import CreateTransaction from '../pages/CreateTransaction';
 import BalancesPage from '../pages/Balances';
+import CategoriesPage from '../pages/Categories';
 import Profile from '../pages/profile/Profile';
 import Auth from '../pages/auth/Auth';
 import { useAppSelector } from '../hooks/react-redux.hook';
@@ -31,6 +32,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
           <Route path="/home" component={Profile} />
           <Route path="/initialization" component={Init} />
           <Route path="/balances" component={BalancesPage} />
+          <Route path="/categories" component={CategoriesPage} />
           <Redirect to="/home" />
         </Switch>
       ) : (

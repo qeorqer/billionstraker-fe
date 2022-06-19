@@ -72,5 +72,11 @@
   "the balance does not exist": "The balance does not exist",
   "transaction created successfully": "Transaction created successfully",
   "create balances first": "Create balances first",
-  "select date": "Select date"
+  "select date": "Select date",
+  "categories": "Categories",
+  "all your categories": "All your categories",
+  "your categories will be here": "Your categories will be here",
+  "add new category": "Add new category",
+  "name the category": "Name the category",
+  "set type": "set type"
 }
