@@ -39,8 +39,11 @@ const CreateTransactionPage = () => {
   };
 
   const handleSubmit = () => {
-    //todo: add for category
-    if ((!sum || !title || !balanceId)) {
+    const requiredFieldsForExpenseProfit = [sum, title, categoryId, balanceId];
+    const requiredFieldsForExchange = [sum, title, balanceId, exchangeSum, exchangeBalanceId];
+    const requiredFieldsForTransaction = transactionType === 'exchange' ? requiredFieldsForExchange : requiredFieldsForExpenseProfit;
+
+    if (requiredFieldsForTransaction.some((field) => !field)) {
       return toast(t('All fields are required'), {
         position: 'top-right',
         autoClose: 2500,
@@ -50,18 +53,6 @@ const CreateTransactionPage = () => {
         type: 'error',
       });
     }
-
-    if (transactionType === 'exchange' && (!exchangeSum || !exchangeBalanceId)) {
-      return toast(t('All fields are required'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
-        type: 'error',
-      });
-    }
-
 
     if (transactionType === 'exchange') {
       const balance = balances.find((balance) => balance._id === exchangeBalanceId);
