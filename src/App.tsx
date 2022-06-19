@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from './hooks/react-redux.hook';
 import { checkAuth, logOut, setAuth } from './store/reducers/user.reducer';
 import { userData } from './store/selectors';
 import AppHeader from './components/header/AppHeader';
-import AppRouter from './components/router/AppRouter';
+import AppRouter from './navigation/';
 import { loginResponseType } from './types/user.type';
 import axiosInstance, { baseUrl } from './api/axiosInstance';
 

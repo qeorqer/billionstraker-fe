@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import CreateTransaction from '../../pages/createTransaction/CreateTransaction';
-import Profile from '../../pages/profile/Profile';
-import Auth from '../../pages/auth/Auth';
-import { useAppSelector } from '../../hooks/react-redux.hook';
-import { userData } from '../../store/selectors';
-import Statistic from '../../pages/statistic/Statistic';
-import Loader from '../loader/Loader';
-import Init from '../../pages/initPage/Init';
+
+import CreateTransaction from '../pages/CreateTransaction';
+import BalancesPage from '../pages/Balances';
+import Profile from '../pages/profile/Profile';
+import Auth from '../pages/auth/Auth';
+import { useAppSelector } from '../hooks/react-redux.hook';
+import { userData } from '../store/selectors';
+import Statistic from '../pages/statistic/Statistic';
+import Loader from '../components/loader/Loader';
+import Init from '../pages/initPage/Init';
 
 type propsType = {
   isAuth: boolean | null;
@@ -28,6 +30,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
           <Route path="/createTransaction" component={CreateTransaction} />
           <Route path="/home" component={Profile} />
           <Route path="/initialization" component={Init} />
+          <Route path="/balances" component={BalancesPage} />
           <Redirect to="/home" />
         </Switch>
       ) : (

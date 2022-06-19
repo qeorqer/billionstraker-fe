@@ -1,23 +1,28 @@
-import { userType } from './user.type';
+import { balanceType } from './balance.type';
+
+export type transactionTypes = 'expense' | 'profit' | 'exchange';
 
 export type transactionType = {
   title: string;
-  ownerId: string;
-  isCard: boolean;
-  isExpense: boolean;
+  ownerId?: string;
   sum: number;
-  category: string;
+  sumToSubtract?: number;
+  category?: string;
   date: Date;
-  _id?: string;
+  balance: String,
+  balanceToSubtract?: String,
+  transactionType: transactionTypes,
+  _id?: string,
 };
 
 export type addTransactionResponseType = {
-  messageRu: string;
   messageEn: string;
-  updatedUser: userType;
+  transaction: transactionType,
+  balances: balanceType[],
 };
 
 export type getTransactionsResponseType = {
   transactions: transactionType[];
   numberOfTransactions?: number;
 };
+

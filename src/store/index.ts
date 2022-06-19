@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import userReducer from './reducers/user.reducer';
 import categoryReducer from './reducers/category.reducer';
 import transactionReducer from './reducers/transaction.reducer';
 import statisticReducer from './reducers/statistic.reducer';
+import balanceReducer from './reducers/balance.reducer';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +12,7 @@ const store = configureStore({
     categoryDate: categoryReducer,
     transactionData: transactionReducer,
     statisticData: statisticReducer,
+    balanceData: balanceReducer,
   },
 });
 

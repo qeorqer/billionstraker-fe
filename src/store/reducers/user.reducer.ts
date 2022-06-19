@@ -68,15 +68,6 @@ export const checkAuth = createAsyncThunk(
   async (): Promise<AxiosResponse<loginResponseType>> => await api.refresh(),
 );
 
-//todo: think again about logic of adding transaction
-export const addTransaction = createAsyncThunk(
-  'transaction/addTransaction',
-  async (body: {
-    transaction: transactionType;
-  }): Promise<AxiosResponse<addTransactionResponseType>> =>
-    await api.addTransaction(body),
-);
-
 export const setFirstEnter = createAsyncThunk(
   'user/setFirstEnter',
   async (): Promise<AxiosResponse<updateUserResponseType>> =>
@@ -216,24 +207,6 @@ const userReducer = createSlice({
       localStorage.setItem('token', action.payload.data.accessToken);
       state.user = action.payload.data.user;
       state.isAuth = true;
-    });
-
-    builder.addCase(addTransaction.fulfilled, (state, action) => {
-      state.user = action.payload.data.updatedUser;
-
-      toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload?.data.messageEn
-          : action.payload?.data.messageRu,
-        {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
-          type: 'success',
-        },
-      );
     });
 
     builder.addCase(setFirstEnter.fulfilled, (state, action) => {
