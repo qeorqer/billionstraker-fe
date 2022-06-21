@@ -94,12 +94,12 @@ export const updateCategory = ( body: {
   category: categoryType,
   categoryId: string,
 }): Promise<AxiosResponse<createCategoryResponseType>> =>
-  api.post('/category/updateCategory', body);
+  api.patch('/category/updateCategory', body);
 
 export const deleteCategory = ( body: {
   categoryId: string,
 }): Promise<AxiosResponse<deleteCategoryResponseType>> =>
-  api.post('/category/deleteCategory', body);
+  api.delete('/category/deleteCategory', { data: body });
 
 /* balance requests */
 export const createBalance = (body: {
