@@ -7,7 +7,11 @@ import {
   signUpResponseType,
   updateUserResponseType,
 } from '../types/user.type';
-import { categoryResponseType } from '../types/category.type';
+import {
+  categoryType,
+  createCategoryResponseType, deleteCategoryResponseType,
+  getCategoriesResponseType,
+} from '../types/category.type';
 import {
   addTransactionResponseType,
   getTransactionsResponseType,
@@ -78,8 +82,24 @@ export const getStatisticForRange = (body: {
   api.post('/statistic/getStatisticForRange', body);
 
 /* category requests */
-export const getCategories = (): Promise<AxiosResponse<categoryResponseType>> =>
+export const getCategories = (): Promise<AxiosResponse<getCategoriesResponseType>> =>
   api.get('/category/getCategories');
+
+export const createCategory = ( body: {
+  category: categoryType,
+}): Promise<AxiosResponse<createCategoryResponseType>> =>
+  api.post('/category/createCategory', body);
+
+export const updateCategory = ( body: {
+  category: categoryType,
+  categoryId: string,
+}): Promise<AxiosResponse<createCategoryResponseType>> =>
+  api.post('/category/updateCategory', body);
+
+export const deleteCategory = ( body: {
+  categoryId: string,
+}): Promise<AxiosResponse<deleteCategoryResponseType>> =>
+  api.post('/category/deleteCategory', body);
 
 /* balance requests */
 export const createBalance = (body: {
