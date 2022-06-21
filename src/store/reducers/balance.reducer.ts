@@ -74,6 +74,38 @@ const balanceReducer = createSlice({
       state.balances = [...state.balances, action.payload.data.balance];
     });
 
+    builder.addCase(updateBalance.fulfilled, (state, action) => {
+      toast('updating balance success',
+        {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success',
+        },
+      );
+
+      const updatedBalance = action.payload.data.balance;
+      state.balances = state.balances.map((balance) => balance._id === updatedBalance._id ? updatedBalance : balance);
+    });
+
+    builder.addCase(deleteBalance.fulfilled, (state, action) => {
+      toast('deleting balance success',
+        {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success',
+        },
+      );
+
+      const deletedBalanceId = action.payload.data.balanceId;
+      state.balances = state.balances.filter((balance) => balance._id !== deletedBalanceId);
+    });
+
     builder.addCase(createTransaction.fulfilled, (state, action) => {
       const updatedBalance = action.payload.data.balances;
 

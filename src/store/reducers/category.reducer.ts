@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
+import { toast } from 'react-toastify';
+
 import * as api from '../../api/index';
 import {
   categoryType,
-  createCategoryResponseType, deleteCategoryResponseType,
+  createCategoryResponseType,
+  deleteCategoryResponseType,
   getCategoriesResponseType,
 } from '../../types/category.type';
 
@@ -46,6 +49,53 @@ const categoryReducer = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getCategories.fulfilled, (state, action) => {
       state.categories = action.payload.data.categories;
+    });
+
+    builder.addCase(createCategory.fulfilled, (state, action) => {
+      toast('creating category success',
+        {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success',
+        },
+      );
+
+      state.categories = [...state.categories, action.payload.data.category];
+    });
+
+    builder.addCase(updateCategory.fulfilled, (state, action) => {
+      toast('updating category success',
+        {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success',
+        },
+      );
+
+      const updatedCategory = action.payload.data.category;
+      state.categories = state.categories.map((category) => category._id === updatedCategory._id ? updatedCategory : category);
+    });
+
+    builder.addCase(deleteCategory.fulfilled, (state, action) => {
+      toast('deleting category success',
+        {
+          position: 'top-right',
+          autoClose: 2500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: 'dark',
+          type: 'success',
+        },
+      );
+
+      const deletedCategoryId = action.payload.data.categoryId;
+      state.categories = state.categories.filter((category) => category._id !== deletedCategoryId);
     });
   },
 });

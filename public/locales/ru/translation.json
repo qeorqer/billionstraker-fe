@@ -69,6 +69,7 @@
   "balance": "Остаток",
   "name should be unique": "Название должно быть уникальным",
   "creating balance success": "Баланс добавлен успешно",
+  "creating category success": "Категория добавлена успешно",
   "the balance does not exist": "Ошибка, баланс не сущуествует",
   "transaction created successfully": "Транзакция успешно добавлена",
   "create balances first": "Сперва создай баланс",
@@ -78,5 +79,9 @@
   "your categories will be here": "Категории будут тут",
   "add new category": "Создать новую категорию",
   "name the category": "Назови категорию",
-  "set type": "Выбери тип"
+  "set type": "Выбери тип",
+  "updating balance success": "Баланс успешно обновлен",
+  "deleting balance success": "Баланс успешно удален",
+  "updating category success": "Категория обновлена",
+  "deleting category success": "Категория удалена"
 }

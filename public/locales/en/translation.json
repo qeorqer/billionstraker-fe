@@ -69,6 +69,7 @@
   "balance": "Balance",
   "name should be unique": "Name should be unique",
   "creating balance success": "Balance added successfully",
+  "creating category success": "Category added successfully",
   "the balance does not exist": "The balance does not exist",
   "transaction created successfully": "Transaction created successfully",
   "create balances first": "Create balances first",
@@ -78,5 +79,9 @@
   "your categories will be here": "Your categories will be here",
   "add new category": "Add new category",
   "name the category": "Name the category",
-  "set type": "set type"
+  "set type": "set type",
+  "updating balance success": "Balance updated successfully",
+  "deleting balance success": "Balance deleted successfully",
+  "updating category success": "Category updated successfully",
+  "deleting category success": "Category deleted successfully"
 }
