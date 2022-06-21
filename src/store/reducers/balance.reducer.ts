@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import * as api from '../../api/index';
 import {
   balanceType,
-  createBalanceResponseType,
+  createBalanceResponseType, deleteBalanceResponseType,
   getBalanceResponseType,
 } from '../../types/balance.type';
 import { createTransaction } from './transaction.reducer';
@@ -23,6 +23,23 @@ export const createBalance = createAsyncThunk(
     amount: number;
   }): Promise<AxiosResponse<createBalanceResponseType>> =>
     await api.createBalance(body),
+);
+
+export const updateBalance = createAsyncThunk(
+  'balance/updateBalance',
+  async (body: {
+    balanceId: string;
+    balance: balanceType;
+  }): Promise<AxiosResponse<createBalanceResponseType>> =>
+    await api.updateBalance(body),
+);
+
+export const deleteBalance = createAsyncThunk(
+  'balance/deleteBalance',
+  async (body: {
+    balanceId: string;
+  }): Promise<AxiosResponse<deleteBalanceResponseType>> =>
+    await api.deleteBalance(body),
 );
 
 export type categoryState = {

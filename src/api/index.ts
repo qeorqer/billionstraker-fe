@@ -9,7 +9,8 @@ import {
 } from '../types/user.type';
 import {
   categoryType,
-  createCategoryResponseType, deleteCategoryResponseType,
+  createCategoryResponseType,
+  deleteCategoryResponseType,
   getCategoriesResponseType,
 } from '../types/category.type';
 import {
@@ -23,7 +24,9 @@ import {
   getWholeStatisticResponseType,
 } from '../types/statistic.type';
 import {
+  balanceType,
   createBalanceResponseType,
+  deleteBalanceResponseType,
   getBalanceResponseType,
 } from '../types/balance.type';
 
@@ -42,9 +45,7 @@ export const logOut = (): Promise<AxiosResponse<void>> =>
 export const refresh = (): Promise<AxiosResponse<loginResponseType>> =>
   api.get('/user/refresh');
 
-export const setFirstEnter = (): Promise<
-  AxiosResponse<updateUserResponseType>
-> => api.patch('/user/setFirstEnter');
+export const setFirstEnter = (): Promise<AxiosResponse<updateUserResponseType>> => api.patch('/user/setFirstEnter');
 
 export const setInitialValues = (body: {
   card: number;
@@ -67,13 +68,9 @@ export const getAllUserTransactions = (body: {
   api.post('/transaction/getAllUserTransactions', body);
 
 /* statistic requests */
-export const getGeneralStatistic = (): Promise<
-  AxiosResponse<getGeneralStatisticResponseType>
-> => api.get('/statistic/getGeneralStatistic');
+export const getGeneralStatistic = (): Promise<AxiosResponse<getGeneralStatisticResponseType>> => api.get('/statistic/getGeneralStatistic');
 
-export const getWholeStatistic = (): Promise<
-  AxiosResponse<getWholeStatisticResponseType>
-> => api.get('/statistic/getWholeStatistic');
+export const getWholeStatistic = (): Promise<AxiosResponse<getWholeStatisticResponseType>> => api.get('/statistic/getWholeStatistic');
 
 export const getStatisticForRange = (body: {
   from: Date;
@@ -85,18 +82,18 @@ export const getStatisticForRange = (body: {
 export const getCategories = (): Promise<AxiosResponse<getCategoriesResponseType>> =>
   api.get('/category/getCategories');
 
-export const createCategory = ( body: {
+export const createCategory = (body: {
   category: categoryType,
 }): Promise<AxiosResponse<createCategoryResponseType>> =>
   api.post('/category/createCategory', body);
 
-export const updateCategory = ( body: {
+export const updateCategory = (body: {
   category: categoryType,
   categoryId: string,
 }): Promise<AxiosResponse<createCategoryResponseType>> =>
   api.patch('/category/updateCategory', body);
 
-export const deleteCategory = ( body: {
+export const deleteCategory = (body: {
   categoryId: string,
 }): Promise<AxiosResponse<deleteCategoryResponseType>> =>
   api.delete('/category/deleteCategory', { data: body });
@@ -110,3 +107,15 @@ export const createBalance = (body: {
 
 export const getBalances = (): Promise<AxiosResponse<getBalanceResponseType>> =>
   api.get('/balance/getBalances');
+
+export const updateBalance = (body: {
+  balanceId: string;
+  balance: balanceType;
+}): Promise<AxiosResponse<createBalanceResponseType>> =>
+  api.patch('/balance/updateBalance', body);
+
+export const deleteBalance = (body: {
+  balanceId: string;
+}): Promise<AxiosResponse<deleteBalanceResponseType>> =>
+  api.delete('/balance/deleteBalance', { data: body });
+

@@ -16,3 +16,9 @@ export type getBalanceResponseType = {
   messageEn: string;
   balances: balanceType[];
 };
+
+export type deleteBalanceResponseType = {
+  messageRu: string;
+  messageEn: string;
+  balanceId: string;
+};
