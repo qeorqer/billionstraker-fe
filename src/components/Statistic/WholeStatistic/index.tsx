@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import moment from 'moment';
-import { wholeStatisticType } from '../../types/statistic.type';
 import { useTranslation } from 'react-i18next';
-import { userType } from '../../types/user.type';
+
+import { wholeStatisticType } from '../../../types/statistic.type';
+import { userType } from '../../../types/user.type';
 
 type propsType = {
   wholeStatistic: wholeStatisticType;

@@ -1,16 +1,18 @@
 import React, { FC, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import Loader from '../Loader';
-import Diagram from './Diagram';
-import { List } from './List';
+import { useTranslation } from 'react-i18next';
 //@ts-ignore
 //todo: learn how to work when there is no ts for library
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
-import { useAppSelector } from '../../hooks/react-redux.hook';
-import { useTranslation } from 'react-i18next';
-import { statisticData, userData } from '../../store/selectors';
-import { statisticForRangeType } from '../../types/statistic.type';
-import './rangeStatistic.scss';
+
+import Loader from '../../Loader';
+import Diagram from '.././Diagram';
+import { List } from '../List';
+import { useAppSelector } from '../../../hooks/react-redux.hook';
+import { statisticData, userData } from '../../../store/selectors';
+import { statisticForRangeType } from '../../../types/statistic.type';
+
+import './styles.scss';
 
 type propsType = {
   statisticForRange: statisticForRangeType;

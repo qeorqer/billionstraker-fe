@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import { expenseIncomeType } from '../../types/statistic.type';
-import ListItem from './ListItem';
-import { useAppSelector } from '../../hooks/react-redux.hook';
-import { userData } from '../../store/selectors';
+
+import { expenseIncomeType } from '../../../types/statistic.type';
+import ListItem from '../ListItem';
 
 type propsType = {
   statisticForRange: expenseIncomeType[];
