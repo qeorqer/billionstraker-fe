@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import Loader from '../loader/Loader';
+import Loader from '../Loader';
 import Diagram from './Diagram';
 import { List } from './List';
 //@ts-ignore

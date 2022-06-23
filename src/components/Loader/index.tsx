@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
+
 import loaderImage from '../../images/loader.gif';
-import './loader.scss';
+
+import './styles.scss';
 
 type propsType = {
   fullHeight?: boolean;

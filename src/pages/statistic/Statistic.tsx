@@ -7,7 +7,7 @@ import {
 } from '../../store/reducers/statistic.reducer';
 import { statisticData, userData } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
-import Loader from '../../components/loader/Loader';
+import Loader from '../../components/Loader';
 import 'moment/locale/ru';
 import WholeStatistic from '../../components/statistic/WholeStatistic';
 import RangeStatistic from '../../components/statistic/RangeStatistic';

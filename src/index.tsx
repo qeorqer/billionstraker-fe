@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './store/index';
 import App from './App';
 import './i18n';
-import Loader from './components/loader/Loader';
+import Loader from './components/Loader';
 
 ReactDOM.render(
   <Provider store={store}>

@@ -9,7 +9,7 @@ import AuthorizationPage from '../pages/Authorization';
 import { useAppSelector } from '../hooks/react-redux.hook';
 import { userData } from '../store/selectors';
 import Statistic from '../pages/statistic/Statistic';
-import Loader from '../components/loader/Loader';
+import Loader from '../components/Loader';
 import Init from '../pages/initPage/Init';
 
 type propsType = {

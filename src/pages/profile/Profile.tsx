@@ -10,7 +10,7 @@ import {
   resetTransactions,
 } from '../../store/reducers/transaction.reducer';
 import { statisticData, transactionData } from '../../store/selectors';
-import Loader from '../../components/loader/Loader';
+import Loader from '../../components/Loader';
 
 const Profile = () => {
   const { isTransactionsloading } = useAppSelector(transactionData);

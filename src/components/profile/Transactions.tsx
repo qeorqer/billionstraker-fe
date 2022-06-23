@@ -8,7 +8,7 @@ import { transactionData } from '../../store/selectors';
 import Transaction from './Transaction';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Loader from '../loader/Loader';
+import Loader from '../Loader';
 
 const Transactions = () => {
   const { isTransactionsloading, transactions, numberOfTransactions } =
