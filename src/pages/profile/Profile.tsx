@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import UserInfo from '../../components/profile/UserInfo';
+import UserInfo from '../../components/Profile/UserInfo';
 import { Container } from 'react-bootstrap';
 import './profile.scss';
-import Transactions from '../../components/profile/Transactions';
+import Transactions from '../../components/Profile/Transactions';
 import { getGeneralStatistic } from '../../store/reducers/statistic.reducer';
 import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
 import {
@@ -10,7 +10,7 @@ import {
   resetTransactions,
 } from '../../store/reducers/transaction.reducer';
 import { statisticData, transactionData } from '../../store/selectors';
-import Loader from '../../components/loader/Loader';
+import Loader from '../../components/Loader';
 
 const Profile = () => {
   const { isTransactionsloading } = useAppSelector(transactionData);

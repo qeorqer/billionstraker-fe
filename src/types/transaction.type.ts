@@ -9,20 +9,19 @@ export type transactionType = {
   sumToSubtract?: number;
   category?: string;
   date: Date;
-  balance: String,
-  balanceToSubtract?: String,
-  transactionType: transactionTypes,
-  _id?: string,
+  balance: String;
+  balanceToSubtract?: String;
+  transactionType: transactionTypes;
+  _id?: string;
 };
 
 export type addTransactionResponseType = {
   messageEn: string;
-  transaction: transactionType,
-  balances: balanceType[],
+  transaction: transactionType;
+  balances: balanceType[];
 };
 
 export type getTransactionsResponseType = {
   transactions: transactionType[];
   numberOfTransactions?: number;
 };
-

@@ -7,7 +7,12 @@ import {
   signUpResponseType,
   updateUserResponseType,
 } from '../types/user.type';
-import { categoryResponseType } from '../types/category.type';
+import {
+  categoryType,
+  createCategoryResponseType,
+  deleteCategoryResponseType,
+  getCategoriesResponseType,
+} from '../types/category.type';
 import {
   addTransactionResponseType,
   getTransactionsResponseType,
@@ -19,7 +24,9 @@ import {
   getWholeStatisticResponseType,
 } from '../types/statistic.type';
 import {
+  balanceType,
   createBalanceResponseType,
+  deleteBalanceResponseType,
   getBalanceResponseType,
 } from '../types/balance.type';
 
@@ -78,8 +85,25 @@ export const getStatisticForRange = (body: {
   api.post('/statistic/getStatisticForRange', body);
 
 /* category requests */
-export const getCategories = (): Promise<AxiosResponse<categoryResponseType>> =>
-  api.get('/category/getCategories');
+export const getCategories = (): Promise<
+  AxiosResponse<getCategoriesResponseType>
+> => api.get('/category/getCategories');
+
+export const createCategory = (body: {
+  category: categoryType;
+}): Promise<AxiosResponse<createCategoryResponseType>> =>
+  api.post('/category/createCategory', body);
+
+export const updateCategory = (body: {
+  category: categoryType;
+  categoryId: string;
+}): Promise<AxiosResponse<createCategoryResponseType>> =>
+  api.patch('/category/updateCategory', body);
+
+export const deleteCategory = (body: {
+  categoryId: string;
+}): Promise<AxiosResponse<deleteCategoryResponseType>> =>
+  api.delete('/category/deleteCategory', { data: body });
 
 /* balance requests */
 export const createBalance = (body: {
@@ -90,3 +114,14 @@ export const createBalance = (body: {
 
 export const getBalances = (): Promise<AxiosResponse<getBalanceResponseType>> =>
   api.get('/balance/getBalances');
+
+export const updateBalance = (body: {
+  balanceId: string;
+  balance: balanceType;
+}): Promise<AxiosResponse<createBalanceResponseType>> =>
+  api.patch('/balance/updateBalance', body);
+
+export const deleteBalance = (body: {
+  balanceId: string;
+}): Promise<AxiosResponse<deleteBalanceResponseType>> =>
+  api.delete('/balance/deleteBalance', { data: body });
