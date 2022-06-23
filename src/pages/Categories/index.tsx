@@ -49,12 +49,14 @@ const CategoriesPage = () => {
       });
     }*/
 
-    dispatch(createCategory({
-      category: {
-        name,
-        categoryType,
-      },
-    }));
+    dispatch(
+      createCategory({
+        category: {
+          name,
+          categoryType,
+        },
+      }),
+    );
   };
 
   return (

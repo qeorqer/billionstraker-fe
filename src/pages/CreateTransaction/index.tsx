@@ -19,7 +19,8 @@ const CreateTransactionPage = () => {
   const { categories } = useAppSelector(categoryData);
   const { balances } = useAppSelector((state) => state.balanceData);
 
-  const [transactionType, setTransactionType] = useState<transactionTypes>('expense');
+  const [transactionType, setTransactionType] =
+    useState<transactionTypes>('expense');
   const [categoryId, setCategoryId] = useState<string>('');
   const [balanceId, setBalanceId] = useState<string>('');
   const [exchangeBalanceId, setExchangeBalanceId] = useState<string>('');
@@ -33,16 +34,30 @@ const CreateTransactionPage = () => {
 
   const validateSumReg = /^((?!(0))[0-9]+)$/;
 
-  const handleChangeSum = (setter: Dispatch<SetStateAction<string | number>>) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (validateSumReg.test(event.target.value) || event.target.value === '') {
-      setter(event.target.value);
-    }
-  };
+  const handleChangeSum =
+    (setter: Dispatch<SetStateAction<string | number>>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (
+        validateSumReg.test(event.target.value) ||
+        event.target.value === ''
+      ) {
+        setter(event.target.value);
+      }
+    };
 
   const handleSubmit = () => {
     const requiredFieldsForExpenseProfit = [sum, title, categoryId, balanceId];
-    const requiredFieldsForExchange = [sum, title, balanceId, exchangeSum, exchangeBalanceId];
-    const requiredFieldsForTransaction = transactionType === 'exchange' ? requiredFieldsForExchange : requiredFieldsForExpenseProfit;
+    const requiredFieldsForExchange = [
+      sum,
+      title,
+      balanceId,
+      exchangeSum,
+      exchangeBalanceId,
+    ];
+    const requiredFieldsForTransaction =
+      transactionType === 'exchange'
+        ? requiredFieldsForExchange
+        : requiredFieldsForExpenseProfit;
 
     if (requiredFieldsForTransaction.some((field) => !field)) {
       return toast(t('All fields are required'), {
@@ -56,8 +71,12 @@ const CreateTransactionPage = () => {
     }
 
     if (transactionType === 'exchange') {
-      const balance = balances.find((balance) => balance._id === exchangeBalanceId);
-      const balanceToSubtract = balances.find((balance) => balance._id === balanceId);
+      const balance = balances.find(
+        (balance) => balance._id === exchangeBalanceId,
+      );
+      const balanceToSubtract = balances.find(
+        (balance) => balance._id === balanceId,
+      );
       if (!balance || !balanceToSubtract) {
         return toast(t('the balance does not exist'), {
           position: 'top-right',
@@ -70,7 +89,7 @@ const CreateTransactionPage = () => {
       }
 
       if (balanceToSubtract.amount < sum) {
-        return toast(t('You don\'t have this much'), {
+        return toast(t("You don't have this much"), {
           position: 'top-right',
           autoClose: 2500,
           hideProgressBar: true,
@@ -90,11 +109,13 @@ const CreateTransactionPage = () => {
         date: date,
       };
 
-      dispatch(createTransaction({
-        transaction: newTransaction,
-        balanceId: exchangeBalanceId,
-        balanceToSubtractId: balanceId,
-      }));
+      dispatch(
+        createTransaction({
+          transaction: newTransaction,
+          balanceId: exchangeBalanceId,
+          balanceToSubtractId: balanceId,
+        }),
+      );
 
       return;
     }
@@ -113,7 +134,7 @@ const CreateTransactionPage = () => {
 
     if (transactionType === 'expense') {
       if (balance.amount < sum) {
-        return toast(t('You don\'t have this much'), {
+        return toast(t("You don't have this much"), {
           position: 'top-right',
           autoClose: 2500,
           hideProgressBar: true,
@@ -133,10 +154,12 @@ const CreateTransactionPage = () => {
       transactionType: transactionType,
     };
 
-    dispatch(createTransaction({
-      transaction: newTransaction,
-      balanceId: balanceId,
-    }));
+    dispatch(
+      createTransaction({
+        transaction: newTransaction,
+        balanceId: balanceId,
+      }),
+    );
   };
 
   useEffect(() => {

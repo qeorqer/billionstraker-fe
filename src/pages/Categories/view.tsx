@@ -4,29 +4,27 @@ import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 import { categoriesTypes, categoryType } from '../../types/category.type';
 
 type propsType = {
-  t: (text: string) => string,
-  categories: categoryType[],
-  name: string,
-  setName: Dispatch<SetStateAction<string>>,
-  categoryType: string,
-  setCategoryType: Dispatch<SetStateAction<categoriesTypes>>,
-  handleAddCategory: () => void,
-}
+  t: (text: string) => string;
+  categories: categoryType[];
+  name: string;
+  setName: Dispatch<SetStateAction<string>>;
+  categoryType: string;
+  setCategoryType: Dispatch<SetStateAction<categoriesTypes>>;
+  handleAddCategory: () => void;
+};
 
-const Categories: React.FC<propsType> = (
-  {
-    t,
-    categories,
-    name,
-    setName,
-    handleAddCategory,
-    categoryType,
-    setCategoryType,
-  },
-) => (
+const Categories: React.FC<propsType> = ({
+  t,
+  categories,
+  name,
+  setName,
+  handleAddCategory,
+  categoryType,
+  setCategoryType,
+}) => (
   <>
-    <Container className='py-4'>
-      <p className='fs-4 fw-bold text-center py-2'>
+    <Container className="py-4">
+      <p className="fs-4 fw-bold text-center py-2">
         {t(
           categories.length
             ? 'all your categories'
@@ -36,43 +34,43 @@ const Categories: React.FC<propsType> = (
       {/*<BalancesList
         balances={categories}
       />*/}
-      <Row className='text-center'>
-        <Col xs='12' lg='6' className='mb-3 mb-lg-0 mx-auto'>
-          <p className='fs-5 fw-bold'>{t('add new category')}:</p>
+      <Row className="text-center">
+        <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
+          <p className="fs-5 fw-bold">{t('add new category')}:</p>
           <FormControl
-            type='text'
+            type="text"
             placeholder={t('name the category')}
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className='mb-3'
+            className="mb-3"
           />
-          <div className='d-flex justify-content-center mb-3'>
-            <div className='w-50 text-center'>
+          <div className="d-flex justify-content-center mb-3">
+            <div className="w-50 text-center">
               <Button
                 variant={
                   categoryType === 'expense' ? 'danger' : 'outline-danger'
                 }
                 onClick={() => setCategoryType('expense')}
-                className='w-50'
+                className="w-50"
               >
                 {t('expense')}
               </Button>
             </div>
-            <div className='w-50 text-center'>
+            <div className="w-50 text-center">
               <Button
                 variant={
                   categoryType === 'profit' ? 'success' : 'outline-success'
                 }
                 onClick={() => setCategoryType('profit')}
-                className='w-50'
+                className="w-50"
               >
                 {t('income')}
               </Button>
             </div>
           </div>
           <Button
-            variant='warning'
-            className='w300Px text-white'
+            variant="warning"
+            className="w300Px text-white"
             onClick={handleAddCategory}
           >
             {t('create')}
@@ -82,6 +80,5 @@ const Categories: React.FC<propsType> = (
     </Container>
   </>
 );
-
 
 export default Categories;

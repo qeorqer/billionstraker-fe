@@ -5,32 +5,30 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 type propTypes = {
-  balances: balanceType[]
-}
+  balances: balanceType[];
+};
 
 const Balances: React.FC<propTypes> = ({ balances }) => {
   const { t } = useTranslation();
-
 
   if (!balances.length) {
     return null;
   }
 
   return (
-    <Row className='mb-3  justify-content-center d-flex'>
+    <Row className="mb-3  justify-content-center d-flex">
       {balances.map((balance) => (
-        <Col xs={12} lg={3} md={4} sm={6} className='mb-3'>
+        <Col xs={12} lg={3} md={4} sm={6} className="mb-3">
           <Card>
             <Card.Body>
               <Card.Title>{balance.name}</Card.Title>
-              <Card.Text>
-                {`${t('balance')}: ${balance.amount}`}
-              </Card.Text>
+              <Card.Text>{`${t('balance')}: ${balance.amount}`}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
       ))}
-    </Row>);
+    </Row>
+  );
 };
 
 export default Balances;

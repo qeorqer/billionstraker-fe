@@ -2,10 +2,11 @@ import React from 'react';
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormControl, FormGroup } from 'react-bootstrap';
-import { logIn, signUp } from '../../store/reducers/user.reducer';
 import { connect } from 'react-redux';
-import { AppDispatch } from '../../store';
 import { useTranslation } from 'react-i18next';
+
+import { signUp } from '../../../store/reducers/user.reducer';
+import { AppDispatch } from '../../../store';
 
 type signupForm = {
   login: string;
