@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import LoginForm from '../../components/Authorization/LogInForm';
 import SignUpForm from '../../components/Authorization/SignUpForm';
 import logo from '../../images/logo.png';
-import LanguageSwitcher from '../../components/header/LanguageSwitcher';
+import Index from '../../components/LanguageSwitcher';
 
 import './styles.scss';
 
@@ -55,7 +55,7 @@ const Authorization: React.FC<propsType> = ({
             className="d-flex justify-content-around languagesController pb-3"
             style={{ width: '100px', margin: '0 auto' }}
           >
-            <LanguageSwitcher />
+            <Index />
           </div>
         </Col>
       </Row>

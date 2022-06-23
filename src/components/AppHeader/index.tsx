@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 
-import './header.scss';
 import logo from '../../images/logo.png';
 import { useAppDispatch } from '../../hooks/react-redux.hook';
 import { logOut } from '../../store/reducers/user.reducer';
-import { Col, Container, Dropdown, Row } from 'react-bootstrap';
-import LanguageSwitcher from './LanguageSwitcher';
+import LanguageSwitcher from '../LanguageSwitcher';
 
+
+import './styles.scss';
 const AppHeader = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
