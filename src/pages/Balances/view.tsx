@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap';
 
 import { balanceType } from '../../types/balance.type';
-import BalancesList from '../../components/shared/Balances';
+import BalancesList from '../../components/Balances/BalancesList';
 
 type propsType = {
   t: (text: string) => string;

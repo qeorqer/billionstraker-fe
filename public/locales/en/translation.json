@@ -26,6 +26,7 @@
   "Select operation type": "Select operation type",
   "expense": "expense",
   "income": "income",
+  "profit": "income",
   "exchange": "exchange",
   "Select card or cash": "Select card or cash",
   "Select category": "Select category",
@@ -83,5 +84,6 @@
   "updating balance success": "Balance updated successfully",
   "deleting balance success": "Balance deleted successfully",
   "updating category success": "Category updated successfully",
-  "deleting category success": "Category deleted successfully"
+  "deleting category success": "Category deleted successfully",
+  "category type": "Category type"
 }

@@ -12,7 +12,7 @@ import DatePicker from 'react-datepicker';
 import { transactionTypes } from '../../types/transaction.type';
 import { balanceType } from '../../types/balance.type';
 import { categoryType } from '../../types/category.type';
-import Balances from '../../components/shared/Balances';
+import Balances from '../../components/Balances/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type propsType = {

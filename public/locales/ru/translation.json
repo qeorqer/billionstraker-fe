@@ -26,6 +26,7 @@
   "Select operation type": "Выбери тип операции",
   "expense": "не стонкс",
   "income": "стонкс",
+  "profit": "Прибыль",
   "exchange": "обмен",
   "Select card or cash": "Выбери картой или налом",
   "Select category": "Выбери категорию",
@@ -83,5 +84,6 @@
   "updating balance success": "Баланс успешно обновлен",
   "deleting balance success": "Баланс успешно удален",
   "updating category success": "Категория обновлена",
-  "deleting category success": "Категория удалена"
+  "deleting category success": "Категория удалена",
+  "category type": "Тип категории"
 }

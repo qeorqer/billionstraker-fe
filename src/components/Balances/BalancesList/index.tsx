@@ -1,14 +1,14 @@
 import React from 'react';
-
-import { balanceType } from '../../../types/balance.type';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+
+import { balanceType } from '../../../types/balance.type';
 
 type propTypes = {
   balances: balanceType[];
 };
 
-const Balances: React.FC<propTypes> = ({ balances }) => {
+const BalancesList: React.FC<propTypes> = ({ balances }) => {
   const { t } = useTranslation();
 
   if (!balances.length) {
@@ -31,4 +31,4 @@ const Balances: React.FC<propTypes> = ({ balances }) => {
   );
 };
 
-export default Balances;
+export default BalancesList;
