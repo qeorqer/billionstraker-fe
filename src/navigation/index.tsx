@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import CreateTransaction from 'pages/CreateTransaction';
 import BalancesPage from 'pages/Balances';
 import CategoriesPage from 'pages/Categories';
-import Index from 'pages/Profile';
+import ProfilePage from 'pages/Profile';
 import AuthorizationPage from 'pages/Authorization';
 import Statistic from 'pages/statistic/Statistic';
 import Init from 'pages/initPage/Init';
@@ -29,7 +29,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
         <Switch>
           <Route path="/statistic" component={Statistic} />
           <Route path="/createTransaction" component={CreateTransaction} />
-          <Route path="/home" component={Index} />
+          <Route path="/home" component={ProfilePage} />
           <Route path="/initialization" component={Init} />
           <Route path="/balances" component={BalancesPage} />
           <Route path="/categories" component={CategoriesPage} />
