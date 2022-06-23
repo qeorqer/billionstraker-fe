@@ -217,7 +217,7 @@ const CreateTransaction: React.FC<propsType> = ({
               xs={transactionType === 'exchange' ? 3 : 6}
               className="d-flex flex-wrap"
             >
-              <p className="mb-1  fs-5">{t('sum')}:</p>
+              <p className="mb-1  fs-5">{t(transactionType === 'exchange'? 'send' : 'Transaction sum')}:</p>
               <FormControl
                 type="number"
                 placeholder={t('Transaction sum')}
@@ -228,7 +228,7 @@ const CreateTransaction: React.FC<propsType> = ({
 
             {transactionType === 'exchange' && (
               <Col xs="3" className="d-flex flex-wrap">
-                <p className="mb-1  fs-5">{t('sum 2')}:</p>
+                <p className="mb-1  fs-5">{t('receive')}:</p>
                 <FormControl
                   type="number"
                   placeholder={t('Transaction sum')}

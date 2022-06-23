@@ -37,6 +37,8 @@
   "Submit": "Submit",
   "Transaction title": "Transaction title",
   "Transaction sum": "Transaction sum",
+  "send": "Send",
+  "receive": "Receive",
   "login": "login",
   "password": "password",
   "Confirm password": "Confirm password",

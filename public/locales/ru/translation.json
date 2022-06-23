@@ -37,6 +37,8 @@
   "Submit": "Создать",
   "Transaction title": "Название транзакции",
   "Transaction sum": "Сумма транзакции",
+  "send": "Отправишь",
+  "receive": "Получишь",
   "login": "Логин",
   "password": "Пароль",
   "Confirm password": "Подтверди пароль",
