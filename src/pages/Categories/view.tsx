@@ -36,7 +36,7 @@ const Categories: React.FC<propsType> = ({
         categories={categories}
       />
       <Row className="text-center">
-        <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
+        <Col xs="12" lg="5" className="mb-3 mb-lg-0 mx-auto">
           <p className="fs-5 fw-bold">{t('add new category')}:</p>
           <FormControl
             type="text"
