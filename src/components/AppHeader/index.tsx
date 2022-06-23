@@ -10,6 +10,7 @@ import LanguageSwitcher from '../LanguageSwitcher';
 
 
 import './styles.scss';
+
 const AppHeader = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
