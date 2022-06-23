@@ -16,11 +16,9 @@ export type listForRangeItem = {
 };
 
 export const List: FC<propsType> = ({ statisticForRange, totalSpent }) => {
-  const { lang } = useAppSelector(userData);
-
   const dataForRange: listForRangeItem[] = statisticForRange.map(
     (el, index) => ({
-      title: lang === 'en' ? el._id.nameEn : el._id.nameRu,
+      title: el._id.name,
       value: el.total,
       percentage: Math.round((100 * el.total) / totalSpent) || '>1',
     }),

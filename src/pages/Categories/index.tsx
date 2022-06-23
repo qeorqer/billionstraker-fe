@@ -4,33 +4,26 @@ import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
 import {
-  createBalance,
-  getBalances,
-} from '../../store/reducers/balance.reducer';
+  createCategory,
+  getCategories,
+} from '../../store/reducers/category.reducer';
+import { categoriesTypes } from '../../types/category.type';
 
 import Categories from './view';
 
 const CategoriesPage = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { balances } = useAppSelector((state) => state.balanceData);
+  const { categories } = useAppSelector((state) => state.categoryDate);
   const [name, setName] = useState<string>('');
-  const [amount, setAmount] = useState<number | string>('');
-
-  const handleChangeAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const validateSumReg = /^[0-9]+$/;
-
-    if (validateSumReg.test(event.target.value) || event.target.value === '') {
-      setAmount(event.target.value);
-    }
-  };
+  const [categoryType, setCategoryType] = useState<categoriesTypes>('expense');
 
   useEffect(() => {
-    dispatch(getBalances());
+    dispatch(getCategories());
   }, []);
 
-  const handleAddBalance = () => {
-    if (!name || !amount) {
+  const handleAddCategory = () => {
+    if (!name) {
       return toast(t('All fields are required'), {
         position: 'top-right',
         autoClose: 2500,
@@ -41,9 +34,10 @@ const CategoriesPage = () => {
       });
     }
 
-    const isNameAlreadyUsed = balances.some(
-      (balance) => balance.name.toLowerCase().trim() === name,
+    /*const isNameAlreadyUsed = categories.some(
+      (category) => category.name.toLowerCase().trim() === name,
     );
+
     if (isNameAlreadyUsed) {
       return toast(t('name should be unique'), {
         position: 'top-right',
@@ -53,20 +47,25 @@ const CategoriesPage = () => {
         theme: 'dark',
         type: 'error',
       });
-    }
+    }*/
 
-    dispatch(createBalance({ name, amount: Number(amount) }));
+    dispatch(createCategory({
+      category: {
+        name,
+        categoryType,
+      },
+    }));
   };
 
   return (
     <Categories
       t={t}
-      balances={balances}
+      categories={categories}
       name={name}
       setName={setName}
-      amount={amount}
-      handleChangeAmount={handleChangeAmount}
-      handleAddBalance={handleAddBalance}
+      categoryType={categoryType}
+      setCategoryType={setCategoryType}
+      handleAddCategory={handleAddCategory}
     />
   );
 };

@@ -195,7 +195,7 @@ const CreateTransaction: React.FC<propsType> =
                             key={category._id}
                             value={category._id}
                           >
-                            {lang === 'en' ? category.nameEn : category.nameRu}
+                            {category.name}
                           </option>
                         ))}
                       </Form.Select>

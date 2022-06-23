@@ -1,8 +1,10 @@
+export type categoriesTypes = 'expense' | 'profit';
+
 export type categoryType = {
-  _id: string;
-  nameEn: string;
-  nameRu: string;
-  isExpense: boolean;
+  _id?: string;
+  name: string;
+  categoryType: categoriesTypes;
+  ownerId?: string;
 };
 
 export type getCategoriesResponseType = {

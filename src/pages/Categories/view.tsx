@@ -1,49 +1,41 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  FormControl,
-  Row,
-} from 'react-bootstrap';
+import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 
-import { balanceType } from '../../types/balance.type';
-import BalancesList from '../../components/shared/Balances';
+import { categoriesTypes, categoryType } from '../../types/category.type';
 
 type propsType = {
   t: (text: string) => string,
-  balances: balanceType[],
+  categories: categoryType[],
   name: string,
   setName: Dispatch<SetStateAction<string>>,
-  amount: string | number,
-  handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  handleAddBalance: () => void,
+  categoryType: string,
+  setCategoryType: Dispatch<SetStateAction<categoriesTypes>>,
+  handleAddCategory: () => void,
 }
 
 const Categories: React.FC<propsType> = (
   {
     t,
-    balances,
+    categories,
     name,
     setName,
-    amount,
-    handleChangeAmount,
-    handleAddBalance,
+    handleAddCategory,
+    categoryType,
+    setCategoryType,
   },
 ) => (
   <>
     <Container className='py-4'>
       <p className='fs-4 fw-bold text-center py-2'>
         {t(
-          balances.length
+          categories.length
             ? 'all your categories'
             : 'your categories will be here',
         )}
       </p>
-      <BalancesList
-        balances={balances}
-      />
+      {/*<BalancesList
+        balances={categories}
+      />*/}
       <Row className='text-center'>
         <Col xs='12' lg='6' className='mb-3 mb-lg-0 mx-auto'>
           <p className='fs-5 fw-bold'>{t('add new category')}:</p>
@@ -54,17 +46,34 @@ const Categories: React.FC<propsType> = (
             onChange={(e) => setName(e.target.value)}
             className='mb-3'
           />
-          <FormControl
-            type='number'
-            placeholder={t('set type')}
-            value={amount}
-            onChange={handleChangeAmount}
-            className='mb-3'
-          />
+          <div className='d-flex justify-content-center mb-3'>
+            <div className='w-50 text-center'>
+              <Button
+                variant={
+                  categoryType === 'expense' ? 'danger' : 'outline-danger'
+                }
+                onClick={() => setCategoryType('expense')}
+                className='w-50'
+              >
+                {t('expense')}
+              </Button>
+            </div>
+            <div className='w-50 text-center'>
+              <Button
+                variant={
+                  categoryType === 'profit' ? 'success' : 'outline-success'
+                }
+                onClick={() => setCategoryType('profit')}
+                className='w-50'
+              >
+                {t('income')}
+              </Button>
+            </div>
+          </div>
           <Button
             variant='warning'
             className='w300Px text-white'
-            onClick={handleAddBalance}
+            onClick={handleAddCategory}
           >
             {t('create')}
           </Button>

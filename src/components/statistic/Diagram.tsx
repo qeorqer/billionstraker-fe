@@ -2,8 +2,6 @@ import { PieChart } from 'react-minimal-pie-chart';
 import ReactTooltip from 'react-tooltip';
 import React, { FC, useState } from 'react';
 import { expenseIncomeType } from '../../types/statistic.type';
-import { useAppSelector } from '../../hooks/react-redux.hook';
-import { userData } from '../../store/selectors';
 import { formattingNumber } from '../../utils/formattingNumber';
 
 type propsType = {
@@ -13,7 +11,6 @@ type propsType = {
 
 const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const [hovered, setHovered] = useState<number | null>(null);
-  const { lang } = useAppSelector(userData);
 
   const colors = [
     '#E38627',
@@ -39,9 +36,7 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const dataForRange: rangeDataType[] = statisticForRange.map((el, index) => ({
     value: el.total,
     color: hovered === index ? 'grey' : colors[index],
-    tooltip: `${
-      lang === 'en' ? el._id.nameEn : el._id.nameRu
-    }, ${formattingNumber(el.total)}`,
+    tooltip: `${el._id.name}, ${formattingNumber(el.total)}`,
   }));
 
   return (
