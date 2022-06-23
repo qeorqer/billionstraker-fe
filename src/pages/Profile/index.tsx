@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container } from 'react-bootstrap';
 
-import UserInfo from 'components/Profile/UserInfo';
-import Transactions from 'components/Profile/Transactions';
 import { getGeneralStatistic } from 'store/reducers/statistic.reducer';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import {
@@ -12,9 +9,9 @@ import {
 import { statisticData, transactionData } from 'store/selectors';
 import Loader from 'components/Loader';
 
-import './profile.scss';
+import Profile from './view';
 
-const Profile = () => {
+const ProfilePage = () => {
   const { isTransactionsloading } = useAppSelector(transactionData);
   const { isGeneralStatisticLoading } = useAppSelector(statisticData);
 
@@ -31,11 +28,8 @@ const Profile = () => {
   }
 
   return (
-    <Container className="py-4">
-      <UserInfo />
-      <Transactions />
-    </Container>
+    <Profile />
   );
 };
 
-export default Profile;
+export default ProfilePage;
