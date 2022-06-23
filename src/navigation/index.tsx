@@ -5,7 +5,7 @@ import CreateTransaction from '../pages/CreateTransaction';
 import BalancesPage from '../pages/Balances';
 import CategoriesPage from '../pages/Categories';
 import Profile from '../pages/profile/Profile';
-import Auth from '../pages/auth/Auth';
+import AuthorizationPage from '../pages/Authorization';
 import { useAppSelector } from '../hooks/react-redux.hook';
 import { userData } from '../store/selectors';
 import Statistic from '../pages/statistic/Statistic';
@@ -37,7 +37,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
         </Switch>
       ) : (
         <Switch>
-          <Route path="/authorization" component={Auth} />
+          <Route path="/authorization" component={AuthorizationPage} />
           <Redirect to="/authorization" />
         </Switch>
       )}
