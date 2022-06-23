@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
-import { transactionType } from '../../../types/transaction.type';
-import { formatTransactionDate } from '../../../utils/time';
-import { formattingNumber } from '../../../utils/formattingNumber';
-import { useAppSelector } from '../../../hooks/react-redux.hook';
-import { userData } from '../../../store/selectors';
+import { transactionType } from 'types/transaction.type';
+import { formatTransactionDate } from 'utils/time';
+import { formattingNumber } from 'utils/formattingNumber';
+import { useAppSelector } from 'hooks/react-redux.hook';
+import { userData } from 'store/selectors';
 
 type propsType = {
   transaction: transactionType;

@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks/react-redux.hook';
+import React, { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import {
-  getAllUserTransactions,
-  resetTransactions,
-} from '../../../store/reducers/transaction.reducer';
-import { transactionData } from '../../../store/selectors';
-import Transaction from '../Transaction';
-import Loader from '../../Loader';
+import { getAllUserTransactions } from 'store/reducers/transaction.reducer';
+import { transactionData } from 'store/selectors';
+import Transaction from 'components/Profile/Transaction';
+import Loader from 'components/Loader';
 
 const Transactions = () => {
   const { isTransactionsloading, transactions, numberOfTransactions } =

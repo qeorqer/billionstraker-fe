@@ -3,11 +3,10 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 
-import logo from '../../images/logo.png';
-import { useAppDispatch } from '../../hooks/react-redux.hook';
-import { logOut } from '../../store/reducers/user.reducer';
-import LanguageSwitcher from '../LanguageSwitcher';
-
+import logo from 'images/logo.png';
+import { useAppDispatch } from 'hooks/react-redux.hook';
+import { logOut } from 'store/reducers/user.reducer';
+import LanguageSwitcher from 'components/LanguageSwitcher';
 
 import './styles.scss';
 

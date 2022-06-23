@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Row } from 'react-bootstrap';
 
-import Balance from '../Balance';
-import GeneralStatistic from '../GeneralStatistic';
+import Balance from 'components/Profile/Balance';
+import GeneralStatistic from 'components/Profile/GeneralStatistic';
 
 const UserInfo: FC = () => (
   <Row>

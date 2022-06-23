@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import ReactTooltip from 'react-tooltip';
 
-import { expenseIncomeType } from '../../../types/statistic.type';
-import { formattingNumber } from '../../../utils/formattingNumber';
+import { expenseIncomeType } from 'types/statistic.type';
+import { formattingNumber } from 'utils/formattingNumber';
 
 type propsType = {
   statisticForRange: expenseIncomeType[];

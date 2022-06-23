@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { balanceType } from '../../../types/balance.type';
+import { balanceType } from 'types/balance.type';
 
 type propTypes = {
   balances: balanceType[];

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { expenseIncomeType } from '../../../types/statistic.type';
-import ListItem from '../ListItem';
+import { expenseIncomeType } from 'types/statistic.type';
+import ListItem from 'components/Statistic/ListItem';
 
 type propsType = {
   statisticForRange: expenseIncomeType[];

@@ -9,10 +9,10 @@ import {
 } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 
-import { transactionTypes } from '../../types/transaction.type';
-import { balanceType } from '../../types/balance.type';
-import { categoryType } from '../../types/category.type';
-import Balances from '../../components/Balances/BalancesList';
+import { transactionTypes } from 'types/transaction.type';
+import { balanceType } from 'types/balance.type';
+import { categoryType } from 'types/category.type';
+import Balances from 'components/Balances/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type propsType = {
@@ -179,7 +179,10 @@ const CreateTransaction: React.FC<propsType> = ({
                     </option>
                     {categories &&
                       categories
-                        .filter((category) => category.categoryType === transactionType)
+                        .filter(
+                          (category) =>
+                            category.categoryType === transactionType,
+                        )
                         .map((category) => (
                           <option key={category._id} value={category._id}>
                             {category.name}

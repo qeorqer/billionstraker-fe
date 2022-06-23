@@ -5,8 +5,8 @@ import { Button, FormControl, FormGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { signUp } from '../../../store/reducers/user.reducer';
-import { AppDispatch } from '../../../store';
+import { signUp } from 'store/reducers/user.reducer';
+import { AppDispatch } from 'store';
 
 type signupForm = {
   login: string;

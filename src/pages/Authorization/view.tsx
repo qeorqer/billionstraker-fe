@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import LoginForm from '../../components/Authorization/LogInForm';
-import SignUpForm from '../../components/Authorization/SignUpForm';
-import logo from '../../images/logo.png';
-import Index from '../../components/LanguageSwitcher';
+import LoginForm from 'components/Authorization/LogInForm';
+import SignUpForm from 'components/Authorization/SignUpForm';
+import logo from 'images/logo.png';
+import Index from 'components/LanguageSwitcher';
 
 import './styles.scss';
 

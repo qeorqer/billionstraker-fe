@@ -1,16 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
+import { useTranslation } from 'react-i18next';
+
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import {
   getStatisticForRange,
   getWholeStatistic,
-} from '../../store/reducers/statistic.reducer';
-import { statisticData, userData } from '../../store/selectors';
-import { useTranslation } from 'react-i18next';
-import Loader from '../../components/Loader';
+} from 'store/reducers/statistic.reducer';
+import { statisticData, userData } from 'store/selectors';
+import Loader from 'components/Loader';
+import WholeStatistic from 'components/Statistic/WholeStatistic';
+import RangeStatistic from 'components/Statistic/RangeStatistic';
 import 'moment/locale/ru';
-import WholeStatistic from '../../components/Statistic/WholeStatistic';
-import RangeStatistic from '../../components/Statistic/RangeStatistic';
 
 const Statistic: FC = () => {
   const dispatch = useAppDispatch();

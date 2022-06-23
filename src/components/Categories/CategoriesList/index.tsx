@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { categoryType } from '../../../types/category.type';
+import { categoryType } from 'types/category.type';
 
 type propTypes = {
   categories: categoryType[];
@@ -22,7 +22,9 @@ const CategoriesList: React.FC<propTypes> = ({ categories }) => {
           <Card>
             <Card.Body>
               <Card.Title>{category.name}</Card.Title>
-              <Card.Text>{`${t('category type')}: ${t(category.categoryType)}`}</Card.Text>
+              <Card.Text>{`${t('category type')}: ${t(
+                category.categoryType,
+              )}`}</Card.Text>
             </Card.Body>
           </Card>
         </Col>

@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 //TODO: find why did I do this
 import 'moment/locale/ru';
 
-import { useAppSelector } from '../../../hooks/react-redux.hook';
-import { statisticData, userData } from '../../../store/selectors';
+import { useAppSelector } from 'hooks/react-redux.hook';
+import { statisticData, userData } from 'store/selectors';
 
 const GeneralStatistic: FC = () => {
   const { generalStatistic } = useAppSelector(statisticData);

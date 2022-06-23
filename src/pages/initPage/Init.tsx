@@ -3,12 +3,10 @@ import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
-import {
-  setFirstEnter,
-  setInitialValues,
-} from '../../store/reducers/user.reducer';
-import { userData } from '../../store/selectors';
+
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import { setFirstEnter, setInitialValues } from 'store/reducers/user.reducer';
+import { userData } from 'store/selectors';
 
 const Init = () => {
   const dispatch = useAppDispatch();

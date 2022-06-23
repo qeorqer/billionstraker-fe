@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import CreateTransaction from '../pages/CreateTransaction';
-import BalancesPage from '../pages/Balances';
-import CategoriesPage from '../pages/Categories';
-import Profile from '../pages/profile/Profile';
-import AuthorizationPage from '../pages/Authorization';
-import { useAppSelector } from '../hooks/react-redux.hook';
-import { userData } from '../store/selectors';
-import Statistic from '../pages/statistic/Statistic';
-import Loader from '../components/Loader';
-import Init from '../pages/initPage/Init';
+import CreateTransaction from 'pages/CreateTransaction';
+import BalancesPage from 'pages/Balances';
+import CategoriesPage from 'pages/Categories';
+import Profile from 'pages/profile/Profile';
+import AuthorizationPage from 'pages/Authorization';
+import Statistic from 'pages/statistic/Statistic';
+import Init from 'pages/initPage/Init';
+import Loader from 'components/Loader';
+import { useAppSelector } from 'hooks/react-redux.hook';
+import { userData } from 'store/selectors';
 
 type propsType = {
   isAuth: boolean | null;

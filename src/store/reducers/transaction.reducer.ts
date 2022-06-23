@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 
-import * as api from '../../api/index';
+import * as api from 'api/index';
 import {
   addTransactionResponseType,
   getTransactionsResponseType,
   transactionType,
-} from '../../types/transaction.type';
+} from 'types/transaction.type';
 
 export const createTransaction = createAsyncThunk(
   'transaction/createTransaction',
