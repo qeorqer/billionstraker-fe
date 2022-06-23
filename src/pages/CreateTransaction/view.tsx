@@ -127,7 +127,6 @@ const CreateTransaction: React.FC<propsType> = ({
                   setBalanceId(e.target.value)
                 }
               >
-                `
                 <option className="d-none" value="">
                   {t('select balance')}
                 </option>
@@ -180,7 +179,7 @@ const CreateTransaction: React.FC<propsType> = ({
                     </option>
                     {categories &&
                       categories
-                        //.filter((category) => category.isExpense === isExpense)
+                        .filter((category) => category.categoryType === transactionType)
                         .map((category) => (
                           <option key={category._id} value={category._id}>
                             {category.name}

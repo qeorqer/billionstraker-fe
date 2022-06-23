@@ -34,12 +34,12 @@ const CategoriesPage = () => {
       });
     }
 
-    /*const isNameAlreadyUsed = categories.some(
-      (category) => category.name.toLowerCase().trim() === name,
+    const isAlreadyExists = categories.some(
+      (category) => category.name.toLowerCase().trim() === name && category.categoryType === categoryType,
     );
 
-    if (isNameAlreadyUsed) {
-      return toast(t('name should be unique'), {
+    if (isAlreadyExists) {
+      return toast(t('category already exists'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,
@@ -47,7 +47,7 @@ const CategoriesPage = () => {
         theme: 'dark',
         type: 'error',
       });
-    }*/
+    }
 
     dispatch(
       createCategory({
