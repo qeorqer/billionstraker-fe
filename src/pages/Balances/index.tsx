@@ -22,10 +22,6 @@ const BalancesPage = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(getBalances());
-  }, []);
-
   const handleAddBalance = () => {
     if (!name || !amount) {
       return toast(t('All fields are required'), {

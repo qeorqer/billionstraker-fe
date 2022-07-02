@@ -113,7 +113,7 @@ const CreateTransaction: React.FC<propsType> = ({
           balances.length ? 'all your balances' : 'your balances will be here',
         )}
       </p>
-      <Balances balances={balances} />
+      <Balances />
 
       <Row>
         <Col xs="12" lg="7" className="mx-auto  mt-3">

@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { balanceType } from 'types/balance.type';
+import { getBalances } from 'store/reducers/balance.reducer';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 
-type propTypes = {
-  balances: balanceType[];
-};
-
-const BalancesList: React.FC<propTypes> = ({ balances }) => {
+const BalancesList = ( ) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
+  const { balances } = useAppSelector((state) => state.balanceData);
+
+  useEffect(() => {
+    dispatch(getBalances());
+  }, []);
 
   if (!balances.length) {
     return null;
