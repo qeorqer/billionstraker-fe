@@ -196,6 +196,8 @@ const userReducer = createSlice({
 
     builder.addCase(checkAuth.rejected, (state) => {
       state.isRefreshLoading = false;
+      state.user = {} as userType;
+      state.isAuth = false;
     });
 
     builder.addCase(checkAuth.fulfilled, (state, action) => {
