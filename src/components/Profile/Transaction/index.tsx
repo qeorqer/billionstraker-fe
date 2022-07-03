@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 import { transactionType } from 'types/transaction.type';
 import { formatTransactionDate } from 'utils/time';
@@ -13,6 +14,7 @@ type propsType = {
 
 const Transaction: FC<propsType> = ({ transaction }) => {
   const { lang } = useAppSelector(userData);
+  const { t } = useTranslation()
 
   return (
     <Card
@@ -22,12 +24,6 @@ const Transaction: FC<propsType> = ({ transaction }) => {
     >
       <Card.Body>
         <Row>
-          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
-            {transaction.title}
-          </Col>
-          <Col xs="8" sm="4">
-            {formatTransactionDate(transaction.date, lang)}
-          </Col>
           <Col xs="4" sm="4">
             {transaction.transactionType === 'expense' ? (
               <span className="text-danger">
@@ -39,6 +35,23 @@ const Transaction: FC<propsType> = ({ transaction }) => {
               </span>
             )}
           </Col>
+          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
+            {transaction.title}
+          </Col>
+          <Col xs="8" sm="4">
+            {formatTransactionDate(transaction.date, lang)}
+          </Col>
+          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
+            {transaction.category}
+          </Col>
+          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
+            {transaction.balance}
+          </Col>
+
+          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
+            {t(transaction.transactionType)}
+          </Col>
+
         </Row>
       </Card.Body>
     </Card>

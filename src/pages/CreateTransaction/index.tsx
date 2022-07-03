@@ -142,10 +142,23 @@ const CreateTransactionPage = () => {
       }
     }
 
+    const category = categories.find((category) => category._id === categoryId);
+
+    if(!category){
+      return toast(t("there is no category with such id"), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
+    }
+
     const newTransaction: transactionType = {
       title: title,
       sum: Number(sum),
-      category: categoryId,
+      category: category.name,
       balance: balance.name,
       date: date,
       transactionType: transactionType,

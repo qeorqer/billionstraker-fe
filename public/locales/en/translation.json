@@ -75,6 +75,7 @@
   "creating category success": "Category added successfully",
   "the balance does not exist": "The balance does not exist",
   "transaction created successfully": "Transaction created successfully",
+  "failed to create transaction": "Failed to create transaction",
   "create balances first": "Create balances first",
   "select date": "Select date",
   "categories": "Categories",
@@ -87,5 +88,6 @@
   "deleting balance success": "Balance deleted successfully",
   "updating category success": "Category updated successfully",
   "deleting category success": "Category deleted successfully",
-  "category type": "Category type"
+  "category type": "Category type",
+  "there is no category with such id": "There is no category with such id"
 }

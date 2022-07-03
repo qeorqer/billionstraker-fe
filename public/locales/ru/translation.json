@@ -75,6 +75,7 @@
   "creating category success": "Категория добавлена успешно",
   "the balance does not exist": "Ошибка, баланс не сущуествует",
   "transaction created successfully": "Транзакция успешно добавлена",
+  "failed to create transaction": "Не получилось создать транзакцию",
   "create balances first": "Сперва создай баланс",
   "select date": "Выбери дату",
   "categories": "Категории",
@@ -87,5 +88,6 @@
   "deleting balance success": "Баланс успешно удален",
   "updating category success": "Категория обновлена",
   "deleting category success": "Категория удалена",
-  "category type": "Тип категории"
+  "category type": "Тип категории",
+  "there is no category with such id": "Категории с таким id не существует"
 }

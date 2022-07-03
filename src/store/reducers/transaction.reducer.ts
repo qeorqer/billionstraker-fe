@@ -82,6 +82,17 @@ const transactionReducer = createSlice({
         type: 'success',
       });
     });
+
+    builder.addCase(createTransaction.rejected, (state, action) => {
+      toast('failed to create transaction', {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
+    });
   },
 });
 
