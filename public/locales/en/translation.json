@@ -89,5 +89,8 @@
   "updating category success": "Category updated successfully",
   "deleting category success": "Category deleted successfully",
   "category type": "Category type",
-  "there is no category with such id": "There is no category with such id"
+  "there is no category with such id": "There is no category with such id",
+  "all transactions": "All transactions",
+  "show all": "Show all",
+  "apply filters": "Apply filters"
 }

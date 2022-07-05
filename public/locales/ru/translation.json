@@ -89,5 +89,8 @@
   "updating category success": "Категория обновлена",
   "deleting category success": "Категория удалена",
   "category type": "Тип категории",
-  "there is no category with such id": "Категории с таким id не существует"
+  "there is no category with such id": "Категории с таким id не существует",
+  "all transactions": "Все транзакции",
+  "show all": "Показать все",
+  "apply filters": "Применить фильтры"
 }

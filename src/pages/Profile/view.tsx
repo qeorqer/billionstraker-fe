@@ -5,16 +5,15 @@ import Transactions from 'components/Profile/Transactions';
 import BalancesList from 'components/Balances/BalancesList';
 
 import './styles.scss';
-import { balanceType } from 'types/balance.type';
 
 type propsTypes = {
-  balances: balanceType[];
+  numberOfBalances: number;
   t: (text: string) => string;
 }
 
-const Profile: React.FC<propsTypes> = ({ balances, t }) => (
+const Profile: React.FC<propsTypes> = ({ numberOfBalances, t }) => (
   <Container className='py-4'>
-    {balances.length && (
+    {numberOfBalances && (
       <p
         className='fs-4 fw-bold text-center py-2'
       >
