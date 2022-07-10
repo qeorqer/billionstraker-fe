@@ -67,6 +67,11 @@ export const addTransaction = (body: {
 export const getAllUserTransactions = (body: {
   limit: number;
   numberToSkip: number;
+  filteringOptions: {
+    shownTransactionsTypes: string,
+    categoriesToShow: string[],
+    balancesToShow: string[],
+  }
 }): Promise<AxiosResponse<getTransactionsResponseType>> =>
   api.post('/transaction/getAllUserTransactions', body);
 

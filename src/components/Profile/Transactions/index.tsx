@@ -36,16 +36,35 @@ const Transactions = () => {
 
   const getAllTransactions = () => {
     dispatch(
-      getAllUserTransactions({ limit: LIMIT, numberToSkip: numberToSkip }),
+      getAllUserTransactions({
+        limit: LIMIT,
+        numberToSkip: numberToSkip,
+        filteringOptions: {
+          shownTransactionsTypes,
+          categoriesToShow,
+          balancesToShow,
+        },
+      }),
     );
     setNumberToSkip(LIMIT + numberToSkip);
   };
 
 
   useEffect(() => {
-    dispatch(getCategories());
     dispatch(resetTransactions());
-    dispatch(getAllUserTransactions({ limit: LIMIT, numberToSkip: 0 }));
+    dispatch(getAllUserTransactions({
+      limit: LIMIT,
+      numberToSkip: 0,
+      filteringOptions: {
+        shownTransactionsTypes,
+        categoriesToShow,
+        balancesToShow,
+      },
+    }));
+  }, [shownTransactionsTypes, categoriesToShow, balancesToShow]);
+
+  useEffect(() => {
+    dispatch(getCategories());
   }, []);
 
 
@@ -55,7 +74,7 @@ const Transactions = () => {
 
   return (
     <div className='mt-4'>
-      {numberOfTransactions ? (
+      {!(!numberOfTransactions && shownTransactionsTypes === 'all transactions' && categoriesToShow.length && balancesToShow.length && !isTransactionsloading) && (
         <>
           <p className='text-center fw-bold fs-4'>{t('apply filters')}</p>
           <div className='mb-3 d-flex'>
@@ -72,16 +91,26 @@ const Transactions = () => {
               ))}
             </Form.Select>
             <Form.Select
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                setShownTransactionsTypes(e.target.value as transactionTypesToShowType)
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                setCategoriesToShow(e.target.value === 'all' ? [] : [e.target.value]);
+              }
               }
               className='mx-3'
+              disabled={shownTransactionsTypes === 'exchange'}
             >
-              <option value="all">
+              <option value='all'>
                 {t('show all')}
               </option>
               {categories &&
-              categories.map((category: categoryType) => (
+              categories
+              .filter((category: categoryType) => {
+                if (shownTransactionsTypes === 'all transactions') {
+                  return category;
+                }
+
+                return category.categoryType === shownTransactionsTypes;
+              })
+              .map((category: categoryType) => (
                 <option key={category._id} value={category.name}>
                   {category.name}
                 </option>
@@ -89,25 +118,33 @@ const Transactions = () => {
             </Form.Select>
             <Form.Select
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                setShownTransactionsTypes(e.target.value as transactionTypesToShowType)
+                setBalancesToShow(e.target.value === 'all' ? [] : [e.target.value])
               }
+              disabled={shownTransactionsTypes === 'exchange'}
             >
-              <option value="all">
+              <option value='all'>
                 {t('show all')}
               </option>
               {balances &&
-              balances.map((balance: balanceType) => (
+              balances
+              .map((balance: balanceType) => (
                 <option key={balance._id} value={balance.name}>
                   {balance.name}
                 </option>
               ))}
             </Form.Select>
-
           </div>
+        </>
+      )
+      }
+      {numberOfTransactions ? (
+        <>
           <p className='text-center fw-bold fs-4'>{t('Your transactions')}</p>
-          {transactions.map((transaction) => (
-            <Transaction key={transaction._id} transaction={transaction} />
-          ))}
+          {
+            transactions.map((transaction) => (
+              <Transaction key={transaction._id} transaction={transaction} />
+            ))
+          }
 
           {isTransactionsloading && <Loader />}
 
