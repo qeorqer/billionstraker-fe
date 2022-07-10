@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { getBalances } from 'store/reducers/balance.reducer';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 
-const BalancesList = ( ) => {
+const BalancesList = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
@@ -25,10 +25,10 @@ const BalancesList = ( ) => {
       <Swiper
         spaceBetween={50}
         slidesPerView={4}
-        className='mb-3  justify-content-center d-flex'
+        className="mb-3  justify-content-center d-flex"
       >
         {balances.map((balance) => (
-          <SwiperSlide className='mb-3' key={balance._id}>
+          <SwiperSlide className="mb-3" key={balance._id}>
             <Card>
               <Card.Body>
                 <Card.Title>{balance.name}</Card.Title>

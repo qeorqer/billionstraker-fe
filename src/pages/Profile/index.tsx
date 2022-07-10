@@ -9,9 +9,7 @@ const ProfilePage = () => {
   const { balances } = useAppSelector((state) => state.balanceData);
   const { t } = useTranslation();
 
-  return (
-    <Profile numberOfBalances={balances.length} t={t} />
-  );
+  return <Profile numberOfBalances={balances.length} t={t} />;
 };
 
 export default ProfilePage;

@@ -14,7 +14,7 @@ type propsType = {
 
 const Transaction: FC<propsType> = ({ transaction }) => {
   const { lang } = useAppSelector(userData);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Card
@@ -51,7 +51,6 @@ const Transaction: FC<propsType> = ({ transaction }) => {
           <Col xs="12" sm="4" className="mb-2 mb-sm-0">
             {t(transaction.transactionType)}
           </Col>
-
         </Row>
       </Card.Body>
     </Card>

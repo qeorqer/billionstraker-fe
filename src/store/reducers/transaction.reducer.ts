@@ -25,10 +25,10 @@ export const getAllUserTransactions = createAsyncThunk(
     limit: number;
     numberToSkip: number;
     filteringOptions: {
-      shownTransactionsTypes: string,
-      categoriesToShow: string[],
-      balancesToShow: string[],
-    },
+      shownTransactionsTypes: string;
+      categoriesToShow: string[];
+      balancesToShow: string[];
+    };
   }): Promise<AxiosResponse<getTransactionsResponseType>> =>
     await api.getAllUserTransactions(body),
 );

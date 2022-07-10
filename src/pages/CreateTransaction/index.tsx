@@ -144,8 +144,8 @@ const CreateTransactionPage = () => {
 
     const category = categories.find((category) => category._id === categoryId);
 
-    if(!category){
-      return toast(t("there is no category with such id"), {
+    if (!category) {
+      return toast(t('there is no category with such id'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,

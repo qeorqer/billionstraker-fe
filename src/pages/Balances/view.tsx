@@ -1,11 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import {
-  Button,
-  Col,
-  Container,
-  FormControl,
-  Row,
-} from 'react-bootstrap';
+import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 
 import { balanceType } from 'types/balance.type';
 import BalancesList from 'components/Balances/BalancesList';

@@ -217,7 +217,10 @@ const CreateTransaction: React.FC<propsType> = ({
               xs={transactionType === 'exchange' ? 3 : 6}
               className="d-flex flex-wrap"
             >
-              <p className="mb-1  fs-5">{t(transactionType === 'exchange'? 'send' : 'Transaction sum')}:</p>
+              <p className="mb-1  fs-5">
+                {t(transactionType === 'exchange' ? 'send' : 'Transaction sum')}
+                :
+              </p>
               <FormControl
                 type="number"
                 placeholder={t('Transaction sum')}
