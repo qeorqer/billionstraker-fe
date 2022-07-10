@@ -74,8 +74,8 @@ const Transactions = () => {
       {!(
         !numberOfTransactions &&
         shownTransactionsTypes === 'all transactions' &&
-        categoriesToShow.length &&
-        balancesToShow.length &&
+        !categoriesToShow.length &&
+        !balancesToShow.length &&
         !isTransactionsloading
       ) && (
         <>
