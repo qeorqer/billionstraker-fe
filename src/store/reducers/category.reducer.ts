@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 
-import * as api from '../../api/index';
+import * as api from 'api/index';
 import {
   categoryType,
   createCategoryResponseType,
   deleteCategoryResponseType,
   getCategoriesResponseType,
-} from '../../types/category.type';
+} from 'types/category.type';
 
 export const getCategories = createAsyncThunk(
   'category/getCategories',

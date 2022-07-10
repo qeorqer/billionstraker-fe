@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
-import {
-  createBalance,
-  getBalances,
-} from '../../store/reducers/balance.reducer';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import { createBalance, getBalances } from 'store/reducers/balance.reducer';
 
 import Balances from './view';
 
@@ -24,10 +21,6 @@ const BalancesPage = () => {
       setAmount(event.target.value);
     }
   };
-
-  useEffect(() => {
-    dispatch(getBalances());
-  }, []);
 
   const handleAddBalance = () => {
     if (!name || !amount) {

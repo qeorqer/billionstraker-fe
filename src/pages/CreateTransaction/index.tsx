@@ -2,15 +2,12 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { categoryData, userData } from '../../store/selectors';
-import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
-import {
-  transactionType,
-  transactionTypes,
-} from '../../types/transaction.type';
-import { getCategories } from '../../store/reducers/category.reducer';
-import { getBalances } from '../../store/reducers/balance.reducer';
-import { createTransaction } from '../../store/reducers/transaction.reducer';
+import { categoryData, userData } from 'store/selectors';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import { transactionType, transactionTypes } from 'types/transaction.type';
+import { getCategories } from 'store/reducers/category.reducer';
+import { getBalances } from 'store/reducers/balance.reducer';
+import { createTransaction } from 'store/reducers/transaction.reducer';
 
 import CreateTransaction from './view';
 
@@ -145,10 +142,23 @@ const CreateTransactionPage = () => {
       }
     }
 
+    const category = categories.find((category) => category._id === categoryId);
+
+    if (!category) {
+      return toast(t('there is no category with such id'), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
+    }
+
     const newTransaction: transactionType = {
       title: title,
       sum: Number(sum),
-      category: categoryId,
+      category: category.name,
       balance: balance.name,
       date: date,
       transactionType: transactionType,

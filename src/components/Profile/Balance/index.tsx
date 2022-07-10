@@ -3,8 +3,8 @@ import { Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { formattingNumber } from '../../../utils/formattingNumber';
-import { userData } from '../../../store/selectors';
+import { formattingNumber } from 'utils/formattingNumber';
+import { userData } from 'store/selectors';
 
 const Balance: FC = () => {
   const { user } = useSelector(userData);

@@ -1,10 +1,11 @@
 import React from 'react';
-import { changeLang } from '../../store/reducers/user.reducer';
 import i18next from 'i18next';
-import enFlag from '../../images/en.png';
-import ruFlag from '../../images/ru.png';
-import { userData } from '../../store/selectors';
-import { useAppDispatch, useAppSelector } from '../../hooks/react-redux.hook';
+
+import { changeLang } from 'store/reducers/user.reducer';
+import enFlag from 'images/en.png';
+import ruFlag from 'images/ru.png';
+import { userData } from 'store/selectors';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 
 const Index = () => {
   const dispatch = useAppDispatch();

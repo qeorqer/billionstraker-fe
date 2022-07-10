@@ -1,32 +1,43 @@
-import React from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Card, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { balanceType } from '../../../types/balance.type';
+import { getBalances } from 'store/reducers/balance.reducer';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 
-type propTypes = {
-  balances: balanceType[];
-};
-
-const BalancesList: React.FC<propTypes> = ({ balances }) => {
+const BalancesList = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+
+  const { balances } = useAppSelector((state) => state.balanceData);
+
+  useEffect(() => {
+    dispatch(getBalances());
+  }, []);
 
   if (!balances.length) {
     return null;
   }
 
   return (
-    <Row className="mb-3  justify-content-center d-flex">
-      {balances.map((balance) => (
-        <Col xs={12} lg={3} md={4} sm={6} className="mb-3">
-          <Card>
-            <Card.Body>
-              <Card.Title>{balance.name}</Card.Title>
-              <Card.Text>{`${t('balance')}: ${balance.amount}`}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
+    <Row>
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={4}
+        className="mb-3  justify-content-center d-flex"
+      >
+        {balances.map((balance) => (
+          <SwiperSlide className="mb-3" key={balance._id}>
+            <Card>
+              <Card.Body>
+                <Card.Title>{balance.name}</Card.Title>
+                <Card.Text>{`${t('balance')}: ${balance.amount}`}</Card.Text>
+              </Card.Body>
+            </Card>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </Row>
   );
 };

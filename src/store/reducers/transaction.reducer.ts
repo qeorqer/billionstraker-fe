@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 
-import * as api from '../../api/index';
+import * as api from 'api/index';
 import {
   addTransactionResponseType,
   getTransactionsResponseType,
   transactionType,
-} from '../../types/transaction.type';
+} from 'types/transaction.type';
 
 export const createTransaction = createAsyncThunk(
   'transaction/createTransaction',
@@ -24,6 +24,11 @@ export const getAllUserTransactions = createAsyncThunk(
   async (body: {
     limit: number;
     numberToSkip: number;
+    filteringOptions: {
+      shownTransactionsTypes: string;
+      categoriesToShow: string[];
+      balancesToShow: string[];
+    };
   }): Promise<AxiosResponse<getTransactionsResponseType>> =>
     await api.getAllUserTransactions(body),
 );
@@ -80,6 +85,17 @@ const transactionReducer = createSlice({
         closeOnClick: true,
         theme: 'dark',
         type: 'success',
+      });
+    });
+
+    builder.addCase(createTransaction.rejected, (state, action) => {
+      toast('failed to create transaction', {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
       });
     });
   },

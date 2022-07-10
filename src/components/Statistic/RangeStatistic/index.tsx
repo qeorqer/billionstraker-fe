@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 //todo: learn how to work when there is no ts for library
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
-import Loader from '../../Loader';
-import Diagram from '.././Diagram';
-import { List } from '../List';
-import { useAppSelector } from '../../../hooks/react-redux.hook';
-import { statisticData, userData } from '../../../store/selectors';
-import { statisticForRangeType } from '../../../types/statistic.type';
+import Loader from 'components/Loader';
+import Diagram from 'components/Statistic/Diagram';
+import { List } from 'components/Statistic/List';
+import { useAppSelector } from 'hooks/react-redux.hook';
+import { statisticData, userData } from 'store/selectors';
+import { statisticForRangeType } from 'types/statistic.type';
 
 import './styles.scss';
 

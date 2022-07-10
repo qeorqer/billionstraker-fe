@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
-import * as api from '../../api/index';
+
+import * as api from 'api/index';
 import {
   generalStatisticType,
   getGeneralStatisticResponseType,
@@ -8,7 +9,7 @@ import {
   getWholeStatisticResponseType,
   statisticForRangeType,
   wholeStatisticType,
-} from '../../types/statistic.type';
+} from 'types/statistic.type';
 
 export const getGeneralStatistic = createAsyncThunk(
   'statistic/getGeneralStatistic',

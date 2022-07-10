@@ -1,34 +1,35 @@
 import { AxiosResponse } from 'axios';
 
-import api from './axiosInstance';
 import {
   authData,
   loginResponseType,
   signUpResponseType,
   updateUserResponseType,
-} from '../types/user.type';
+} from 'types/user.type';
 import {
   categoryType,
   createCategoryResponseType,
   deleteCategoryResponseType,
   getCategoriesResponseType,
-} from '../types/category.type';
+} from 'types/category.type';
 import {
   addTransactionResponseType,
   getTransactionsResponseType,
   transactionType,
-} from '../types/transaction.type';
+} from 'types/transaction.type';
 import {
   getGeneralStatisticResponseType,
   getStatisticForRangeResponseType,
   getWholeStatisticResponseType,
-} from '../types/statistic.type';
+} from 'types/statistic.type';
 import {
   balanceType,
   createBalanceResponseType,
   deleteBalanceResponseType,
   getBalanceResponseType,
-} from '../types/balance.type';
+} from 'types/balance.type';
+
+import api from './axiosInstance';
 
 /* user requests */
 export const signUp = (
@@ -66,6 +67,11 @@ export const addTransaction = (body: {
 export const getAllUserTransactions = (body: {
   limit: number;
   numberToSkip: number;
+  filteringOptions: {
+    shownTransactionsTypes: string;
+    categoriesToShow: string[];
+    balancesToShow: string[];
+  };
 }): Promise<AxiosResponse<getTransactionsResponseType>> =>
   api.post('/transaction/getAllUserTransactions', body);
 

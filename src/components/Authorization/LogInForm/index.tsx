@@ -5,9 +5,9 @@ import { Button, FormControl, FormGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { authData } from '../../../types/user.type';
-import { logIn } from '../../../store/reducers/user.reducer';
-import { AppDispatch } from '../../../store';
+import { authData } from 'types/user.type';
+import { logIn } from 'store/reducers/user.reducer';
+import { AppDispatch } from 'store';
 
 const LogInFormMarkup: React.FC<FormikProps<authData>> = ({
   values,

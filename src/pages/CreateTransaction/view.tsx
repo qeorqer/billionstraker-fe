@@ -9,10 +9,10 @@ import {
 } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 
-import { transactionTypes } from '../../types/transaction.type';
-import { balanceType } from '../../types/balance.type';
-import { categoryType } from '../../types/category.type';
-import Balances from '../../components/Balances/BalancesList';
+import { transactionTypes } from 'types/transaction.type';
+import { balanceType } from 'types/balance.type';
+import { categoryType } from 'types/category.type';
+import Balances from 'components/Balances/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type propsType = {
@@ -113,7 +113,7 @@ const CreateTransaction: React.FC<propsType> = ({
           balances.length ? 'all your balances' : 'your balances will be here',
         )}
       </p>
-      <Balances balances={balances} />
+      <Balances />
 
       <Row>
         <Col xs="12" lg="7" className="mx-auto  mt-3">
@@ -179,7 +179,10 @@ const CreateTransaction: React.FC<propsType> = ({
                     </option>
                     {categories &&
                       categories
-                        .filter((category) => category.categoryType === transactionType)
+                        .filter(
+                          (category) =>
+                            category.categoryType === transactionType,
+                        )
                         .map((category) => (
                           <option key={category._id} value={category._id}>
                             {category.name}
@@ -214,7 +217,10 @@ const CreateTransaction: React.FC<propsType> = ({
               xs={transactionType === 'exchange' ? 3 : 6}
               className="d-flex flex-wrap"
             >
-              <p className="mb-1  fs-5">{t('sum')}:</p>
+              <p className="mb-1  fs-5">
+                {t(transactionType === 'exchange' ? 'send' : 'Transaction sum')}
+                :
+              </p>
               <FormControl
                 type="number"
                 placeholder={t('Transaction sum')}
@@ -225,7 +231,7 @@ const CreateTransaction: React.FC<propsType> = ({
 
             {transactionType === 'exchange' && (
               <Col xs="3" className="d-flex flex-wrap">
-                <p className="mb-1  fs-5">{t('sum 2')}:</p>
+                <p className="mb-1  fs-5">{t('receive')}:</p>
                 <FormControl
                   type="number"
                   placeholder={t('Transaction sum')}

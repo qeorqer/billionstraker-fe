@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import userReducer from './reducers/user.reducer';
-import categoryReducer from './reducers/category.reducer';
-import transactionReducer from './reducers/transaction.reducer';
-import statisticReducer from './reducers/statistic.reducer';
-import balanceReducer from './reducers/balance.reducer';
+import userReducer from 'store/reducers/user.reducer';
+import categoryReducer from 'store/reducers/category.reducer';
+import transactionReducer from 'store/reducers/transaction.reducer';
+import statisticReducer from 'store/reducers/statistic.reducer';
+import balanceReducer from 'store/reducers/balance.reducer';
 
 const store = configureStore({
   reducer: {

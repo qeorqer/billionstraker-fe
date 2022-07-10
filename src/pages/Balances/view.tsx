@@ -1,15 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import {
-  Button,
-  Card,
-  Col,
-  Container,
-  FormControl,
-  Row,
-} from 'react-bootstrap';
+import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 
-import { balanceType } from '../../types/balance.type';
-import BalancesList from '../../components/Balances/BalancesList';
+import { balanceType } from 'types/balance.type';
+import BalancesList from 'components/Balances/BalancesList';
 
 type propsType = {
   t: (text: string) => string;
@@ -37,7 +30,7 @@ const Balances: React.FC<propsType> = ({
           balances.length ? 'all your balances' : 'your balances will be here',
         )}
       </p>
-      <BalancesList balances={balances} />
+      <BalancesList />
       <Row className="text-center">
         <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
           <p className="fs-5 fw-bold">{t('add new balance')}:</p>

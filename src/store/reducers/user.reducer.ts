@@ -1,18 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
-import * as api from '../../api/index';
+import { toast } from 'react-toastify';
+
+import * as api from 'api/index';
 import {
   authData,
   loginResponseType,
   updateUserResponseType,
   signUpResponseType,
   userType,
-} from '../../types/user.type';
-import { toast } from 'react-toastify';
-import {
-  addTransactionResponseType,
-  transactionType,
-} from '../../types/transaction.type';
+} from 'types/user.type';
 
 export const signUp = createAsyncThunk<
   signUpResponseType,
@@ -199,6 +196,8 @@ const userReducer = createSlice({
 
     builder.addCase(checkAuth.rejected, (state) => {
       state.isRefreshLoading = false;
+      state.user = {} as userType;
+      state.isAuth = false;
     });
 
     builder.addCase(checkAuth.fulfilled, (state, action) => {

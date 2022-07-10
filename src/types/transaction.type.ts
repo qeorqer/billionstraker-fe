@@ -1,4 +1,4 @@
-import { balanceType } from './balance.type';
+import { balanceType } from 'types/balance.type';
 
 export type transactionTypes = 'expense' | 'profit' | 'exchange';
 
