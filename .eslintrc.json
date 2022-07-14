@@ -19,7 +19,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "only-warn"],
   "settings": {
     "import/resolver": {
       "typescript": {}
