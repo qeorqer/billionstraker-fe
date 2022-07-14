@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/billionstraker-fe/static/css/main.61aeadad.chunk.css",
-    "main.js": "/billionstraker-fe/static/js/main.2898e963.chunk.js",
-    "main.js.map": "/billionstraker-fe/static/js/main.2898e963.chunk.js.map",
-    "runtime-main.js": "/billionstraker-fe/static/js/runtime-main.a99cafbf.js",
-    "runtime-main.js.map": "/billionstraker-fe/static/js/runtime-main.a99cafbf.js.map",
-    "static/css/2.84561210.chunk.css": "/billionstraker-fe/static/css/2.84561210.chunk.css",
-    "static/js/2.e1c15489.chunk.js": "/billionstraker-fe/static/js/2.e1c15489.chunk.js",
-    "static/js/2.e1c15489.chunk.js.map": "/billionstraker-fe/static/js/2.e1c15489.chunk.js.map",
+    "main.css": "/billionstraker-fe/static/css/main.d27efdae.chunk.css",
+    "main.js": "/billionstraker-fe/static/js/main.cb69006d.chunk.js",
+    "main.js.map": "/billionstraker-fe/static/js/main.cb69006d.chunk.js.map",
+    "runtime-main.js": "/billionstraker-fe/static/js/runtime-main.7835c4ad.js",
+    "runtime-main.js.map": "/billionstraker-fe/static/js/runtime-main.7835c4ad.js.map",
+    "static/css/2.7158c1e2.chunk.css": "/billionstraker-fe/static/css/2.7158c1e2.chunk.css",
+    "static/js/2.4d2c8267.chunk.js": "/billionstraker-fe/static/js/2.4d2c8267.chunk.js",
+    "static/js/2.4d2c8267.chunk.js.map": "/billionstraker-fe/static/js/2.4d2c8267.chunk.js.map",
     "index.html": "/billionstraker-fe/index.html",
-    "static/css/2.84561210.chunk.css.map": "/billionstraker-fe/static/css/2.84561210.chunk.css.map",
-    "static/css/main.61aeadad.chunk.css.map": "/billionstraker-fe/static/css/main.61aeadad.chunk.css.map",
-    "static/js/2.e1c15489.chunk.js.LICENSE.txt": "/billionstraker-fe/static/js/2.e1c15489.chunk.js.LICENSE.txt",
+    "static/css/2.7158c1e2.chunk.css.map": "/billionstraker-fe/static/css/2.7158c1e2.chunk.css.map",
+    "static/css/main.d27efdae.chunk.css.map": "/billionstraker-fe/static/css/main.d27efdae.chunk.css.map",
+    "static/js/2.4d2c8267.chunk.js.LICENSE.txt": "/billionstraker-fe/static/js/2.4d2c8267.chunk.js.LICENSE.txt",
+    "static/js/main.cb69006d.chunk.js.LICENSE.txt": "/billionstraker-fe/static/js/main.cb69006d.chunk.js.LICENSE.txt",
     "static/media/getFetch.cjs": "/billionstraker-fe/static/media/getFetch.582d29c4.cjs",
     "static/media/loader.b77cbe87.gif": "/billionstraker-fe/static/media/loader.b77cbe87.gif",
     "static/media/logo.9b355c54.png": "/billionstraker-fe/static/media/logo.9b355c54.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.a99cafbf.js",
-    "static/css/2.84561210.chunk.css",
-    "static/js/2.e1c15489.chunk.js",
-    "static/css/main.61aeadad.chunk.css",
-    "static/js/main.2898e963.chunk.js"
+    "static/js/runtime-main.7835c4ad.js",
+    "static/css/2.7158c1e2.chunk.css",
+    "static/js/2.4d2c8267.chunk.js",
+    "static/css/main.d27efdae.chunk.css",
+    "static/js/main.cb69006d.chunk.js"
   ]
 }
