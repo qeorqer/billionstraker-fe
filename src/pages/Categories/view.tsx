@@ -3,6 +3,7 @@ import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 
 import { categoriesTypes, categoryType } from 'types/category.type';
 import CategoriesList from 'components/Categories/CategoriesList';
+import CategoryForm from 'components/Categories/CategoryForm';
 
 type propsType = {
   t: (text: string) => string;
@@ -19,9 +20,9 @@ const Categories: React.FC<propsType> = ({
   categories,
   name,
   setName,
-  handleAddCategory,
   categoryType,
   setCategoryType,
+  handleAddCategory,
 }) => (
   <>
     <Container className="py-4">
@@ -36,44 +37,14 @@ const Categories: React.FC<propsType> = ({
       <Row className="text-center">
         <Col xs="12" lg="5" className="mb-3 mb-lg-0 mx-auto">
           <p className="fs-5 fw-bold">{t('add new category')}:</p>
-          <FormControl
-            type="text"
-            placeholder={t('name the category')}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="mb-3"
+          <CategoryForm
+            name={name}
+            setName={setName}
+            categoryType={categoryType}
+            setCategoryType={setCategoryType}
+            handleSubmit={handleAddCategory}
+            buttonText="create"
           />
-          <div className="d-flex justify-content-center mb-3">
-            <div className="w-50 text-center">
-              <Button
-                variant={
-                  categoryType === 'expense' ? 'danger' : 'outline-danger'
-                }
-                onClick={() => setCategoryType('expense')}
-                className="w-50"
-              >
-                {t('expense')}
-              </Button>
-            </div>
-            <div className="w-50 text-center">
-              <Button
-                variant={
-                  categoryType === 'profit' ? 'success' : 'outline-success'
-                }
-                onClick={() => setCategoryType('profit')}
-                className="w-50"
-              >
-                {t('profit')}
-              </Button>
-            </div>
-          </div>
-          <Button
-            variant="warning"
-            className="w300Px text-white"
-            onClick={handleAddCategory}
-          >
-            {t('create')}
-          </Button>
         </Col>
       </Row>
     </Container>

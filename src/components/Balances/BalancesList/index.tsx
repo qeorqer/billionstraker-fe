@@ -28,7 +28,9 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
   const { balances } = useAppSelector((state) => state.balanceData);
 
   const handleEditClick = (balanceId: string) => {
-    const selectedBalance = balances.find((balance) => balance._id === balanceId);
+    const selectedBalance = balances.find(
+      (balance) => balance._id === balanceId,
+    );
 
     setName(selectedBalance?.name!);
     setAmount(selectedBalance?.amount!);
@@ -37,7 +39,9 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
   };
 
   const handleEditBalance = () => {
-    const selectedBalance = balances.find((balance) => balance._id === selectedBalanceId);
+    const selectedBalance = balances.find(
+      (balance) => balance._id === selectedBalanceId,
+    );
 
     if (selectedBalance) {
       const balanceForUpdate = {
@@ -46,10 +50,12 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
         name,
       };
 
-      dispatch(updateBalance({
-        balanceId: selectedBalanceId,
-        balance: balanceForUpdate,
-      }));
+      dispatch(
+        updateBalance({
+          balanceId: selectedBalanceId,
+          balance: balanceForUpdate,
+        }),
+      );
     }
 
     setSelectedBalanceId('');
@@ -72,7 +78,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
         <Swiper
           spaceBetween={20}
           slidesPerView={1}
-          className='mb-3 justify-content-center d-flex px-2 overflow-y-visible'
+          className="mb-3 justify-content-center d-flex px-2 overflow-y-visible"
           breakpoints={{
             450: {
               slidesPerView: 2,
@@ -91,29 +97,29 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
         >
           {balances.map((balance) => (
             <SwiperSlide key={balance._id}>
-              <Card className='h-100'>
-                <Card.Body className='d-flex justify-content-between'>
+              <Card className="h-100">
+                <Card.Body className="d-flex justify-content-between">
                   <div>
                     <Card.Title>{balance.name}</Card.Title>
-                    <Card.Text>{`${t('balance')}: ${
-                      balance.amount
-                    }`}</Card.Text>
+                    <Card.Text>
+                      {`${t('balance')}: ${balance.amount}`}
+                    </Card.Text>
                   </div>
                   {withMenu && (
-                    <Dropdown drop='start'>
+                    <Dropdown drop="start">
                       <Dropdown.Toggle
                         as={CustomToggle}
-                        id='dropdown-custom-components'
+                        id="dropdown-custom-components"
                       />
                       <Dropdown.Menu>
                         <Dropdown.Item
-                          as='span'
+                          as="span"
                           onClick={() => handleEditClick(balance._id)}
                         >
                           {t('edit')}
                         </Dropdown.Item>
                         <Dropdown.Item
-                          as='span'
+                          as="span"
                           onClick={() =>
                             dispatch(deleteBalance({ balanceId: balance._id }))
                           }
@@ -139,7 +145,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
             setName={setName}
             amount={amount}
             handleChangeAmount={handleChangeAmount(setAmount)}
-            buttonText='update'
+            buttonText="update"
             handleSubmit={handleEditBalance}
           />
         </Modal.Body>

@@ -43,6 +43,9 @@ const BalancesPage = () => {
     }
 
     dispatch(createBalance({ name, amount: Number(amount) }));
+
+    setName('');
+    setAmount('');
   };
 
   return (
