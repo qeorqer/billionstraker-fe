@@ -3,7 +3,11 @@ import { Card, Dropdown, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { deleteBalance, getBalances } from 'store/reducers/balance.reducer';
+import {
+  deleteBalance,
+  getBalances,
+  updateBalance,
+} from 'store/reducers/balance.reducer';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import CustomToggle from 'components/CustomToggle';
 import BalanceForm from 'components/Balances/BalanceForm';
@@ -33,6 +37,25 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
   };
 
   const handleEditBalance = () => {
+    const selectedBalance = balances.find((balance) => balance._id === selectedBalanceId);
+
+    if (selectedBalance) {
+      const balanceForUpdate = {
+        ...selectedBalance,
+        amount: Number(amount),
+        name,
+      };
+
+      dispatch(updateBalance({
+        balanceId: selectedBalanceId,
+        balance: balanceForUpdate,
+      }));
+    }
+
+    setSelectedBalanceId('');
+    setName('');
+    setAmount('');
+    setIsModalShown(false);
   };
 
   useEffect(() => {
