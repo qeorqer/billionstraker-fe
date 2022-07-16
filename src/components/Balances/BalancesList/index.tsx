@@ -3,7 +3,7 @@ import { Card, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { getBalances } from 'store/reducers/balance.reducer';
+import { deleteBalance, getBalances } from 'store/reducers/balance.reducer';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import CustomToggle from 'components/CustomToggle';
 
@@ -45,6 +45,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
             spaceBetween: 50,
           },
         }}
+        centerInsufficientSlides
       >
         {balances.map((balance) => (
           <SwiperSlide>
@@ -54,28 +55,30 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
                   <Card.Title>{balance.name}</Card.Title>
                   <Card.Text>{`${t('balance')}: ${balance.amount}`}</Card.Text>
                 </div>
-                <Dropdown drop='start'>
-                  <Dropdown.Toggle
-                    as={CustomToggle}
-                    id='dropdown-custom-components'
-                  />
-                  <Dropdown.Menu>
-                    <Dropdown.Item
-                      as='span'
-                      onClick={() => {
-                      }}
-                    >
-                      {t('edit')}
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      as='span'
-                      onClick={() => {
-                      }}
-                    >
-                      {t('remove')}
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
+                {withMenu && (
+                  <Dropdown drop='start'>
+                    <Dropdown.Toggle
+                      as={CustomToggle}
+                      id='dropdown-custom-components'
+                    />
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        as='span'
+                        onClick={() => {
+
+                        }}
+                      >
+                        {t('edit')}
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        as='span'
+                        onClick={() => dispatch(deleteBalance({ balanceId: balance._id }))}
+                      >
+                        {t('remove')}
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                )}
               </Card.Body>
             </Card>
           </SwiperSlide>

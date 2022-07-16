@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { categoryType } from 'types/category.type';
 import CustomToggle from 'components/CustomToggle';
+import { useAppDispatch } from 'hooks/react-redux.hook';
+import { deleteCategory } from 'store/reducers/category.reducer';
 
 type propTypes = {
   categories: categoryType[];
@@ -12,6 +14,7 @@ type propTypes = {
 
 const CategoriesList: React.FC<propTypes> = ({ categories }) => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   if (!categories.length) {
     return null;
@@ -37,6 +40,7 @@ const CategoriesList: React.FC<propTypes> = ({ categories }) => {
             spaceBetween: 50,
           },
         }}
+        centerInsufficientSlides
       >
         {categories.map((category) => (
           <SwiperSlide className='mb-3' key={category._id}>
@@ -65,8 +69,7 @@ const CategoriesList: React.FC<propTypes> = ({ categories }) => {
                     </Dropdown.Item>
                     <Dropdown.Item
                       as='span'
-                      onClick={() => {
-                      }}
+                      onClick={() => dispatch(deleteCategory({ categoryId: category._id! }))}
                     >
                       {t('remove')}
                     </Dropdown.Item>
