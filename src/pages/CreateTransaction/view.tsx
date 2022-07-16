@@ -207,7 +207,10 @@ const CreateTransaction: React.FC<propsType> = ({
           </Row>
 
           <Row className="mt-3">
-            <Col xs={transactionType === 'exchange' ? 12 : 6} className="d-flex flex-wrap">
+            <Col
+              xs={transactionType === 'exchange' ? 12 : 6}
+              className="d-flex flex-wrap"
+            >
               <p className="mb-1 fs-5">{t('Name the transaction')}:</p>
               <FormControl
                 type="text"
@@ -216,10 +219,7 @@ const CreateTransaction: React.FC<propsType> = ({
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Col>
-            <Col
-              xs={6}
-              className="d-flex flex-wrap"
-            >
+            <Col xs={6} className="d-flex flex-wrap">
               <p className="mb-1  fs-5">
                 {t(transactionType === 'exchange' ? 'send' : 'Transaction sum')}
                 :

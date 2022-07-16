@@ -13,7 +13,7 @@ type propsTypes = {
 
 const Profile: React.FC<propsTypes> = ({ numberOfBalances, t }) => (
   <Container className="py-4">
-    {numberOfBalances && (
+    {Boolean(numberOfBalances) && (
       <p className="fs-4 fw-bold text-center py-2">{t('all your balances')}</p>
     )}
     <BalancesList />

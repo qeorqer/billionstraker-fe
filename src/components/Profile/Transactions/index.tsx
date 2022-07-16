@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -80,65 +80,71 @@ const Transactions = () => {
       ) && (
         <>
           <p className="text-center fw-bold fs-4">{t('apply filters')}</p>
-          <div className="mb-3 d-flex">
-            <Form.Select
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                setShownTransactionsTypes(
-                  e.target.value as transactionTypesToShowType,
-                )
-              }
-            >
-              {transactionTypesToShow &&
-                transactionTypesToShow.map(
-                  (type: transactionTypesToShowType, index) => (
-                    <option key={index} value={type}>
-                      {t(type)}
-                    </option>
-                  ),
-                )}
-            </Form.Select>
-            <Form.Select
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                setCategoriesToShow(
-                  e.target.value === 'all' ? [] : [e.target.value],
-                );
-              }}
-              className="mx-3"
-              disabled={shownTransactionsTypes === 'exchange'}
-            >
-              <option value="all">{t('show all')}</option>
-              {categories &&
-                categories
-                  .filter((category: categoryType) => {
-                    if (shownTransactionsTypes === 'all transactions') {
-                      return category;
-                    }
+          <Row className="mb-3">
+            <Col xs="12" sm="4">
+              <Form.Select
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setShownTransactionsTypes(
+                    e.target.value as transactionTypesToShowType,
+                  )
+                }
+              >
+                {transactionTypesToShow &&
+                  transactionTypesToShow.map(
+                    (type: transactionTypesToShowType, index) => (
+                      <option key={index} value={type}>
+                        {t(type)}
+                      </option>
+                    ),
+                  )}
+              </Form.Select>
+            </Col>
+            <Col xs="12" sm="4">
+              <Form.Select
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                  setCategoriesToShow(
+                    e.target.value === 'all' ? [] : [e.target.value],
+                  );
+                }}
+                className="my-2 my-sm-0"
+                disabled={shownTransactionsTypes === 'exchange'}
+              >
+                <option value="all">{t('show all')}</option>
+                {categories &&
+                  categories
+                    .filter((category: categoryType) => {
+                      if (shownTransactionsTypes === 'all transactions') {
+                        return category;
+                      }
 
-                    return category.categoryType === shownTransactionsTypes;
-                  })
-                  .map((category: categoryType) => (
-                    <option key={category._id} value={category.name}>
-                      {category.name}
+                      return category.categoryType === shownTransactionsTypes;
+                    })
+                    .map((category: categoryType) => (
+                      <option key={category._id} value={category.name}>
+                        {category.name}
+                      </option>
+                    ))}
+              </Form.Select>
+            </Col>
+            <Col xs="12" sm="4">
+              <Form.Select
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                  setBalancesToShow(
+                    e.target.value === 'all' ? [] : [e.target.value],
+                  )
+                }
+                disabled={shownTransactionsTypes === 'exchange'}
+              >
+                <option value="all">{t('show all')}</option>
+                {balances &&
+                  balances.map((balance: balanceType) => (
+                    <option key={balance._id} value={balance.name}>
+                      {balance.name}
                     </option>
                   ))}
-            </Form.Select>
-            <Form.Select
-              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                setBalancesToShow(
-                  e.target.value === 'all' ? [] : [e.target.value],
-                )
-              }
-              disabled={shownTransactionsTypes === 'exchange'}
-            >
-              <option value="all">{t('show all')}</option>
-              {balances &&
-                balances.map((balance: balanceType) => (
-                  <option key={balance._id} value={balance.name}>
-                    {balance.name}
-                  </option>
-                ))}
-            </Form.Select>
-          </div>
+              </Form.Select>
+            </Col>
+          </Row>
         </>
       )}
       {numberOfTransactions ? (
