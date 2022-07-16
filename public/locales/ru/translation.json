@@ -82,5 +82,7 @@
   "there is no category with such id": "Категории с таким id не существует",
   "all transactions": "Все транзакции",
   "show all": "Показать все",
-  "apply filters": "Применить фильтры"
+  "apply filters": "Применить фильтры",
+  "edit": "Отредактировать",
+  "remove": "Удалить"
 }

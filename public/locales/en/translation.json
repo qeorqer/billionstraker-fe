@@ -85,5 +85,7 @@
   "there is no category with such id": "There is no category with such id",
   "all transactions": "All transactions",
   "show all": "Show all",
-  "apply filters": "Apply filters"
+  "apply filters": "Apply filters",
+  "edit": "Edit",
+  "remove": "Remove"
 }

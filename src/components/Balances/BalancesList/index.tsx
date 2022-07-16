@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
-import { Card, Row } from 'react-bootstrap';
+import { Card, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { getBalances } from 'store/reducers/balance.reducer';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import CustomToggle from 'components/CustomToggle';
 
-const BalancesList = () => {
+type propsType = {
+  withMenu?: boolean,
+}
+
+const BalancesList: React.FC<propsType> = ({ withMenu }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
@@ -25,7 +30,7 @@ const BalancesList = () => {
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
-        className="mb-3  justify-content-center d-flex px-2"
+        className='mb-3 justify-content-center d-flex px-2 overflow-y-visible'
         breakpoints={{
           450: {
             slidesPerView: 2,
@@ -42,8 +47,34 @@ const BalancesList = () => {
         }}
       >
         {balances.map((balance) => (
-          <SwiperSlide className="mb-3" key={balance._id}>
-            <Card>
+          <SwiperSlide>
+            <Card className='h-100'>
+              {withMenu && (
+                <Card.Header>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      as={CustomToggle}
+                      id='dropdown-custom-components'
+                    />
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        as='span'
+                        onClick={() => {
+                        }}
+                      >
+                        {t('edit')}
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        as='span'
+                        onClick={() => {
+                        }}
+                      >
+                        {t('remove')}
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Card.Header>
+              )}
               <Card.Body>
                 <Card.Title>{balance.name}</Card.Title>
                 <Card.Text>{`${t('balance')}: ${balance.amount}`}</Card.Text>
@@ -54,6 +85,10 @@ const BalancesList = () => {
       </Swiper>
     </Row>
   );
+};
+
+BalancesList.defaultProps = {
+  withMenu: false,
 };
 
 export default BalancesList;

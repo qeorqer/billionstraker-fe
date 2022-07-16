@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, Row } from 'react-bootstrap';
+import { Card, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { categoryType } from 'types/category.type';
+import CustomToggle from 'components/CustomToggle';
 
 type propTypes = {
   categories: categoryType[];
@@ -40,6 +41,30 @@ const CategoriesList: React.FC<propTypes> = ({ categories }) => {
         {categories.map((category) => (
           <SwiperSlide className="mb-3" key={category._id}>
             <Card>
+              <Card.Header>
+                <Dropdown>
+                  <Dropdown.Toggle
+                    as={CustomToggle}
+                    id='dropdown-custom-components'
+                  />
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      as='span'
+                      onClick={() => {
+                      }}
+                    >
+                      {t('edit')}
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as='span'
+                      onClick={() => {
+                      }}
+                    >
+                      {t('remove')}
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Card.Header>
               <Card.Body>
                 <Card.Title>{category.name}</Card.Title>
                 <Card.Text>{`${t('category type')}: ${t(
