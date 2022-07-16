@@ -27,7 +27,7 @@ const BalancesList = () => {
         slidesPerView={1}
         className="mb-3  justify-content-center d-flex px-2"
         breakpoints={{
-          450: {
+          420: {
             slidesPerView: 2,
             spaceBetween: 30,
           },
