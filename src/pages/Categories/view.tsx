@@ -63,7 +63,7 @@ const Categories: React.FC<propsType> = ({
                 onClick={() => setCategoryType('profit')}
                 className="w-50"
               >
-                {t('income')}
+                {t('profit')}
               </Button>
             </div>
           </div>

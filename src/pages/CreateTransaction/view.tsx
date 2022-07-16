@@ -88,7 +88,7 @@ const CreateTransaction: React.FC<propsType> = ({
                 setCategoryId('');
               }}
             >
-              {t('income')}
+              {t('profit')}
             </Button>
           </div>
 
