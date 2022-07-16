@@ -6,12 +6,12 @@ import BalancesList from 'components/Balances/BalancesList';
 
 import './styles.scss';
 
-type propsTypes = {
+type propsType = {
   numberOfBalances: number;
   t: (text: string) => string;
 };
 
-const Profile: React.FC<propsTypes> = ({ numberOfBalances, t }) => (
+const Profile: React.FC<propsType> = ({ numberOfBalances, t }) => (
   <Container className="py-4">
     {Boolean(numberOfBalances) && (
       <p className="fs-4 fw-bold text-center py-2">{t('all your balances')}</p>

@@ -12,11 +12,11 @@ import {
 } from 'store/reducers/category.reducer';
 import CategoryForm from 'components/Categories/CategoryForm';
 
-type propTypes = {
+type propsType = {
   categories: categoryType[];
 };
 
-const CategoriesList: React.FC<propTypes> = ({ categories }) => {
+const CategoriesList: React.FC<propsType> = ({ categories }) => {
   const [isModalShown, setIsModalShown] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [categoryType, setCategoryType] = useState<categoriesTypes>('expense');
