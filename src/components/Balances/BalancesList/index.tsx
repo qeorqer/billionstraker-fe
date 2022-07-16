@@ -23,9 +23,23 @@ const BalancesList = () => {
   return (
     <Row>
       <Swiper
-        spaceBetween={50}
-        slidesPerView={4}
-        className="mb-3  justify-content-center d-flex"
+        spaceBetween={20}
+        slidesPerView={1}
+        className="mb-3  justify-content-center d-flex px-2"
+        breakpoints={{
+          450: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          1200: {
+            slidesPerView: 4,
+            spaceBetween: 50,
+          },
+        }}
       >
         {balances.map((balance) => (
           <SwiperSlide className="mb-3" key={balance._id}>

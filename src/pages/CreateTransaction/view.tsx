@@ -67,6 +67,7 @@ const CreateTransaction: React.FC<propsType> = ({
         <Col xs="12" lg="4" className="mx-auto d-flex">
           <div className="w-50 text-center">
             <Button
+              className="w-100"
               variant={
                 transactionType === 'expense' ? 'danger' : 'outline-danger'
               }
@@ -78,8 +79,9 @@ const CreateTransaction: React.FC<propsType> = ({
               {t('expense')}
             </Button>
           </div>
-          <div className="w-50 text-center">
+          <div className="w-50 text-center  mx-2">
             <Button
+              className="w-100"
               variant={
                 transactionType === 'profit' ? 'success' : 'outline-success'
               }
@@ -94,6 +96,7 @@ const CreateTransaction: React.FC<propsType> = ({
 
           <div className="w-50 text-center">
             <Button
+              className="w-100"
               variant={
                 transactionType === 'exchange' ? 'primary' : 'outline-primary'
               }
@@ -204,7 +207,7 @@ const CreateTransaction: React.FC<propsType> = ({
           </Row>
 
           <Row className="mt-3">
-            <Col xs="6" className="d-flex flex-wrap">
+            <Col xs={transactionType === 'exchange' ? 12 : 6} className="d-flex flex-wrap">
               <p className="mb-1 fs-5">{t('Name the transaction')}:</p>
               <FormControl
                 type="text"
@@ -214,7 +217,7 @@ const CreateTransaction: React.FC<propsType> = ({
               />
             </Col>
             <Col
-              xs={transactionType === 'exchange' ? 3 : 6}
+              xs={6}
               className="d-flex flex-wrap"
             >
               <p className="mb-1  fs-5">
@@ -230,7 +233,7 @@ const CreateTransaction: React.FC<propsType> = ({
             </Col>
 
             {transactionType === 'exchange' && (
-              <Col xs="3" className="d-flex flex-wrap">
+              <Col xs="6" className="d-flex flex-wrap">
                 <p className="mb-1  fs-5">{t('receive')}:</p>
                 <FormControl
                   type="number"
