@@ -8,8 +8,8 @@ import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import CustomToggle from 'components/CustomToggle';
 
 type propsType = {
-  withMenu?: boolean,
-}
+  withMenu?: boolean;
+};
 
 const BalancesList: React.FC<propsType> = ({ withMenu }) => {
   const { t } = useTranslation();
@@ -30,7 +30,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
       <Swiper
         spaceBetween={20}
         slidesPerView={1}
-        className='mb-3 justify-content-center d-flex px-2 overflow-y-visible'
+        className="mb-3 justify-content-center d-flex px-2 overflow-y-visible"
         breakpoints={{
           450: {
             slidesPerView: 2,
@@ -49,30 +49,27 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
       >
         {balances.map((balance) => (
           <SwiperSlide>
-            <Card className='h-100'>
-              <Card.Body className='d-flex justify-content-between'>
+            <Card className="h-100">
+              <Card.Body className="d-flex justify-content-between">
                 <div>
                   <Card.Title>{balance.name}</Card.Title>
                   <Card.Text>{`${t('balance')}: ${balance.amount}`}</Card.Text>
                 </div>
                 {withMenu && (
-                  <Dropdown drop='start'>
+                  <Dropdown drop="start">
                     <Dropdown.Toggle
                       as={CustomToggle}
-                      id='dropdown-custom-components'
+                      id="dropdown-custom-components"
                     />
                     <Dropdown.Menu>
-                      <Dropdown.Item
-                        as='span'
-                        onClick={() => {
-
-                        }}
-                      >
+                      <Dropdown.Item as="span" onClick={() => {}}>
                         {t('edit')}
                       </Dropdown.Item>
                       <Dropdown.Item
-                        as='span'
-                        onClick={() => dispatch(deleteBalance({ balanceId: balance._id }))}
+                        as="span"
+                        onClick={() =>
+                          dispatch(deleteBalance({ balanceId: balance._id }))
+                        }
                       >
                         {t('remove')}
                       </Dropdown.Item>

@@ -5,7 +5,7 @@ import './styles.scss';
 type propsType = {
   children?: ReactNode;
   onClick?: () => void;
-}
+};
 
 const CustomToggle = React.forwardRef<HTMLDivElement>(
   ({ onClick }: propsType, ref) => (
@@ -16,6 +16,5 @@ const CustomToggle = React.forwardRef<HTMLDivElement>(
     </div>
   ),
 );
-
 
 export default CustomToggle;

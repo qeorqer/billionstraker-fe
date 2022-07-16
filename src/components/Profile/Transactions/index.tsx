@@ -28,11 +28,12 @@ const Transactions = () => {
   const LIMIT = 10;
   const [numberToSkip, setNumberToSkip] = useState<number>(LIMIT);
   const [categoriesToShow, setCategoriesToShow] = useState<string[]>([]);
-  const [shownTransactionsTypes, setShownTransactionsTypes] = useState<transactionTypesToShowType>('all transactions');
+  const [shownTransactionsTypes, setShownTransactionsTypes] =
+    useState<transactionTypesToShowType>('all transactions');
   const [balancesToShow, setBalancesToShow] = useState<string[]>([]);
 
   const handleLoadMore = () => {
-    if(!isTransactionsloading){
+    if (!isTransactionsloading) {
       dispatch(
         getAllUserTransactions({
           limit: LIMIT,
@@ -74,7 +75,7 @@ const Transactions = () => {
   }
 
   return (
-    <div className='mt-4'>
+    <div className="mt-4">
       {!(
         !numberOfTransactions &&
         shownTransactionsTypes === 'all transactions' &&
@@ -83,9 +84,9 @@ const Transactions = () => {
         !isTransactionsloading
       ) && (
         <>
-          <p className='text-center fw-bold fs-4'>{t('apply filters')}</p>
-          <Row className='mb-3'>
-            <Col xs='12' sm='4'>
+          <p className="text-center fw-bold fs-4">{t('apply filters')}</p>
+          <Row className="mb-3">
+            <Col xs="12" sm="4">
               <Form.Select
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setShownTransactionsTypes(
@@ -94,43 +95,43 @@ const Transactions = () => {
                 }
               >
                 {transactionTypesToShow &&
-                transactionTypesToShow.map(
-                  (type: transactionTypesToShowType, index) => (
-                    <option key={index} value={type}>
-                      {t(type)}
-                    </option>
-                  ),
-                )}
+                  transactionTypesToShow.map(
+                    (type: transactionTypesToShowType, index) => (
+                      <option key={index} value={type}>
+                        {t(type)}
+                      </option>
+                    ),
+                  )}
               </Form.Select>
             </Col>
-            <Col xs='12' sm='4'>
+            <Col xs="12" sm="4">
               <Form.Select
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                   setCategoriesToShow(
                     e.target.value === 'all' ? [] : [e.target.value],
                   );
                 }}
-                className='my-2 my-sm-0'
+                className="my-2 my-sm-0"
                 disabled={shownTransactionsTypes === 'exchange'}
               >
-                <option value='all'>{t('show all')}</option>
+                <option value="all">{t('show all')}</option>
                 {categories &&
-                categories
-                .filter((category: categoryType) => {
-                  if (shownTransactionsTypes === 'all transactions') {
-                    return category;
-                  }
+                  categories
+                    .filter((category: categoryType) => {
+                      if (shownTransactionsTypes === 'all transactions') {
+                        return category;
+                      }
 
-                  return category.categoryType === shownTransactionsTypes;
-                })
-                .map((category: categoryType) => (
-                  <option key={category._id} value={category.name}>
-                    {category.name}
-                  </option>
-                ))}
+                      return category.categoryType === shownTransactionsTypes;
+                    })
+                    .map((category: categoryType) => (
+                      <option key={category._id} value={category.name}>
+                        {category.name}
+                      </option>
+                    ))}
               </Form.Select>
             </Col>
-            <Col xs='12' sm='4'>
+            <Col xs="12" sm="4">
               <Form.Select
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                   setBalancesToShow(
@@ -139,13 +140,13 @@ const Transactions = () => {
                 }
                 disabled={shownTransactionsTypes === 'exchange'}
               >
-                <option value='all'>{t('show all')}</option>
+                <option value="all">{t('show all')}</option>
                 {balances &&
-                balances.map((balance: balanceType) => (
-                  <option key={balance._id} value={balance.name}>
-                    {balance.name}
-                  </option>
-                ))}
+                  balances.map((balance: balanceType) => (
+                    <option key={balance._id} value={balance.name}>
+                      {balance.name}
+                    </option>
+                  ))}
               </Form.Select>
             </Col>
           </Row>
@@ -153,7 +154,7 @@ const Transactions = () => {
       )}
       {numberOfTransactions ? (
         <>
-          <p className='text-center fw-bold fs-4'>{t('Your transactions')}</p>
+          <p className="text-center fw-bold fs-4">{t('Your transactions')}</p>
           <InfiniteScroll
             loadMore={handleLoadMore}
             hasMore={numberToSkip <= numberOfTransactions}
@@ -165,8 +166,7 @@ const Transactions = () => {
           </InfiniteScroll>
         </>
       ) : (
-        <div
-          className='d-flex justify-content-center align-items-center h-100 fw-bold my-3 mt-3'>
+        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 mt-3">
           <p>{t('There is no transactions yet')}</p>
         </div>
       )}
