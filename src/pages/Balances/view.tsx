@@ -1,8 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { balanceType } from 'types/balance.type';
 import BalancesList from 'components/Balances/BalancesList';
+import BalanceForm from 'components/Balances/BalanceForm';
 
 type propsType = {
   t: (text: string) => string;
@@ -34,27 +35,14 @@ const Balances: React.FC<propsType> = ({
       <Row className="text-center">
         <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
           <p className="fs-5 fw-bold">{t('add new balance')}:</p>
-          <FormControl
-            type="text"
-            placeholder={t('name the balance')}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="mb-3"
+          <BalanceForm
+            name={name}
+            setName={setName}
+            amount={amount}
+            handleChangeAmount={handleChangeAmount}
+            handleSubmit={handleAddBalance}
+            buttonText="create"
           />
-          <FormControl
-            type="number"
-            placeholder={t('set amount')}
-            value={amount}
-            onChange={handleChangeAmount}
-            className="mb-3"
-          />
-          <Button
-            variant="warning"
-            className="w300Px text-white"
-            onClick={handleAddBalance}
-          >
-            {t('create')}
-          </Button>
         </Col>
       </Row>
     </Container>

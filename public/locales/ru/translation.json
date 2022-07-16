@@ -57,7 +57,7 @@
   "your balances will be here": "Счета будут тут",
   "add new balance": "Добавить счет",
   "name the balance": "Назови счет",
-  "set amount": "Установи баланс",
+  "set amount": "Задать баланс",
   "create": "Создать",
   "balance": "Остаток",
   "name should be unique": "Название должно быть уникальным",
@@ -84,5 +84,7 @@
   "show all": "Показать все",
   "apply filters": "Применить фильтры",
   "edit": "Отредактировать",
-  "remove": "Удалить"
+  "remove": "Удалить",
+  "edit balance": "Отредактировать баланс",
+  "edit category": "Отредактировать категорию"
 }

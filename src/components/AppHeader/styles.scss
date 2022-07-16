@@ -68,6 +68,7 @@ header {
         bottom: -10px;
         opacity: 0;
         transition: inherit;
+        border-radius: 0.25rem;
       }
 
       &.active, &:hover {

@@ -60,7 +60,7 @@
   "your balances will be here": "Your balances will be here",
   "add new balance": "Add new balance",
   "name the balance": "Name the balance",
-  "set amount": "set amount",
+  "set amount": "Set amount",
   "create": "Create",
   "balance": "Balance",
   "name should be unique": "Name should be unique",
@@ -76,7 +76,7 @@
   "your categories will be here": "Your categories will be here",
   "add new category": "Add new category",
   "name the category": "Name the category",
-  "set type": "set type",
+  "set type": "Set type",
   "updating balance success": "Balance updated successfully",
   "deleting balance success": "Balance deleted successfully",
   "updating category success": "Category updated successfully",
@@ -87,5 +87,7 @@
   "show all": "Show all",
   "apply filters": "Apply filters",
   "edit": "Edit",
-  "remove": "Remove"
+  "remove": "Remove",
+  "edit balance": "Edit balance",
+  "edit category": "Edit category"
 }
