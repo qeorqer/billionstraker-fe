@@ -16,7 +16,7 @@ export type transactionType = {
 };
 
 export type addTransactionResponseType = {
-  messageEn: string;
+  message: string;
   transaction: transactionType;
   balances: balanceType[];
 };

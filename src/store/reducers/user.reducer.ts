@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 
 import * as api from 'api/index';
 import {
@@ -111,10 +112,7 @@ const userReducer = createSlice({
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload.messageEn
-          : action.payload.messageRu,
+      toast(i18next.t(action.payload.message),
         {
           position: 'top-right',
           autoClose: 2500,
@@ -130,9 +128,7 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload?.messageEn
-          : action.payload?.messageRu,
+        i18next.t(action.payload?.message!),
         {
           position: 'top-right',
           autoClose: 2500,
@@ -164,9 +160,7 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload?.messageEn
-          : action.payload?.messageRu,
+        i18next.t(action.payload?.message!),
         {
           position: 'top-right',
           autoClose: 2500,
@@ -216,9 +210,7 @@ const userReducer = createSlice({
       state.user = action.payload.data.user;
 
       toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload?.data.messageEn
-          : action.payload?.data.messageRu,
+        i18next.t(action.payload?.data.message!),
         {
           position: 'top-right',
           autoClose: 2500,

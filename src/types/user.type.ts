@@ -1,11 +1,8 @@
 export type userType = {
   _id: string;
   login: string;
-  card: number;
-  cash: number;
   created: Date;
   isFirstEnter: boolean;
-  fullName?: string;
 };
 export type loginResponseType = {
   accessToken: string;
@@ -14,8 +11,7 @@ export type loginResponseType = {
 };
 
 export type signUpResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
 };
 
 export type authData = {
@@ -24,7 +20,6 @@ export type authData = {
 };
 
 export type updateUserResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   user: userType;
 };
