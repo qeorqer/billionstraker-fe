@@ -159,7 +159,7 @@ const CreateTransaction: React.FC<propsType> = ({
                 </>
               ) : (
                 <>
-                  <p className="mb-1 fs-5 text-center w-100">
+                  <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
                     {t('Select category')}:
                   </p>
                   <CustomSelect
