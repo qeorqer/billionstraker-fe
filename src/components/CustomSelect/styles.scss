@@ -10,4 +10,8 @@
       box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, .5);
     }
   }
+  .btn-outline-warning.disabled, .btn-outline-warning:disabled {
+    color: #212529;
+    opacity: .5;
+  }
 }

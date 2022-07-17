@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { Col, Form, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -16,6 +16,7 @@ import { categoryType } from 'types/category.type';
 import { balanceType } from 'types/balance.type';
 
 import { transactionTypesToShow, transactionTypesToShowType } from './utils';
+import CustomSelect from 'components/CustomSelect';
 
 const Transactions = () => {
   const { isTransactionsloading, transactions, numberOfTransactions } =
@@ -27,10 +28,10 @@ const Transactions = () => {
 
   const LIMIT = 10;
   const [numberToSkip, setNumberToSkip] = useState<number>(LIMIT);
-  const [categoriesToShow, setCategoriesToShow] = useState<string[]>([]);
+  const [categoriesToShow, setCategoriesToShow] = useState<string>('all');
   const [shownTransactionsTypes, setShownTransactionsTypes] =
     useState<transactionTypesToShowType>('all transactions');
-  const [balancesToShow, setBalancesToShow] = useState<string[]>([]);
+  const [balancesToShow, setBalancesToShow] = useState<string>('all');
 
   const handleLoadMore = () => {
     if (!isTransactionsloading) {
@@ -40,8 +41,9 @@ const Transactions = () => {
           numberToSkip: numberToSkip,
           filteringOptions: {
             shownTransactionsTypes,
-            categoriesToShow,
-            balancesToShow,
+            categoriesToShow:
+              categoriesToShow === 'all' ? [] : [categoriesToShow],
+            balancesToShow: balancesToShow === 'all' ? [] : [balancesToShow],
           },
         }),
       );
@@ -52,18 +54,32 @@ const Transactions = () => {
   useEffect(() => {
     setNumberToSkip(LIMIT);
 
-    dispatch(resetTransactions());
-    dispatch(
-      getAllUserTransactions({
-        limit: LIMIT,
-        numberToSkip: 0,
-        filteringOptions: {
-          shownTransactionsTypes,
-          categoriesToShow,
-          balancesToShow,
-        },
-      }),
-    );
+    if (shownTransactionsTypes === 'exchange') {
+      setCategoriesToShow('all');
+      setBalancesToShow('all');
+    }
+
+    if (!isTransactionsloading) {
+      dispatch(resetTransactions());
+      dispatch(
+        getAllUserTransactions({
+          limit: LIMIT,
+          numberToSkip: 0,
+          filteringOptions: {
+            shownTransactionsTypes,
+            categoriesToShow:
+              categoriesToShow === 'all' ||
+              shownTransactionsTypes === 'exchange'
+                ? []
+                : [categoriesToShow],
+            balancesToShow:
+              balancesToShow === 'all' || shownTransactionsTypes === 'exchange'
+                ? []
+                : [balancesToShow],
+          },
+        }),
+      );
+    }
   }, [shownTransactionsTypes, categoriesToShow, balancesToShow]);
 
   useEffect(() => {
@@ -87,67 +103,67 @@ const Transactions = () => {
           <p className="text-center fw-bold fs-4">{t('apply filters')}</p>
           <Row className="mb-3">
             <Col xs="12" sm="4">
-              <Form.Select
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setShownTransactionsTypes(
-                    e.target.value as transactionTypesToShowType,
-                  )
+              <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
+                {t('transactions types')}:
+              </p>
+              <CustomSelect
+                defaultButtonText={t('show all')}
+                defaultButtonValue="all transactions"
+                data={transactionTypesToShow.map((type, index) => ({
+                  _id: String(index),
+                  name: type,
+                }))}
+                selectedValue={shownTransactionsTypes}
+                setSelectedValue={
+                  setShownTransactionsTypes as Dispatch<SetStateAction<string>>
                 }
-              >
-                {transactionTypesToShow &&
-                  transactionTypesToShow.map(
-                    (type: transactionTypesToShowType, index) => (
-                      <option key={index} value={type}>
-                        {t(type)}
-                      </option>
-                    ),
-                  )}
-              </Form.Select>
+                fieldToSelect="name"
+                withTranslate
+              />
             </Col>
-            <Col xs="12" sm="4">
-              <Form.Select
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                  setCategoriesToShow(
-                    e.target.value === 'all' ? [] : [e.target.value],
-                  );
-                }}
-                className="my-2 my-sm-0"
-                disabled={shownTransactionsTypes === 'exchange'}
-              >
-                <option value="all">{t('show all')}</option>
-                {categories &&
-                  categories
-                    .filter((category: categoryType) => {
-                      if (shownTransactionsTypes === 'all transactions') {
-                        return category;
-                      }
+            <Col xs="12" sm="4" className="my-3 my-sm-0">
+              <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
+                {t('categories')}:
+              </p>
+              <CustomSelect
+                defaultButtonText={t('show all')}
+                defaultButtonValue="all"
+                data={categories
+                  .filter((category: categoryType) => {
+                    if (shownTransactionsTypes === 'all transactions') {
+                      return category;
+                    }
 
-                      return category.categoryType === shownTransactionsTypes;
-                    })
-                    .map((category: categoryType) => (
-                      <option key={category._id} value={category.name}>
-                        {category.name}
-                      </option>
-                    ))}
-              </Form.Select>
+                    return category.categoryType === shownTransactionsTypes;
+                  })
+                  .map((category: categoryType) => ({
+                    _id: category._id!,
+                    name: category.name,
+                  }))}
+                selectedValue={categoriesToShow}
+                setSelectedValue={setCategoriesToShow}
+                fieldToSelect="name"
+                withTranslate
+                disabled={shownTransactionsTypes === 'exchange'}
+              />
             </Col>
             <Col xs="12" sm="4">
-              <Form.Select
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setBalancesToShow(
-                    e.target.value === 'all' ? [] : [e.target.value],
-                  )
-                }
+              <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
+                {t('balances')}:
+              </p>
+              <CustomSelect
+                defaultButtonText={t('show all')}
+                defaultButtonValue="all"
+                data={balances.map((balance: balanceType) => ({
+                  _id: balance._id,
+                  name: balance.name,
+                }))}
+                selectedValue={balancesToShow}
+                setSelectedValue={setBalancesToShow}
+                fieldToSelect="name"
+                withTranslate
                 disabled={shownTransactionsTypes === 'exchange'}
-              >
-                <option value="all">{t('show all')}</option>
-                {balances &&
-                  balances.map((balance: balanceType) => (
-                    <option key={balance._id} value={balance.name}>
-                      {balance.name}
-                    </option>
-                  ))}
-              </Form.Select>
+              />
             </Col>
           </Row>
         </>
