@@ -2,27 +2,26 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 
 type dataType = {
-  _id: string,
-  name: string,
+  _id: string;
+  name: string;
   disabled?: boolean;
-}
+};
 
 type propsType = {
-  defaultButtonText: string,
-  defaultButtonValue: string,
-  data: dataType[],
+  defaultButtonText: string;
+  defaultButtonValue: string;
+  data: dataType[];
   selectedValue: string;
   setSelectedValue: Dispatch<SetStateAction<string>>;
-}
+};
 
 const CustomSelect: React.FC<propsType> = ({
-                                             defaultButtonText,
-                                             defaultButtonValue,
-                                             data,
-                                             selectedValue,
-                                             setSelectedValue,
-                                           }) => {
-
+  defaultButtonText,
+  defaultButtonValue,
+  data,
+  selectedValue,
+  setSelectedValue,
+}) => {
   const [valueToShow, setValueToShow] = useState(defaultButtonText);
 
   useEffect(() => {
@@ -36,23 +35,21 @@ const CustomSelect: React.FC<propsType> = ({
     }
   }, [data, selectedValue]);
 
-
   return (
     <Dropdown>
-      <Dropdown.Toggle variant='outline-warning'>
-        {valueToShow}
-      </Dropdown.Toggle>
+      <Dropdown.Toggle variant="outline-warning">{valueToShow}</Dropdown.Toggle>
 
       <Dropdown.Menu>
         <Dropdown.Item
-          as='span'
-          onClick={(() => setSelectedValue(defaultButtonValue))}
-        >{defaultButtonText}
+          as="span"
+          onClick={() => setSelectedValue(defaultButtonValue)}
+        >
+          {defaultButtonText}
         </Dropdown.Item>
         <Dropdown.Divider />
         {data.map((item) => (
           <Dropdown.Item
-            as='span'
+            as="span"
             key={item._id}
             onClick={() => setSelectedValue(item._id)}
             disabled={Boolean(item.disabled)}

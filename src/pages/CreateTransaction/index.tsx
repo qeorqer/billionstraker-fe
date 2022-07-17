@@ -1,10 +1,4 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
@@ -19,7 +13,7 @@ import CreateTransaction from './view';
 
 const CreateTransactionPage = () => {
   const { categories } = useAppSelector(categoryData);
-  const { balances } = useAppSelector((state) => state.balanceData)
+  const { balances } = useAppSelector((state) => state.balanceData);
 
   const [transactionType, setTransactionType] =
     useState<transactionTypes>('expense');
