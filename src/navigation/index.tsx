@@ -5,10 +5,10 @@ import CreateTransaction from 'pages/CreateTransaction';
 import ProfilePage from 'pages/Profile';
 import AuthorizationPage from 'pages/Authorization';
 import Loader from 'components/Loader';
-const InitPage = lazy(() => import('pages/initPage/Init'));
-const StatisticPage = lazy(() => import('pages/statistic/Statistic'));
-const BalancesPage = lazy(() => import('pages/Balances'));
-const CategoriesPage = lazy(() => import('pages/Categories'));
+import InitPage from 'pages/initPage/Init';
+import StatisticPage from 'pages/statistic/Statistic';
+import BalancesPage from 'pages/Balances';
+import CategoriesPage from 'pages/Categories';
 import { useAppSelector } from 'hooks/react-redux.hook';
 import { userData } from 'store/selectors';
 
