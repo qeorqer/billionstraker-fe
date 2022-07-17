@@ -1,8 +1,14 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { categoryData, userData } from 'store/selectors';
+import { categoryData } from 'store/selectors';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { transactionType, transactionTypes } from 'types/transaction.type';
 import { getCategories } from 'store/reducers/category.reducer';
@@ -12,9 +18,8 @@ import { createTransaction } from 'store/reducers/transaction.reducer';
 import CreateTransaction from './view';
 
 const CreateTransactionPage = () => {
-  const { lang } = useAppSelector(userData);
   const { categories } = useAppSelector(categoryData);
-  const { balances } = useAppSelector((state) => state.balanceData);
+  const { balances } = useAppSelector((state) => state.balanceData)
 
   const [transactionType, setTransactionType] =
     useState<transactionTypes>('expense');
@@ -183,13 +188,14 @@ const CreateTransactionPage = () => {
       transactionType={transactionType}
       setTransactionType={setTransactionType}
       setCategoryId={setCategoryId}
+      categoryId={categoryId}
       setBalanceId={setBalanceId}
       balanceId={balanceId}
       setExchangeBalanceId={setExchangeBalanceId}
+      exchangeBalanceId={exchangeBalanceId}
       setTitle={setTitle}
       balances={balances}
       categories={categories}
-      lang={lang}
       title={title}
       sum={sum}
       exchangeSum={exchangeSum}
