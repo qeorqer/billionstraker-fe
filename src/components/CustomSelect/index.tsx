@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 
+import './styles.scss';
+
 type dataType = {
   _id: string;
   name: string;
@@ -36,10 +38,14 @@ const CustomSelect: React.FC<propsType> = ({
   }, [data, selectedValue]);
 
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="outline-warning">{valueToShow}</Dropdown.Toggle>
-
-      <Dropdown.Menu>
+    <Dropdown className="w-100 customDropdown">
+      <Dropdown.Toggle
+        variant="outline-warning"
+        className="w-100 d-flex justify-content-between align-items-center"
+      >
+        {valueToShow}
+      </Dropdown.Toggle>
+      <Dropdown.Menu  className="w-100">
         <Dropdown.Item
           as="span"
           onClick={() => setSelectedValue(defaultButtonValue)}
