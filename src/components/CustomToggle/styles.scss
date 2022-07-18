@@ -1,6 +1,7 @@
 @import '/src/App';
 
 .dropdownMenu {
+  user-select: none;
   text-align: right;
   position: relative;
   width: 100%;
