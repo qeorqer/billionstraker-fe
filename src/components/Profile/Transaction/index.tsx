@@ -8,6 +8,8 @@ import { formattingNumber } from 'utils/formattingNumber';
 import { useAppSelector } from 'hooks/react-redux.hook';
 import { userData } from 'store/selectors';
 
+import './styles.scss'
+
 type propsType = {
   transaction: transactionType;
 };
@@ -18,38 +20,22 @@ const Transaction: FC<propsType> = ({ transaction }) => {
 
   return (
     <Card
-      className="mb-3  w-75 mx-auto fw-bold text-center"
-      bg="light"
-      text="dark"
+      className={`mb-3 w-75 mx-auto text-center ${transaction.transactionType}`}
     >
       <Card.Body>
-        <Row>
-          <Col xs="4" sm="4">
-            {transaction.transactionType === 'expense' ? (
-              <span className="text-danger">
-                -{formattingNumber(transaction.sum)}
+        <Row className='align-items-center'>
+          <Col xs="12" sm="4" className="mb-2 mb-sm-0 balance">
+            <p><span>💼</span> {transaction.balance}</p>
+          </Col>
+          <Col xs="4" sm="4" className="sumAndName">
+              <span>
+                {transaction.transactionType === 'expense' ? '-' : '+'}{formattingNumber(transaction.sum)}
               </span>
-            ) : (
-              <span className="text-success">
-                +{formattingNumber(transaction.sum)}
-              </span>
-            )}
+            <p className="mb-0">{transaction.title}</p>
           </Col>
-          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
-            {transaction.title}
-          </Col>
-          <Col xs="8" sm="4">
-            {formatTransactionDate(transaction.date, lang)}
-          </Col>
-          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
-            {transaction.category}
-          </Col>
-          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
-            {transaction.balance}
-          </Col>
-
-          <Col xs="12" sm="4" className="mb-2 mb-sm-0">
-            {t(transaction.transactionType)}
+          <Col xs="8" sm="4" className="categoryAndDate">
+            <p className="category"><span>🖇</span>{transaction.category}</p>
+            <span className="date">{formatTransactionDate(transaction.date, lang)}</span>
           </Col>
         </Row>
       </Card.Body>
