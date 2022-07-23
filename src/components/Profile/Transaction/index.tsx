@@ -31,11 +31,7 @@ const Transaction: FC<propsType> = ({ transaction }) => {
           >
             <span className="mb-0">{transaction.title}</span>
           </Col>
-          <Col
-            xs="12"
-            lg="6"
-            className="sumAndBalance order-0 order-lg-1"
-          >
+          <Col xs="12" lg="6" className="sumAndBalance order-0 order-lg-1">
             {transaction.transactionType === 'exchange' ? (
               <>
                 <div className="from">
