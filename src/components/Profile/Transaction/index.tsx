@@ -8,7 +8,7 @@ import { formattingNumber } from 'utils/formattingNumber';
 import { useAppSelector } from 'hooks/react-redux.hook';
 import { userData } from 'store/selectors';
 
-import './styles.scss'
+import './styles.scss';
 
 type propsType = {
   transaction: transactionType;
@@ -24,18 +24,49 @@ const Transaction: FC<propsType> = ({ transaction }) => {
     >
       <Card.Body>
         <Row className='align-items-center'>
-          <Col xs="12" sm="4" className="mb-2 mb-sm-0 balance">
-            <p><span>💼</span> {transaction.balance}</p>
+          <Col xs='12' sm='3' className='mb-2 mb-sm-0 title'>
+            <span className='mb-0'>{transaction.title}</span>
           </Col>
-          <Col xs="4" sm="4" className="sumAndName">
-              <span>
-                {transaction.transactionType === 'expense' ? '-' : '+'}{formattingNumber(transaction.sum)}
+          <Col xs='4' sm='6' className='sumAndBalance'>
+            {
+              transaction.transactionType === 'exchange' ? (
+                <>
+                  <div className='from'>
+                    <p>
+                      <span>💰</span> {transaction.balance}
+                    </p>
+                    <span>
+                {formattingNumber(transaction.sum)}
               </span>
-            <p className="mb-0">{transaction.title}</p>
+                  </div>
+                  <span className='exchangeSign'>🔁</span>
+                  <div className='to'>
+                    <p>
+                      {transaction.balanceToSubtract} <span>💸</span>
+                    </p>
+                    <span>
+                {formattingNumber(transaction.sumToSubtract!)}
+              </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                <span>
+                {formattingNumber(transaction.sum)}
+              </span>
+                  <p>
+                    <span>💰</span> {transaction.balance}
+                  </p>
+                </>
+              )
+            }
           </Col>
-          <Col xs="8" sm="4" className="categoryAndDate">
-            <p className="category"><span>🖇</span>{transaction.category}</p>
-            <span className="date">{formatTransactionDate(transaction.date, lang)}</span>
+          <Col xs='8' sm='3' className='categoryAndDate'>
+            {transaction.category && (
+              <p className='category'><span>🖇</span>{transaction.category}</p>
+            )}
+            <span
+              className='date'>{formatTransactionDate(transaction.date, lang)}</span>
           </Col>
         </Row>
       </Card.Body>
