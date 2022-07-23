@@ -25,17 +25,16 @@ const Transaction: FC<propsType> = ({ transaction }) => {
       <Card.Body>
         <Row className="align-items-center">
           <Col
-            xs="12"
-            sm="6"
+            xs="6"
             lg="3"
-            className="title order-0 order-md-1 order-order-lg-0"
+            className="title order-1 order-md-1 order-order-lg-0"
           >
             <span className="mb-0">{transaction.title}</span>
           </Col>
           <Col
             xs="12"
             lg="6"
-            className="sumAndBalance order-1 order-md-0 order-lg-1"
+            className="sumAndBalance order-0 order-lg-1"
           >
             {transaction.transactionType === 'exchange' ? (
               <>
@@ -62,7 +61,7 @@ const Transaction: FC<propsType> = ({ transaction }) => {
               </>
             )}
           </Col>
-          <Col xs="12" sm="6" lg="3" className="categoryAndDate order-2">
+          <Col xs="6" lg="3" className="categoryAndDate order-2">
             {transaction.category && (
               <p className="category">
                 <span>🖇</span>
