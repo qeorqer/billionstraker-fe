@@ -22,6 +22,7 @@
       justify-content: center;
       align-items: center;
       margin-top: -10px;
+      white-space: nowrap;
 
       span {
         margin-right: 5px;
@@ -31,6 +32,8 @@
   }
 
   .categoryAndDate {
+    font-size: 21px;
+
     text-align: right;
     display: flex;
     flex-direction: column;
@@ -51,8 +54,6 @@
     .date {
       font-size: 14px;
     }
-
-    font-size: 21px;
   }
 
   &.profit {
@@ -120,6 +121,69 @@
     .categoryAndDate {
       .date {
         font-size: 21px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .card.w-75 {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    .card-body {
+      padding: 10px;
+    }
+
+    .title {
+      text-align: center;
+    }
+
+    .title {
+      order: -1;
+      font-size: 18px;
+    }
+
+    .sumAndBalance {
+      font-size: 15px;
+
+      p {
+        font-size: 13px;
+        margin-top: -5px;
+
+        span {
+          font-size: 15px;
+        }
+      }
+    }
+
+    .categoryAndDate {
+      font-size: 12px;
+
+      p span {
+        font-size: 12px;
+      }
+
+      .date {
+        font-size: 10px;
+      }
+    }
+
+    &.exchange {
+      .sumAndBalance {
+        font-size: 15px;
+
+        p {
+          font-size: 13px;
+        }
+      }
+
+      .categoryAndDate .date {
+        font-size: 10px;
       }
     }
   }
