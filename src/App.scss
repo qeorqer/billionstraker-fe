@@ -62,9 +62,13 @@ input[type=number] {
 }
 
 .overflow-y-visible {
-  overflow-y: visible!important;
+  overflow-y: visible !important;
 }
 
 .white-space-nowrap {
   white-space: nowrap;
+}
+
+.form-control[readonly] {
+  background-color: #fff !important;
 }
