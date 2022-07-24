@@ -25,3 +25,10 @@ export type getTransactionsResponseType = {
   transactions: transactionType[];
   numberOfTransactions?: number;
 };
+
+type transactionsSectionType = {
+  title: string;
+  data: transactionType[];
+};
+
+export type transactionsSectionsType = transactionsSectionType[];

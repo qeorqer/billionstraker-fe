@@ -14,9 +14,15 @@ import Loader from 'components/Loader';
 import { getCategories } from 'store/reducers/category.reducer';
 import { categoryType } from 'types/category.type';
 import { balanceType } from 'types/balance.type';
-
-import { transactionTypesToShow, transactionTypesToShowType } from './utils';
 import CustomSelect from 'components/CustomSelect';
+import { transactionsSectionsType } from 'types/transaction.type';
+
+import {
+  transactionTypesToShow,
+  transactionTypesToShowType,
+  formTransactionsSections,
+} from './utils';
+import './styles.scss';
 
 const Transactions = () => {
   const { isTransactionsloading, transactions, numberOfTransactions } =
@@ -27,6 +33,8 @@ const Transactions = () => {
   const { t } = useTranslation();
 
   const LIMIT = 10;
+  const [transactionsSections, setTransactionsSections] =
+    useState<transactionsSectionsType>([]);
   const [numberToSkip, setNumberToSkip] = useState<number>(LIMIT);
   const [categoriesToShow, setCategoriesToShow] = useState<string>('all');
   const [shownTransactionsTypes, setShownTransactionsTypes] =
@@ -81,6 +89,10 @@ const Transactions = () => {
       );
     }
   }, [shownTransactionsTypes, categoriesToShow, balancesToShow]);
+
+  useEffect(() => {
+    setTransactionsSections(formTransactionsSections(transactions));
+  }, [transactions]);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -176,8 +188,18 @@ const Transactions = () => {
             hasMore={numberToSkip <= numberOfTransactions}
             loader={<Loader />}
           >
-            {transactions.map((transaction) => (
-              <Transaction key={transaction._id} transaction={transaction} />
+            {transactionsSections.map((section) => (
+              <>
+                <p className="sectionTitle fs-5 w-75 mx-auto">
+                  {t(section.title)}
+                </p>
+                {section.data.map((transaction) => (
+                  <Transaction
+                    key={transaction._id}
+                    transaction={transaction}
+                  />
+                ))}
+              </>
             ))}
           </InfiniteScroll>
         </>

@@ -1,11 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import {
-  Button,
-  Col,
-  Container,
-  FormControl,
-  Row,
-} from 'react-bootstrap';
+import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 
 import { transactionTypes } from 'types/transaction.type';
@@ -185,7 +179,7 @@ const CreateTransaction: React.FC<propsType> = ({
                 onChange={(newDate) => setDate(newDate || new Date())}
                 className="form-control"
                 dateFormat="dd/MM/yyyy"
-                onFocus={(e) => e.target.readOnly = true}
+                onFocus={(e) => (e.target.readOnly = true)}
                 maxDate={new Date()}
               />
             </Col>

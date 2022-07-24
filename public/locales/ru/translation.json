@@ -88,5 +88,9 @@
   "remove": "Удалить",
   "edit balance": "Отредактировать баланс",
   "edit category": "Отредактировать категорию",
-  "transactions types": "Типы транзакций"
+  "transactions types": "Типы транзакций",
+  "today": "Сегодня",
+  "this week": "На этой неделе",
+  "this month": "В этом месяце",
+  "before this month": "Раньше, чем в этом месяце"
 }

@@ -91,5 +91,9 @@
   "remove": "Remove",
   "edit balance": "Edit balance",
   "edit category": "Edit category",
-  "transactions types": "Transactions types"
+  "transactions types": "Transactions types",
+  "today": "Today",
+  "this week": "This week",
+  "this month": "This month",
+  "before this month": "Before this month"
 }
