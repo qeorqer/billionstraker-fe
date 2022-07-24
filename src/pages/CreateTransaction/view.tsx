@@ -3,7 +3,6 @@ import {
   Button,
   Col,
   Container,
-  Form,
   FormControl,
   Row,
 } from 'react-bootstrap';
@@ -186,6 +185,8 @@ const CreateTransaction: React.FC<propsType> = ({
                 onChange={(newDate) => setDate(newDate || new Date())}
                 className="form-control"
                 dateFormat="dd/MM/yyyy"
+                disabledKeyboardNavigation
+                maxDate={new Date()}
               />
             </Col>
           </Row>
