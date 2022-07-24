@@ -185,7 +185,7 @@ const CreateTransaction: React.FC<propsType> = ({
                 onChange={(newDate) => setDate(newDate || new Date())}
                 className="form-control"
                 dateFormat="dd/MM/yyyy"
-                disabledKeyboardNavigation
+                onFocus={(e) => e.target.readOnly = true}
                 maxDate={new Date()}
               />
             </Col>
