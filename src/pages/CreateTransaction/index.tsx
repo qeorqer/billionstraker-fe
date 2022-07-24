@@ -28,7 +28,7 @@ const CreateTransactionPage = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const validateSumReg = /^((?!(0))[0-9]+)$/;
+  const validateSumReg = /^(0|[1-9]\d*)(\.\d+)?$/;
 
   const handleChangeSum =
     (setter: Dispatch<SetStateAction<string | number>>) =>
