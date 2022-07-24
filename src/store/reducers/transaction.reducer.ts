@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 
 import * as api from 'api/index';
 import {
@@ -78,7 +79,7 @@ const transactionReducer = createSlice({
         action.payload.data.transaction,
       ];
 
-      toast('transaction created successfully', {
+      toast(i18next.t('transaction created successfully'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,
@@ -89,7 +90,7 @@ const transactionReducer = createSlice({
     });
 
     builder.addCase(createTransaction.rejected, (state, action) => {
-      toast('failed to create transaction', {
+      toast(i18next.t('failed to create transaction'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,

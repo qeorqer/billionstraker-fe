@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 
 import * as api from 'api/index';
 import {
@@ -59,7 +60,7 @@ const categoryReducer = createSlice({
     });
 
     builder.addCase(createCategory.fulfilled, (state, action) => {
-      toast('creating category success', {
+      toast(i18next.t('creating category success'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,
@@ -72,7 +73,7 @@ const categoryReducer = createSlice({
     });
 
     builder.addCase(updateCategory.fulfilled, (state, action) => {
-      toast('updating category success', {
+      toast(i18next.t('updating category success'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,
@@ -88,7 +89,7 @@ const categoryReducer = createSlice({
     });
 
     builder.addCase(deleteCategory.fulfilled, (state, action) => {
-      toast('deleting category success', {
+      toast(i18next.t('deleting category success'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,

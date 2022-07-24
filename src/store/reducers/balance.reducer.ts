@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 
 import * as api from 'api/index';
 import {
@@ -61,7 +62,7 @@ const balanceReducer = createSlice({
     });
 
     builder.addCase(createBalance.fulfilled, (state, action) => {
-      toast('creating balance success', {
+      toast(i18next.t('creating balance success'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,
@@ -74,7 +75,7 @@ const balanceReducer = createSlice({
     });
 
     builder.addCase(updateBalance.fulfilled, (state, action) => {
-      toast('updating balance success', {
+      toast(i18next.t('updating balance success'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,
@@ -90,7 +91,7 @@ const balanceReducer = createSlice({
     });
 
     builder.addCase(deleteBalance.fulfilled, (state, action) => {
-      toast('deleting balance success', {
+      toast(i18next.t('deleting balance success'), {
         position: 'top-right',
         autoClose: 2500,
         hideProgressBar: true,

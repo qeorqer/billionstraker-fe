@@ -7,6 +7,7 @@ import logo from 'images/logo.png';
 import { useAppDispatch } from 'hooks/react-redux.hook';
 import { logOut } from 'store/reducers/user.reducer';
 import LanguageSwitcher from 'components/LanguageSwitcher';
+import CustomToggle from 'components/CustomToggle';
 
 import './styles.scss';
 
@@ -19,17 +20,6 @@ const AppHeader = () => {
     dispatch(logOut());
     history.push('/authorization');
   };
-
-  //todo: fix any
-  const customToggle = React.forwardRef<HTMLDivElement>(
-    ({ onClick }: any, ref) => (
-      <div className="dropdownMenu">
-        <div className="menuTogglerContainer" ref={ref} onClick={onClick}>
-          <span />
-        </div>
-      </div>
-    ),
-  );
 
   return (
     <header>
@@ -59,7 +49,7 @@ const AppHeader = () => {
           <Col md="3" xs="6">
             <Dropdown>
               <Dropdown.Toggle
-                as={customToggle}
+                as={CustomToggle}
                 id="dropdown-custom-components"
               />
               <Dropdown.Menu variant="dark">

@@ -6,8 +6,7 @@ export type generalStatisticType = {
 };
 
 export type getGeneralStatisticResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   statistic: generalStatisticType | null;
 };
 
@@ -21,8 +20,7 @@ export type wholeStatisticType = {
 };
 
 export type getWholeStatisticResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   statistic: wholeStatisticType | null;
 };
 
@@ -37,7 +35,6 @@ export type statisticForRangeType = {
 };
 
 export type getStatisticForRangeResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   statistic: statisticForRangeType | null;
 };

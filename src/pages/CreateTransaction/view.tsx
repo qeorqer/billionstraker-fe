@@ -1,18 +1,12 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  FormControl,
-  Row,
-} from 'react-bootstrap';
+import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 
 import { transactionTypes } from 'types/transaction.type';
 import { balanceType } from 'types/balance.type';
 import { categoryType } from 'types/category.type';
 import Balances from 'components/Balances/BalancesList';
+import CustomSelect from 'components/CustomSelect';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type propsType = {
@@ -20,13 +14,14 @@ type propsType = {
   transactionType: transactionTypes;
   setTransactionType: Dispatch<SetStateAction<transactionTypes>>;
   setCategoryId: Dispatch<SetStateAction<string>>;
+  categoryId: string;
   setBalanceId: Dispatch<SetStateAction<string>>;
   balanceId: string;
   setExchangeBalanceId: Dispatch<SetStateAction<string>>;
+  exchangeBalanceId: string;
   setTitle: Dispatch<SetStateAction<string>>;
   balances: balanceType[];
   categories: categoryType[];
-  lang: string;
   title: string;
   sum: string | number;
   exchangeSum: string | number;
@@ -42,13 +37,14 @@ const CreateTransaction: React.FC<propsType> = ({
   transactionType,
   setTransactionType,
   setCategoryId,
+  categoryId,
   setBalanceId,
   balanceId,
   setExchangeBalanceId,
+  exchangeBalanceId,
   setTitle,
   balances,
   categories,
-  lang,
   title,
   sum,
   exchangeSum,
@@ -67,6 +63,7 @@ const CreateTransaction: React.FC<propsType> = ({
         <Col xs="12" lg="4" className="mx-auto d-flex">
           <div className="w-50 text-center">
             <Button
+              className="w-100"
               variant={
                 transactionType === 'expense' ? 'danger' : 'outline-danger'
               }
@@ -78,8 +75,9 @@ const CreateTransaction: React.FC<propsType> = ({
               {t('expense')}
             </Button>
           </div>
-          <div className="w-50 text-center">
+          <div className="w-50 text-center  mx-2">
             <Button
+              className="w-100"
               variant={
                 transactionType === 'profit' ? 'success' : 'outline-success'
               }
@@ -88,12 +86,13 @@ const CreateTransaction: React.FC<propsType> = ({
                 setCategoryId('');
               }}
             >
-              {t('income')}
+              {t('profit')}
             </Button>
           </div>
 
           <div className="w-50 text-center">
             <Button
+              className="w-100"
               variant={
                 transactionType === 'exchange' ? 'primary' : 'outline-primary'
               }
@@ -122,21 +121,16 @@ const CreateTransaction: React.FC<propsType> = ({
               <p className="mb-1 fs-5 text-center w-100">
                 {t('select balance')}:
               </p>
-              <Form.Select
-                onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                  setBalanceId(e.target.value)
-                }
-              >
-                <option className="d-none" value="">
-                  {t('select balance')}
-                </option>
-                {balances &&
-                  balances.map((balance) => (
-                    <option key={balance._id} value={balance._id}>
-                      {balance.name}
-                    </option>
-                  ))}
-              </Form.Select>
+              <CustomSelect
+                defaultButtonText={t('select balance')}
+                defaultButtonValue=""
+                data={balances.map((balance) => ({
+                  _id: balance._id,
+                  name: balance.name,
+                }))}
+                selectedValue={balanceId}
+                setSelectedValue={setBalanceId}
+              />
             </Col>
             <Col xs="12" sm="4">
               {transactionType === 'exchange' ? (
@@ -144,51 +138,37 @@ const CreateTransaction: React.FC<propsType> = ({
                   <p className="mb-1 fs-5 text-center w-100">
                     {t('select balance')}:
                   </p>
-                  <Form.Select
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                      setExchangeBalanceId(e.target.value)
-                    }
-                  >
-                    <option className="d-none" value="">
-                      {t('select balance')}
-                    </option>
-                    {balances &&
-                      balances.map((balance) => (
-                        <option
-                          key={balance._id}
-                          value={balance._id}
-                          disabled={balance._id === balanceId}
-                        >
-                          {balance.name}
-                        </option>
-                      ))}
-                  </Form.Select>
+                  <CustomSelect
+                    defaultButtonText={t('select balance')}
+                    defaultButtonValue=""
+                    data={balances.map((balance) => ({
+                      _id: balance._id,
+                      name: balance.name,
+                      disabled: balance._id === balanceId,
+                    }))}
+                    selectedValue={exchangeBalanceId}
+                    setSelectedValue={setExchangeBalanceId}
+                  />
                 </>
               ) : (
                 <>
-                  <p className="mb-1 fs-5 text-center w-100">
+                  <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
                     {t('Select category')}:
                   </p>
-                  <Form.Select
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                      setCategoryId(e.target.value)
-                    }
-                  >
-                    <option className="d-none" value="">
-                      {t('Select category')}
-                    </option>
-                    {categories &&
-                      categories
-                        .filter(
-                          (category) =>
-                            category.categoryType === transactionType,
-                        )
-                        .map((category) => (
-                          <option key={category._id} value={category._id}>
-                            {category.name}
-                          </option>
-                        ))}
-                  </Form.Select>
+                  <CustomSelect
+                    defaultButtonText={t('Select category')}
+                    defaultButtonValue=""
+                    data={categories
+                      .filter(
+                        (category) => category.categoryType === transactionType,
+                      )
+                      .map((category) => ({
+                        _id: category._id!,
+                        name: category.name,
+                      }))}
+                    selectedValue={categoryId}
+                    setSelectedValue={setCategoryId}
+                  />
                 </>
               )}
             </Col>
@@ -199,12 +179,17 @@ const CreateTransaction: React.FC<propsType> = ({
                 onChange={(newDate) => setDate(newDate || new Date())}
                 className="form-control"
                 dateFormat="dd/MM/yyyy"
+                onFocus={(e) => (e.target.readOnly = true)}
+                maxDate={new Date()}
               />
             </Col>
           </Row>
 
           <Row className="mt-3">
-            <Col xs="6" className="d-flex flex-wrap">
+            <Col
+              xs={transactionType === 'exchange' ? 12 : 6}
+              className="d-flex flex-wrap"
+            >
               <p className="mb-1 fs-5">{t('Name the transaction')}:</p>
               <FormControl
                 type="text"
@@ -213,10 +198,7 @@ const CreateTransaction: React.FC<propsType> = ({
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Col>
-            <Col
-              xs={transactionType === 'exchange' ? 3 : 6}
-              className="d-flex flex-wrap"
-            >
+            <Col xs={6} className="d-flex flex-wrap">
               <p className="mb-1  fs-5">
                 {t(transactionType === 'exchange' ? 'send' : 'Transaction sum')}
                 :
@@ -230,7 +212,7 @@ const CreateTransaction: React.FC<propsType> = ({
             </Col>
 
             {transactionType === 'exchange' && (
-              <Col xs="3" className="d-flex flex-wrap">
+              <Col xs="6" className="d-flex flex-wrap">
                 <p className="mb-1  fs-5">{t('receive')}:</p>
                 <FormControl
                   type="number"

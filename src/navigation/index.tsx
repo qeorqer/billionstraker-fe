@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, lazy } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import CreateTransaction from 'pages/CreateTransaction';
-import BalancesPage from 'pages/Balances';
-import CategoriesPage from 'pages/Categories';
 import ProfilePage from 'pages/Profile';
 import AuthorizationPage from 'pages/Authorization';
-import Statistic from 'pages/statistic/Statistic';
-import Init from 'pages/initPage/Init';
 import Loader from 'components/Loader';
+import InitPage from 'pages/initPage/Init';
+import StatisticPage from 'pages/statistic/Statistic';
+import BalancesPage from 'pages/Balances';
+import CategoriesPage from 'pages/Categories';
 import { useAppSelector } from 'hooks/react-redux.hook';
 import { userData } from 'store/selectors';
 
@@ -27,10 +27,10 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
     <>
       {isAuth ? (
         <Switch>
-          <Route path="/statistic" component={Statistic} />
+          <Route path="/statistic" component={StatisticPage} />
           <Route path="/createTransaction" component={CreateTransaction} />
           <Route path="/home" component={ProfilePage} />
-          <Route path="/initialization" component={Init} />
+          <Route path="/initialization" component={InitPage} />
           <Route path="/balances" component={BalancesPage} />
           <Route path="/categories" component={CategoriesPage} />
           <Redirect to="/home" />

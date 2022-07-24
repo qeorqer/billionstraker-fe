@@ -8,19 +8,16 @@ export type categoryType = {
 };
 
 export type getCategoriesResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   categories: categoryType[];
 };
 
 export type createCategoryResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   category: categoryType;
 };
 
 export type deleteCategoryResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   categoryId: string;
 };

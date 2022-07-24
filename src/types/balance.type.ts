@@ -6,19 +6,16 @@ export type balanceType = {
 };
 
 export type createBalanceResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   balance: balanceType;
 };
 
 export type getBalanceResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   balances: balanceType[];
 };
 
 export type deleteBalanceResponseType = {
-  messageRu: string;
-  messageEn: string;
+  message: string;
   balanceId: string;
 };

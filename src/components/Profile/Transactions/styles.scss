@@ -1,0 +1,9 @@
+.sectionTitle {
+  font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+  .sectionTitle.w-75 {
+    width: 100% !important;
+  }
+}

@@ -16,7 +16,7 @@ export type transactionType = {
 };
 
 export type addTransactionResponseType = {
-  messageEn: string;
+  message: string;
   transaction: transactionType;
   balances: balanceType[];
 };
@@ -25,3 +25,10 @@ export type getTransactionsResponseType = {
   transactions: transactionType[];
   numberOfTransactions?: number;
 };
+
+type transactionsSectionType = {
+  title: string;
+  data: transactionType[];
+};
+
+export type transactionsSectionsType = transactionsSectionType[];

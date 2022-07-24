@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { createBalance, getBalances } from 'store/reducers/balance.reducer';
+import { createBalance } from 'store/reducers/balance.reducer';
+import { handleChangeAmount } from 'utils/handleChangeAmount';
 
 import Balances from './view';
 
 const BalancesPage = () => {
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation();
-  const { balances } = useAppSelector((state) => state.balanceData);
   const [name, setName] = useState<string>('');
   const [amount, setAmount] = useState<number | string>('');
 
-  const handleChangeAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const validateSumReg = /^[0-9]+$/;
-
-    if (validateSumReg.test(event.target.value) || event.target.value === '') {
-      setAmount(event.target.value);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+  const { balances } = useAppSelector((state) => state.balanceData);
 
   const handleAddBalance = () => {
     if (!name || !amount) {
@@ -49,6 +43,9 @@ const BalancesPage = () => {
     }
 
     dispatch(createBalance({ name, amount: Number(amount) }));
+
+    setName('');
+    setAmount('');
   };
 
   return (
@@ -58,7 +55,7 @@ const BalancesPage = () => {
       name={name}
       setName={setName}
       amount={amount}
-      handleChangeAmount={handleChangeAmount}
+      handleChangeAmount={handleChangeAmount(setAmount)}
       handleAddBalance={handleAddBalance}
     />
   );

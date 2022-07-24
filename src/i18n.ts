@@ -47,10 +47,12 @@ i18n
     fallbackLng,
     whitelist: availableLanguages,
     detection: options,
-
     interpolation: {
       escapeValue: false,
     },
+    react: {
+      useSuspense: false
+    }
   });
 
 export default i18n;
