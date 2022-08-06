@@ -36,16 +36,16 @@ const Transaction: FC<propsType> = ({ transaction }) => {
               <>
                 <div className="from">
                   <p>
-                    <span>💰</span> {transaction.balance}
+                    <span>💰</span> {transaction.balanceToSubtract}
                   </p>
-                  <span>{formattingNumber(transaction.sum)}</span>
+                  <span>{formattingNumber(transaction.sumToSubtract!)}</span>
                 </div>
                 <span className="exchangeSign">🔁</span>
                 <div className="to">
                   <p>
-                    {transaction.balanceToSubtract} <span>💸</span>
+                    {transaction.balance} <span>💸</span>
                   </p>
-                  <span>{formattingNumber(transaction.sumToSubtract!)}</span>
+                  <span>{formattingNumber(transaction.sum)}</span>
                 </div>
               </>
             ) : (
