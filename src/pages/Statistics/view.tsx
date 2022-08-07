@@ -24,22 +24,21 @@ const Statistics: FC<propsType> = ({
   wholeStatistic,
   statisticForRange,
   monthsRange,
-                                     setMonthsRange,
+  setMonthsRange,
   user,
   lang,
-
-                                   }) => (
-  <Container className='py-4'>
+}) => (
+  <Container className="py-4">
     {wholeStatistic && statisticForRange ? (
       <Row>
-        <Col xs='12' md='6'>
+        <Col xs="12" md="6">
           <RangeStatistic
             statisticForRange={statisticForRange}
             monthsRange={monthsRange}
             setMonthsRange={setMonthsRange}
           />
         </Col>
-        <Col xs='12' md='6'>
+        <Col xs="12" md="6">
           <WholeStatistic
             wholeStatistic={wholeStatistic}
             user={user}
@@ -48,8 +47,7 @@ const Statistics: FC<propsType> = ({
         </Col>
       </Row>
     ) : (
-      <div
-        className='d-flex justify-content-center align-items-center h-100 fw-bold my-3 my-md-0 '>
+      <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 my-md-0 ">
         <p>{t('Some of your statistic will be here')}</p>
       </div>
     )}
