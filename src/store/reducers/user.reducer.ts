@@ -113,11 +113,6 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       toast(i18next.t(action.payload.message), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
     });
@@ -126,11 +121,6 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       toast(i18next.t(action.payload?.message!), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     });
@@ -155,11 +145,6 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       toast(i18next.t(action.payload?.message!), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     });
@@ -202,11 +187,6 @@ const userReducer = createSlice({
       state.user = action.payload.data.user;
 
       toast(i18next.t(action.payload?.data.message!), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
     });

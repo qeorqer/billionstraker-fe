@@ -63,11 +63,6 @@ const balanceReducer = createSlice({
 
     builder.addCase(createBalance.fulfilled, (state, action) => {
       toast(i18next.t('creating balance success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
@@ -76,11 +71,6 @@ const balanceReducer = createSlice({
 
     builder.addCase(updateBalance.fulfilled, (state, action) => {
       toast(i18next.t('updating balance success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
@@ -92,11 +82,6 @@ const balanceReducer = createSlice({
 
     builder.addCase(deleteBalance.fulfilled, (state, action) => {
       toast(i18next.t('deleting balance success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
