@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Slide, toast, ToastContainer } from 'react-toastify';
+import { Flip, toast, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
@@ -67,11 +67,6 @@ const App = () => {
               ? 'Your session has expired'
               : 'Время сессии истекло',
             {
-              position: 'top-right',
-              autoClose: 2500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              theme: 'dark',
               type: 'warning',
             },
           );
@@ -87,7 +82,14 @@ const App = () => {
     <>
       {isAuth && user?.isFirstEnter === false && <AppHeader />}
       <AppRouter isAuth={isAuth} />
-      <ToastContainer transition={Slide} />
+      <ToastContainer
+        transition={Flip}
+        position='bottom-right'
+        autoClose={20000}
+        theme='dark'
+        hideProgressBar
+        closeOnClick
+      />
     </>
   );
 };

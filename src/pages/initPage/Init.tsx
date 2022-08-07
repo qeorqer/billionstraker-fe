@@ -38,11 +38,6 @@ const Init = () => {
   const handleInit = () => {
     if (card === '' || cash === '') {
       return toast(t('All fields are required'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }
