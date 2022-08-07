@@ -25,6 +25,8 @@
   "exchange": "Обмен",
   "Select category": "Выбери категорию",
   "select balance": "Выбери счет",
+  "select balance (send)": "Счет для отправки",
+  "select balance (receive)": "Счет для получения",
   "Name the transaction": "Название",
   "Enter the sum of transaction": "Сумма транзакции",
   "Submit transaction": "Создать транзакцию",

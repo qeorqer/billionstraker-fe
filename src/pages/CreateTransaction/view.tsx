@@ -118,8 +118,8 @@ const CreateTransaction: React.FC<propsType> = ({
         <Col xs="12" lg="7" className="mx-auto  mt-3">
           <Row>
             <Col xs="12" sm="4" className="d-flex flex-wrap">
-              <p className="mb-1 fs-5 text-center w-100">
-                {t('select balance')}:
+              <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
+                {t(transactionType === 'exchange' ? 'select balance (send)' : 'select balance')}:
               </p>
               <CustomSelect
                 defaultButtonText={t('select balance')}
@@ -135,8 +135,8 @@ const CreateTransaction: React.FC<propsType> = ({
             <Col xs="12" sm="4">
               {transactionType === 'exchange' ? (
                 <>
-                  <p className="mb-1 fs-5 text-center w-100">
-                    {t('select balance')}:
+                  <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
+                    {t('select balance (receive)')}:
                   </p>
                   <CustomSelect
                     defaultButtonText={t('select balance')}
