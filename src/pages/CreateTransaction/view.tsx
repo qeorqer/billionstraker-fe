@@ -55,7 +55,7 @@ const CreateTransaction: React.FC<propsType> = ({
   setDate,
 }) => (
   <>
-    <Container className="py-md-4 my-4">
+    <Container className="py-md-4 my-4 pb-5 pb-sm-0">
       <Row>
         <p className="mb-1 fs-4 text-center fw-bold">
           {t('Select operation type')}:

@@ -4,6 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 
 import logo from 'assets/logo.png';
+import {ReactComponent as Profile} from 'assets/profile.svg';
+import {ReactComponent as Transactions} from 'assets/transactions.svg';
+import {ReactComponent as Statistics} from 'assets/statistics.svg';
 import { useAppDispatch } from 'hooks/react-redux.hook';
 import { logOut } from 'store/reducers/user.reducer';
 import LanguageSwitcher from 'components/LanguageSwitcher';
@@ -34,15 +37,22 @@ const AppHeader = () => {
           <Col md="6" xs="12" className="menu order-1 order-md-0">
             <ul className="m-0 p-0">
               <li>
-                <NavLink to="/home">{t('Profile')}</NavLink>
+                <NavLink to="/home">
+                  <Profile/>
+                  {t('Profile')}
+                </NavLink>
               </li>
               <li>
                 <NavLink to="/createTransaction">
+                  <Transactions />
                   {t('New transaction')}
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/statistics">{t('Statistics')}</NavLink>
+                <NavLink to="/statistics">
+                  <Statistics />
+                  {t('Statistics')}
+                </NavLink>
               </li>
             </ul>
           </Col>
