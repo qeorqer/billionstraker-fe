@@ -30,7 +30,8 @@ body {
 }
 
 .w300Px {
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
 }
 
 .languagesController {
@@ -49,6 +50,7 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -57,4 +59,16 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.overflow-y-visible {
+  overflow-y: visible !important;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}
+
+.form-control[readonly] {
+  background-color: #fff !important;
 }

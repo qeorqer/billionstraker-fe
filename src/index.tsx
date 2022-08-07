@@ -1,9 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
-
-import Loader from 'components/Loader';
 import App from 'App';
 import store from 'store';
 import 'i18n';
@@ -15,9 +13,7 @@ ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <Router>
-        <Suspense fallback={() => <Loader fullHeight={true} />}>
-          <App />
-        </Suspense>
+        <App />
       </Router>
     </React.StrictMode>
   </Provider>,

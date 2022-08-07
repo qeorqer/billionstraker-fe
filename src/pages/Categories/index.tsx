@@ -56,6 +56,9 @@ const CategoriesPage = () => {
         },
       }),
     );
+
+    setName('');
+    setCategoryType('expense');
   };
 
   return (

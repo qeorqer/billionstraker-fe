@@ -68,6 +68,7 @@ header {
         bottom: -10px;
         opacity: 0;
         transition: inherit;
+        border-radius: 0.25rem;
       }
 
       &.active, &:hover {
@@ -76,60 +77,6 @@ header {
         &:after {
           width: 65%;
           opacity: 1;
-        }
-      }
-    }
-  }
-
-  .dropdownMenu {
-    text-align: right;
-    position: relative;
-    width: 100%;
-
-    .menuTogglerContainer {
-      display: inline-flex;
-      cursor: pointer;
-      height: 30px;
-      align-items: center;
-
-      span {
-        width: 30px;
-        height: 3px;
-        background-color: $yellow;
-        display: block;
-        position: relative;
-        transition: .3s;
-
-        &:before, &:after {
-          content: "";
-          width: 30px;
-          height: 3px;
-          background-color: $yellow;
-          position: absolute;
-          display: block;
-          transition: inherit;
-        }
-
-        &:before {
-          top: -8px;
-        }
-
-        &:after {
-          top: 8px;
-        }
-
-        &.open {
-          background-color: transparent;
-
-          &:before {
-            top: 0;
-            transform: rotate(45deg);
-          }
-
-          &:after {
-            transform: rotate(-45deg);
-            top: 0;
-          }
         }
       }
     }

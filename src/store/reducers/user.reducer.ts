@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import i18next from 'i18next';
 
 import * as api from 'api/index';
 import {
   authData,
   loginResponseType,
-  updateUserResponseType,
   signUpResponseType,
+  updateUserResponseType,
   userType,
 } from 'types/user.type';
 
@@ -111,37 +112,27 @@ const userReducer = createSlice({
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload.messageEn
-          : action.payload.messageRu,
-        {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
-          type: 'success',
-        },
-      );
+      toast(i18next.t(action.payload.message), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'success',
+      });
     });
 
     builder.addCase(signUp.rejected, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload?.messageEn
-          : action.payload?.messageRu,
-        {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
-          type: 'error',
-        },
-      );
+      toast(i18next.t(action.payload?.message!), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
     });
 
     builder.addCase(signUp.pending, (state) => {
@@ -163,19 +154,14 @@ const userReducer = createSlice({
     builder.addCase(logIn.rejected, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload?.messageEn
-          : action.payload?.messageRu,
-        {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
-          type: 'error',
-        },
-      );
+      toast(i18next.t(action.payload?.message!), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'error',
+      });
     });
 
     builder.addCase(logOut.fulfilled, (state) => {
@@ -215,19 +201,14 @@ const userReducer = createSlice({
     builder.addCase(setInitialValues.fulfilled, (state, action) => {
       state.user = action.payload.data.user;
 
-      toast(
-        localStorage.getItem('i18nextLng') === 'en'
-          ? action.payload?.data.messageEn
-          : action.payload?.data.messageRu,
-        {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
-          type: 'success',
-        },
-      );
+      toast(i18next.t(action.payload?.data.message!), {
+        position: 'top-right',
+        autoClose: 2500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: 'dark',
+        type: 'success',
+      });
     });
   },
 });
