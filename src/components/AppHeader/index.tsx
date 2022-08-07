@@ -42,7 +42,7 @@ const AppHeader = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/statistic">{t('Statistic')}</NavLink>
+                <NavLink to="/statistics">{t('Statistics')}</NavLink>
               </li>
             </ul>
           </Col>

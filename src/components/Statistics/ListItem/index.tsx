@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
 import { formattingNumber } from 'utils/formattingNumber';
-import { listForRangeItem } from 'components/Statistic/List';
+import { listForRangeItem } from 'components/Statistics/List';
 
 type propsType = {
   listItem: listForRangeItem;

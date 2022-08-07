@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
@@ -9,11 +8,11 @@ import {
 } from 'store/reducers/statistic.reducer';
 import { statisticData, userData } from 'store/selectors';
 import Loader from 'components/Loader';
-import WholeStatistic from 'components/Statistic/WholeStatistic';
-import RangeStatistic from 'components/Statistic/RangeStatistic';
 import 'moment/locale/ru';
 
-const Statistic: FC = () => {
+import Statistics from './view';
+
+const StatisticsPage: FC = () => {
   const dispatch = useAppDispatch();
   const {
     wholeStatistic,
@@ -44,31 +43,16 @@ const Statistic: FC = () => {
   }
 
   return (
-    <Container className="py-4">
-      {wholeStatistic && statisticForRange ? (
-        <Row>
-          <Col xs="12" md="6">
-            <RangeStatistic
-              statisticForRange={statisticForRange}
-              monthsRange={monthsRange}
-              setMonthsRange={setMonthsRange}
-            />
-          </Col>
-          <Col xs="12" md="6">
-            <WholeStatistic
-              wholeStatistic={wholeStatistic}
-              user={user}
-              lang={lang}
-            />
-          </Col>
-        </Row>
-      ) : (
-        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 my-md-0 ">
-          <p>{t('Some of your statistic will be here')}</p>
-        </div>
-      )}
-    </Container>
+    <Statistics
+      t={t}
+      wholeStatistic={wholeStatistic}
+      statisticForRange={statisticForRange}
+      monthsRange={monthsRange}
+      setMonthsRange={setMonthsRange}
+      user={user}
+      lang={lang}
+    />
   );
 };
 
-export default Statistic;
+export default StatisticsPage;

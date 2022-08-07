@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
 import Loader from 'components/Loader';
-import Diagram from 'components/Statistic/Diagram';
-import { List } from 'components/Statistic/List';
+import Diagram from 'components/Statistics/Diagram';
+import { List } from 'components/Statistics/List';
 import { useAppSelector } from 'hooks/react-redux.hook';
 import { statisticData, userData } from 'store/selectors';
 import { statisticForRangeType } from 'types/statistic.type';
