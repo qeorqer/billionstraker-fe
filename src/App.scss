@@ -72,3 +72,12 @@ input[type=number] {
 .form-control[readonly] {
   background-color: #fff !important;
 }
+
+@media (max-width: 480px){
+  .Toastify__toast-container {
+    max-width: 320px;
+    right: 0;
+    margin: auto;
+    bottom: 50px;
+  }
+}

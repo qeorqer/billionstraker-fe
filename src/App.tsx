@@ -85,7 +85,7 @@ const App = () => {
       <ToastContainer
         transition={Flip}
         position='bottom-right'
-        autoClose={20000}
+        autoClose={2000}
         theme='dark'
         hideProgressBar
         closeOnClick
