@@ -119,7 +119,12 @@ const CreateTransaction: React.FC<propsType> = ({
           <Row>
             <Col xs="12" sm="4" className="d-flex flex-wrap">
               <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
-                {t(transactionType === 'exchange' ? 'select balance (send)' : 'select balance')}:
+                {t(
+                  transactionType === 'exchange'
+                    ? 'select balance (send)'
+                    : 'select balance',
+                )}
+                :
               </p>
               <CustomSelect
                 defaultButtonText={t('select balance')}

@@ -84,9 +84,9 @@ const App = () => {
       <AppRouter isAuth={isAuth} />
       <ToastContainer
         transition={Flip}
-        position='bottom-right'
+        position="bottom-right"
         autoClose={2000}
-        theme='dark'
+        theme="dark"
         hideProgressBar
         closeOnClick
       />

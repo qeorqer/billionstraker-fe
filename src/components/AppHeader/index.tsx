@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 
 import logo from 'assets/logo.png';
-import {ReactComponent as Profile} from 'assets/profile.svg';
-import {ReactComponent as Transactions} from 'assets/transactions.svg';
-import {ReactComponent as Statistics} from 'assets/statistics.svg';
+import { ReactComponent as Profile } from 'assets/profile.svg';
+import { ReactComponent as Transactions } from 'assets/transactions.svg';
+import { ReactComponent as Statistics } from 'assets/statistics.svg';
 import { useAppDispatch } from 'hooks/react-redux.hook';
 import { logOut } from 'store/reducers/user.reducer';
 import LanguageSwitcher from 'components/LanguageSwitcher';
@@ -38,7 +38,7 @@ const AppHeader = () => {
             <ul className="m-0 p-0">
               <li>
                 <NavLink to="/home">
-                  <Profile/>
+                  <Profile />
                   {t('Profile')}
                 </NavLink>
               </li>
