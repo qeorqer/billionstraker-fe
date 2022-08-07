@@ -52,9 +52,10 @@ header {
       }
 
       @media (max-width: 480px) {
-          margin-top: 0!important;
-          padding-bottom: 0!important;
-
+        margin-top: 0 !important;
+        padding-bottom: 0 !important;
+        justify-content: space-between;
+        width: 80%;
       }
 
       @media(max-width: 480px) {
