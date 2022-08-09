@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Flip, toast, ToastContainer } from 'react-toastify';
+import { Slide, toast, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
@@ -83,8 +83,8 @@ const App = () => {
       {isAuth && user?.isFirstEnter === false && <AppHeader />}
       <AppRouter isAuth={isAuth} />
       <ToastContainer
-        transition={Flip}
-        position="bottom-right"
+        transition={Slide}
+        position="top-right"
         autoClose={2000}
         theme="dark"
         hideProgressBar

@@ -75,9 +75,9 @@ input[type=number] {
 
 @media (max-width: 480px) {
   .Toastify__toast-container {
-    max-width: 320px;
+    max-width: 350px;
     right: 0;
     margin: auto;
-    bottom: 50px;
+    top: 1em;
   }
 }
