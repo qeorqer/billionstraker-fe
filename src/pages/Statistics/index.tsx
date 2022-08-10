@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import {
   getStatisticForRange,
-  getWholeStatistic,
 } from 'store/reducers/statistic.reducer';
 import { statisticData, userData } from 'store/selectors';
 import Loader from 'components/Loader';
@@ -15,17 +14,11 @@ import Statistics from './view';
 const StatisticsPage: FC = () => {
   const dispatch = useAppDispatch();
   const {
-    wholeStatistic,
     statisticForRange,
-    isWholeStatisticLoading,
     isStatisticForRangeLoading,
   } = useAppSelector(statisticData);
   const { t } = useTranslation();
-  const { user, lang } = useAppSelector(userData);
-
-  useEffect(() => {
-    dispatch(getWholeStatistic());
-  }, []);
+  const { user } = useAppSelector(userData);
 
   const [monthsRange, setMonthsRange] = useState<Date[]>([
     new Date(user.created),
@@ -34,23 +27,20 @@ const StatisticsPage: FC = () => {
 
   useEffect(() => {
     dispatch(
-      getStatisticForRange({ from: monthsRange[0], to: monthsRange[1] }),
+      getStatisticForRange({ from: monthsRange[0], to: monthsRange[1], balance: 'Mono UAH' }),
     );
   }, [monthsRange]);
 
-  if (isWholeStatisticLoading && isStatisticForRangeLoading) {
+  if (isStatisticForRangeLoading) {
     return <Loader />;
   }
 
   return (
     <Statistics
       t={t}
-      wholeStatistic={wholeStatistic}
       statisticForRange={statisticForRange}
       monthsRange={monthsRange}
       setMonthsRange={setMonthsRange}
-      user={user}
-      lang={lang}
     />
   );
 };

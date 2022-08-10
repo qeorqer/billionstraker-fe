@@ -1,35 +1,26 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import WholeStatistic from 'components/Statistics/WholeStatistic';
 import RangeStatistic from 'components/Statistics/RangeStatistic';
 import {
   statisticForRangeType,
-  wholeStatisticType,
 } from 'types/statistic.type';
-import { userType } from 'types/user.type';
 
 type propsType = {
   t: (text: string) => string;
-  wholeStatistic: wholeStatisticType | null;
   statisticForRange: statisticForRangeType | null;
   monthsRange: Date[];
   setMonthsRange: Dispatch<SetStateAction<Date[]>>;
-  user: userType;
-  lang: string;
 };
 
 const Statistics: FC<propsType> = ({
   t,
-  wholeStatistic,
   statisticForRange,
   monthsRange,
   setMonthsRange,
-  user,
-  lang,
 }) => (
   <Container className="py-4">
-    {wholeStatistic && statisticForRange ? (
+    { statisticForRange ? (
       <Row>
         <Col xs="12" md="6">
           <RangeStatistic
@@ -39,11 +30,6 @@ const Statistics: FC<propsType> = ({
           />
         </Col>
         <Col xs="12" md="6">
-          <WholeStatistic
-            wholeStatistic={wholeStatistic}
-            user={user}
-            lang={lang}
-          />
         </Col>
       </Row>
     ) : (

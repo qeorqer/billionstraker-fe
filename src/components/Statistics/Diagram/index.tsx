@@ -37,7 +37,7 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const dataForRange: rangeDataType[] = statisticForRange.map((el, index) => ({
     value: el.total,
     color: hovered === index ? 'grey' : colors[index],
-    tooltip: `${el._id.name}, ${formattingNumber(el.total)}`,
+    tooltip: `${el._id}, ${formattingNumber(el.total)}`,
   }));
 
   return (

@@ -48,7 +48,7 @@ const RangeStatistic: FC<propsType> = ({
         />
       </div>
       <div className="rangeHolder mt-3 text-center" data-tip="chart">
-        {statisticForRange.totalSpent > 0 && (
+        {statisticForRange.totallySpent > 0 && (
           <div className="rangeHolderControls mb-3">
             <Button
               size="sm"
@@ -76,18 +76,18 @@ const RangeStatistic: FC<propsType> = ({
               {t('Spent during this period')}:
               <span className="fst-italic yellowText">
                 {' '}
-                {statisticForRange.totalSpent}
+                {statisticForRange.totallySpent}
               </span>
             </p>
             {useDiagram ? (
               <Diagram
-                totalSpent={statisticForRange.totalSpent}
-                statisticForRange={statisticForRange.transactionsInRange}
+                totalSpent={statisticForRange.totallySpent}
+                statisticForRange={statisticForRange.expensesInRange}
               />
             ) : (
               <List
-                totalSpent={statisticForRange.totalSpent}
-                statisticForRange={statisticForRange.transactionsInRange}
+                totalSpent={statisticForRange.totallySpent}
+                statisticForRange={statisticForRange.expensesInRange}
               />
             )}
           </>

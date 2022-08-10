@@ -18,9 +18,7 @@ import {
   transactionType,
 } from 'types/transaction.type';
 import {
-  getGeneralStatisticResponseType,
   getStatisticForRangeResponseType,
-  getWholeStatisticResponseType,
 } from 'types/statistic.type';
 import {
   balanceType,
@@ -76,17 +74,10 @@ export const getAllUserTransactions = (body: {
   api.post('/transaction/getAllUserTransactions', body);
 
 /* statistic requests */
-export const getGeneralStatistic = (): Promise<
-  AxiosResponse<getGeneralStatisticResponseType>
-> => api.get('/statistic/getGeneralStatistic');
-
-export const getWholeStatistic = (): Promise<
-  AxiosResponse<getWholeStatisticResponseType>
-> => api.get('/statistic/getWholeStatistic');
-
 export const getStatisticForRange = (body: {
   from: Date;
   to: Date;
+  balance: string;
 }): Promise<AxiosResponse<getStatisticForRangeResponseType>> =>
   api.post('/statistic/getStatisticForRange', body);
 

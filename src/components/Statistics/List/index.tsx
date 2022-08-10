@@ -17,7 +17,7 @@ export type listForRangeItem = {
 export const List: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const dataForRange: listForRangeItem[] = statisticForRange.map(
     (el, index) => ({
-      title: el._id.name,
+      title: el._id,
       value: el.total,
       percentage: Math.round((100 * el.total) / totalSpent) || '>1',
     }),
