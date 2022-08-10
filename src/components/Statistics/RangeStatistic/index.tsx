@@ -10,24 +10,24 @@ import Diagram from 'components/Statistics/Diagram';
 import { List } from 'components/Statistics/List';
 import { useAppSelector } from 'hooks/react-redux.hook';
 import { statisticData, userData } from 'store/selectors';
-import { statisticForRangeType } from 'types/statistic.type';
+import { getStatisticsForBalanceType } from 'types/statistic.type';
 
 import './styles.scss';
 
 type propsType = {
-  statisticForRange: statisticForRangeType;
+  statisticsForRange: getStatisticsForBalanceType;
   setMonthsRange: React.Dispatch<React.SetStateAction<Date[]>>;
   monthsRange: Date[];
 };
 
 const RangeStatistic: FC<propsType> = ({
-  statisticForRange,
+  statisticsForRange,
   monthsRange,
   setMonthsRange,
 }) => {
   const { t } = useTranslation();
   const { lang } = useAppSelector(userData);
-  const { isStatisticForRangeLoading } = useAppSelector(statisticData);
+  const { isStatisticsForBalanceLoading } = useAppSelector(statisticData);
   const [useDiagram, setUseDiagram] = useState<boolean>(true);
 
   return (
@@ -48,7 +48,7 @@ const RangeStatistic: FC<propsType> = ({
         />
       </div>
       <div className="rangeHolder mt-3 text-center" data-tip="chart">
-        {statisticForRange.totallySpent > 0 && (
+        {statisticsForRange.totallySpent > 0 && (
           <div className="rangeHolderControls mb-3">
             <Button
               size="sm"
@@ -68,7 +68,7 @@ const RangeStatistic: FC<propsType> = ({
             </Button>
           </div>
         )}
-        {isStatisticForRangeLoading ? (
+        {isStatisticsForBalanceLoading ? (
           <Loader />
         ) : (
           <>
@@ -76,18 +76,18 @@ const RangeStatistic: FC<propsType> = ({
               {t('Spent during this period')}:
               <span className="fst-italic yellowText">
                 {' '}
-                {statisticForRange.totallySpent}
+                {statisticsForRange.totallySpent}
               </span>
             </p>
             {useDiagram ? (
               <Diagram
-                totalSpent={statisticForRange.totallySpent}
-                statisticForRange={statisticForRange.expensesInRange}
+                totalSpent={statisticsForRange.totallySpent}
+                statisticForRange={statisticsForRange.expensesInRange}
               />
             ) : (
               <List
-                totalSpent={statisticForRange.totallySpent}
-                statisticForRange={statisticForRange.expensesInRange}
+                totalSpent={statisticsForRange.totallySpent}
+                statisticForRange={statisticsForRange.expensesInRange}
               />
             )}
           </>

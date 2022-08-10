@@ -3,28 +3,28 @@ import { AxiosResponse } from 'axios';
 
 import * as api from 'api/index';
 import {
-  getStatisticForRangeResponseType,
-  statisticForRangeType,
+  getStatisticsForBalanceResponseType,
+  getStatisticsForBalanceType,
 } from 'types/statistic.type';
 
-export const getStatisticForRange = createAsyncThunk(
-  'statistic/getStatisticForRange',
+export const getStatisticsForBalance = createAsyncThunk(
+  'statistic/getStatisticsForBalance',
   async (body: {
     from: Date;
     to: Date;
     balance: string;
-  }): Promise<AxiosResponse<getStatisticForRangeResponseType>> =>
-    await api.getStatisticForRange(body),
+  }): Promise<AxiosResponse<getStatisticsForBalanceResponseType>> =>
+    await api.getStatisticsForBalance(body),
 );
 
 export type statisticState = {
-  statisticForRange: statisticForRangeType | null;
-  isStatisticForRangeLoading: boolean;
+  statisticsForBalance: getStatisticsForBalanceType | null;
+  isStatisticsForBalanceLoading: boolean;
 };
 
 const initialState: statisticState = {
-  statisticForRange: null,
-  isStatisticForRangeLoading: false,
+  statisticsForBalance: null,
+  isStatisticsForBalanceLoading: false,
 };
 
 const statisticReducer = createSlice({
@@ -32,17 +32,17 @@ const statisticReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getStatisticForRange.pending, (state) => {
-      state.isStatisticForRangeLoading = true;
+    builder.addCase(getStatisticsForBalance.pending, (state) => {
+      state.isStatisticsForBalanceLoading = true;
     });
 
-    builder.addCase(getStatisticForRange.fulfilled, (state, action) => {
-      state.isStatisticForRangeLoading = false;
-      state.statisticForRange = action.payload.data.statistic;
+    builder.addCase(getStatisticsForBalance.fulfilled, (state, action) => {
+      state.isStatisticsForBalanceLoading = false;
+      state.statisticsForBalance = action.payload.data.statistic;
     });
 
-    builder.addCase(getStatisticForRange.rejected, (state) => {
-      state.isStatisticForRangeLoading = false;
+    builder.addCase(getStatisticsForBalance.rejected, (state) => {
+      state.isStatisticsForBalanceLoading = false;
     });
   },
 });

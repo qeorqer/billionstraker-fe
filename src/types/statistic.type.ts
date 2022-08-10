@@ -3,13 +3,13 @@ export type expenseIncomeType = {
   total: number;
 };
 
-export type statisticForRangeType = {
+export type getStatisticsForBalanceType = {
   expensesInRange: expenseIncomeType[];
   profitsInRange: expenseIncomeType[];
   totallySpent: number;
 };
 
-export type getStatisticForRangeResponseType = {
+export type getStatisticsForBalanceResponseType = {
   message: string;
-  statistic: statisticForRangeType | null;
+  statistic: getStatisticsForBalanceType | null;
 };

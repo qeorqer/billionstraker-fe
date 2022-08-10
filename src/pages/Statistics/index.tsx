@@ -2,9 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import {
-  getStatisticForRange,
-} from 'store/reducers/statistic.reducer';
+import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
 import { statisticData, userData } from 'store/selectors';
 import Loader from 'components/Loader';
 import 'moment/locale/ru';
@@ -13,10 +11,8 @@ import Statistics from './view';
 
 const StatisticsPage: FC = () => {
   const dispatch = useAppDispatch();
-  const {
-    statisticForRange,
-    isStatisticForRangeLoading,
-  } = useAppSelector(statisticData);
+  const { statisticsForBalance, isStatisticsForBalanceLoading } =
+    useAppSelector(statisticData);
   const { t } = useTranslation();
   const { user } = useAppSelector(userData);
 
@@ -27,18 +23,22 @@ const StatisticsPage: FC = () => {
 
   useEffect(() => {
     dispatch(
-      getStatisticForRange({ from: monthsRange[0], to: monthsRange[1], balance: 'Mono UAH' }),
+      getStatisticsForBalance({
+        from: monthsRange[0],
+        to: monthsRange[1],
+        balance: 'Mono UAH',
+      }),
     );
   }, [monthsRange]);
 
-  if (isStatisticForRangeLoading) {
+  if (isStatisticsForBalanceLoading) {
     return <Loader />;
   }
 
   return (
     <Statistics
       t={t}
-      statisticForRange={statisticForRange}
+      statisticsForBalance={statisticsForBalance}
       monthsRange={monthsRange}
       setMonthsRange={setMonthsRange}
     />
