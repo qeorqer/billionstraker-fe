@@ -41,8 +41,8 @@ const RangeStatistic: FC<propsType> = ({
 
   return (
     <>
-      <Row className='d-flex justify-content-center text-center'>
-        <Col md={3}>
+      <Row className='d-flex justify-content-center text-center white-space-nowrap'>
+        <Col xs={12} md={6} lg={3}>
           <p className='fs-5 mb-1 fw-bold text-center'>{t('Select range')}:</p>
           <DateRangePicker
             onChange={setMonthsRange}
@@ -58,7 +58,7 @@ const RangeStatistic: FC<propsType> = ({
             className='data-range-picker'
           />
         </Col>
-        <Col md={3}>
+        <Col xs={12} md={6} lg={3} className="max-width-220">
           <p className='fs-5 mb-1 fw-bold text-center white-space-nowrap'>
             {t('select balance')}
           </p>

@@ -1,4 +1,4 @@
-.react-daterange-picker__wrapper{
+.react-daterange-picker__wrapper {
   width: 100%;
   font-size: 1rem;
   font-weight: 400;
@@ -10,7 +10,7 @@
   -webkit-appearance: none;
   appearance: none;
   border-radius: .25rem;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   text-align: center;
   padding: 0.375rem 0.75rem;
 
@@ -20,33 +20,46 @@
     box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, .5);
   }
 
-  .react-daterange-picker__inputGroup__year{
-    width: 38px!important;
+  .react-daterange-picker__inputGroup__year {
+    width: 38px !important;
   }
 
 
-  .react-calendar__tile--hasActive{
-    background: #F3C709!important;
+  .react-calendar__tile--hasActive {
+    background: #F3C709 !important;
   }
 
-  input{
+  input {
     cursor: pointer;
   }
 }
 
-.react-calendar__tile--now,.react-calendar__tile--now:hover{
+.react-calendar__tile--now, .react-calendar__tile--now:hover {
   background: none;
 }
-.react-calendar__tile--active, .react-calendar__tile--hasActive{
+
+.react-calendar__tile--active, .react-calendar__tile--hasActive {
   background: #F3C709;
   color: #fff;
 }
 
-.react-calendar__tile--hasActive:enabled:hover, .react-calendar__tile--hasActive:enabled:focus{
+.react-calendar__tile--hasActive:enabled:hover, .react-calendar__tile--hasActive:enabled:focus {
   background: #F3C709;
   opacity: 0.7;
 }
 
-.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus{
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
   background: #F3C709;
 }
+
+.max-width-220 {
+  max-width: 220px !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .max-width-220 {
+    margin: 0 auto;
+  }
+}
+
