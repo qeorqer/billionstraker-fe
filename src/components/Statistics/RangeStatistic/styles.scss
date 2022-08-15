@@ -12,9 +12,16 @@
   border-radius: .25rem;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   text-align: center;
+  padding: 0.375rem 0.75rem;
+
+  &:hover, &:focus {
+    background-color: transparent;
+    border: 1px solid #ced4da;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, .5);
+  }
 
   .react-daterange-picker__inputGroup__year{
-    width: 36px!important;
+    width: 38px!important;
   }
 
 
