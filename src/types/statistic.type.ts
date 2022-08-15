@@ -7,6 +7,7 @@ export type getStatisticsForBalanceType = {
   expensesInRange: expenseIncomeType[];
   profitsInRange: expenseIncomeType[];
   totallySpent: number;
+  totallyEarned: number;
 };
 
 export type getStatisticsForBalanceResponseType = {
