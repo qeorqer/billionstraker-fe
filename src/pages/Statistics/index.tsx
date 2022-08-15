@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
@@ -13,7 +12,10 @@ import Statistics from './view';
 const StatisticsPage: FC = () => {
   const { statisticsForBalance } =
     useAppSelector(statisticData);
-  const { isLoadingBalances } = useAppSelector((state) => state.balanceData);
+  const {
+    isLoadingBalances,
+    balances,
+  } = useAppSelector((state) => state.balanceData);
 
   const dispatch = useAppDispatch();
   const { user } = useAppSelector(userData);
@@ -22,7 +24,7 @@ const StatisticsPage: FC = () => {
   const [balance, setBalance] = useState<string>('');
 
   useEffect(() => {
-    if(balance){
+    if (balance) {
       dispatch(
         getStatisticsForBalance({
           from: monthsRange[0],
@@ -36,6 +38,12 @@ const StatisticsPage: FC = () => {
   useEffect(() => {
     dispatch(getBalances());
   }, []);
+
+  useEffect(() => {
+    if (balances.length) {
+      setBalance(balances[0].name);
+    }
+  }, [balances]);
 
   if (isLoadingBalances) {
     return <Loader />;
