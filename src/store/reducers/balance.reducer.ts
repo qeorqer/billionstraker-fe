@@ -52,7 +52,6 @@ export type balanceState = {
 const initialState: balanceState = {
   balances: [] as balanceType[],
   isLoadingBalances: false,
-
 };
 
 const balanceReducer = createSlice({
@@ -62,11 +61,11 @@ const balanceReducer = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getBalances.pending, (state) => {
       state.isLoadingBalances = true;
-    })
+    });
 
     builder.addCase(getBalances.rejected, (state) => {
       state.isLoadingBalances = false;
-    })
+    });
 
     builder.addCase(getBalances.fulfilled, (state, action) => {
       state.balances = action.payload.data.balances;

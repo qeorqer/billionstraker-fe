@@ -10,17 +10,18 @@ import 'moment/locale/ru';
 import Statistics from './view';
 
 const StatisticsPage: FC = () => {
-  const { statisticsForBalance } =
-    useAppSelector(statisticData);
-  const {
-    isLoadingBalances,
-    balances,
-  } = useAppSelector((state) => state.balanceData);
+  const { statisticsForBalance } = useAppSelector(statisticData);
+  const { isLoadingBalances, balances } = useAppSelector(
+    (state) => state.balanceData,
+  );
 
   const dispatch = useAppDispatch();
   const { user } = useAppSelector(userData);
 
-  const [monthsRange, setMonthsRange] = useState<Date[]>([new Date(user.created), new Date()]);
+  const [monthsRange, setMonthsRange] = useState<Date[]>([
+    new Date(user.created),
+    new Date(),
+  ]);
   const [balance, setBalance] = useState<string>('');
 
   useEffect(() => {
