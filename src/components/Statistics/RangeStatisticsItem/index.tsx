@@ -13,16 +13,19 @@ type propsType = {
   type: 'expense' | 'income';
 };
 
-const RangeStatisticsItem: FC<propsType> = ({
-  statisticsForRange,
-  type,
-}) => {
+const RangeStatisticsItem: FC<propsType> = ({ statisticsForRange, type }) => {
   const { t } = useTranslation();
   const [useDiagram, setUseDiagram] = useState<boolean>(true);
 
   const fieldsToUse = {
-    totalValue: type === 'expense' ? statisticsForRange.totallySpent : statisticsForRange.totallyEarned,
-    statisticsInRange: type === 'expense' ? statisticsForRange.expensesInRange : statisticsForRange.profitsInRange,
+    totalValue:
+      type === 'expense'
+        ? statisticsForRange.totallySpent
+        : statisticsForRange.totallyEarned,
+    statisticsInRange:
+      type === 'expense'
+        ? statisticsForRange.expensesInRange
+        : statisticsForRange.profitsInRange,
   };
 
   return (
@@ -48,11 +51,13 @@ const RangeStatisticsItem: FC<propsType> = ({
         </div>
       )}
       <p className="fw-bold">
-        {t(type === 'expense' ? 'Spent during this period' : 'Earned during this period')}:
-        <span className="fst-italic yellowText">
-                  {' '}
-          {fieldsToUse.totalValue}
-                </span>
+        {t(
+          type === 'expense'
+            ? 'Spent during this period'
+            : 'Earned during this period',
+        )}
+        :
+        <span className="fst-italic yellowText"> {fieldsToUse.totalValue}</span>
       </p>
       {useDiagram ? (
         <Diagram

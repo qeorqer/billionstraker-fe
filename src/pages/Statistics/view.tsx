@@ -19,7 +19,7 @@ const Statistics: FC<propsType> = ({
   balance,
   setBalance,
 }) => (
-  <Container className="py-4">
+  <Container className="py-md-4 my-4 pb-5 pb-sm-0">
     <RangeStatistic
       statisticsForRange={statisticsForBalance}
       monthsRange={monthsRange}

@@ -23,12 +23,12 @@ type propsType = {
 };
 
 const RangeStatistic: FC<propsType> = ({
-                                         statisticsForRange,
-                                         monthsRange,
-                                         setMonthsRange,
-                                         balance,
-                                         setBalance,
-                                       }) => {
+  statisticsForRange,
+  monthsRange,
+  setMonthsRange,
+  balance,
+  setBalance,
+}) => {
   const { t } = useTranslation();
   const { lang, user } = useAppSelector(userData);
 
@@ -39,67 +39,63 @@ const RangeStatistic: FC<propsType> = ({
 
   return (
     <>
-      <Row
-        className='d-flex justify-content-center text-center white-space-nowrap'>
+      <Row className="d-flex justify-content-center text-center white-space-nowrap">
         <Col xs={12} md={6} lg={3}>
-          <p className='fs-5 mb-1 fw-bold text-center'>{t('Select range')}:</p>
+          <p className="fs-5 mb-1 fw-bold text-center">{t('Select range')}:</p>
           <DateRangePicker
             onChange={setMonthsRange}
-            maxDetail='year'
+            maxDetail="year"
             value={monthsRange}
             locale={lang}
             calendarIcon={null}
             clearIcon={null}
-            format='MM.y'
-            minDetail='year'
+            format="MM.y"
+            minDetail="year"
             minDate={new Date(user.created)}
             maxDate={new Date()}
-            className='data-range-picker'
+            className="data-range-picker"
           />
         </Col>
-        <Col xs={12} md={6} lg={3} className='max-width-220'>
-          <p className='fs-5 mb-1 fw-bold text-center white-space-nowrap'>
+        <Col xs={12} md={6} lg={3} className="max-width-220">
+          <p className="fs-5 mb-1 fw-bold text-center white-space-nowrap">
             {t('select balance')}
           </p>
           <CustomSelect
             defaultButtonText={t('select balance')}
-            defaultButtonValue=''
+            defaultButtonValue=""
             data={balances.map((balance) => ({
               _id: balance._id,
               name: balance.name,
             }))}
             selectedValue={balance}
             setSelectedValue={setBalance}
-            fieldToSelect='name'
+            fieldToSelect="name"
           />
         </Col>
       </Row>
       {statisticsForRange ? (
-        <Row className='rangeHolder mt-3 text-center'>
-          {
-            isStatisticsForBalanceLoading ? (
-              <Loader />
-            ) : (
-              <>
-                <Col>
-                  <RangeStatisticsItem
-                    statisticsForRange={statisticsForRange}
-                    type='expense'
-                  />
-                </Col>
-                <Col>
-                  <RangeStatisticsItem
-                    statisticsForRange={statisticsForRange}
-                    type='income'
-                  />
-                </Col>
-              </>
-            )
-          }
+        <Row className="rangeHolder mt-3 text-center">
+          {isStatisticsForBalanceLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <Col xs={12} md={6} className="mb-5 mb-md-0">
+                <RangeStatisticsItem
+                  statisticsForRange={statisticsForRange}
+                  type="expense"
+                />
+              </Col>
+              <Col xs={12} md={6}>
+                <RangeStatisticsItem
+                  statisticsForRange={statisticsForRange}
+                  type="income"
+                />
+              </Col>
+            </>
+          )}
         </Row>
       ) : (
-        <div
-          className='d-flex justify-content-center align-items-center h-100 fw-bold my-3 my-md-0 '>
+        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 my-md-0 ">
           <p>{t('Some of your statistic will be here')}</p>
         </div>
       )}
