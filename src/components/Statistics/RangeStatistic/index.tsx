@@ -35,8 +35,6 @@ const RangeStatistic: FC<propsType> = ({
   const { isStatisticsForBalanceLoading } = useAppSelector(statisticData);
   const { balances } = useAppSelector((state) => state.balanceData);
 
-  const [useDiagram, setUseDiagram] = useState<boolean>(true);
-
   return (
     <>
       <Row className="d-flex justify-content-center text-center white-space-nowrap">
@@ -54,6 +52,7 @@ const RangeStatistic: FC<propsType> = ({
             minDate={new Date(user.created)}
             maxDate={new Date()}
             className="data-range-picker"
+            onFocus={(e: any) => (e.target.readOnly = true)}
           />
         </Col>
         <Col xs={12} md={6} lg={3} className="max-width-220">
