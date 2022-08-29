@@ -13,18 +13,9 @@ type propsType = {
 
 const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [statistic, setStatistic] = useState<expenseIncomeType[]>(statisticForRange);
+  const [statistic, setStatistic] = useState<rangeDataType[]>([]);
 
   const colors = [
-    '#E38627',
-    '#C13C37',
-    '#6A2135',
-    '#E38627',
-    '#C13C37',
-    '#6A2135',
-    '#E38627',
-    '#C13C37',
-    '#6A2135',
     '#E38627',
     '#C13C37',
     '#6A2135',
@@ -37,13 +28,15 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   };
 
   useEffect(() => {
-    const formattedStatistic: expenseIncomeType[] = [];
+    let formattedStatistic: expenseIncomeType[] = statisticForRange;
     const otherItems: expenseIncomeType = {
       _id: i18next.t('other'),
       total: 0,
     };
 
     if (statisticForRange.length >= 5) {
+      formattedStatistic = [];
+
       statisticForRange.forEach((item) => {
         const percentage = 100 * item.total / totalSpent;
         if (percentage < 5) {
@@ -56,23 +49,22 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
 
     if (otherItems.total > 0) {
       formattedStatistic.push(otherItems);
-      setStatistic(formattedStatistic);
     }
-  }, [statisticForRange, totalSpent]);
 
-  const dataForRange: rangeDataType[] = statistic.map((el, index) => ({
-    value: el.total,
-    color: hovered === index ? 'grey' : colors[index],
-    tooltip: `${el._id}, ${formattingNumber(el.total)}`,
-  }));
+    setStatistic(formattedStatistic.map((el, index) => ({
+      value: el.total,
+      color: hovered === index ? '#9bb4c0' : colors[index % colors.length],
+      tooltip: `${el._id}, ${formattingNumber(el.total)}`,
+    })));
+  }, [statisticForRange, totalSpent, hovered]);
 
   return (
     <>
       {totalSpent > 0 && (
-        <>
+        <div data-tip="" data-for="chart">
           <PieChart
-            data={dataForRange}
-            style={{ height: '300px', width: '300px' }}
+            data={statistic}
+            style={{ height: '300px', width: '100%' }}
             segmentsShift={0.5}
             label={({ dataEntry }) =>
               `${
@@ -95,13 +87,14 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
             segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
           />
           <ReactTooltip
+            id="chart"
             getContent={() =>
               typeof hovered == 'number'
-                ? dataForRange[hovered]?.tooltip
+                ? statistic[hovered]?.tooltip
                 : null
             }
           />
-        </>
+        </div>
       )}
     </>
   );
