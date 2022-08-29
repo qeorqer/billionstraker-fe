@@ -1,40 +1,16 @@
-import { categoryType } from './category.type';
-
-export type generalStatisticType = {
-  userExpenses: number;
-  userExpensesThisMonth: number;
-};
-
-export type getGeneralStatisticResponseType = {
-  message: string;
-  statistic: generalStatisticType | null;
-};
-
-export type wholeStatisticType = {
-  userExpenses: number;
-  userExpensesThisMonth: number;
-  userIncomes: number;
-  userIncomesThisMonth: number;
-  averageExpensePerMonth: number;
-  averageIncomePerMonth: number;
-};
-
-export type getWholeStatisticResponseType = {
-  message: string;
-  statistic: wholeStatisticType | null;
-};
-
 export type expenseIncomeType = {
-  _id: categoryType;
+  _id: string;
   total: number;
 };
 
-export type statisticForRangeType = {
-  transactionsInRange: expenseIncomeType[];
-  totalSpent: number;
+export type getStatisticsForBalanceType = {
+  expensesInRange: expenseIncomeType[];
+  profitsInRange: expenseIncomeType[];
+  totallySpent: number;
+  totallyEarned: number;
 };
 
-export type getStatisticForRangeResponseType = {
+export type getStatisticsForBalanceResponseType = {
   message: string;
-  statistic: statisticForRangeType | null;
+  statistic: getStatisticsForBalanceType | null;
 };

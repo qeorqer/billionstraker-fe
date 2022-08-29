@@ -80,22 +80,12 @@ const transactionReducer = createSlice({
       ];
 
       toast(i18next.t('transaction created successfully'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
     });
 
     builder.addCase(createTransaction.rejected, (state, action) => {
       toast(i18next.t('failed to create transaction'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     });

@@ -22,11 +22,6 @@ const CategoriesPage = () => {
   const handleAddCategory = () => {
     if (!name) {
       return toast(t('All fields are required'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }
@@ -39,11 +34,6 @@ const CategoriesPage = () => {
 
     if (isAlreadyExists) {
       return toast(t('category already exists'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }

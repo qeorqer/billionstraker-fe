@@ -2,7 +2,9 @@ import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 
 import { formattingNumber } from 'utils/formattingNumber';
-import { listForRangeItem } from 'components/Statistic/List';
+import { listForRangeItem } from 'components/Statistics/List';
+
+import './styles.scss';
 
 type propsType = {
   listItem: listForRangeItem;
@@ -10,20 +12,16 @@ type propsType = {
 
 const ListItem: FC<propsType> = ({ listItem }) => {
   return (
-    <Card
-      className="mb-3  w-75 mx-auto fw-bold text-center"
-      bg="light"
-      text="dark"
-    >
+    <Card className="mb-3 mx-auto fw-bold text-center" bg="light" text="dark">
       <Card.Body>
         <Row>
-          <Col xs="4" sm="4" className="mb-2 mb-sm-0">
-            {listItem.title}
-          </Col>
-          <Col xs="4" sm="4">
+          <Col xs="6" lg="3">
             {formattingNumber(listItem.value)}
           </Col>
-          <Col xs="4" sm="4">
+          <Col xs="12" lg="6" className="mb-2 mb-sm-0 title">
+            {listItem.title}
+          </Col>
+          <Col xs="6" lg="3">
             {listItem.percentage}%
           </Col>
         </Row>

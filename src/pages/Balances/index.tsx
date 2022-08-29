@@ -19,11 +19,6 @@ const BalancesPage = () => {
   const handleAddBalance = () => {
     if (!name || !amount) {
       return toast(t('All fields are required'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }
@@ -33,11 +28,6 @@ const BalancesPage = () => {
     );
     if (isNameAlreadyUsed) {
       return toast(t('name should be unique'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }

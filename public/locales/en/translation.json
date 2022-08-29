@@ -6,7 +6,7 @@
   "New to billionstracker": "New to billionstracker",
   "Already on billionstracker": "Already on billionstracker",
   "New transaction": "New transaction",
-  "Statistic": "Statistic",
+  "Statistics": "Statistics",
   "Support": "Support",
   "Log out": "Log out",
   "Total balance": "Total balance:",
@@ -28,6 +28,8 @@
   "exchange": "Exchange",
   "Select category": "Select category",
   "select balance": "Select balance",
+  "select balance (send)": "Balance to send",
+  "select balance (receive)": "Balance to receive",
   "Name the transaction": "Name",
   "Enter the sum of transaction": "Enter the sum of transaction",
   "Submit transaction": "Submit transaction",
@@ -46,6 +48,7 @@
   "General statistic": "General statistic",
   "Load more": "Load more",
   "Spent during this period": "Spent during this period",
+  "Earned during this period": "Earned during this period",
   "All fields are required": "All fields are required",
   "You don't have this much": "You don't have this much",
   "Here you can set initial values for your balance": "Here you can set initial values for your balance",
@@ -95,5 +98,6 @@
   "today": "Today",
   "this week": "This week",
   "this month": "This month",
-  "before this month": "Before this month"
+  "before this month": "Before this month",
+  "other": "Other"
 }

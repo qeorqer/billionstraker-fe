@@ -57,11 +57,6 @@ const CreateTransactionPage = () => {
 
     if (requiredFieldsForTransaction.some((field) => !field)) {
       return toast(t('All fields are required'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }
@@ -75,22 +70,12 @@ const CreateTransactionPage = () => {
       );
       if (!balance || !balanceToSubtract) {
         return toast(t('the balance does not exist'), {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
           type: 'error',
         });
       }
 
       if (balanceToSubtract.amount < sum) {
         return toast(t("You don't have this much"), {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
           type: 'error',
         });
       }
@@ -119,11 +104,6 @@ const CreateTransactionPage = () => {
     const balance = balances.find((balance) => balance._id === balanceId);
     if (!balance) {
       return toast(t('the balance does not exist'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }
@@ -131,11 +111,6 @@ const CreateTransactionPage = () => {
     if (transactionType === 'expense') {
       if (balance.amount < sum) {
         return toast(t("You don't have this much"), {
-          position: 'top-right',
-          autoClose: 2500,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: 'dark',
           type: 'error',
         });
       }
@@ -145,11 +120,6 @@ const CreateTransactionPage = () => {
 
     if (!category) {
       return toast(t('there is no category with such id'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'error',
       });
     }

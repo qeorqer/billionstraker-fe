@@ -2,8 +2,8 @@ import React from 'react';
 import i18next from 'i18next';
 
 import { changeLang } from 'store/reducers/user.reducer';
-import enFlag from 'images/en.png';
-import ruFlag from 'images/ru.png';
+import enFlag from 'assets/en.png';
+import ruFlag from 'assets/ru.png';
 import { userData } from 'store/selectors';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 

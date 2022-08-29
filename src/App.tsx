@@ -67,11 +67,6 @@ const App = () => {
               ? 'Your session has expired'
               : 'Время сессии истекло',
             {
-              position: 'top-right',
-              autoClose: 2500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              theme: 'dark',
               type: 'warning',
             },
           );
@@ -87,7 +82,14 @@ const App = () => {
     <>
       {isAuth && user?.isFirstEnter === false && <AppHeader />}
       <AppRouter isAuth={isAuth} />
-      <ToastContainer transition={Slide} />
+      <ToastContainer
+        transition={Slide}
+        position="top-right"
+        autoClose={2000}
+        theme="dark"
+        hideProgressBar
+        closeOnClick
+      />
     </>
   );
 };

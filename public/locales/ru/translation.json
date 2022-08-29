@@ -6,7 +6,7 @@
   "New to billionstracker": "Новый пользователь",
   "Already on billionstracker": "Есть аккаунт?",
   "New transaction": "Новая транзакция",
-  "Statistic": "Статистика",
+  "Statistics": "Статистика",
   "Support": "Любые вопросы",
   "Log out": "Выйти",
   "Total balance": "Общий баланс:",
@@ -25,6 +25,8 @@
   "exchange": "Обмен",
   "Select category": "Выбери категорию",
   "select balance": "Выбери счет",
+  "select balance (send)": "Счет для отправки",
+  "select balance (receive)": "Счет для получения",
   "Name the transaction": "Название",
   "Enter the sum of transaction": "Сумма транзакции",
   "Submit transaction": "Создать транзакцию",
@@ -43,6 +45,7 @@
   "General statistic": "Общая статистика",
   "Load more": "Загрузить еще",
   "Spent during this period": "Потратил за это время",
+  "Earned during this period": "Заработал за это время",
   "All fields are required": "Нужно заполнить все поля",
   "You don't have this much": "Недостаточно денег",
   "Here you can set initial values for your balance": "Тут можно задать стартовые значения",
@@ -92,5 +95,6 @@
   "today": "Сегодня",
   "this week": "На этой неделе",
   "this month": "В этом месяце",
-  "before this month": "Раньше, чем в этом месяце"
+  "before this month": "Раньше, чем в этом месяце",
+  "other": "Остальное"
 }

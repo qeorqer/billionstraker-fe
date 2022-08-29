@@ -61,11 +61,6 @@ const categoryReducer = createSlice({
 
     builder.addCase(createCategory.fulfilled, (state, action) => {
       toast(i18next.t('creating category success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
@@ -74,11 +69,6 @@ const categoryReducer = createSlice({
 
     builder.addCase(updateCategory.fulfilled, (state, action) => {
       toast(i18next.t('updating category success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
@@ -90,11 +80,6 @@ const categoryReducer = createSlice({
 
     builder.addCase(deleteCategory.fulfilled, (state, action) => {
       toast(i18next.t('deleting category success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 

@@ -186,20 +186,20 @@ const Transactions = () => {
           <InfiniteScroll
             loadMore={handleLoadMore}
             hasMore={numberToSkip <= numberOfTransactions}
-            loader={<Loader />}
+            loader={<Loader key={0} />}
           >
             {transactionsSections.map((section) => (
-              <>
+              <React.Fragment key={section.title}>
                 <p className="sectionTitle fs-5 w-75 mx-auto">
                   {t(section.title)}
                 </p>
-                {section.data.map((transaction) => (
+                {section.data.map((transaction, index) => (
                   <Transaction
                     key={transaction._id}
                     transaction={transaction}
                   />
                 ))}
-              </>
+              </React.Fragment>
             ))}
           </InfiniteScroll>
         </>

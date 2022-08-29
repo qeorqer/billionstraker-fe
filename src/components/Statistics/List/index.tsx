@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { expenseIncomeType } from 'types/statistic.type';
-import ListItem from 'components/Statistic/ListItem';
+import ListItem from 'components/Statistics/ListItem';
 
 type propsType = {
   statisticForRange: expenseIncomeType[];
@@ -17,9 +17,9 @@ export type listForRangeItem = {
 export const List: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const dataForRange: listForRangeItem[] = statisticForRange.map(
     (el, index) => ({
-      title: el._id.name,
+      title: el._id,
       value: el.total,
-      percentage: Math.round((100 * el.total) / totalSpent) || '>1',
+      percentage: Math.round((100 * el.total) / totalSpent) || '<1',
     }),
   );
 

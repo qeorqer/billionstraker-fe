@@ -44,12 +44,14 @@ export const deleteBalance = createAsyncThunk(
     await api.deleteBalance(body),
 );
 
-export type categoryState = {
+export type balanceState = {
   balances: balanceType[];
+  isLoadingBalances: boolean;
 };
 
-const initialState: categoryState = {
+const initialState: balanceState = {
   balances: [] as balanceType[],
+  isLoadingBalances: false,
 };
 
 const balanceReducer = createSlice({
@@ -57,17 +59,21 @@ const balanceReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getBalances.pending, (state) => {
+      state.isLoadingBalances = true;
+    });
+
+    builder.addCase(getBalances.rejected, (state) => {
+      state.isLoadingBalances = false;
+    });
+
     builder.addCase(getBalances.fulfilled, (state, action) => {
       state.balances = action.payload.data.balances;
+      state.isLoadingBalances = false;
     });
 
     builder.addCase(createBalance.fulfilled, (state, action) => {
       toast(i18next.t('creating balance success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
@@ -76,11 +82,6 @@ const balanceReducer = createSlice({
 
     builder.addCase(updateBalance.fulfilled, (state, action) => {
       toast(i18next.t('updating balance success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
@@ -92,11 +93,6 @@ const balanceReducer = createSlice({
 
     builder.addCase(deleteBalance.fulfilled, (state, action) => {
       toast(i18next.t('deleting balance success'), {
-        position: 'top-right',
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        theme: 'dark',
         type: 'success',
       });
 
