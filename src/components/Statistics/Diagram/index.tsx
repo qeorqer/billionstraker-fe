@@ -15,11 +15,7 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   const [hovered, setHovered] = useState<number | null>(null);
   const [statistic, setStatistic] = useState<rangeDataType[]>([]);
 
-  const colors = [
-    '#E38627',
-    '#C13C37',
-    '#6A2135',
-  ];
+  const colors = ['#E38627', '#C13C37', '#6A2135'];
 
   type rangeDataType = {
     value: number;
@@ -38,7 +34,7 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
       formattedStatistic = [];
 
       statisticForRange.forEach((item) => {
-        const percentage = 100 * item.total / totalSpent;
+        const percentage = (100 * item.total) / totalSpent;
         if (percentage < 5) {
           otherItems.total += item.total;
         } else {
@@ -51,11 +47,13 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
       formattedStatistic.push(otherItems);
     }
 
-    setStatistic(formattedStatistic.map((el, index) => ({
-      value: el.total,
-      color: hovered === index ? '#9bb4c0' : colors[index % colors.length],
-      tooltip: `${el._id}, ${formattingNumber(el.total)}`,
-    })));
+    setStatistic(
+      formattedStatistic.map((el, index) => ({
+        value: el.total,
+        color: hovered === index ? '#9bb4c0' : colors[index % colors.length],
+        tooltip: `${el._id}, ${formattingNumber(el.total)}`,
+      })),
+    );
   }, [statisticForRange, totalSpent, hovered]);
 
   return (
@@ -89,9 +87,7 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
           <ReactTooltip
             id="chart"
             getContent={() =>
-              typeof hovered == 'number'
-                ? statistic[hovered]?.tooltip
-                : null
+              typeof hovered == 'number' ? statistic[hovered]?.tooltip : null
             }
           />
         </div>
