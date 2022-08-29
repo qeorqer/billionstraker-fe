@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 
 import { transactionType } from 'types/transaction.type';
 import { formatTransactionDate } from 'utils/time';
@@ -16,7 +15,6 @@ type propsType = {
 
 const Transaction: FC<propsType> = ({ transaction }) => {
   const { lang } = useAppSelector(userData);
-  const { t } = useTranslation();
 
   return (
     <Card

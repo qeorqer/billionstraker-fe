@@ -11,7 +11,7 @@ type propsType = {
 const ListItem: FC<propsType> = ({ listItem }) => {
   return (
     <Card
-      className="mb-3  w-75 mx-auto fw-bold text-center"
+      className="mb-3 mx-auto fw-bold text-center"
       bg="light"
       text="dark"
     >
