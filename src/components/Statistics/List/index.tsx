@@ -19,17 +19,17 @@ export const List: FC<propsType> = ({ statisticForRange, totalSpent }) => {
     (el, index) => ({
       title: el._id,
       value: el.total,
-      percentage: Math.round(100 * el.total / totalSpent) || '<1',
+      percentage: Math.round((100 * el.total) / totalSpent) || '<1',
     }),
   );
 
   return (
     <div>
       {dataForRange
-      .sort((a, b) => b.value - a.value)
-      .map((listItem) => (
-        <ListItem key={listItem.title} listItem={listItem} />
-      ))}
+        .sort((a, b) => b.value - a.value)
+        .map((listItem) => (
+          <ListItem key={listItem.title} listItem={listItem} />
+        ))}
     </div>
   );
 };
