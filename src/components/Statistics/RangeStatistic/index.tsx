@@ -30,8 +30,8 @@ const RangeStatistic: FC<propsType> = ({
   setBalance,
 }) => {
   const { t } = useTranslation();
-  const { lang, user } = useAppSelector(userData);
 
+  const { lang, user } = useAppSelector(userData);
   const { isStatisticsForBalanceLoading } = useAppSelector(statisticData);
   const { balances } = useAppSelector((state) => state.balanceData);
 
