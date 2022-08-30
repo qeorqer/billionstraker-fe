@@ -99,5 +99,12 @@
   "this week": "This week",
   "this month": "This month",
   "before this month": "Before this month",
-  "other": "Other"
+  "other": "Other",
+  "what is this": "What is this?",
+  "what does this app do": "What does Billionstraker do?",
+  "the main idea of the app": "The main idea of the app is to help people easily(!) track their budget. The app makes it easy to keep information about ALL of your incomes or expenses in a single place and much more.",
+  "about statistics": "Also, Billionstraker is great when it comes to analyzing your expenses. You can see the whole picture of your expenses/incomes and plan your budget.",
+  "more over the has mobile version": "App is fully responsive and can be perfectly used on mobile(Personally, that's my favorite option). Moreover, the PWA is coming soon.",
+  "so there is no reason not to check it out": "So there is absolutely no reason for you not to check Billionstraker out. Jump right in and see for yourself",
+  "check it out": "Get started"
 }
