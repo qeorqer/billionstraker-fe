@@ -4,9 +4,10 @@ import { Col, Container, Row } from 'react-bootstrap';
 import LoginForm from 'components/Authorization/LogInForm';
 import SignUpForm from 'components/Authorization/SignUpForm';
 import logo from 'assets/logo.png';
-import Index from 'components/LanguageSwitcher';
+import LanguageSwitcher from 'components/LanguageSwitcher';
 
-import './styles.scss';
+import './styles.scss';;
+import { NavLink } from 'react-router-dom';
 
 type propsType = {
   t: (text: string) => string;
@@ -51,11 +52,16 @@ const Authorization: React.FC<propsType> = ({
               </p>
             </>
           )}
+          <p>
+            <NavLink to="/about" className='text-white fw-bold fs-6'>
+              {t('what is this')}
+            </NavLink>
+          </p>
           <div
             className="d-flex justify-content-around languagesController pb-3"
             style={{ width: '100px', margin: '0 auto' }}
           >
-            <Index />
+            <LanguageSwitcher />
           </div>
         </Col>
       </Row>

@@ -12,7 +12,11 @@ type propsType = {
 
 const ListItem: FC<propsType> = ({ listItem }) => {
   return (
-    <Card className="mb-3 mx-auto text-center statisticsListItem" bg="light" text="dark">
+    <Card
+      className="mb-3 mx-auto text-center statisticsListItem"
+      bg="light"
+      text="dark"
+    >
       <Card.Body>
         <Row>
           <Col xs="6" lg="3">

@@ -7,7 +7,7 @@ import ruFlag from 'assets/ru.png';
 import { userData } from 'store/selectors';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 
-const Index = () => {
+const LanguageSwitcher = () => {
   const dispatch = useAppDispatch();
   const { lang } = useAppSelector(userData);
 
@@ -34,4 +34,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default LanguageSwitcher;

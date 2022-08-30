@@ -4,6 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import CreateTransaction from 'pages/CreateTransaction';
 import ProfilePage from 'pages/Profile';
 import AuthorizationPage from 'pages/Authorization';
+import AboutApp from 'pages/AboutApp';
 import Loader from 'components/Loader';
 import InitPage from 'pages/initPage/Init';
 import StatisticsPage from 'pages/Statistics';
@@ -38,6 +39,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
       ) : (
         <Switch>
           <Route path="/authorization" component={AuthorizationPage} />
+          <Route path="/about" component={AboutApp} />
           <Redirect to="/authorization" />
         </Switch>
       )}
