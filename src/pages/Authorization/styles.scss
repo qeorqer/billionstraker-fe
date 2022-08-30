@@ -16,7 +16,7 @@
     font-size: 35px;
   }
 
-  img{
+  img {
     @media (max-width: 576px) {
       margin-top: 30px;
     }
@@ -51,6 +51,15 @@
 
     span {
       font-weight: bold;
+    }
+  }
+
+  a {
+    color: #F3C709;
+    transition: .3s;
+
+    &:hover {
+      color: #F3C709;
     }
   }
 }

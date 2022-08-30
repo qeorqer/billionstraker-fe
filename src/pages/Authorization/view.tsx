@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 import LoginForm from 'components/Authorization/LogInForm';
 import SignUpForm from 'components/Authorization/SignUpForm';
@@ -7,7 +8,6 @@ import logo from 'assets/logo.png';
 import LanguageSwitcher from 'components/LanguageSwitcher';
 
 import './styles.scss';;
-import { NavLink } from 'react-router-dom';
 
 type propsType = {
   t: (text: string) => string;
@@ -53,7 +53,7 @@ const Authorization: React.FC<propsType> = ({
             </>
           )}
           <p>
-            <NavLink to="/about" className='text-white fw-bold fs-6'>
+            <NavLink to="/about" className='fw-bold fs-6'>
               {t('what is this')}
             </NavLink>
           </p>
