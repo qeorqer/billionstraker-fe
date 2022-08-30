@@ -23,7 +23,7 @@ const Authorization: React.FC<propsType> = ({
   <section className="signUp align-items-md-center d-flex">
     <Container>
       <Row className="h-100">
-        <Col xs="12" sm="6" className="text-center">
+        <Col xs="12" sm="6" className="text-center mt-5 mt-sm-0">
           <img src={logo} alt="logo" />
           <h1 className="yellowText">Billionstracker</h1>
           <p>{t('Powerful app for controlling your budget')}</p>
