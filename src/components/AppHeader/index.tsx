@@ -71,15 +71,21 @@ const AppHeader = () => {
                 </Dropdown.Item>
                 <Dropdown.Item
                   as="span"
-                  onClick={() => history.push('/balances')}
+                  onClick={() => history.push('/balance')}
                 >
-                  {t('balances')}
+                  {t('balance')}
                 </Dropdown.Item>
                 <Dropdown.Item
                   as="span"
                   onClick={() => history.push('/categories')}
                 >
                   {t('categories')}
+                </Dropdown.Item>
+                <Dropdown.Item
+                  as="span"
+                  onClick={() => history.push('/guide')}
+                >
+                  {t('usage guide')}
                 </Dropdown.Item>
                 <Dropdown.Item href="https://t.me/qeorqe" target="_blank">
                   {t('Support')}{' '}

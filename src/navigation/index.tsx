@@ -5,11 +5,11 @@ import CreateTransaction from 'pages/CreateTransaction';
 import ProfilePage from 'pages/Profile';
 import AuthorizationPage from 'pages/Authorization';
 import AboutApp from 'pages/AboutApp';
-import Loader from 'components/Loader';
-import InitPage from 'pages/initPage/Init';
+import GuidePage from 'pages/Guide';
 import StatisticsPage from 'pages/Statistics';
-import BalancesPage from 'pages/Balances';
+import BalancePage from 'pages/Balance';
 import CategoriesPage from 'pages/Categories';
+import Loader from 'components/Loader';
 import { useAppSelector } from 'hooks/react-redux.hook';
 import { userData } from 'store/selectors';
 
@@ -31,8 +31,8 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
           <Route path="/statistics" component={StatisticsPage} />
           <Route path="/createTransaction" component={CreateTransaction} />
           <Route path="/home" component={ProfilePage} />
-          <Route path="/initialization" component={InitPage} />
-          <Route path="/balances" component={BalancesPage} />
+          <Route path="/guide" component={GuidePage} />
+          <Route path="/balance" component={BalancePage} />
           <Route path="/categories" component={CategoriesPage} />
           <Redirect to="/home" />
         </Switch>

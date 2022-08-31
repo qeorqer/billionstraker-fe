@@ -31,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     if (isAuth && user.isFirstEnter) {
-      history.push('/initialization');
+      history.push('/guide');
     }
   }, [isAuth, user]);
 
@@ -80,7 +80,7 @@ const App = () => {
 
   return (
     <>
-      {isAuth && user?.isFirstEnter === false && <AppHeader />}
+      {isAuth && <AppHeader />}
       <AppRouter isAuth={isAuth} />
       <ToastContainer
         transition={Slide}

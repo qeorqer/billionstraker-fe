@@ -15,7 +15,7 @@ type propsType = {
   handleAddBalance: () => void;
 };
 
-const Balances: React.FC<propsType> = ({
+const Balance: React.FC<propsType> = ({
   t,
   balances,
   name,
@@ -49,4 +49,4 @@ const Balances: React.FC<propsType> = ({
   </>
 );
 
-export default Balances;
+export default Balance;
