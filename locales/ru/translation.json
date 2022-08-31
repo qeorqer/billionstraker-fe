@@ -121,5 +121,12 @@
   "that is all for the guidance": "Это все что касается гайда. Надеюсь тебе понравится Billionstraker так же как и мне. Можно без проблем дергать меня (gorapus@gmail.com) в случае каких либо вопросов, багов или предложений для нового функционала.",
   "if you read here": "Если ты дочитал так далеко, не стоит ли создать счет прямо сейчас?",
   "you need to have one balance": "Нужно создать как минимум один счет и категорию для этой операции",
-  "you need to have two balance": "Нужно создать минимум два счета для этой операции"
+  "you need to have two balance": "Нужно создать минимум два счета для этой операции",
+  "User created successfully": "Пользователь успешно создан",
+  "User already exists": "Такой пользователь уже существует",
+  "There are validation errors": "Ошибки валидации",
+  "Unhandled error.": "Ошибка сервера",
+  "There is no such user.": "Нет такого пользователя",
+  "Incorrect login data": "Некоректные данные",
+  "your session has expired": "Время сессии истекло"
 }
