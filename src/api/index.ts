@@ -46,12 +46,6 @@ export const setFirstEnter = (): Promise<
   AxiosResponse<updateUserResponseType>
 > => api.patch('/user/setFirstEnter');
 
-export const setInitialValues = (body: {
-  card: number;
-  cash: number;
-}): Promise<AxiosResponse<updateUserResponseType>> =>
-  api.patch('/user/setInitialValues', body);
-
 /* transaction requests */
 export const addTransaction = (body: {
   transaction: transactionType;

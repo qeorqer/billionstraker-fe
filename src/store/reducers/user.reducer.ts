@@ -72,15 +72,6 @@ export const setFirstEnter = createAsyncThunk(
     await api.setFirstEnter(),
 );
 
-export const setInitialValues = createAsyncThunk(
-  'user/setInitialValues',
-  async (body: {
-    card: number;
-    cash: number;
-  }): Promise<AxiosResponse<updateUserResponseType>> =>
-    await api.setInitialValues(body),
-);
-
 export type userState = {
   user: userType;
   isAuth: boolean | null;
@@ -181,14 +172,6 @@ const userReducer = createSlice({
 
     builder.addCase(setFirstEnter.fulfilled, (state, action) => {
       state.user = action.payload.data.user;
-    });
-
-    builder.addCase(setInitialValues.fulfilled, (state, action) => {
-      state.user = action.payload.data.user;
-
-      toast(i18next.t(action.payload?.data.message!), {
-        type: 'success',
-      });
     });
   },
 });
