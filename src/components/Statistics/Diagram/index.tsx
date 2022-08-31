@@ -37,7 +37,10 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
       statisticForRange.forEach((item) => {
         const percentage = (100 * item.total) / totalSpent;
         if (percentage < 5) {
-          otherItems.total = Decimal.add(otherItems.total,item.total).toNumber();
+          otherItems.total = Decimal.add(
+            otherItems.total,
+            item.total,
+          ).toNumber();
         } else {
           formattedStatistic.push(item);
         }
