@@ -2,12 +2,12 @@ import React from 'react';
 import i18next from 'i18next';
 
 import { changeLang } from 'store/reducers/user.reducer';
-import enFlag from 'assets/en.png';
-import ruFlag from 'assets/ru.png';
+import enFlag from 'assets/common/en.png';
+import ruFlag from 'assets/common/ru.png';
 import { userData } from 'store/selectors';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 
-const Index = () => {
+const LanguageSwitcher = () => {
   const dispatch = useAppDispatch();
   const { lang } = useAppSelector(userData);
 
@@ -34,4 +34,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default LanguageSwitcher;

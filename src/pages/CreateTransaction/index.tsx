@@ -10,10 +10,13 @@ import { getBalances } from 'store/reducers/balance.reducer';
 import { createTransaction } from 'store/reducers/transaction.reducer';
 
 import CreateTransaction from './view';
+import { useHistory } from 'react-router-dom';
 
 const CreateTransactionPage = () => {
   const { categories } = useAppSelector(categoryData);
   const { balances } = useAppSelector((state) => state.balanceData);
+  const [canCreateTransaction, setCanCreateTransaction] =
+    useState<boolean>(false);
 
   const [transactionType, setTransactionType] =
     useState<transactionTypes>('expense');
@@ -27,6 +30,7 @@ const CreateTransactionPage = () => {
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { push } = useHistory();
 
   const validateSumReg = /^(0|[1-9]\d*)(\.\d+)?$/;
 
@@ -141,6 +145,36 @@ const CreateTransactionPage = () => {
     );
   };
 
+  const handleCreateBalance = () => push('balances');
+
+  const handleCreateCategory = () => push('categories');
+
+  useEffect(() => {
+    switch (transactionType) {
+      case 'expense':
+        setCanCreateTransaction(
+          Boolean(
+            balances.length &&
+              categories.some(
+                (category) => category.categoryType === 'expense',
+              ),
+          ),
+        );
+        break;
+      case 'profit':
+        setCanCreateTransaction(
+          Boolean(
+            balances.length &&
+              categories.some((category) => category.categoryType === 'profit'),
+          ),
+        );
+        break;
+      case 'exchange':
+        setCanCreateTransaction(Boolean(balances.length >= 2));
+        break;
+    }
+  }, [categories, balances, transactionType]);
+
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getBalances());
@@ -168,6 +202,9 @@ const CreateTransactionPage = () => {
       handleSubmit={handleSubmit}
       date={date}
       setDate={setDate}
+      canCreateTransaction={canCreateTransaction}
+      handleCreateBalance={handleCreateBalance}
+      handleCreateCategory={handleCreateCategory}
     />
   );
 };

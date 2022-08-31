@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import ReactTooltip from 'react-tooltip';
 import i18next from 'i18next';
+import Decimal from 'decimal.js';
 
 import { expenseIncomeType } from 'types/statistic.type';
 import { formattingNumber } from 'utils/formattingNumber';
@@ -36,7 +37,10 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
       statisticForRange.forEach((item) => {
         const percentage = (100 * item.total) / totalSpent;
         if (percentage < 5) {
-          otherItems.total += item.total;
+          otherItems.total = Decimal.add(
+            otherItems.total,
+            item.total,
+          ).toNumber();
         } else {
           formattedStatistic.push(item);
         }

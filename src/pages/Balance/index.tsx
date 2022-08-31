@@ -6,9 +6,9 @@ import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { createBalance } from 'store/reducers/balance.reducer';
 import { handleChangeAmount } from 'utils/handleChangeAmount';
 
-import Balances from './view';
+import Balance from './view';
 
-const BalancesPage = () => {
+const BalancePage = () => {
   const [name, setName] = useState<string>('');
   const [amount, setAmount] = useState<number | string>('');
 
@@ -39,7 +39,7 @@ const BalancesPage = () => {
   };
 
   return (
-    <Balances
+    <Balance
       t={t}
       balances={balances}
       name={name}
@@ -51,4 +51,4 @@ const BalancesPage = () => {
   );
 };
 
-export default BalancesPage;
+export default BalancePage;

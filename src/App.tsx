@@ -11,6 +11,7 @@ import AppHeader from 'components/AppHeader';
 import AppRouter from 'navigation/';
 import { loginResponseType } from 'types/user.type';
 import axiosInstance, { baseUrl } from 'api/axiosInstance';
+import { useTranslation } from 'react-i18next';
 
 import './App.scss';
 
@@ -18,6 +19,9 @@ const App = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const { isAuth, user } = useAppSelector(userData);
+  const { t } = useTranslation();
+
+  // TODO: move this somewhere
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -31,7 +35,7 @@ const App = () => {
 
   useEffect(() => {
     if (isAuth && user.isFirstEnter) {
-      history.push('/initialization');
+      history.push('/guide');
     }
   }, [isAuth, user]);
 
@@ -62,14 +66,9 @@ const App = () => {
           localStorage.setItem('token', response.data.accessToken);
           return axiosInstance.request(originalRequest);
         } catch (e) {
-          toast(
-            localStorage.getItem('i18nextLng') === 'en'
-              ? 'Your session has expired'
-              : 'Время сессии истекло',
-            {
-              type: 'warning',
-            },
-          );
+          toast(t('your session has expired'), {
+            type: 'warning',
+          });
 
           dispatch(logOut());
         }
@@ -80,7 +79,7 @@ const App = () => {
 
   return (
     <>
-      {isAuth && user?.isFirstEnter === false && <AppHeader />}
+      {isAuth && <AppHeader />}
       <AppRouter isAuth={isAuth} />
       <ToastContainer
         transition={Slide}

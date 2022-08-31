@@ -3,10 +3,10 @@ import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 
-import logo from 'assets/logo.png';
-import { ReactComponent as Profile } from 'assets/profile.svg';
-import { ReactComponent as Transactions } from 'assets/transactions.svg';
-import { ReactComponent as Statistics } from 'assets/statistics.svg';
+import logo from 'assets/common/logo.png';
+import { ReactComponent as Profile } from 'assets/tabMenu/profile.svg';
+import { ReactComponent as Transactions } from 'assets/tabMenu/transactions.svg';
+import { ReactComponent as Statistics } from 'assets/tabMenu/statistics.svg';
 import { useAppDispatch } from 'hooks/react-redux.hook';
 import { logOut } from 'store/reducers/user.reducer';
 import LanguageSwitcher from 'components/LanguageSwitcher';
@@ -71,15 +71,18 @@ const AppHeader = () => {
                 </Dropdown.Item>
                 <Dropdown.Item
                   as="span"
-                  onClick={() => history.push('/balances')}
+                  onClick={() => history.push('/balance')}
                 >
-                  {t('balances')}
+                  {t('balance')}
                 </Dropdown.Item>
                 <Dropdown.Item
                   as="span"
                   onClick={() => history.push('/categories')}
                 >
                   {t('categories')}
+                </Dropdown.Item>
+                <Dropdown.Item as="span" onClick={() => history.push('/guide')}>
+                  {t('usage guide')}
                 </Dropdown.Item>
                 <Dropdown.Item href="https://t.me/qeorqe" target="_blank">
                   {t('Support')}{' '}

@@ -1,5 +1,5 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import React, { Dispatch, FC, SetStateAction } from 'react';
+import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 //@ts-ignore
 //todo: learn how to work when there is no ts for library
@@ -13,6 +13,7 @@ import CustomSelect from 'components/CustomSelect';
 import RangeStatisticsItem from 'components/Statistics/RangeStatisticsItem';
 
 import './styles.scss';
+import { useHistory } from 'react-router-dom';
 
 type propsType = {
   statisticsForRange: getStatisticsForBalanceType | null;
@@ -30,10 +31,13 @@ const RangeStatistic: FC<propsType> = ({
   setBalance,
 }) => {
   const { t } = useTranslation();
+  const { push } = useHistory();
 
   const { lang, user } = useAppSelector(userData);
   const { isStatisticsForBalanceLoading } = useAppSelector(statisticData);
   const { balances } = useAppSelector((state) => state.balanceData);
+
+  const handleCreateTransaction = () => push('createTransaction');
 
   return (
     <>
@@ -94,8 +98,15 @@ const RangeStatistic: FC<propsType> = ({
           )}
         </Row>
       ) : (
-        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 my-md-0 ">
-          <p>{t('Some of your statistic will be here')}</p>
+        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 flex-column">
+          <p className="mb-2">{t('Some of your statistic will be here')}</p>
+          <Button
+            variant="warning"
+            className="w300Px text-white"
+            onClick={handleCreateTransaction}
+          >
+            {t('create transaction')}
+          </Button>
         </div>
       )}
     </>

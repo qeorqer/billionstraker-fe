@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -18,11 +18,12 @@ import CustomSelect from 'components/CustomSelect';
 import { transactionsSectionsType } from 'types/transaction.type';
 
 import {
+  formTransactionsSections,
   transactionTypesToShow,
   transactionTypesToShowType,
-  formTransactionsSections,
 } from './utils';
 import './styles.scss';
+import { useHistory } from 'react-router-dom';
 
 const Transactions = () => {
   const { isTransactionsloading, transactions, numberOfTransactions } =
@@ -31,6 +32,7 @@ const Transactions = () => {
   const { balances } = useAppSelector((state) => state.balanceData);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const { push } = useHistory();
 
   const LIMIT = 10;
   const [transactionsSections, setTransactionsSections] =
@@ -58,6 +60,8 @@ const Transactions = () => {
       setNumberToSkip(LIMIT + numberToSkip);
     }
   };
+
+  const handleCreateTransaction = () => push('createTransaction');
 
   useEffect(() => {
     setNumberToSkip(LIMIT);
@@ -204,8 +208,15 @@ const Transactions = () => {
           </InfiniteScroll>
         </>
       ) : (
-        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 mt-3">
-          <p>{t('There is no transactions yet')}</p>
+        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 mt-3 flex-column">
+          <p className="fs-5 mb-2">{t('There is no transactions yet')}</p>
+          <Button
+            variant="warning"
+            className="w300Px text-white"
+            onClick={handleCreateTransaction}
+          >
+            {t('create transaction')}
+          </Button>
         </div>
       )}
     </div>
