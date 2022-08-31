@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
-import about1 from 'assets/about-1.png';
-import about2 from 'assets/about-2.png';
-import about3 from 'assets/about-3.png';
+import about1 from 'assets/about/about-1.png';
+import about2 from 'assets/about/about-2.png';
+import about3 from 'assets/about/about-3.png';
 
 import './styles.scss';
 

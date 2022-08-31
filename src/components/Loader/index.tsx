@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import loaderImage from 'assets/loader.gif';
+import loaderImage from 'assets/common/loader.gif';
 
 import './styles.scss';
 

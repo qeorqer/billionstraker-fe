@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import LoginForm from 'components/Authorization/LogInForm';
 import SignUpForm from 'components/Authorization/SignUpForm';
-import logo from 'assets/logo.png';
+import logo from 'assets/common/logo.png';
 import LanguageSwitcher from 'components/LanguageSwitcher';
 
 import './styles.scss';;
