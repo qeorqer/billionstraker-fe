@@ -19,7 +19,6 @@ const App = () => {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const { isAuth, user } = useAppSelector(userData);
-
   const { t } = useTranslation();
 
   // TODO: move this somewhere
@@ -67,11 +66,9 @@ const App = () => {
           localStorage.setItem('token', response.data.accessToken);
           return axiosInstance.request(originalRequest);
         } catch (e) {
-          toast(t('your session has expired'),
-            {
-              type: 'warning',
-            },
-          );
+          toast(t('your session has expired'), {
+            type: 'warning',
+          });
 
           dispatch(logOut());
         }
@@ -86,9 +83,9 @@ const App = () => {
       <AppRouter isAuth={isAuth} />
       <ToastContainer
         transition={Slide}
-        position='top-right'
+        position="top-right"
         autoClose={2000}
-        theme='dark'
+        theme="dark"
         hideProgressBar
         closeOnClick
       />
