@@ -44,10 +44,12 @@ export const deleteCategory = createAsyncThunk(
 
 export type categoryState = {
   categories: categoryType[];
+  isLoadingCategories: boolean;
 };
 
 const initialState: categoryState = {
   categories: [] as categoryType[],
+  isLoadingCategories: false,
 };
 
 const categoryReducer = createSlice({
@@ -55,8 +57,17 @@ const categoryReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getCategories.pending, (state) => {
+      state.isLoadingCategories = true;
+    });
+
     builder.addCase(getCategories.fulfilled, (state, action) => {
       state.categories = action.payload.data.categories;
+      state.isLoadingCategories = false;
+    });
+
+    builder.addCase(getCategories.rejected, (state) => {
+      state.isLoadingCategories = false;
     });
 
     builder.addCase(createCategory.fulfilled, (state, action) => {

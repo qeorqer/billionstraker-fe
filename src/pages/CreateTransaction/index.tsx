@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { categoryData } from 'store/selectors';
@@ -10,11 +11,12 @@ import { getBalances } from 'store/reducers/balance.reducer';
 import { createTransaction } from 'store/reducers/transaction.reducer';
 
 import CreateTransaction from './view';
-import { useHistory } from 'react-router-dom';
 
 const CreateTransactionPage = () => {
-  const { categories } = useAppSelector(categoryData);
-  const { balances } = useAppSelector((state) => state.balanceData);
+  const { categories, isLoadingCategories } = useAppSelector(categoryData);
+  const { balances, isLoadingBalances } = useAppSelector(
+    (state) => state.balanceData,
+  );
   const [canCreateTransaction, setCanCreateTransaction] =
     useState<boolean>(false);
 
@@ -27,6 +29,7 @@ const CreateTransactionPage = () => {
   const [exchangeSum, setExchangeSum] = useState<number | string>('');
   const [title, setTitle] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date());
+  const [isLoading, setIsLoading] = useState(false);
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -180,6 +183,10 @@ const CreateTransactionPage = () => {
     dispatch(getBalances());
   }, []);
 
+  useEffect(() => {
+    setIsLoading(isLoadingCategories && isLoadingBalances);
+  }, [isLoadingBalances, isLoadingCategories]);
+
   return (
     <CreateTransaction
       t={t}
@@ -205,6 +212,7 @@ const CreateTransactionPage = () => {
       canCreateTransaction={canCreateTransaction}
       handleCreateBalance={handleCreateBalance}
       handleCreateCategory={handleCreateCategory}
+      isLoading={isLoading}
     />
   );
 };
