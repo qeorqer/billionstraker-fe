@@ -10,12 +10,7 @@ const AboutAppPage: FC = () => {
 
   const handleCheckOutClick = () => push('/authorization');
 
-  return (
-    <AboutApp
-      t={t}
-      handleCheckOutClick={handleCheckOutClick}
-    />
-  );
+  return <AboutApp t={t} handleCheckOutClick={handleCheckOutClick} />;
 };
 
 export default AboutAppPage;

@@ -9,7 +9,7 @@ import { userData } from 'store/selectors';
 import Guide from './view';
 
 const GuidePage = () => {
-  const {  user } = useAppSelector(userData);
+  const { user } = useAppSelector(userData);
   const dispatch = useAppDispatch();
 
   const { push } = useHistory();

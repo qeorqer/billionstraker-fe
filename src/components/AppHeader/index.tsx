@@ -81,10 +81,7 @@ const AppHeader = () => {
                 >
                   {t('categories')}
                 </Dropdown.Item>
-                <Dropdown.Item
-                  as="span"
-                  onClick={() => history.push('/guide')}
-                >
+                <Dropdown.Item as="span" onClick={() => history.push('/guide')}>
                   {t('usage guide')}
                 </Dropdown.Item>
                 <Dropdown.Item href="https://t.me/qeorqe" target="_blank">

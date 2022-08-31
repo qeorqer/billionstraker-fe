@@ -12,16 +12,16 @@ type propsType = {
   handleCheckOutClick: () => void;
 };
 
-const AboutApp: FC<propsType> = ({t, handleCheckOutClick}) => (
-  <section className='aboutSection text-center text-white py-4 px-2'>
+const AboutApp: FC<propsType> = ({ t, handleCheckOutClick }) => (
+  <section className="aboutSection text-center text-white py-4 px-2">
     <Container>
-      <h1 className='yellowText fs-2'>{t('what does this app do')}</h1>
+      <h1 className="yellowText fs-2">{t('what does this app do')}</h1>
       <p>{t('the main idea of the app')}</p>
-      <img src={about1} alt='transactions' />
+      <img src={about1} alt="transactions" />
       <p>{t('about statistics')}</p>
-      <img src={about2} alt='statistics' />
+      <img src={about2} alt="statistics" />
       <p>{t('more over the has mobile version')}</p>
-      <img src={about3} alt='mobile version' className='w-320'/>
+      <img src={about3} alt="mobile version" className="w-320" />
       <p>{t('so there is no reason not to check it out')}</p>
       <Button
         variant="warning"

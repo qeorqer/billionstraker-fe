@@ -7,7 +7,7 @@ import SignUpForm from 'components/Authorization/SignUpForm';
 import logo from 'assets/common/logo.png';
 import LanguageSwitcher from 'components/LanguageSwitcher';
 
-import './styles.scss';;
+import './styles.scss';
 
 type propsType = {
   t: (text: string) => string;
@@ -53,7 +53,7 @@ const Authorization: React.FC<propsType> = ({
             </>
           )}
           <p>
-            <NavLink to="/about" className='fw-bold fs-6'>
+            <NavLink to="/about" className="fw-bold fs-6">
               {t('what is this')}
             </NavLink>
           </p>

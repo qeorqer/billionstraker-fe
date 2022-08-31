@@ -9,8 +9,6 @@
   "Statistics": "Статистика",
   "Support": "Любые вопросы",
   "Log out": "Выйти",
-  "Total balance": "Общий баланс:",
-  "There is no money yet": "Пока что нет информации о деньгах",
   "Spent this month": "Потратил за месяц",
   "Earned this month": "Заработал за месяц",
   "Spent for the whole time": "Потратил за всё время",
@@ -41,7 +39,7 @@
   "Select range": "Выбери диапазон дат",
   "Pie chart": "Диаграмма",
   "List": "Список",
-  "Some of your statistic will be here": "Статистика будет здесь",
+  "Some of your statistic will be here": "Пока еще недостаточно данных для статистики",
   "General statistic": "Общая статистика",
   "Load more": "Загрузить еще",
   "Spent during this period": "Потратил за это время",
@@ -121,5 +119,7 @@
   "select dates range and balance": "Выбери диапазон месяцев, счет и изучай статистику в форме диаграммы и списка.",
   "check out statistics": "Заценить статистику",
   "that is all for the guidance": "Это все что касается гайда. Надеюсь тебе понравится Billionstraker так же как и мне. Можно без проблем дергать меня (gorapus@gmail.com) в случае каких либо вопросов, багов или предложений для нового функционала.",
-  "if you read here": "Если ты дочитал так далеко, не стоит ли создать счет прямо сейчас?"
+  "if you read here": "Если ты дочитал так далеко, не стоит ли создать счет прямо сейчас?",
+  "you need to have one balance": "Нужно создать как минимум один счет и категорию для этой операции",
+  "you need to have two balance": "Нужно создать минимум два счета для этой операции"
 }
