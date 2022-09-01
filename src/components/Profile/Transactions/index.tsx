@@ -165,7 +165,7 @@ const Transactions = () => {
             </Col>
             <Col xs="12" sm="4">
               <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
-                {t('balances')}:
+                {t('balance')}:
               </p>
               <CustomSelect
                 defaultButtonText={t('show all')}

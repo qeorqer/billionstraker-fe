@@ -37,8 +37,8 @@ const statisticReducer = createSlice({
     });
 
     builder.addCase(getStatisticsForBalance.fulfilled, (state, action) => {
-      state.isStatisticsForBalanceLoading = false;
       state.statisticsForBalance = action.payload.data.statistic;
+      state.isStatisticsForBalanceLoading = false;
     });
 
     builder.addCase(getStatisticsForBalance.rejected, (state) => {
