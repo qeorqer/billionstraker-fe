@@ -13,7 +13,7 @@ import {
 } from 'types/user.type';
 
 export const signUp = createAsyncThunk<
-  signUpResponseType,
+  loginResponseType,
   authData,
   {
     rejectValue: signUpResponseType;
@@ -103,9 +103,9 @@ const userReducer = createSlice({
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(i18next.t(action.payload.message), {
-        type: 'success',
-      });
+      localStorage.setItem('token', action.payload.accessToken);
+      state.user = action.payload.user;
+      state.isAuth = true;
     });
 
     builder.addCase(signUp.rejected, (state, action) => {
