@@ -75,6 +75,7 @@ const CreateTransactionPage = () => {
       const balanceToSubtract = balances.find(
         (balance) => balance._id === balanceId,
       );
+
       if (!balance || !balanceToSubtract) {
         return toast(t('the balance does not exist'), {
           type: 'error',
@@ -105,6 +106,9 @@ const CreateTransactionPage = () => {
         }),
       );
 
+      setSum('');
+      setExchangeSum('');
+      setTitle('');
       return;
     }
 
@@ -146,6 +150,10 @@ const CreateTransactionPage = () => {
         balanceId: balanceId,
       }),
     );
+
+    setSum('');
+    setExchangeSum('');
+    setTitle('');
   };
 
   const handleCreateBalance = () => push('balances');
