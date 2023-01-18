@@ -127,5 +127,7 @@
   "Unhandled error.": "Ошибка сервера",
   "There is no such user.": "Нет такого пользователя",
   "Incorrect login data": "Некоректные данные",
-  "your session has expired": "Время сессии истекло"
+  "your session has expired": "Время сессии истекло",
+  "show": "Показать",
+  "hide": "Скрыть"
 }

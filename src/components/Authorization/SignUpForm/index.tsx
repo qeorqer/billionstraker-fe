@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormControl, FormGroup } from 'react-bootstrap';
@@ -24,6 +24,7 @@ const SignUpFormMarkup: React.FC<FormikProps<signupForm>> = ({
   isSubmitting,
 }) => {
   const { t } = useTranslation();
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -32,7 +33,7 @@ const SignUpFormMarkup: React.FC<FormikProps<signupForm>> = ({
         render={({ field }: FieldProps) => (
           <FormGroup controlId="login" className="authFormGroup mb-4">
             <FormControl
-              type={'email'}
+              type="email"
               value={field.value}
               onChange={field.onChange}
               placeholder={t('login')}
@@ -56,11 +57,14 @@ const SignUpFormMarkup: React.FC<FormikProps<signupForm>> = ({
         render={({ field }: FieldProps) => (
           <FormGroup controlId="password" className="authFormGroup mb-4">
             <FormControl
-              type={'password'}
+              type={isPasswordShown ? 'text' : 'password'}
               value={field.value}
               onChange={field.onChange}
               placeholder={t('password')}
             />
+            <span onClick={() => setIsPasswordShown(!isPasswordShown)}>
+              {t(isPasswordShown ? 'hide' : 'show')}
+            </span>
             {touched.password && errors.password && (
               <FormControl.Feedback type="invalid" tooltip>
                 {errors.password}
@@ -79,11 +83,14 @@ const SignUpFormMarkup: React.FC<FormikProps<signupForm>> = ({
         render={({ field }: FieldProps) => (
           <FormGroup controlId="confirmPassword" className="authFormGroup mb-4">
             <FormControl
-              type={'password'}
+              type={isPasswordShown ? 'text' : 'password'}
               value={field.value}
               onChange={field.onChange}
               placeholder={t('Confirm password')}
             />
+            <span onClick={() => setIsPasswordShown(!isPasswordShown)}>
+              {t(isPasswordShown ? 'hide' : 'show')}
+            </span>
             {touched.confirmPassword && errors.confirmPassword && (
               <FormControl.Feedback type="invalid" tooltip>
                 {errors.confirmPassword}
@@ -100,8 +107,7 @@ const SignUpFormMarkup: React.FC<FormikProps<signupForm>> = ({
           isSubmitting ||
           Boolean(errors.login && touched.login) ||
           Boolean(errors.password && touched.password)
-        }
-      >
+        }>
         {t('Sign up')}
       </Button>
     </Form>
