@@ -104,6 +104,10 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       localStorage.setItem('token', action.payload.accessToken);
+      localStorage.setItem(
+        'accessExpiration',
+        String(action.payload.accessExpiration),
+      );
       state.user = action.payload.user;
       state.isAuth = true;
     });
@@ -128,6 +132,10 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       localStorage.setItem('token', action.payload.accessToken);
+      localStorage.setItem(
+        'accessExpiration',
+        String(action.payload.accessExpiration),
+      );
       state.user = action.payload.user;
       state.isAuth = true;
     });
@@ -142,12 +150,14 @@ const userReducer = createSlice({
 
     builder.addCase(logOut.fulfilled, (state) => {
       localStorage.removeItem('token');
+      localStorage.removeItem('accessExpiration');
       state.user = {} as userType;
       state.isAuth = false;
     });
 
     builder.addCase(logOut.rejected, (state) => {
       localStorage.removeItem('token');
+      localStorage.removeItem('accessExpiration');
       state.user = {} as userType;
       state.isAuth = false;
     });
@@ -166,7 +176,11 @@ const userReducer = createSlice({
       state.isRefreshLoading = false;
 
       localStorage.setItem('token', action.payload.data.accessToken);
-      state.user = action.payload.data.user;
+      localStorage.setItem(
+        'accessExpiration',
+        String(action.payload.data.accessExpiration),
+      );
+
       state.isAuth = true;
     });
 

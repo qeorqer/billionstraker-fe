@@ -23,11 +23,26 @@ const App = () => {
 
   // TODO: move this somewhere
 
+  const checkIsAccessTokenExpired = (): boolean => {
+    const bufferTimeForRefreshToken = 1000 * 60;
+    const accessExpiration = localStorage.getItem('accessExpiration');
+
+    const refreshTime = Date.now() + bufferTimeForRefreshToken;
+    return refreshTime >= Number(accessExpiration);
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      dispatch(checkAuth());
+      const isTokenExpired = checkIsAccessTokenExpired();
+      console.log(isTokenExpired);
+
+      if (isTokenExpired) {
+        dispatch(checkAuth());
+      } else {
+        dispatch(setAuth(true));
+      }
     } else {
       dispatch(setAuth(false));
     }
