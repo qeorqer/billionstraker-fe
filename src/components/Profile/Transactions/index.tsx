@@ -8,7 +8,7 @@ import {
   getAllUserTransactions,
   resetTransactions,
 } from 'store/reducers/transaction.reducer';
-import { categoryData, transactionData } from 'store/selectors';
+import { categoryData, transactionData, userData } from 'store/selectors';
 import Transaction from 'components/Profile/Transaction';
 import Loader from 'components/Loader';
 import { getCategories } from 'store/reducers/category.reducer';
@@ -29,6 +29,7 @@ const Transactions = () => {
   const { isLoadingTransactions, transactions, numberOfTransactions } =
     useAppSelector(transactionData);
   const { categories } = useAppSelector(categoryData);
+  const { lang } = useAppSelector(userData);
   const { balances } = useAppSelector((state) => state.balanceData);
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -95,8 +96,8 @@ const Transactions = () => {
   }, [shownTransactionsTypes, categoriesToShow, balancesToShow]);
 
   useEffect(() => {
-    setTransactionsSections(formTransactionsSections(transactions));
-  }, [transactions]);
+    setTransactionsSections(formTransactionsSections(transactions, lang));
+  }, [transactions, lang]);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -194,7 +195,7 @@ const Transactions = () => {
             {transactionsSections.map((section) => (
               <React.Fragment key={section.title}>
                 <p className="sectionTitle fs-5 w-75 mx-auto">
-                  {t(section.title)}
+                  {section.title}
                 </p>
                 {section.data.map((transaction, index) => (
                   <Transaction
