@@ -9,6 +9,7 @@ type propsType = {
   handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
   buttonText: string;
   handleSubmit: () => void;
+  isLoading?: boolean;
 };
 
 const BalanceForm: React.FC<propsType> = ({
@@ -18,6 +19,7 @@ const BalanceForm: React.FC<propsType> = ({
   handleChangeAmount,
   buttonText,
   handleSubmit,
+  isLoading,
 }) => {
   const { t } = useTranslation();
 
@@ -41,7 +43,7 @@ const BalanceForm: React.FC<propsType> = ({
         variant="warning"
         className="w300Px text-white"
         onClick={handleSubmit}
-      >
+        disabled={isLoading}>
         {t(buttonText)}
       </Button>
     </Form>

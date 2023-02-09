@@ -26,7 +26,7 @@ import './styles.scss';
 import { useHistory } from 'react-router-dom';
 
 const Transactions = () => {
-  const { isTransactionsloading, transactions, numberOfTransactions } =
+  const { isLoadingTransactions, transactions, numberOfTransactions } =
     useAppSelector(transactionData);
   const { categories } = useAppSelector(categoryData);
   const { balances } = useAppSelector((state) => state.balanceData);
@@ -44,7 +44,7 @@ const Transactions = () => {
   const [balancesToShow, setBalancesToShow] = useState<string>('all');
 
   const handleLoadMore = () => {
-    if (!isTransactionsloading) {
+    if (!isLoadingTransactions) {
       dispatch(
         getAllUserTransactions({
           limit: LIMIT,
@@ -71,7 +71,7 @@ const Transactions = () => {
       setBalancesToShow('all');
     }
 
-    if (!isTransactionsloading) {
+    if (!isLoadingTransactions) {
       dispatch(resetTransactions());
       dispatch(
         getAllUserTransactions({
@@ -102,7 +102,7 @@ const Transactions = () => {
     dispatch(getCategories());
   }, []);
 
-  if (isTransactionsloading && !numberOfTransactions) {
+  if (isLoadingTransactions && !numberOfTransactions) {
     return <Loader />;
   }
 
@@ -113,7 +113,7 @@ const Transactions = () => {
         shownTransactionsTypes === 'all transactions' &&
         !categoriesToShow.length &&
         !balancesToShow.length &&
-        !isTransactionsloading
+        !isLoadingTransactions
       ) && (
         <>
           <p className="text-center fw-bold fs-4">{t('apply filters')}</p>
@@ -190,8 +190,7 @@ const Transactions = () => {
           <InfiniteScroll
             loadMore={handleLoadMore}
             hasMore={numberToSkip <= numberOfTransactions}
-            loader={<Loader key={0} />}
-          >
+            loader={<Loader key={0} />}>
             {transactionsSections.map((section) => (
               <React.Fragment key={section.title}>
                 <p className="sectionTitle fs-5 w-75 mx-auto">
@@ -213,8 +212,7 @@ const Transactions = () => {
           <Button
             variant="warning"
             className="w300Px text-white"
-            onClick={handleCreateTransaction}
-          >
+            onClick={handleCreateTransaction}>
             {t('create transaction')}
           </Button>
         </div>

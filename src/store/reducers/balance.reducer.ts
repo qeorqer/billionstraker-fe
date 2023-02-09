@@ -72,12 +72,21 @@ const balanceReducer = createSlice({
       state.isLoadingBalances = false;
     });
 
+    builder.addCase(createBalance.pending, (state) => {
+      state.isLoadingBalances = true;
+    });
+
     builder.addCase(createBalance.fulfilled, (state, action) => {
+      state.isLoadingBalances = false;
       toast(i18next.t('creating balance success'), {
         type: 'success',
       });
 
       state.balances = [...state.balances, action.payload.data.balance];
+    });
+
+    builder.addCase(createBalance.rejected, (state, action) => {
+      state.isLoadingBalances = false;
     });
 
     builder.addCase(updateBalance.fulfilled, (state, action) => {

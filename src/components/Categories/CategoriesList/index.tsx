@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { categoriesTypes, categoryType } from 'types/category.type';
 import CustomToggle from 'components/CustomToggle';
-import { useAppDispatch } from 'hooks/react-redux.hook';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import {
   deleteCategory,
   updateCategory,
@@ -21,6 +21,8 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
   const [name, setName] = useState<string>('');
   const [categoryType, setCategoryType] = useState<categoriesTypes>('expense');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
+
+  const { isLoadingCategories } = useAppSelector((state) => state.categoryDate);
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -87,8 +89,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
               spaceBetween: 50,
             },
           }}
-          centerInsufficientSlides
-        >
+          centerInsufficientSlides>
           {categories.map((category) => (
             <SwiperSlide className="mb-3" key={category._id}>
               <Card className="h-100">
@@ -107,8 +108,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
                     <Dropdown.Menu>
                       <Dropdown.Item
                         as="span"
-                        onClick={() => handleEditClick(category._id!)}
-                      >
+                        onClick={() => handleEditClick(category._id!)}>
                         {t('edit')}
                       </Dropdown.Item>
                       <Dropdown.Item
@@ -117,8 +117,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
                           dispatch(
                             deleteCategory({ categoryId: category._id! }),
                           )
-                        }
-                      >
+                        }>
                         {t('remove')}
                       </Dropdown.Item>
                     </Dropdown.Menu>
@@ -131,8 +130,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
         <Modal
           show={isModalShown}
           onHide={() => setIsModalShown(false)}
-          centered
-        >
+          centered>
           <Modal.Header closeButton>
             <Modal.Title>{t('edit category')}</Modal.Title>
           </Modal.Header>
@@ -144,6 +142,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
               setCategoryType={setCategoryType}
               handleSubmit={handleEditBalance}
               buttonText="update"
+              isLoading={isLoadingCategories}
             />
           </Modal.Body>
         </Modal>

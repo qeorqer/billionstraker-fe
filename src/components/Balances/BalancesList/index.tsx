@@ -25,7 +25,9 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { balances } = useAppSelector((state) => state.balanceData);
+  const { balances, isLoadingBalances } = useAppSelector(
+    (state) => state.balanceData,
+  );
 
   const handleEditClick = (balanceId: string) => {
     const selectedBalance = balances.find(
@@ -93,8 +95,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
               spaceBetween: 50,
             },
           }}
-          centerInsufficientSlides
-        >
+          centerInsufficientSlides>
           {balances.map((balance) => (
             <SwiperSlide key={balance._id}>
               <Card className="h-100">
@@ -114,16 +115,14 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
                       <Dropdown.Menu>
                         <Dropdown.Item
                           as="span"
-                          onClick={() => handleEditClick(balance._id)}
-                        >
+                          onClick={() => handleEditClick(balance._id)}>
                           {t('edit')}
                         </Dropdown.Item>
                         <Dropdown.Item
                           as="span"
                           onClick={() =>
                             dispatch(deleteBalance({ balanceId: balance._id }))
-                          }
-                        >
+                          }>
                           {t('remove')}
                         </Dropdown.Item>
                       </Dropdown.Menu>
@@ -147,6 +146,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
             handleChangeAmount={handleChangeAmount(setAmount)}
             buttonText="update"
             handleSubmit={handleEditBalance}
+            isLoading={isLoadingBalances}
           />
         </Modal.Body>
       </Modal>
