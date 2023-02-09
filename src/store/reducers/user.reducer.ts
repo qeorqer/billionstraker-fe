@@ -81,7 +81,7 @@ export type userState = {
 };
 
 const initialState: userState = {
-  user: {} as userType,
+  user: JSON.parse(localStorage.getItem('user')!) as userType,
   isAuth: null,
   isRefreshLoading: false,
   isSignUpSignInLoading: false,
@@ -108,6 +108,8 @@ const userReducer = createSlice({
         'accessExpiration',
         String(action.payload.accessExpiration),
       );
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
+
       state.user = action.payload.user;
       state.isAuth = true;
     });
@@ -136,6 +138,8 @@ const userReducer = createSlice({
         'accessExpiration',
         String(action.payload.accessExpiration),
       );
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
+
       state.user = action.payload.user;
       state.isAuth = true;
     });
