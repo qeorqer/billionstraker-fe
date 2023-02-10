@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { categoriesTypes, categoryType } from 'types/category.type';
 import CustomToggle from 'components/CustomToggle';
-import { useAppDispatch } from 'hooks/react-redux.hook';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import {
   deleteCategory,
   updateCategory,
@@ -21,6 +21,8 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
   const [name, setName] = useState<string>('');
   const [categoryType, setCategoryType] = useState<categoriesTypes>('expense');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
+
+  const { isLoadingCategories } = useAppSelector((state) => state.categoryDate);
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -144,6 +146,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
               setCategoryType={setCategoryType}
               handleSubmit={handleEditBalance}
               buttonText="update"
+              isLoading={isLoadingCategories}
             />
           </Modal.Body>
         </Modal>

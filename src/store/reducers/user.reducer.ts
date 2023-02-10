@@ -13,7 +13,7 @@ import {
 } from 'types/user.type';
 
 export const signUp = createAsyncThunk<
-  signUpResponseType,
+  loginResponseType,
   authData,
   {
     rejectValue: signUpResponseType;
@@ -81,7 +81,7 @@ export type userState = {
 };
 
 const initialState: userState = {
-  user: {} as userType,
+  user: JSON.parse(localStorage.getItem('user')!) as userType,
   isAuth: null,
   isRefreshLoading: false,
   isSignUpSignInLoading: false,
@@ -103,9 +103,15 @@ const userReducer = createSlice({
     builder.addCase(signUp.fulfilled, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(i18next.t(action.payload.message), {
-        type: 'success',
-      });
+      localStorage.setItem('token', action.payload.accessToken);
+      localStorage.setItem(
+        'accessExpiration',
+        String(action.payload.accessExpiration),
+      );
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
+
+      state.user = action.payload.user;
+      state.isAuth = true;
     });
 
     builder.addCase(signUp.rejected, (state, action) => {
@@ -128,6 +134,12 @@ const userReducer = createSlice({
       state.isSignUpSignInLoading = false;
 
       localStorage.setItem('token', action.payload.accessToken);
+      localStorage.setItem(
+        'accessExpiration',
+        String(action.payload.accessExpiration),
+      );
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
+
       state.user = action.payload.user;
       state.isAuth = true;
     });
@@ -142,12 +154,14 @@ const userReducer = createSlice({
 
     builder.addCase(logOut.fulfilled, (state) => {
       localStorage.removeItem('token');
+      localStorage.removeItem('accessExpiration');
       state.user = {} as userType;
       state.isAuth = false;
     });
 
     builder.addCase(logOut.rejected, (state) => {
       localStorage.removeItem('token');
+      localStorage.removeItem('accessExpiration');
       state.user = {} as userType;
       state.isAuth = false;
     });
@@ -166,7 +180,11 @@ const userReducer = createSlice({
       state.isRefreshLoading = false;
 
       localStorage.setItem('token', action.payload.data.accessToken);
-      state.user = action.payload.data.user;
+      localStorage.setItem(
+        'accessExpiration',
+        String(action.payload.data.accessExpiration),
+      );
+
       state.isAuth = true;
     });
 

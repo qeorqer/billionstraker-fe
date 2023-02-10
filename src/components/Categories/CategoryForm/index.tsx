@@ -11,6 +11,7 @@ type propsType = {
   setCategoryType: Dispatch<SetStateAction<categoriesTypes>>;
   buttonText: string;
   handleSubmit: () => void;
+  isLoading: boolean;
 };
 
 const CategoryForm: React.FC<propsType> = ({
@@ -20,6 +21,7 @@ const CategoryForm: React.FC<propsType> = ({
   setCategoryType,
   buttonText,
   handleSubmit,
+  isLoading,
 }) => {
   const { t } = useTranslation();
 
@@ -56,6 +58,7 @@ const CategoryForm: React.FC<propsType> = ({
         variant="warning"
         className="w300Px text-white"
         onClick={handleSubmit}
+        disabled={isLoading}
       >
         {t(buttonText)}
       </Button>

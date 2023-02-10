@@ -70,12 +70,21 @@ const categoryReducer = createSlice({
       state.isLoadingCategories = false;
     });
 
+    builder.addCase(createCategory.pending, (state, action) => {
+      state.isLoadingCategories = true;
+    });
+
     builder.addCase(createCategory.fulfilled, (state, action) => {
+      state.isLoadingCategories = false;
       toast(i18next.t('creating category success'), {
         type: 'success',
       });
 
       state.categories = [...state.categories, action.payload.data.category];
+    });
+
+    builder.addCase(createCategory.rejected, (state, action) => {
+      state.isLoadingCategories = false;
     });
 
     builder.addCase(updateCategory.fulfilled, (state, action) => {

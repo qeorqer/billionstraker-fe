@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Button, Col, Container, FormControl, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 import { categoriesTypes, categoryType } from 'types/category.type';
 import CategoriesList from 'components/Categories/CategoriesList';
@@ -13,6 +13,7 @@ type propsType = {
   categoryType: string;
   setCategoryType: Dispatch<SetStateAction<categoriesTypes>>;
   handleAddCategory: () => void;
+  isLoading: boolean;
 };
 
 const Categories: React.FC<propsType> = ({
@@ -23,6 +24,7 @@ const Categories: React.FC<propsType> = ({
   categoryType,
   setCategoryType,
   handleAddCategory,
+  isLoading,
 }) => (
   <>
     <Container className="py-4">
@@ -44,6 +46,7 @@ const Categories: React.FC<propsType> = ({
             setCategoryType={setCategoryType}
             handleSubmit={handleAddCategory}
             buttonText="create"
+            isLoading={isLoading}
           />
         </Col>
       </Row>

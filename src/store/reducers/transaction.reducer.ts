@@ -35,13 +35,13 @@ export const getAllUserTransactions = createAsyncThunk(
 );
 
 export type transactionState = {
-  isTransactionsloading: boolean;
+  isLoadingTransactions: boolean;
   numberOfTransactions: number;
   transactions: transactionType[];
 };
 
 const initialState: transactionState = {
-  isTransactionsloading: false,
+  isLoadingTransactions: false,
   numberOfTransactions: 0,
   transactions: [] as transactionType[],
 };
@@ -56,11 +56,11 @@ const transactionReducer = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getAllUserTransactions.pending, (state) => {
-      state.isTransactionsloading = true;
+      state.isLoadingTransactions = true;
     });
 
     builder.addCase(getAllUserTransactions.fulfilled, (state, action) => {
-      state.isTransactionsloading = false;
+      state.isLoadingTransactions = false;
       state.transactions = [
         ...state.transactions,
         ...action.payload.data.transactions,
@@ -70,10 +70,16 @@ const transactionReducer = createSlice({
     });
 
     builder.addCase(getAllUserTransactions.rejected, (state) => {
-      state.isTransactionsloading = false;
+      state.isLoadingTransactions = false;
+    });
+
+    builder.addCase(createTransaction.pending, (state, action) => {
+      state.isLoadingTransactions = true;
     });
 
     builder.addCase(createTransaction.fulfilled, (state, action) => {
+      state.isLoadingTransactions = false;
+
       state.transactions = [
         ...state.transactions,
         action.payload.data.transaction,
@@ -85,6 +91,8 @@ const transactionReducer = createSlice({
     });
 
     builder.addCase(createTransaction.rejected, (state, action) => {
+      state.isLoadingTransactions = false;
+
       toast(i18next.t('failed to create transaction'), {
         type: 'error',
       });

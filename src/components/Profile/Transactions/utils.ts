@@ -19,39 +19,21 @@ export const transactionTypesToShow: transactionTypesToShowType[] = [
 
 export const formTransactionsSections = (
   transactions: transactionType[],
+  lang: string,
 ): transactionsSectionsType => {
-  const result: transactionsSectionsType = [
-    {
-      title: 'today',
-      data: [],
-    },
-    {
-      title: 'this week',
-      data: [],
-    },
-    {
-      title: 'this month',
-      data: [],
-    },
-    {
-      title: 'before this month',
-      data: [],
-    },
-  ];
+  const result: transactionsSectionsType = [];
 
   transactions.forEach((transaction) => {
-    const isToday = moment().isSame(transaction.date, 'day');
-    const isThisWeek = moment().isSame(transaction.date, 'week');
-    const isThisMonth = moment().isSame(transaction.date, 'month');
+    const date = moment(transaction.date).locale(lang).format('LL');
+    const isSectionExists = result.find((section) => section.title === date);
 
-    if (isToday) {
-      result[0].data.push(transaction);
-    } else if (isThisWeek) {
-      result[1].data.push(transaction);
-    } else if (isThisMonth) {
-      result[2].data.push(transaction);
+    if (isSectionExists) {
+      isSectionExists.data.push(transaction);
     } else {
-      result[3].data.push(transaction);
+      result.push({
+        title: date,
+        data: [transaction],
+      });
     }
   });
 

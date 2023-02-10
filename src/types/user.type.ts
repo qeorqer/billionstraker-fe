@@ -4,9 +4,11 @@ export type userType = {
   created: Date;
   isFirstEnter: boolean;
 };
+
 export type loginResponseType = {
   accessToken: string;
   refreshToken: string;
+  accessExpiration: number;
   user: userType;
 };
 

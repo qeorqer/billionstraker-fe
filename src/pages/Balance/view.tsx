@@ -13,6 +13,7 @@ type propsType = {
   amount: string | number;
   handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleAddBalance: () => void;
+  isLoading: boolean;
 };
 
 const Balance: React.FC<propsType> = ({
@@ -23,6 +24,7 @@ const Balance: React.FC<propsType> = ({
   amount,
   handleChangeAmount,
   handleAddBalance,
+  isLoading,
 }) => (
   <>
     <Container className="py-4">
@@ -42,6 +44,7 @@ const Balance: React.FC<propsType> = ({
             handleChangeAmount={handleChangeAmount}
             handleSubmit={handleAddBalance}
             buttonText="create"
+            isLoading={isLoading}
           />
         </Col>
       </Row>

@@ -23,6 +23,15 @@
   input {
     height: 40px;
   }
+
+  span {
+    position: absolute;
+    bottom: 9px;
+    right: 10px;
+    margin: auto;
+    cursor: pointer;
+    color: #554949;
+  }
 }
 
 .authFormContainer {

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { categoryData } from 'store/selectors';
+import { categoryData, transactionData } from 'store/selectors';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { transactionType, transactionTypes } from 'types/transaction.type';
 import { getCategories } from 'store/reducers/category.reducer';
@@ -17,9 +17,10 @@ const CreateTransactionPage = () => {
   const { balances, isLoadingBalances } = useAppSelector(
     (state) => state.balanceData,
   );
+  const { isLoadingTransactions } = useAppSelector(transactionData);
+
   const [canCreateTransaction, setCanCreateTransaction] =
     useState<boolean>(false);
-
   const [transactionType, setTransactionType] =
     useState<transactionTypes>('expense');
   const [categoryId, setCategoryId] = useState<string>('');
@@ -75,6 +76,7 @@ const CreateTransactionPage = () => {
       const balanceToSubtract = balances.find(
         (balance) => balance._id === balanceId,
       );
+
       if (!balance || !balanceToSubtract) {
         return toast(t('the balance does not exist'), {
           type: 'error',
@@ -105,6 +107,9 @@ const CreateTransactionPage = () => {
         }),
       );
 
+      setSum('');
+      setExchangeSum('');
+      setTitle('');
       return;
     }
 
@@ -146,6 +151,10 @@ const CreateTransactionPage = () => {
         balanceId: balanceId,
       }),
     );
+
+    setSum('');
+    setExchangeSum('');
+    setTitle('');
   };
 
   const handleCreateBalance = () => push('balances');
@@ -213,6 +222,7 @@ const CreateTransactionPage = () => {
       handleCreateBalance={handleCreateBalance}
       handleCreateCategory={handleCreateCategory}
       isLoading={isLoading}
+      isLoadingTransactions={isLoadingTransactions}
     />
   );
 };

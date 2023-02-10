@@ -11,7 +11,10 @@ import Categories from './view';
 const CategoriesPage = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { categories } = useAppSelector((state) => state.categoryDate);
+  const { categories, isLoadingCategories } = useAppSelector(
+    (state) => state.categoryDate,
+  );
+
   const [name, setName] = useState<string>('');
   const [categoryType, setCategoryType] = useState<categoriesTypes>('expense');
 
@@ -60,6 +63,7 @@ const CategoriesPage = () => {
       categoryType={categoryType}
       setCategoryType={setCategoryType}
       handleAddCategory={handleAddCategory}
+      isLoading={isLoadingCategories}
     />
   );
 };

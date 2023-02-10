@@ -35,6 +35,7 @@ type propsType = {
   handleCreateBalance: () => void;
   handleCreateCategory: () => void;
   isLoading: boolean;
+  isLoadingTransactions: boolean;
 };
 
 const CreateTransaction: React.FC<propsType> = ({
@@ -62,6 +63,7 @@ const CreateTransaction: React.FC<propsType> = ({
   handleCreateBalance,
   handleCreateCategory,
   isLoading,
+  isLoadingTransactions,
 }) => (
   <>
     <Container className="py-md-4 my-4 pb-5 pb-sm-0">
@@ -262,6 +264,7 @@ const CreateTransaction: React.FC<propsType> = ({
                         variant="warning"
                         className="w300Px text-white"
                         onClick={handleSubmit}
+                        disabled={isLoadingTransactions}
                       >
                         {t('Submit')}
                       </Button>
