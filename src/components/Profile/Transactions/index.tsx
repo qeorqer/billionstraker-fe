@@ -189,6 +189,7 @@ const Transactions = () => {
         <>
           <p className="text-center fw-bold fs-4">{t('Your transactions')}</p>
           <InfiniteScroll
+            initialLoad={false}
             loadMore={handleLoadMore}
             hasMore={numberToSkip <= numberOfTransactions}
             loader={<Loader key={0} />}>
