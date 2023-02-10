@@ -127,5 +127,7 @@
   "Unhandled error.": "Unhandled error",
   "There is no such user.": "There is no such user",
   "Incorrect login data": "Incorrect login data",
-  "your session has expired": "Your session has expired"
+  "your session has expired": "Your session has expired",
+  "show": "Show",
+  "hide": "Hide"
 }
