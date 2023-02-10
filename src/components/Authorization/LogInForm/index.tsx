@@ -76,7 +76,8 @@ const LogInFormMarkup: React.FC<FormikProps<authData>> = ({
           isSubmitting ||
           Boolean(errors.login && touched.login) ||
           Boolean(errors.password && touched.password)
-        }>
+        }
+      >
         {t('Sign in')}
       </Button>
     </Form>

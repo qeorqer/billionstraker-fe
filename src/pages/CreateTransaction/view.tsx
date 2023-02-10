@@ -85,7 +85,8 @@ const CreateTransaction: React.FC<propsType> = ({
                   onClick={() => {
                     setTransactionType('expense');
                     setCategoryId('');
-                  }}>
+                  }}
+                >
                   {t('expense')}
                 </Button>
               </div>
@@ -98,7 +99,8 @@ const CreateTransaction: React.FC<propsType> = ({
                   onClick={() => {
                     setTransactionType('profit');
                     setCategoryId('');
-                  }}>
+                  }}
+                >
                   {t('profit')}
                 </Button>
               </div>
@@ -114,7 +116,8 @@ const CreateTransaction: React.FC<propsType> = ({
                   onClick={() => {
                     setTransactionType('exchange');
                     setCategoryId('');
-                  }}>
+                  }}
+                >
                   {t('exchange')}
                 </Button>
               </div>
@@ -214,7 +217,8 @@ const CreateTransaction: React.FC<propsType> = ({
                   <Row className="mt-3">
                     <Col
                       xs={transactionType === 'exchange' ? 12 : 6}
-                      className="d-flex flex-wrap">
+                      className="d-flex flex-wrap"
+                    >
                       <p className="mb-1 fs-5">{t('Name the transaction')}:</p>
                       <FormControl
                         type="text"
@@ -260,7 +264,8 @@ const CreateTransaction: React.FC<propsType> = ({
                         variant="warning"
                         className="w300Px text-white"
                         onClick={handleSubmit}
-                        disabled={isLoadingTransactions}>
+                        disabled={isLoadingTransactions}
+                      >
                         {t('Submit')}
                       </Button>
                     </Col>
@@ -276,13 +281,15 @@ const CreateTransaction: React.FC<propsType> = ({
                   <Button
                     variant="warning"
                     className="w300Px text-white mx-1"
-                    onClick={handleCreateBalance}>
+                    onClick={handleCreateBalance}
+                  >
                     {t('create balance')}
                   </Button>
                   <Button
                     variant="warning"
                     className="w300Px text-white mx-1 my-2 my-md-0"
-                    onClick={handleCreateCategory}>
+                    onClick={handleCreateCategory}
+                  >
                     {t('create category')}
                   </Button>
                 </div>
@@ -292,7 +299,8 @@ const CreateTransaction: React.FC<propsType> = ({
                   <Button
                     variant="warning"
                     className="w300Px text-white"
-                    onClick={handleCreateBalance}>
+                    onClick={handleCreateBalance}
+                  >
                     {t('create balance')}
                   </Button>
                 </div>

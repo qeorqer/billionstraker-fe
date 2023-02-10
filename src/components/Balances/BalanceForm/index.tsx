@@ -43,7 +43,8 @@ const BalanceForm: React.FC<propsType> = ({
         variant="warning"
         className="w300Px text-white"
         onClick={handleSubmit}
-        disabled={isLoading}>
+        disabled={isLoading}
+      >
         {t(buttonText)}
       </Button>
     </Form>

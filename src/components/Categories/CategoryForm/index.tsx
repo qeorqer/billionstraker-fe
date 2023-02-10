@@ -39,7 +39,8 @@ const CategoryForm: React.FC<propsType> = ({
           <Button
             variant={categoryType === 'expense' ? 'danger' : 'outline-danger'}
             onClick={() => setCategoryType('expense')}
-            className="w-50">
+            className="w-50"
+          >
             {t('expense')}
           </Button>
         </div>
@@ -47,7 +48,8 @@ const CategoryForm: React.FC<propsType> = ({
           <Button
             variant={categoryType === 'profit' ? 'success' : 'outline-success'}
             onClick={() => setCategoryType('profit')}
-            className="w-50">
+            className="w-50"
+          >
             {t('profit')}
           </Button>
         </div>
@@ -56,7 +58,8 @@ const CategoryForm: React.FC<propsType> = ({
         variant="warning"
         className="w300Px text-white"
         onClick={handleSubmit}
-        disabled={isLoading}>
+        disabled={isLoading}
+      >
         {t(buttonText)}
       </Button>
     </Form>

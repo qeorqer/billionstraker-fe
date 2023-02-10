@@ -192,7 +192,8 @@ const Transactions = () => {
             initialLoad={false}
             loadMore={handleLoadMore}
             hasMore={numberToSkip <= numberOfTransactions}
-            loader={<Loader key={0} />}>
+            loader={<Loader key={0} />}
+          >
             {transactionsSections.map((section) => (
               <React.Fragment key={section.title}>
                 <p className="sectionTitle fs-5 w-75 mx-auto">
@@ -214,7 +215,8 @@ const Transactions = () => {
           <Button
             variant="warning"
             className="w300Px text-white"
-            onClick={handleCreateTransaction}>
+            onClick={handleCreateTransaction}
+          >
             {t('create transaction')}
           </Button>
         </div>

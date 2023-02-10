@@ -107,7 +107,8 @@ const SignUpFormMarkup: React.FC<FormikProps<signupForm>> = ({
           isSubmitting ||
           Boolean(errors.login && touched.login) ||
           Boolean(errors.password && touched.password)
-        }>
+        }
+      >
         {t('Sign up')}
       </Button>
     </Form>

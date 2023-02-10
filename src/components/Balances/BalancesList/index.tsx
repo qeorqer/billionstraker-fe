@@ -95,7 +95,8 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
               spaceBetween: 50,
             },
           }}
-          centerInsufficientSlides>
+          centerInsufficientSlides
+        >
           {balances.map((balance) => (
             <SwiperSlide key={balance._id}>
               <Card className="h-100">
@@ -115,14 +116,16 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
                       <Dropdown.Menu>
                         <Dropdown.Item
                           as="span"
-                          onClick={() => handleEditClick(balance._id)}>
+                          onClick={() => handleEditClick(balance._id)}
+                        >
                           {t('edit')}
                         </Dropdown.Item>
                         <Dropdown.Item
                           as="span"
                           onClick={() =>
                             dispatch(deleteBalance({ balanceId: balance._id }))
-                          }>
+                          }
+                        >
                           {t('remove')}
                         </Dropdown.Item>
                       </Dropdown.Menu>
