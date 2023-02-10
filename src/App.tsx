@@ -48,8 +48,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (isAuth && user.isFirstEnter) {
+    if (isAuth && user?.isFirstEnter) {
       history.push('/guide');
+    } else {
+      setAuth(false);
     }
   }, [isAuth, user]);
 
