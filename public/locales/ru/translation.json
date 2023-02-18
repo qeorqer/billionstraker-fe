@@ -129,5 +129,7 @@
   "Incorrect login data": "Некоректные данные",
   "your session has expired": "Время сессии истекло",
   "show": "Показать",
-  "hide": "Скрыть"
+  "hide": "Скрыть",
+  "deleting transaction success": "Транзакция успешно удалена",
+  "deleting transaction failed": "Не вышло удалить транзакцию"
 }

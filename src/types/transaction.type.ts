@@ -26,6 +26,12 @@ export type getTransactionsResponseType = {
   numberOfTransactions?: number;
 };
 
+export type deleteTransactionResponseType = {
+  message: string;
+  transactionId: string;
+  balances: balanceType[];
+};
+
 type transactionsSectionType = {
   title: string;
   data: transactionType[];

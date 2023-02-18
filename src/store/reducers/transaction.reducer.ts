@@ -6,6 +6,7 @@ import i18next from 'i18next';
 import * as api from 'api/index';
 import {
   addTransactionResponseType,
+  deleteTransactionResponseType,
   getTransactionsResponseType,
   transactionType,
 } from 'types/transaction.type';
@@ -32,6 +33,14 @@ export const getAllUserTransactions = createAsyncThunk(
     };
   }): Promise<AxiosResponse<getTransactionsResponseType>> =>
     await api.getAllUserTransactions(body),
+);
+
+export const deleteTransaction = createAsyncThunk(
+  'transaction/deleteTransaction',
+  async (body: {
+    transactionId: string;
+  }): Promise<AxiosResponse<deleteTransactionResponseType>> =>
+    await api.deleteTransaction(body),
 );
 
 export type transactionState = {
@@ -95,6 +104,31 @@ const transactionReducer = createSlice({
 
       toast(i18next.t('failed to create transaction'), {
         type: 'error',
+      });
+    });
+
+    builder.addCase(deleteTransaction.pending, (state, action) => {
+      state.isLoadingTransactions = true;
+    });
+
+    builder.addCase(deleteTransaction.fulfilled, (state, action) => {
+      state.isLoadingTransactions = false;
+
+      toast(i18next.t('deleting transaction success'), {
+        type: 'success',
+      });
+
+      const deletedTransactionId = action.payload.data.transactionId;
+      state.transactions = state.transactions.filter(
+        (transaction) => transaction._id !== deletedTransactionId,
+      );
+    });
+
+    builder.addCase(deleteTransaction.rejected, (state, action) => {
+      state.isLoadingTransactions = false;
+
+      toast(i18next.t('deleting transaction failed'), {
+        type: 'success',
       });
     });
   },

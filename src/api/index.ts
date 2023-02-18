@@ -15,6 +15,7 @@ import {
 import {
   addTransactionResponseType,
   getTransactionsResponseType,
+  deleteTransactionResponseType,
   transactionType,
 } from 'types/transaction.type';
 import { getStatisticsForBalanceResponseType } from 'types/statistic.type';
@@ -64,6 +65,11 @@ export const getAllUserTransactions = (body: {
   };
 }): Promise<AxiosResponse<getTransactionsResponseType>> =>
   api.post('/transaction/getAllUserTransactions', body);
+
+export const deleteTransaction = (body: {
+  transactionId: string;
+}): Promise<AxiosResponse<deleteTransactionResponseType>> =>
+  api.delete('/transaction/deleteTransaction', { data: body });
 
 /* statistics requests */
 export const getStatisticsForBalance = (body: {

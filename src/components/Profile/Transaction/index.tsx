@@ -5,8 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { transactionType } from 'types/transaction.type';
 import { formatTransactionDate } from 'utils/time';
 import { formattingNumber } from 'utils/formattingNumber';
-import { useAppSelector } from 'hooks/react-redux.hook';
+import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { userData } from 'store/selectors';
+import { deleteTransaction } from 'store/reducers/transaction.reducer';
 import CustomToggle from 'components/CustomToggle';
 
 import './styles.scss';
@@ -18,6 +19,7 @@ type propsType = {
 const Transaction: FC<propsType> = ({ transaction }) => {
   const { lang } = useAppSelector(userData);
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   return (
     <Card
@@ -71,10 +73,16 @@ const Transaction: FC<propsType> = ({ transaction }) => {
                   id="dropdown-custom-components"
                 />
                 <Dropdown.Menu>
-                  <Dropdown.Item as="span" onClick={() => {}}>
-                    {t('edit')}
-                  </Dropdown.Item>
-                  <Dropdown.Item as="span" onClick={() => {}}>
+                  {/*<Dropdown.Item as="span" onClick={() => {}}>*/}
+                  {/*  {t('edit')}*/}
+                  {/*</Dropdown.Item>*/}
+                  <Dropdown.Item
+                    as="span"
+                    onClick={() =>
+                      dispatch(
+                        deleteTransaction({ transactionId: transaction._id! }),
+                      )
+                    }>
                     {t('remove')}
                   </Dropdown.Item>
                 </Dropdown.Menu>
