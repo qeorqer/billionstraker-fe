@@ -9,10 +9,16 @@ export type transactionType = {
   sumToSubtract?: number;
   category?: string;
   date: Date;
-  balance: String;
-  balanceToSubtract?: String;
+  balance: string;
+  balanceToSubtract?: string;
   transactionType: transactionTypes;
   _id?: string;
+};
+
+export type submitTransactionType = {
+  transaction: transactionType;
+  balanceId: string;
+  balanceToSubtractId?: string;
 };
 
 export type addTransactionResponseType = {

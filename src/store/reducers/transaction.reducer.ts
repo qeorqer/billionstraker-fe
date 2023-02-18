@@ -8,16 +8,15 @@ import {
   addTransactionResponseType,
   deleteTransactionResponseType,
   getTransactionsResponseType,
+  submitTransactionType,
   transactionType,
 } from 'types/transaction.type';
 
 export const createTransaction = createAsyncThunk(
   'transaction/createTransaction',
-  async (body: {
-    transaction: transactionType;
-    balanceId: string;
-    balanceToSubtractId?: string;
-  }): Promise<AxiosResponse<addTransactionResponseType>> =>
+  async (
+    body: submitTransactionType,
+  ): Promise<AxiosResponse<addTransactionResponseType>> =>
     await api.addTransaction(body),
 );
 

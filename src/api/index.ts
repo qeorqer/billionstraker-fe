@@ -14,9 +14,9 @@ import {
 } from 'types/category.type';
 import {
   addTransactionResponseType,
-  getTransactionsResponseType,
   deleteTransactionResponseType,
-  transactionType,
+  getTransactionsResponseType,
+  submitTransactionType,
 } from 'types/transaction.type';
 import { getStatisticsForBalanceResponseType } from 'types/statistic.type';
 import {
@@ -48,11 +48,9 @@ export const setFirstEnter = (): Promise<
 > => api.patch('/user/setFirstEnter');
 
 /* transaction requests */
-export const addTransaction = (body: {
-  transaction: transactionType;
-  balanceId: string;
-  balanceToSubtractId?: string;
-}): Promise<AxiosResponse<addTransactionResponseType>> =>
+export const addTransaction = (
+  body: submitTransactionType,
+): Promise<AxiosResponse<addTransactionResponseType>> =>
   api.post('/transaction/createTransaction', body);
 
 export const getAllUserTransactions = (body: {
