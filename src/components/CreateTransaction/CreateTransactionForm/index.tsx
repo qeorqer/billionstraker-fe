@@ -20,6 +20,7 @@ type propsType = {
   balances: balanceType[];
   categories: categoryType[];
   handleSubmit: (transaction: submitTransactionType | null) => void;
+  isModal?: boolean;
 };
 
 const CreateTransactionForm: React.FC<propsType> = ({
@@ -27,6 +28,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
   balances,
   categories,
   handleSubmit,
+  isModal,
 }) => {
   const [balanceId, setBalanceId] = useState<string>('');
   const [exchangeBalanceId, setExchangeBalanceId] = useState<string>('');
@@ -173,9 +175,9 @@ const CreateTransactionForm: React.FC<propsType> = ({
 
   return (
     <Row>
-      <Col xs="12" lg="7" className="mx-auto  mt-3">
+      <Col xs="12" lg={isModal ? '12' : '7'} className="mx-auto  mt-3">
         <Row>
-          <Col xs="12" sm="4" className="d-flex flex-wrap">
+          <Col xs="12" sm={isModal ? '12' : '4'} className="d-flex flex-wrap">
             <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
               {t(
                 selectedTransactionType === 'exchange'
@@ -195,7 +197,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
               setSelectedValue={setBalanceId}
             />
           </Col>
-          <Col xs="12" sm="4">
+          <Col xs="12" sm={isModal ? '12' : '4'}>
             {selectedTransactionType === 'exchange' ? (
               <>
                 <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
@@ -236,7 +238,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
               </>
             )}
           </Col>
-          <Col xs="12" sm="4" className="d-flex flex-wrap">
+          <Col xs="12" sm={isModal ? '12' : '4'} className="d-flex flex-wrap">
             <p className="mb-1 fs-5 text-center w-100">{t('select date')}:</p>
             <DatePicker
               selected={date}
@@ -280,7 +282,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
 
           {selectedTransactionType === 'exchange' && (
             <Col xs="6" className="d-flex flex-wrap">
-              <p className="mb-1  fs-5">{t('receive')}:</p>
+              <p className="mb-1 fs-5">{t('receive')}:</p>
               <FormControl
                 type="number"
                 placeholder={t('Transaction sum')}
@@ -306,6 +308,10 @@ const CreateTransactionForm: React.FC<propsType> = ({
       </Col>
     </Row>
   );
+};
+
+CreateTransactionForm.defaultProps = {
+  isModal: false,
 };
 
 export default CreateTransactionForm;

@@ -42,6 +42,14 @@ export const deleteTransaction = createAsyncThunk(
     await api.deleteTransaction(body),
 );
 
+export const updateTransaction = createAsyncThunk(
+  'transaction/editTransaction',
+  async (
+    body: submitTransactionType,
+  ): Promise<AxiosResponse<addTransactionResponseType>> =>
+    await api.editTransaction(body),
+);
+
 export type transactionState = {
   isLoadingTransactions: boolean;
   numberOfTransactions: number;
@@ -124,6 +132,31 @@ const transactionReducer = createSlice({
     });
 
     builder.addCase(deleteTransaction.rejected, (state, action) => {
+      state.isLoadingTransactions = false;
+
+      toast(i18next.t('deleting transaction failed'), {
+        type: 'success',
+      });
+    });
+
+    builder.addCase(updateTransaction.pending, (state, action) => {
+      state.isLoadingTransactions = true;
+    });
+
+    builder.addCase(updateTransaction.fulfilled, (state, action) => {
+      state.isLoadingTransactions = false;
+
+      const updatedBalance = action.payload.data.transaction;
+      state.transactions = state.transactions.map((balance) =>
+        balance._id === updatedBalance._id ? updatedBalance : balance,
+      );
+
+      toast(i18next.t('deleting transaction success'), {
+        type: 'success',
+      });
+    });
+
+    builder.addCase(updateTransaction.rejected, (state, action) => {
       state.isLoadingTransactions = false;
 
       toast(i18next.t('deleting transaction failed'), {

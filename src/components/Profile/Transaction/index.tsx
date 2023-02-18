@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
 import { Card, Col, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -14,9 +14,13 @@ import './styles.scss';
 
 type propsType = {
   transaction: transactionType;
+  setSelectedTransaction: Dispatch<SetStateAction<transactionType | null>>;
 };
 
-const Transaction: FC<propsType> = ({ transaction }) => {
+const Transaction: FC<propsType> = ({
+  transaction,
+  setSelectedTransaction,
+}) => {
   const { lang } = useAppSelector(userData);
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -73,9 +77,11 @@ const Transaction: FC<propsType> = ({ transaction }) => {
                   id="dropdown-custom-components"
                 />
                 <Dropdown.Menu>
-                  {/*<Dropdown.Item as="span" onClick={() => {}}>*/}
-                  {/*  {t('edit')}*/}
-                  {/*</Dropdown.Item>*/}
+                  <Dropdown.Item
+                    as="span"
+                    onClick={() => setSelectedTransaction(transaction)}>
+                    {t('edit')}
+                  </Dropdown.Item>
                   <Dropdown.Item
                     as="span"
                     onClick={() =>

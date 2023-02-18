@@ -53,6 +53,11 @@ export const addTransaction = (
 ): Promise<AxiosResponse<addTransactionResponseType>> =>
   api.post('/transaction/createTransaction', body);
 
+export const editTransaction = (
+  body: submitTransactionType,
+): Promise<AxiosResponse<addTransactionResponseType>> =>
+  api.patch('/transaction/editTransaction', body);
+
 export const getAllUserTransactions = (body: {
   limit: number;
   numberToSkip: number;

@@ -131,5 +131,8 @@
   "show": "Show",
   "hide": "Hide",
   "deleting transaction success": "Transaction deleted successfully",
-  "deleting transaction failed": "Failed to delete transaction"
+  "deleting transaction failed": "Failed to delete transaction",
+  "edit transaction": "Edit transaction",
+  "updating transaction success": "Transaction updated successfully",
+  "updating transaction failed": "Failed to updated transaction"
 }

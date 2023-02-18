@@ -131,5 +131,8 @@
   "show": "Показать",
   "hide": "Скрыть",
   "deleting transaction success": "Транзакция успешно удалена",
-  "deleting transaction failed": "Не вышло удалить транзакцию"
+  "deleting transaction failed": "Не вышло удалить транзакцию",
+  "edit transaction": "Редактировать транзакцию",
+  "updating transaction success": "Транзакция изменена успешно",
+  "updating transaction failed": "Не вышло обновить транзакцию"
 }
