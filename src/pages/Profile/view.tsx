@@ -24,6 +24,7 @@ type propsType = {
   setTransactionType: Dispatch<SetStateAction<transactionTypes>>;
   setSelectedTransaction: Dispatch<SetStateAction<transactionType | null>>;
   handleSubmit: (transaction: submitTransactionType | null) => void;
+  selectedTransaction: transactionType | null;
 };
 
 const Profile: React.FC<propsType> = ({
@@ -35,6 +36,7 @@ const Profile: React.FC<propsType> = ({
   setTransactionType,
   setSelectedTransaction,
   handleSubmit,
+  selectedTransaction,
 }) => (
   <Container className="py-4 mb-4 mb-sm-0">
     {Boolean(balances.length) && (
@@ -55,6 +57,7 @@ const Profile: React.FC<propsType> = ({
             transactionType={transactionType}
             setTransactionType={setTransactionType}
             isModal
+            initialValues={selectedTransaction}
           />
           <CreateTransactionForm
             selectedTransactionType={transactionType}
@@ -62,6 +65,7 @@ const Profile: React.FC<propsType> = ({
             categories={categories}
             handleSubmit={handleSubmit}
             isModal
+            initialValues={selectedTransaction}
           />
         </Container>
       </Modal.Body>

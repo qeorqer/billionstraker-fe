@@ -20,6 +20,7 @@ type propsType = {
   balances: balanceType[];
   categories: categoryType[];
   handleSubmit: (transaction: submitTransactionType | null) => void;
+  initialValues?: transactionType | null;
   isModal?: boolean;
 };
 
@@ -28,6 +29,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
   balances,
   categories,
   handleSubmit,
+  initialValues,
   isModal,
 }) => {
   const [balanceId, setBalanceId] = useState<string>('');
@@ -37,6 +39,8 @@ const CreateTransactionForm: React.FC<propsType> = ({
   const [title, setTitle] = useState<string>('');
   const [categoryId, setCategoryId] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date());
+
+  console.log(balanceId, categoryId);
 
   const { isLoadingTransactions } = useAppSelector(transactionData);
   const { t } = useTranslation();
@@ -172,6 +176,49 @@ const CreateTransactionForm: React.FC<propsType> = ({
   useEffect(() => {
     setCategoryId('');
   }, [selectedTransactionType]);
+
+  useEffect(() => {
+    if (initialValues) {
+      setTitle(initialValues.title);
+      setDate(new Date(initialValues.date));
+
+      if (initialValues.transactionType === 'exchange') {
+        setExchangeSum(initialValues.sum);
+        setSum(initialValues.sumToSubtract!);
+      } else {
+        setSum(initialValues.sum);
+      }
+
+      if (initialValues.balance) {
+        const balanceFromTransaction = balances.find(
+          (balance) => balance.name === initialValues.balance,
+        );
+
+        if (balanceFromTransaction) {
+          setBalanceId(balanceFromTransaction._id);
+        }
+      }
+
+      if (initialValues.balanceToSubtract) {
+        const balanceFromTransaction = balances.find(
+          (balance) => balance.name === initialValues.balanceToSubtract,
+        );
+        if (balanceFromTransaction) {
+          setExchangeBalanceId(balanceFromTransaction._id);
+        }
+      }
+
+      if (initialValues.category) {
+        const categoryFromTransaction = categories.find(
+          (category) => category.name === initialValues.category,
+        );
+
+        if (categoryFromTransaction?._id) {
+          setBalanceId(categoryFromTransaction._id);
+        }
+      }
+    }
+  }, [initialValues]);
 
   return (
     <Row>
@@ -312,6 +359,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
 
 CreateTransactionForm.defaultProps = {
   isModal: false,
+  initialValues: null,
 };
 
 export default CreateTransactionForm;

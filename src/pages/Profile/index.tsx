@@ -44,6 +44,7 @@ const ProfilePage = () => {
       setTransactionType={setTransactionType}
       isModalShown={isModalShown}
       setSelectedTransaction={setSelectedTransaction}
+      selectedTransaction={selectedTransaction}
       handleSubmit={handleSubmit}
     />
   );

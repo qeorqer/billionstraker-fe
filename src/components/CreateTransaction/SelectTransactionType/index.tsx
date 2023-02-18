@@ -1,21 +1,29 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { transactionTypes } from 'types/transaction.type';
+import { transactionType, transactionTypes } from 'types/transaction.type';
 
 type propsType = {
   transactionType: transactionTypes;
   setTransactionType: Dispatch<SetStateAction<transactionTypes>>;
   isModal?: boolean;
+  initialValues?: transactionType | null;
 };
 
 const SelectTransactionType: React.FC<propsType> = ({
   transactionType,
   setTransactionType,
   isModal,
+  initialValues,
 }) => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (initialValues) {
+      setTransactionType(initialValues.transactionType);
+    }
+  }, [initialValues]);
 
   return (
     <Row>
