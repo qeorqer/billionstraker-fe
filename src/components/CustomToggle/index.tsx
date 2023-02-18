@@ -5,11 +5,12 @@ import './styles.scss';
 type propsType = {
   children?: ReactNode;
   onClick?: () => void;
+  variant?: string;
 };
 
 const CustomToggle = React.forwardRef<HTMLDivElement>(
-  ({ onClick }: propsType, ref) => (
-    <div className="dropdownMenu">
+  ({ onClick, variant }: propsType, ref) => (
+    <div className={`dropdownMenu ${variant && variant}`}>
       <div className="menuTogglerContainer" ref={ref} onClick={onClick}>
         <span />
       </div>

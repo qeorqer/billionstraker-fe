@@ -38,12 +38,19 @@
     display: flex;
     flex-direction: column;
 
+    .dropstart {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+    }
+
     p {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       margin-bottom: 0;
       white-space: nowrap;
+      margin-right: 25px;
 
       span {
         font-size: 25px;
@@ -67,6 +74,10 @@
         margin-right: 5px;
       }
     }
+
+    .menuTogglerContainer span {
+      background-color: #457C4E;
+    }
   }
 
   &.expense {
@@ -81,6 +92,10 @@
         margin-right: 5px;
       }
     }
+
+    .menuTogglerContainer span {
+      background-color: #9A5454;
+    }
   }
 
   &.exchange {
@@ -90,6 +105,10 @@
 
     .exchangeSign {
       margin: 0 15px;
+    }
+
+    .menuTogglerContainer span {
+      background-color: #4F566D;
     }
 
     .sumAndBalance {
@@ -120,7 +139,7 @@
 
     .categoryAndDate {
       .date {
-        font-size: 21px;
+        transform: translateY(20px);
       }
     }
   }
@@ -130,6 +149,12 @@
 @media (max-width: 1200px) {
   .card.w-75 {
     width: 100% !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .card .categoryAndDate p {
+    margin-right: 0;
   }
 }
 
@@ -158,6 +183,10 @@
 
     .categoryAndDate {
       font-size: 14px;
+
+      .dropstart {
+        right: 0;
+      }
 
       p span {
         font-size: 14px;
