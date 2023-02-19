@@ -112,6 +112,10 @@ const CreateTransactionForm: React.FC<propsType> = ({
         date: date,
       };
 
+      if (initialValues?._id) {
+        newTransaction._id = initialValues._id;
+      }
+
       setSum('');
       setExchangeSum('');
       setTitle('');
@@ -160,6 +164,10 @@ const CreateTransactionForm: React.FC<propsType> = ({
       date: date,
       transactionType: selectedTransactionType,
     };
+
+    if (initialValues?._id) {
+      newTransaction._id = initialValues._id;
+    }
 
     setSum('');
     setExchangeSum('');
