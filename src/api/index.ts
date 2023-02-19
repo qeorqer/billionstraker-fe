@@ -37,8 +37,9 @@ export const logIn = (
   body: authData,
 ): Promise<AxiosResponse<loginResponseType>> => api.post('/user/logIn', body);
 
-export const logOut = (): Promise<AxiosResponse<void>> =>
-  api.post('/user/logOut');
+export const logOut = (body: {
+  refreshToken: string | null;
+}): Promise<AxiosResponse<void>> => api.post('/user/logOut', body);
 
 export const refresh = (): Promise<AxiosResponse<loginResponseType>> =>
   api.get('/user/refresh');

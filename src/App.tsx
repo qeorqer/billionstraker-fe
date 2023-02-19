@@ -88,11 +88,11 @@ const App = () => {
 
           if (refreshRequest) {
             const response = await refreshRequest;
+            isRefreshingToken = false;
             localStorage.setItem('token', response.data.accessToken);
           }
 
           refreshRequest = null;
-          isRefreshingToken = false;
 
           return axiosInstance.request(originalRequest);
         } catch (e) {
@@ -100,7 +100,8 @@ const App = () => {
             type: 'warning',
           });
 
-          dispatch(logOut());
+          const refreshToken = localStorage.getItem('refreshToken');
+          dispatch(logOut({ refreshToken }));
         }
       }
       throw error;

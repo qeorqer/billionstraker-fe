@@ -58,7 +58,8 @@ export const logIn = createAsyncThunk<
 
 export const logOut = createAsyncThunk(
   'user/logOut',
-  async (): Promise<AxiosResponse<void>> => await api.logOut(),
+  async (body: { refreshToken: string | null }): Promise<AxiosResponse<void>> =>
+    await api.logOut(body),
 );
 
 export const checkAuth = createAsyncThunk(
@@ -108,6 +109,7 @@ const userReducer = createSlice({
         'accessExpiration',
         String(action.payload.accessExpiration),
       );
+      localStorage.setItem('refreshToken', action.payload.refreshToken);
       localStorage.setItem('user', JSON.stringify(action.payload.user));
 
       state.user = action.payload.user;
@@ -138,6 +140,7 @@ const userReducer = createSlice({
         'accessExpiration',
         String(action.payload.accessExpiration),
       );
+      localStorage.setItem('refreshToken', action.payload.refreshToken);
       localStorage.setItem('user', JSON.stringify(action.payload.user));
 
       state.user = action.payload.user;
@@ -155,6 +158,9 @@ const userReducer = createSlice({
     builder.addCase(logOut.fulfilled, (state) => {
       localStorage.removeItem('token');
       localStorage.removeItem('accessExpiration');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('user');
+
       state.user = {} as userType;
       state.isAuth = false;
     });
@@ -162,6 +168,9 @@ const userReducer = createSlice({
     builder.addCase(logOut.rejected, (state) => {
       localStorage.removeItem('token');
       localStorage.removeItem('accessExpiration');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('user');
+
       state.user = {} as userType;
       state.isAuth = false;
     });
@@ -184,6 +193,7 @@ const userReducer = createSlice({
         'accessExpiration',
         String(action.payload.data.accessExpiration),
       );
+      localStorage.setItem('refreshToken', action.payload.data.refreshToken);
 
       state.isAuth = true;
     });
