@@ -40,8 +40,6 @@ const CreateTransactionForm: React.FC<propsType> = ({
   const [categoryId, setCategoryId] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date());
 
-  console.log(balanceId, categoryId);
-
   const { isLoadingTransactions } = useAppSelector(transactionData);
   const { t } = useTranslation();
 
@@ -174,10 +172,6 @@ const CreateTransactionForm: React.FC<propsType> = ({
   };
 
   useEffect(() => {
-    setCategoryId('');
-  }, [selectedTransactionType]);
-
-  useEffect(() => {
     if (initialValues) {
       setTitle(initialValues.title);
       setDate(new Date(initialValues.date));
@@ -214,7 +208,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
         );
 
         if (categoryFromTransaction?._id) {
-          setBalanceId(categoryFromTransaction._id);
+          setCategoryId(categoryFromTransaction._id);
         }
       }
     }

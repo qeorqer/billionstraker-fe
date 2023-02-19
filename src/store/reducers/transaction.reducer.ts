@@ -135,7 +135,7 @@ const transactionReducer = createSlice({
       state.isLoadingTransactions = false;
 
       toast(i18next.t('deleting transaction failed'), {
-        type: 'success',
+        type: 'error',
       });
     });
 
@@ -151,7 +151,7 @@ const transactionReducer = createSlice({
         balance._id === updatedBalance._id ? updatedBalance : balance,
       );
 
-      toast(i18next.t('deleting transaction success'), {
+      toast(i18next.t('updating transaction success'), {
         type: 'success',
       });
     });
@@ -159,8 +159,8 @@ const transactionReducer = createSlice({
     builder.addCase(updateTransaction.rejected, (state, action) => {
       state.isLoadingTransactions = false;
 
-      toast(i18next.t('deleting transaction failed'), {
-        type: 'success',
+      toast(i18next.t('updating transaction failed'), {
+        type: 'error',
       });
     });
   },

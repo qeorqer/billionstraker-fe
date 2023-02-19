@@ -40,8 +40,6 @@ const CustomSelect: React.FC<propsType> = ({
       (item) => item[fieldToSelect] === selectedValue,
     );
 
-    console.log(selectedItem);
-
     if (!selectedItem) {
       setSelectedValue(defaultButtonValue);
       setValueToShow(defaultButtonText);

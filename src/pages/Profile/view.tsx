@@ -7,6 +7,7 @@ import SelectTransactionType from 'components/CreateTransaction/SelectTransactio
 
 import './styles.scss';
 import {
+  addTransactionResponseType,
   submitTransactionType,
   transactionType,
   transactionTypes,
