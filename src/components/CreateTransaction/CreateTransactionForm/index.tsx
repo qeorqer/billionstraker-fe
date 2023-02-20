@@ -186,13 +186,6 @@ const CreateTransactionForm: React.FC<propsType> = ({
       setTitle(initialValues.title);
       setDate(new Date(initialValues.date));
 
-      if (initialValues.transactionType === 'exchange') {
-        setExchangeSum(initialValues.sum);
-        setSum(initialValues.sumToSubtract!);
-      } else {
-        setSum(initialValues.sum);
-      }
-
       if (initialValues.balance) {
         const balanceFromTransaction = balances.find(
           (balance) => balance.name === initialValues.balance,
@@ -203,12 +196,36 @@ const CreateTransactionForm: React.FC<propsType> = ({
         }
       }
 
-      if (initialValues.balanceToSubtract) {
-        const balanceFromTransaction = balances.find(
-          (balance) => balance.name === initialValues.balanceToSubtract,
+      if (initialValues.transactionType === 'exchange') {
+        setExchangeSum(initialValues.sum);
+        setSum(initialValues.sumToSubtract!);
+
+        const exchangeBalanceFromTransaction = balances.find(
+          (balance) => balance.name === initialValues.balance,
         );
+
+        if (exchangeBalanceFromTransaction) {
+          setExchangeBalanceId(exchangeBalanceFromTransaction._id);
+        }
+
+        if (initialValues.balanceToSubtract) {
+          const balanceFromTransaction = balances.find(
+            (balance) => balance.name === initialValues.balanceToSubtract,
+          );
+
+          if (balanceFromTransaction) {
+            setBalanceId(balanceFromTransaction._id);
+          }
+        }
+      } else {
+        setSum(initialValues.sum);
+
+        const balanceFromTransaction = balances.find(
+          (balance) => balance.name === initialValues.balance,
+        );
+
         if (balanceFromTransaction) {
-          setExchangeBalanceId(balanceFromTransaction._id);
+          setBalanceId(balanceFromTransaction._id);
         }
       }
 
