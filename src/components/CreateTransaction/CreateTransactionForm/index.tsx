@@ -22,6 +22,7 @@ type propsType = {
   handleSubmit: (transaction: submitTransactionType | null) => void;
   initialValues?: transactionType | null;
   isModal?: boolean;
+  isEdit?: boolean;
 };
 
 const CreateTransactionForm: React.FC<propsType> = ({
@@ -31,6 +32,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
   handleSubmit,
   initialValues,
   isModal,
+  isEdit,
 }) => {
   const [balanceId, setBalanceId] = useState<string>('');
   const [exchangeBalanceId, setExchangeBalanceId] = useState<string>('');
@@ -94,7 +96,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
         return null;
       }
 
-      if (balanceToSubtract.amount < sum) {
+      if (!isEdit && balanceToSubtract.amount < sum) {
         toast(t("You don't have this much"), {
           type: 'error',
         });
@@ -137,7 +139,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
     }
 
     if (selectedTransactionType === 'expense') {
-      if (balance.amount < sum) {
+      if (!isEdit && balance.amount < sum) {
         toast(t("You don't have this much"), {
           type: 'error',
         });
@@ -361,6 +363,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
 
 CreateTransactionForm.defaultProps = {
   isModal: false,
+  isEdit: false,
   initialValues: null,
 };
 

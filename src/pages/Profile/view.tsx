@@ -7,7 +7,6 @@ import SelectTransactionType from 'components/CreateTransaction/SelectTransactio
 
 import './styles.scss';
 import {
-  addTransactionResponseType,
   submitTransactionType,
   transactionType,
   transactionTypes,
@@ -65,8 +64,9 @@ const Profile: React.FC<propsType> = ({
             balances={balances}
             categories={categories}
             handleSubmit={handleSubmit}
-            isModal
             initialValues={selectedTransaction}
+            isModal
+            isEdit
           />
         </Container>
       </Modal.Body>

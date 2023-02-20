@@ -37,5 +37,8 @@ export const formTransactionsSections = (
     }
   });
 
+  // @ts-ignore
+  result.sort((a, b) => new Date(b.title) - new Date(a.title));
+
   return result.filter((section) => section.data.length);
 };

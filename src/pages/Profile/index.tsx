@@ -28,6 +28,7 @@ const ProfilePage = () => {
   const handleSubmit = (dataForSubmit: submitTransactionType | null) => {
     if (dataForSubmit) {
       dispatch(updateTransaction(dataForSubmit));
+      setIsModalShown(false);
     }
   };
 
