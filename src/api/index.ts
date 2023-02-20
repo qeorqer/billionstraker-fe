@@ -14,8 +14,9 @@ import {
 } from 'types/category.type';
 import {
   addTransactionResponseType,
+  deleteTransactionResponseType,
   getTransactionsResponseType,
-  transactionType,
+  submitTransactionType,
 } from 'types/transaction.type';
 import { getStatisticsForBalanceResponseType } from 'types/statistic.type';
 import {
@@ -36,8 +37,9 @@ export const logIn = (
   body: authData,
 ): Promise<AxiosResponse<loginResponseType>> => api.post('/user/logIn', body);
 
-export const logOut = (): Promise<AxiosResponse<void>> =>
-  api.post('/user/logOut');
+export const logOut = (body: {
+  refreshToken: string | null;
+}): Promise<AxiosResponse<void>> => api.post('/user/logOut', body);
 
 export const refresh = (): Promise<AxiosResponse<loginResponseType>> =>
   api.get('/user/refresh');
@@ -47,12 +49,15 @@ export const setFirstEnter = (): Promise<
 > => api.patch('/user/setFirstEnter');
 
 /* transaction requests */
-export const addTransaction = (body: {
-  transaction: transactionType;
-  balanceId: string;
-  balanceToSubtractId?: string;
-}): Promise<AxiosResponse<addTransactionResponseType>> =>
+export const addTransaction = (
+  body: submitTransactionType,
+): Promise<AxiosResponse<addTransactionResponseType>> =>
   api.post('/transaction/createTransaction', body);
+
+export const editTransaction = (
+  body: submitTransactionType,
+): Promise<AxiosResponse<addTransactionResponseType>> =>
+  api.patch('/transaction/editTransaction', body);
 
 export const getAllUserTransactions = (body: {
   limit: number;
@@ -64,6 +69,11 @@ export const getAllUserTransactions = (body: {
   };
 }): Promise<AxiosResponse<getTransactionsResponseType>> =>
   api.post('/transaction/getAllUserTransactions', body);
+
+export const deleteTransaction = (body: {
+  transactionId: string;
+}): Promise<AxiosResponse<deleteTransactionResponseType>> =>
+  api.delete('/transaction/deleteTransaction', { data: body });
 
 /* statistics requests */
 export const getStatisticsForBalance = (body: {

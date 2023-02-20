@@ -15,7 +15,10 @@ import { getCategories } from 'store/reducers/category.reducer';
 import { categoryType } from 'types/category.type';
 import { balanceType } from 'types/balance.type';
 import CustomSelect from 'components/CustomSelect';
-import { transactionsSectionsType } from 'types/transaction.type';
+import {
+  transactionsSectionsType,
+  transactionType,
+} from 'types/transaction.type';
 
 import {
   formTransactionsSections,
@@ -25,7 +28,11 @@ import {
 import './styles.scss';
 import { useHistory } from 'react-router-dom';
 
-const Transactions = () => {
+type propsType = {
+  setSelectedTransaction: Dispatch<SetStateAction<transactionType | null>>;
+};
+
+const Transactions: React.FC<propsType> = ({ setSelectedTransaction }) => {
   const { isLoadingTransactions, transactions, numberOfTransactions } =
     useAppSelector(transactionData);
   const { categories } = useAppSelector(categoryData);
@@ -192,8 +199,7 @@ const Transactions = () => {
             initialLoad={false}
             loadMore={handleLoadMore}
             hasMore={numberToSkip <= numberOfTransactions}
-            loader={<Loader key={0} />}
-          >
+            loader={<Loader key={0} />}>
             {transactionsSections.map((section) => (
               <React.Fragment key={section.title}>
                 <p className="sectionTitle fs-5 w-75 mx-auto">
@@ -203,6 +209,7 @@ const Transactions = () => {
                   <Transaction
                     key={transaction._id}
                     transaction={transaction}
+                    setSelectedTransaction={setSelectedTransaction}
                   />
                 ))}
               </React.Fragment>
@@ -215,8 +222,7 @@ const Transactions = () => {
           <Button
             variant="warning"
             className="w300Px text-white"
-            onClick={handleCreateTransaction}
-          >
+            onClick={handleCreateTransaction}>
             {t('create transaction')}
           </Button>
         </div>

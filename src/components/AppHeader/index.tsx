@@ -20,7 +20,8 @@ const AppHeader = () => {
   const { t } = useTranslation();
 
   const handleLogout = () => {
-    dispatch(logOut());
+    const refreshToken = localStorage.getItem('refreshToken');
+    dispatch(logOut({ refreshToken }));
     history.push('/authorization');
   };
 
@@ -65,20 +66,17 @@ const AppHeader = () => {
               <Dropdown.Menu variant="dark">
                 <Dropdown.Item
                   as="span"
-                  className="d-flex justify-content-around languagesController"
-                >
+                  className="d-flex justify-content-around languagesController">
                   <LanguageSwitcher />
                 </Dropdown.Item>
                 <Dropdown.Item
                   as="span"
-                  onClick={() => history.push('/balance')}
-                >
+                  onClick={() => history.push('/balance')}>
                   {t('balance')}
                 </Dropdown.Item>
                 <Dropdown.Item
                   as="span"
-                  onClick={() => history.push('/categories')}
-                >
+                  onClick={() => history.push('/categories')}>
                   {t('categories')}
                 </Dropdown.Item>
                 <Dropdown.Item as="span" onClick={() => history.push('/guide')}>

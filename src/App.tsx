@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Slide, toast, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -47,9 +47,14 @@ const App = () => {
     }
   }, []);
 
+  let isRefreshingToken = false;
+  let refreshRequest: Promise<AxiosResponse<loginResponseType>> | null = null;
+
   useEffect(() => {
-    if (isAuth && user.isFirstEnter) {
+    if (isAuth && user?.isFirstEnter) {
       history.push('/guide');
+    } else {
+      setAuth(false);
     }
   }, [isAuth, user]);
 
@@ -73,18 +78,30 @@ const App = () => {
       ) {
         originalRequest._isRetry = true;
         try {
-          const response = await axios.get<loginResponseType>(
-            `${baseUrl}/api/user/refresh`,
-            { withCredentials: true },
-          );
-          localStorage.setItem('token', response.data.accessToken);
+          if (!isRefreshingToken) {
+            isRefreshingToken = true;
+            refreshRequest = axios.get<loginResponseType>(
+              `${baseUrl}/api/user/refresh`,
+              { withCredentials: true },
+            );
+          }
+
+          if (refreshRequest) {
+            const response = await refreshRequest;
+            isRefreshingToken = false;
+            localStorage.setItem('token', response.data.accessToken);
+          }
+
+          refreshRequest = null;
+
           return axiosInstance.request(originalRequest);
         } catch (e) {
           toast(t('your session has expired'), {
             type: 'warning',
           });
 
-          dispatch(logOut());
+          const refreshToken = localStorage.getItem('refreshToken');
+          dispatch(logOut({ refreshToken }));
         }
       }
       throw error;

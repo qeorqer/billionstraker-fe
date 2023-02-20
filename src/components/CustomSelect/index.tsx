@@ -53,15 +53,13 @@ const CustomSelect: React.FC<propsType> = ({
       <Dropdown.Toggle
         variant="outline-warning"
         className="w-100 d-flex justify-content-between align-items-center"
-        disabled={disabled}
-      >
+        disabled={disabled}>
         {withTranslate ? t(valueToShow) : valueToShow}
       </Dropdown.Toggle>
       <Dropdown.Menu className="w-100">
         <Dropdown.Item
           as="span"
-          onClick={() => setSelectedValue(defaultButtonValue)}
-        >
+          onClick={() => setSelectedValue(defaultButtonValue)}>
           {defaultButtonText}
         </Dropdown.Item>
         <Dropdown.Divider />
@@ -70,8 +68,7 @@ const CustomSelect: React.FC<propsType> = ({
             as="span"
             key={item._id}
             onClick={() => setSelectedValue(item[fieldToSelect])}
-            disabled={Boolean(item.disabled)}
-          >
+            disabled={Boolean(item.disabled)}>
             {withTranslate ? t(item.name) : item.name}
           </Dropdown.Item>
         ))}

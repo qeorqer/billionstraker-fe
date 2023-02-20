@@ -10,7 +10,11 @@ import {
   deleteBalanceResponseType,
   getBalanceResponseType,
 } from 'types/balance.type';
-import { createTransaction } from './transaction.reducer';
+import {
+  createTransaction,
+  deleteTransaction,
+  updateTransaction,
+} from './transaction.reducer';
 
 export const getBalances = createAsyncThunk(
   'balance/getBalances',
@@ -118,6 +122,31 @@ const balanceReducer = createSlice({
         const balanceForUpdate = updatedBalance.find(
           (item) => item._id === balance._id,
         );
+
+        return balanceForUpdate ? balanceForUpdate : balance;
+      });
+    });
+
+    builder.addCase(updateTransaction.fulfilled, (state, action) => {
+      const updatedBalance = action.payload.data.balances;
+
+      state.balances = state.balances.map((balance) => {
+        const balanceForUpdate = updatedBalance.find(
+          (item) => item._id === balance._id,
+        );
+
+        return balanceForUpdate ? balanceForUpdate : balance;
+      });
+    });
+
+    builder.addCase(deleteTransaction.fulfilled, (state, action) => {
+      const updatedBalance = action.payload.data.balances;
+
+      state.balances = state.balances.map((balance) => {
+        const balanceForUpdate = updatedBalance.find(
+          (item) => item._id === balance._id,
+        );
+
         return balanceForUpdate ? balanceForUpdate : balance;
       });
     });

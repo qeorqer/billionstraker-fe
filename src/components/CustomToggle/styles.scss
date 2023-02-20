@@ -6,6 +6,22 @@
   position: relative;
   width: 100%;
 
+  &.circle .menuTogglerContainer {
+    padding: 0 15px;
+
+    span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+
+      &:before, &:after {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
+    }
+  }
+
   .menuTogglerContainer {
     display: inline-flex;
     cursor: pointer;
