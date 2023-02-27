@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
+import moment from 'moment';
 
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
-import { statisticData, userData } from 'store/selectors';
+import { statisticData } from 'store/selectors';
 import { getBalances } from 'store/reducers/balance.reducer';
 import Loader from 'components/Loader';
 import 'moment/locale/ru';
@@ -16,10 +17,10 @@ const StatisticsPage: FC = () => {
   );
 
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector(userData);
 
+  const startOfMonth = moment().startOf('month').format('YYYY-MM-DD hh:mm');
   const [monthsRange, setMonthsRange] = useState<Date[]>([
-    new Date(user.created),
+    new Date(startOfMonth),
     new Date(),
   ]);
   const [balance, setBalance] = useState<string>('');
