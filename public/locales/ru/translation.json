@@ -134,5 +134,8 @@
   "deleting transaction failed": "Не вышло удалить транзакцию",
   "edit transaction": "Редактировать транзакцию",
   "updating transaction success": "Транзакция изменена успешно",
-  "updating transaction failed": "Не вышло обновить транзакцию"
+  "updating transaction failed": "Не вышло обновить транзакцию",
+  "year": "Год",
+  "month": "Месяц",
+  "range detail": "Детализация диапазона"
 }
