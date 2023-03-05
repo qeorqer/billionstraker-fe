@@ -39,6 +39,7 @@ const RangeStatistic: FC<propsType> = ({
   const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
     'year' | 'month'
   >('year');
+  const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
 
   const handleCreateTransaction = () => push('createTransaction');
 
@@ -48,6 +49,7 @@ const RangeStatistic: FC<propsType> = ({
         <Col xs={12} sm={6} lg={4} className="max-width-220 p-1">
           <p className="mb-1 fw-bold text-center">{t('Select range')}:</p>
           <DateRangePicker
+            autoFocus={false}
             onChange={setMonthsRange}
             maxDetail={dateRangeMaxDetail}
             value={monthsRange}
@@ -58,8 +60,11 @@ const RangeStatistic: FC<propsType> = ({
             minDetail="year"
             minDate={new Date(user.created)}
             maxDate={new Date()}
-            className="data-range-picker w-100"
+            onClick={() => setIsDateRangeOpen(true)}
+            onCalendarClose={() => setIsDateRangeOpen(false)}
+            className="data-range-picker w-100 cursor-pointer"
             onFocus={(e: any) => (e.target.readOnly = true)}
+            isOpen={isDateRangeOpen}
           />
         </Col>
         <Col xs={12} sm={6} lg={4} className="max-width-220 p-1">

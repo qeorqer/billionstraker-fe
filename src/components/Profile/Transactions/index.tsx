@@ -1,11 +1,12 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { Button, Col, Row, Form } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroller';
 //@ts-ignore
 //todo: This library has an awful typing, but check it once in a while
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import {
   getAllUserTransactions,
@@ -22,6 +23,7 @@ import {
   transactionsSectionsType,
   transactionType,
 } from 'types/transaction.type';
+import BackToStatistics from 'components/Profile/BackToStatistics';
 
 import {
   formTransactionsSections,
@@ -29,8 +31,6 @@ import {
   transactionTypesToShowType,
 } from './utils';
 import './styles.scss';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
-import BackToStatistics from 'components/Profile/BackToStatistics';
 
 type propsType = {
   setSelectedTransaction: Dispatch<SetStateAction<transactionType | null>>;
@@ -72,6 +72,7 @@ const Transactions: React.FC<propsType> = ({ setSelectedTransaction }) => {
     new Date(initialDateTo || new Date()),
   ]);
   const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<string>('year');
+  const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
 
   const handleLoadMore = () => {
     if (!isLoadingTransactions) {
@@ -252,6 +253,9 @@ const Transactions: React.FC<propsType> = ({ setSelectedTransaction }) => {
                 maxDate={new Date()}
                 className="data-range-picker"
                 onFocus={(e: any) => (e.target.readOnly = true)}
+                onClick={() => setIsDateRangeOpen(true)}
+                onCalendarClose={() => setIsDateRangeOpen(false)}
+                isOpen={isDateRangeOpen}
               />
             </Col>
           </Row>
