@@ -19,6 +19,7 @@ type propsType = {
   fieldToSelect?: '_id' | 'name';
   withTranslate?: boolean;
   disabled?: boolean;
+  showDefaultValue?: boolean;
 };
 
 const CustomSelect: React.FC<propsType> = ({
@@ -30,6 +31,7 @@ const CustomSelect: React.FC<propsType> = ({
   withTranslate,
   disabled = false,
   fieldToSelect = '_id',
+  showDefaultValue = true,
 }) => {
   const [valueToShow, setValueToShow] = useState(defaultButtonText);
 
@@ -58,12 +60,16 @@ const CustomSelect: React.FC<propsType> = ({
         {withTranslate ? t(valueToShow) : valueToShow}
       </Dropdown.Toggle>
       <Dropdown.Menu className="w-100">
-        <Dropdown.Item
-          as="span"
-          onClick={() => setSelectedValue(defaultButtonValue)}>
-          {defaultButtonText}
-        </Dropdown.Item>
-        <Dropdown.Divider />
+        {showDefaultValue && (
+          <>
+            <Dropdown.Item
+              as="span"
+              onClick={() => setSelectedValue(defaultButtonValue)}>
+              {defaultButtonText}
+            </Dropdown.Item>
+            <Dropdown.Divider />
+          </>
+        )}
         {data.map((item) => (
           <Dropdown.Item
             as="span"

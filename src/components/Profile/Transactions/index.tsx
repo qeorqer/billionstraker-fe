@@ -70,9 +70,7 @@ const Transactions: React.FC<propsType> = ({ setSelectedTransaction }) => {
     new Date(initialDateFrom || user.created),
     new Date(initialDateTo || new Date()),
   ]);
-  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
-    'year' | 'month'
-  >('year');
+  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<string>('year');
 
   const handleLoadMore = () => {
     if (!isLoadingTransactions) {
@@ -220,15 +218,21 @@ const Transactions: React.FC<propsType> = ({ setSelectedTransaction }) => {
               <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
                 {t('range detail')}:
               </p>
-              <Form.Control
-                as="select"
-                value={dateRangeMaxDetail}
-                onChange={(event) =>
-                  setDateRangeMaxDetail(event.target.value as 'year' | 'month')
-                }>
-                <option value="year">{t('year')}</option>
-                <option value="month">{t('month')}</option>
-              </Form.Control>
+              <CustomSelect
+                defaultButtonText={t('year')}
+                defaultButtonValue="year"
+                data={[
+                  { name: 'year', _id: 'year' },
+                  { name: 'month', _id: 'month' },
+                ]}
+                selectedValue={dateRangeMaxDetail}
+                setSelectedValue={
+                  setDateRangeMaxDetail as Dispatch<SetStateAction<string>>
+                }
+                fieldToSelect="name"
+                withTranslate
+                showDefaultValue={false}
+              />
             </Col>
             <Col xs="12" sm="6" lg="4" className="max-width-220  p-1">
               <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">

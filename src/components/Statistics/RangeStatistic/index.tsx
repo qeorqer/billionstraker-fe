@@ -1,6 +1,7 @@
 import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import { Button, Col, Row, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 //@ts-ignore
 //todo: This library has an awful typing, but check it once in a while
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
@@ -13,7 +14,6 @@ import CustomSelect from 'components/CustomSelect';
 import RangeStatisticsItem from 'components/Statistics/RangeStatisticsItem';
 
 import './styles.scss';
-import { useHistory } from 'react-router-dom';
 
 type propsType = {
   statisticsForRange: getStatisticsForBalanceType | null;
@@ -45,7 +45,7 @@ const RangeStatistic: FC<propsType> = ({
   return (
     <>
       <Row className="d-flex justify-content-center text-center white-space-nowrap">
-        <Col xs={12} sm={6} lg={4} className="max-width-220">
+        <Col xs={12} sm={6} lg={4} className="max-width-220 p-1">
           <p className="mb-1 fw-bold text-center">{t('Select range')}:</p>
           <DateRangePicker
             onChange={setMonthsRange}
@@ -58,27 +58,29 @@ const RangeStatistic: FC<propsType> = ({
             minDetail="year"
             minDate={new Date(user.created)}
             maxDate={new Date()}
-            className="data-range-picker"
+            className="data-range-picker w-100"
             onFocus={(e: any) => (e.target.readOnly = true)}
           />
         </Col>
-        <Col
-          xs={12}
-          sm={6}
-          lg={4}
-          className="max-width-220 mx-md-2 mt-2 mt-sm-0">
+        <Col xs={12} sm={6} lg={4} className="max-width-220 p-1">
           <p className="mb-1 fw-bold text-center">{t('range detail')}:</p>
-          <Form.Control
-            as="select"
-            value={dateRangeMaxDetail}
-            onChange={(event) =>
-              setDateRangeMaxDetail(event.target.value as 'year' | 'month')
-            }>
-            <option value="year">{t('year')}</option>
-            <option value="month">{t('month')}</option>
-          </Form.Control>
+          <CustomSelect
+            defaultButtonText={t('year')}
+            defaultButtonValue="year"
+            data={[
+              { name: 'year', _id: 'year' },
+              { name: 'month', _id: 'month' },
+            ]}
+            selectedValue={dateRangeMaxDetail}
+            setSelectedValue={
+              setDateRangeMaxDetail as Dispatch<SetStateAction<string>>
+            }
+            fieldToSelect="name"
+            withTranslate
+            showDefaultValue={false}
+          />
         </Col>
-        <Col xs={12} lg={4} className="max-width-220 mt-2 mt-sm-0">
+        <Col xs={12} lg={4} className="max-width-220 p-1">
           <p className="mb-1 fw-bold text-center white-space-nowrap">
             {t('select balance')}
           </p>
