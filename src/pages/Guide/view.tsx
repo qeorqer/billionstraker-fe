@@ -89,16 +89,16 @@ const Guide: React.FC<propsType> = ({
       <p className="fs-6 my-2 yellowText">
         {t('select dates range and balance')}
       </p>
-      <img src={guide7} alt="statistics page" />
-      <p className="fs-5 mt-3 mb-2">{t('pro tip')}</p>
-      <p className="fs-6 my-2 yellowText">{t('get pwa')}</p>
-      <img src={guide8} alt="get PWA" className="max-width-220" />
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
         onClick={handleCheckStatistics}>
         {t('check out statistics')}
       </Button>
+      <img src={guide7} alt="statistics page" />
+      <p className="fs-5 mt-3 mb-2">{t('pro tip')}</p>
+      <p className="fs-6 my-2 yellowText">{t('get pwa')}</p>
+      <img src={guide8} alt="get PWA" className="max-width-220" />
       <p className="fs-5 mt-2 mb-3">{t('that is all for the guidance')}</p>
       <p className="fs-6 mt-3 mb-2">{t('if you read here')}</p>
       <Button
