@@ -33,7 +33,7 @@ const ListItem: FC<propsType> = ({
 
   return (
     <Card
-      className="mb-3 mx-auto text-center statisticsListItem"
+      className="mb-3 mx-auto text-center statisticsListItem cursor-pointer"
       bg="light"
       text="dark"
       onClick={handleItemClick}>

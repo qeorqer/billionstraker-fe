@@ -37,7 +37,7 @@ const CreateTransactionPage = () => {
     }
   };
 
-  const handleCreateBalance = () => push('balances');
+  const handleCreateBalance = () => push('balance');
 
   const handleCreateCategory = () => push('categories');
 

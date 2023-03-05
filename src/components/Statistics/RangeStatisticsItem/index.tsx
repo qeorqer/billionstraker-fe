@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Diagram from 'components/Statistics/Diagram';
 import { List } from 'components/Statistics/List';
 import { getStatisticsForBalanceType } from 'types/statistic.type';
+import { formattingNumber } from 'utils/formattingNumber';
 
 import './styles.scss';
 
@@ -62,7 +63,10 @@ const RangeStatisticsItem: FC<propsType> = ({
             : 'Earned during this period',
         )}
         :
-        <span className="fst-italic yellowText"> {fieldsToUse.totalValue}</span>
+        <span className="fst-italic yellowText">
+          {' '}
+          {formattingNumber(fieldsToUse.totalValue)}
+        </span>
       </p>
       {useDiagram ? (
         <Diagram
