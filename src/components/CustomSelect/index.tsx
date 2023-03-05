@@ -37,7 +37,8 @@ const CustomSelect: React.FC<propsType> = ({
 
   useEffect(() => {
     const selectedItem = data.find(
-      (item) => item[fieldToSelect] === selectedValue,
+      (item) =>
+        item[fieldToSelect] === selectedValue || item['name'] === selectedValue,
     );
 
     if (!selectedItem) {

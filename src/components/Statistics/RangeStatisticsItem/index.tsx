@@ -11,9 +11,16 @@ import './styles.scss';
 type propsType = {
   statisticsForRange: getStatisticsForBalanceType;
   type: 'expense' | 'income';
+  selectedBalance: string;
+  monthsRange: Date[];
 };
 
-const RangeStatisticsItem: FC<propsType> = ({ statisticsForRange, type }) => {
+const RangeStatisticsItem: FC<propsType> = ({
+  statisticsForRange,
+  type,
+  selectedBalance,
+  monthsRange,
+}) => {
   const { t } = useTranslation();
   const [useDiagram, setUseDiagram] = useState<boolean>(true);
 
@@ -36,16 +43,14 @@ const RangeStatisticsItem: FC<propsType> = ({ statisticsForRange, type }) => {
             size="sm"
             className={`mx-2 ${useDiagram ? 'text-white' : ''}`}
             variant={useDiagram ? 'warning' : 'outline-warning'}
-            onClick={() => setUseDiagram(true)}
-          >
+            onClick={() => setUseDiagram(true)}>
             {t('Pie chart')}
           </Button>
           <Button
             size="sm"
             className={useDiagram ? '' : 'text-white'}
             variant={useDiagram ? 'outline-warning' : 'warning'}
-            onClick={() => setUseDiagram(false)}
-          >
+            onClick={() => setUseDiagram(false)}>
             {t('List')}
           </Button>
         </div>
@@ -66,6 +71,8 @@ const RangeStatisticsItem: FC<propsType> = ({ statisticsForRange, type }) => {
         />
       ) : (
         <List
+          selectedBalance={selectedBalance}
+          monthsRange={monthsRange}
           totalSpent={fieldsToUse.totalValue}
           statisticForRange={fieldsToUse.statisticsInRange}
         />

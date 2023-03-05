@@ -103,12 +103,16 @@ const RangeStatistic: FC<propsType> = ({
             <>
               <Col xs={12} md={6} className="mb-5 mb-md-0">
                 <RangeStatisticsItem
+                  selectedBalance={balance}
+                  monthsRange={monthsRange}
                   statisticsForRange={statisticsForRange}
                   type="expense"
                 />
               </Col>
               <Col xs={12} md={6}>
                 <RangeStatisticsItem
+                  selectedBalance={balance}
+                  monthsRange={monthsRange}
                   statisticsForRange={statisticsForRange}
                   type="income"
                 />
