@@ -22,6 +22,10 @@ const ListItem: FC<propsType> = ({
 
   const handleItemClick = () => {
     push({
+      pathname: '/statistics',
+      search: `?balance=${selectedBalance}&dateFrom=${monthsRange[0]}&dateTo=${monthsRange[1]}`,
+    });
+    push({
       pathname: '/home',
       search: `?balance=${selectedBalance}&category=${listItem.title}&dateFrom=${monthsRange[0]}&dateTo=${monthsRange[1]}`,
     });

@@ -138,5 +138,6 @@
   "year": "Год",
   "month": "Месяц",
   "range detail": "Детализация диапазона",
-  "back to statistics": "Вернуться к статистике"
+  "back to statistics": "Вернуться к статистике",
+  "click on item to see transactions": "Нажми на категорию чтобы увидеть транзакции"
 }

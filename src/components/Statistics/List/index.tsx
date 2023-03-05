@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { expenseIncomeType } from 'types/statistic.type';
 import ListItem from 'components/Statistics/ListItem';
@@ -22,6 +23,8 @@ export const List: FC<propsType> = ({
   selectedBalance,
   monthsRange,
 }) => {
+  const { t } = useTranslation();
+
   const dataForRange: listForRangeItem[] = statisticForRange.map(
     (el, index) => ({
       title: el._id,
@@ -32,6 +35,9 @@ export const List: FC<propsType> = ({
 
   return (
     <div>
+      <p style={{ fontSize: '14px' }}>
+        {t('click on item to see transactions')}
+      </p>
       {dataForRange
         .sort((a, b) => b.value - a.value)
         .map((listItem) => (
