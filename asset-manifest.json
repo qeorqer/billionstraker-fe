@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/billionstraker-fe/static/css/main.97713594.chunk.css",
-    "main.js": "/billionstraker-fe/static/js/main.587b0585.chunk.js",
-    "main.js.map": "/billionstraker-fe/static/js/main.587b0585.chunk.js.map",
+    "main.js": "/billionstraker-fe/static/js/main.f8692b0a.chunk.js",
+    "main.js.map": "/billionstraker-fe/static/js/main.f8692b0a.chunk.js.map",
     "runtime-main.js": "/billionstraker-fe/static/js/runtime-main.7835c4ad.js",
     "runtime-main.js.map": "/billionstraker-fe/static/js/runtime-main.7835c4ad.js.map",
     "static/css/2.7158c1e2.chunk.css": "/billionstraker-fe/static/css/2.7158c1e2.chunk.css",
@@ -15,18 +15,19 @@
     "static/css/2.7158c1e2.chunk.css.map": "/billionstraker-fe/static/css/2.7158c1e2.chunk.css.map",
     "static/css/main.97713594.chunk.css.map": "/billionstraker-fe/static/css/main.97713594.chunk.css.map",
     "static/js/2.7f2ae502.chunk.js.LICENSE.txt": "/billionstraker-fe/static/js/2.7f2ae502.chunk.js.LICENSE.txt",
-    "static/js/main.587b0585.chunk.js.LICENSE.txt": "/billionstraker-fe/static/js/main.587b0585.chunk.js.LICENSE.txt",
-    "static/media/about-1.ef03c6c0.png": "/billionstraker-fe/static/media/about-1.ef03c6c0.png",
-    "static/media/about-2.a3674cf5.png": "/billionstraker-fe/static/media/about-2.a3674cf5.png",
-    "static/media/about-3.25ce9f83.png": "/billionstraker-fe/static/media/about-3.25ce9f83.png",
+    "static/js/main.f8692b0a.chunk.js.LICENSE.txt": "/billionstraker-fe/static/js/main.f8692b0a.chunk.js.LICENSE.txt",
+    "static/media/about-1.c5922a67.png": "/billionstraker-fe/static/media/about-1.c5922a67.png",
+    "static/media/about-2.fb767251.png": "/billionstraker-fe/static/media/about-2.fb767251.png",
+    "static/media/about-3.c11fa6e6.png": "/billionstraker-fe/static/media/about-3.c11fa6e6.png",
     "static/media/getFetch.cjs": "/billionstraker-fe/static/media/getFetch.582d29c4.cjs",
     "static/media/guide-1.8efc7526.png": "/billionstraker-fe/static/media/guide-1.8efc7526.png",
     "static/media/guide-2.4c99a9a9.png": "/billionstraker-fe/static/media/guide-2.4c99a9a9.png",
     "static/media/guide-3.c5a3f85c.png": "/billionstraker-fe/static/media/guide-3.c5a3f85c.png",
     "static/media/guide-4.1a5ee135.png": "/billionstraker-fe/static/media/guide-4.1a5ee135.png",
     "static/media/guide-5.d4e8acf9.png": "/billionstraker-fe/static/media/guide-5.d4e8acf9.png",
-    "static/media/guide-6.ba8396d6.png": "/billionstraker-fe/static/media/guide-6.ba8396d6.png",
-    "static/media/guide-7.46e18031.png": "/billionstraker-fe/static/media/guide-7.46e18031.png",
+    "static/media/guide-6.c5922a67.png": "/billionstraker-fe/static/media/guide-6.c5922a67.png",
+    "static/media/guide-7.fb767251.png": "/billionstraker-fe/static/media/guide-7.fb767251.png",
+    "static/media/guide-8.f83d5cdd.png": "/billionstraker-fe/static/media/guide-8.f83d5cdd.png",
     "static/media/loader.b77cbe87.gif": "/billionstraker-fe/static/media/loader.b77cbe87.gif",
     "static/media/logo.9b355c54.png": "/billionstraker-fe/static/media/logo.9b355c54.png",
     "static/media/profile.533187f8.svg": "/billionstraker-fe/static/media/profile.533187f8.svg",
@@ -38,6 +39,6 @@
     "static/css/2.7158c1e2.chunk.css",
     "static/js/2.7f2ae502.chunk.js",
     "static/css/main.97713594.chunk.css",
-    "static/js/main.587b0585.chunk.js"
+    "static/js/main.f8692b0a.chunk.js"
   ]
 }
