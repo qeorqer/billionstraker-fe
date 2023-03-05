@@ -25,7 +25,7 @@ const BackToStatistics = () => {
 
   return (
     <Button
-      variant="warning backToStatisticsButton"
+      variant="outline-warning backToStatisticsButton"
       onClick={handleBackToStatisticsClick}>
       {t('back to statistics')}
     </Button>
