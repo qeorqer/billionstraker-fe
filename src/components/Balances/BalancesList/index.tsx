@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import CustomToggle from 'components/CustomToggle';
 import BalanceForm from 'components/Balances/BalanceForm';
 import { handleChangeAmount } from 'utils/handleChangeAmount';
+import { formattingNumber } from 'utils/formattingNumber';
 
 type propsType = {
   withMenu?: boolean;
@@ -95,8 +96,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
               spaceBetween: 50,
             },
           }}
-          centerInsufficientSlides
-        >
+          centerInsufficientSlides>
           {balances.map((balance) => (
             <SwiperSlide key={balance._id}>
               <Card className="h-100">
@@ -104,7 +104,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
                   <div>
                     <Card.Title>{balance.name}</Card.Title>
                     <Card.Text>
-                      {`${t('balance')}: ${balance.amount}`}
+                      {`${t('balance')}: ${formattingNumber(balance.amount)}`}
                     </Card.Text>
                   </div>
                   {withMenu && (
@@ -116,16 +116,14 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
                       <Dropdown.Menu>
                         <Dropdown.Item
                           as="span"
-                          onClick={() => handleEditClick(balance._id)}
-                        >
+                          onClick={() => handleEditClick(balance._id)}>
                           {t('edit')}
                         </Dropdown.Item>
                         <Dropdown.Item
                           as="span"
                           onClick={() =>
                             dispatch(deleteBalance({ balanceId: balance._id }))
-                          }
-                        >
+                          }>
                           {t('remove')}
                         </Dropdown.Item>
                       </Dropdown.Menu>

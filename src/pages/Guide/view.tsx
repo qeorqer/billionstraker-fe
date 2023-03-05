@@ -8,6 +8,7 @@ import guide4 from 'assets/guide/guide-4.png';
 import guide5 from 'assets/guide/guide-5.png';
 import guide6 from 'assets/guide/guide-6.png';
 import guide7 from 'assets/guide/guide-7.png';
+import guide8 from 'assets/guide/guide-8.png';
 
 import './styles.scss';
 
@@ -44,8 +45,7 @@ const Guide: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateBalance}
-      >
+        onClick={handleCreateBalance}>
         {t('create balance')}
       </Button>
       <p className="fs-5 mt-2 mb-3">
@@ -58,8 +58,7 @@ const Guide: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateCategory}
-      >
+        onClick={handleCreateCategory}>
         {t('create category')}
       </Button>
       <p className="fs-5 mt-2 mb-3">{t('now we are ready for transactions')}</p>
@@ -72,8 +71,7 @@ const Guide: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateTransaction}
-      >
+        onClick={handleCreateTransaction}>
         {t('create transaction')}
       </Button>
       <p className="fs-5 mt-2 mb-3">{t('time to explore the profile page')}</p>
@@ -84,8 +82,7 @@ const Guide: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleExploreProfile}
-      >
+        onClick={handleExploreProfile}>
         {t('explore profile')}
       </Button>
       <p className="fs-5 mt-2 mb-3">{t('the last but not least')}</p>
@@ -93,11 +90,13 @@ const Guide: React.FC<propsType> = ({
         {t('select dates range and balance')}
       </p>
       <img src={guide7} alt="statistics page" />
+      <p className="fs-5 mt-3 mb-2">{t('pro tip')}</p>
+      <p className="fs-6 my-2 yellowText">{t('get pwa')}</p>
+      <img src={guide8} alt="get PWA" className="max-width-220" />
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCheckStatistics}
-      >
+        onClick={handleCheckStatistics}>
         {t('check out statistics')}
       </Button>
       <p className="fs-5 mt-2 mb-3">{t('that is all for the guidance')}</p>
@@ -105,8 +104,7 @@ const Guide: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateBalance}
-      >
+        onClick={handleCreateBalance}>
         {t('create balance')}
       </Button>
     </Container>
