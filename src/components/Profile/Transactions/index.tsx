@@ -30,6 +30,7 @@ import {
 } from './utils';
 import './styles.scss';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
+import BackToStatistics from 'components/Profile/BackToStatistics';
 
 type propsType = {
   setSelectedTransaction: Dispatch<SetStateAction<transactionType | null>>;
@@ -279,6 +280,9 @@ const Transactions: React.FC<propsType> = ({ setSelectedTransaction }) => {
               </React.Fragment>
             ))}
           </InfiniteScroll>
+          {initialBalance && initialDateFrom && initialDateTo ? (
+            <BackToStatistics />
+          ) : null}
         </>
       ) : (
         <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 mt-3 flex-column">

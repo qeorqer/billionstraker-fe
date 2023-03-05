@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import moment from 'moment';
+import { useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
 import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
@@ -17,13 +18,20 @@ const StatisticsPage: FC = () => {
   );
 
   const dispatch = useAppDispatch();
+  const { search } = useLocation();
+
+  const params = new URLSearchParams(search);
+
+  const initialBalance = params.get('balance');
+  const initialDateFrom = params.get('dateFrom');
+  const initialDateTo = params.get('dateTo');
 
   const startOfMonth = moment().startOf('month').format('YYYY-MM-DD hh:mm');
   const [monthsRange, setMonthsRange] = useState<Date[]>([
-    new Date(startOfMonth),
-    new Date(),
+    new Date(initialDateFrom || startOfMonth),
+    new Date(initialDateTo || new Date()),
   ]);
-  const [balance, setBalance] = useState<string>('');
+  const [balance, setBalance] = useState<string>(initialBalance || '');
 
   useEffect(() => {
     if (balance) {
@@ -42,7 +50,7 @@ const StatisticsPage: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (balances.length) {
+    if (balances.length && !initialBalance) {
       setBalance(balances[0].name);
     }
   }, [balances]);

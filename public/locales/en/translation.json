@@ -137,5 +137,6 @@
   "updating transaction failed": "Failed to updated transaction",
   "year": "Year",
   "month": "Month",
-  "range detail": "Range detail"
+  "range detail": "Range detail",
+  "back to statistics": "Back to statistics"
 }

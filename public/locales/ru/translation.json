@@ -137,5 +137,6 @@
   "updating transaction failed": "Не вышло обновить транзакцию",
   "year": "Год",
   "month": "Месяц",
-  "range detail": "Детализация диапазона"
+  "range detail": "Детализация диапазона",
+  "back to statistics": "Вернуться к статистике"
 }
