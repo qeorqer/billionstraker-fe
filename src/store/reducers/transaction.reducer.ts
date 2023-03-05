@@ -29,6 +29,8 @@ export const getAllUserTransactions = createAsyncThunk(
       shownTransactionsTypes: string;
       categoriesToShow: string[];
       balancesToShow: string[];
+      from: Date;
+      to: Date;
     };
   }): Promise<AxiosResponse<getTransactionsResponseType>> =>
     await api.getAllUserTransactions(body),

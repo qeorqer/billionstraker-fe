@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
+
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import App from 'App';
 import store from 'store';
 import 'i18n';
@@ -19,3 +21,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
+
+serviceWorkerRegistration.register();

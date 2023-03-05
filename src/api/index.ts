@@ -66,6 +66,8 @@ export const getAllUserTransactions = (body: {
     shownTransactionsTypes: string;
     categoriesToShow: string[];
     balancesToShow: string[];
+    from: Date;
+    to: Date;
   };
 }): Promise<AxiosResponse<getTransactionsResponseType>> =>
   api.post('/transaction/getAllUserTransactions', body);
