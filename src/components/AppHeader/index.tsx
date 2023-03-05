@@ -28,7 +28,7 @@ const AppHeader = () => {
   return (
     <header>
       <Container>
-        <Row>
+        <Row className="align-items-center">
           <Col md="3" xs="6" className="logo">
             <Link to="/">
               <img src={logo} alt="app logo" />

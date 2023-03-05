@@ -67,7 +67,6 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
           <PieChart
             data={statistic}
             style={{ height: '300px', width: '100%' }}
-            segmentsShift={0.5}
             label={({ dataEntry }) =>
               `${
                 Math.round(dataEntry.percentage)
