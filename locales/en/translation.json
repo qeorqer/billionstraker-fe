@@ -134,5 +134,10 @@
   "deleting transaction failed": "Failed to delete transaction",
   "edit transaction": "Edit transaction",
   "updating transaction success": "Transaction updated successfully",
-  "updating transaction failed": "Failed to updated transaction"
+  "updating transaction failed": "Failed to updated transaction",
+  "year": "Year",
+  "month": "Month",
+  "range detail": "Range detail",
+  "back to statistics": "Back to statistics",
+  "click on item to see transactions": "Click on item to see transactions"
 }
