@@ -6,9 +6,10 @@ import { useHistory } from 'react-router-dom';
 //todo: This library has an awful typing, but check it once in a while
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
-import Loader from 'components/Loader';
-import { useAppSelector } from 'hooks/react-redux.hook';
-import { statisticData, userData } from 'store/selectors';
+import Loader from 'components/Layout/Loader';
+import { useAppSelector } from 'store/hooks';
+import { statisticData } from 'store/selectors';
+import { userData } from 'features/user';
 import { getStatisticsForBalanceType } from 'types/statistic.type';
 import CustomSelect from 'components/CustomSelect';
 import RangeStatisticsItem from 'components/Statistics/RangeStatisticsItem';

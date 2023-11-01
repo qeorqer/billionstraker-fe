@@ -1,17 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Container, Modal } from 'react-bootstrap';
 
-import Transactions from 'components/Profile/Transactions';
+import TransactionsList from 'features/transaction/components/TransactionsList';
 import BalancesList from 'components/Balances/BalancesList';
-import SelectTransactionType from 'components/CreateTransaction/SelectTransactionType';
+import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
 
 import './styles.scss';
 import {
-  submitTransactionType,
-  transactionType,
-  transactionTypes,
-} from 'types/transaction.type';
-import CreateTransactionForm from 'components/CreateTransaction/CreateTransactionForm';
+  SubmitTransaction,
+  Transaction,
+  TransactionType,
+} from 'features/transaction/types';
+import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
 import { balanceType } from 'types/balance.type';
 import { categoryType } from 'types/category.type';
 
@@ -20,11 +20,11 @@ type propsType = {
   categories: categoryType[];
   t: (text: string) => string;
   isModalShown: boolean;
-  transactionType: transactionTypes;
-  setTransactionType: Dispatch<SetStateAction<transactionTypes>>;
-  setSelectedTransaction: Dispatch<SetStateAction<transactionType | null>>;
-  handleSubmit: (transaction: submitTransactionType | null) => void;
-  selectedTransaction: transactionType | null;
+  transactionType: TransactionType;
+  setTransactionType: Dispatch<SetStateAction<TransactionType>>;
+  setSelectedTransaction: Dispatch<SetStateAction<Transaction | null>>;
+  handleSubmit: (transaction: SubmitTransaction | null) => void;
+  selectedTransaction: Transaction | null;
 };
 
 const Profile: React.FC<propsType> = ({
@@ -43,7 +43,7 @@ const Profile: React.FC<propsType> = ({
       <p className="fs-4 fw-bold text-center py-2">{t('all your balances')}</p>
     )}
     <BalancesList />
-    <Transactions setSelectedTransaction={setSelectedTransaction} />
+    <TransactionsList setSelectedTransaction={setSelectedTransaction} />
     <Modal
       show={isModalShown}
       onHide={() => setSelectedTransaction(null)}

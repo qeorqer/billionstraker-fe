@@ -1,25 +1,22 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
-import {
-  submitTransactionType,
-  transactionTypes,
-} from 'types/transaction.type';
+import { SubmitTransaction, TransactionType } from 'features/transaction/types';
 import { balanceType } from 'types/balance.type';
 import { categoryType } from 'types/category.type';
 import Balances from 'components/Balances/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
-import Loader from 'components/Loader';
-import SelectTransactionType from 'components/CreateTransaction/SelectTransactionType';
-import CreateTransactionForm from 'components/CreateTransaction/CreateTransactionForm';
+import Loader from 'components/Layout/Loader';
+import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
+import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
 
 type propsType = {
   t: (text: string) => string;
-  transactionType: transactionTypes;
-  setTransactionType: Dispatch<SetStateAction<transactionTypes>>;
+  transactionType: TransactionType;
+  setTransactionType: Dispatch<SetStateAction<TransactionType>>;
   balances: balanceType[];
   categories: categoryType[];
-  handleSubmit: (transaction: submitTransactionType | null) => void;
+  handleSubmit: (transaction: SubmitTransaction | null) => void;
   canCreateTransaction: boolean;
   handleCreateBalance: () => void;
   handleCreateCategory: () => void;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { createBalance } from 'store/reducers/balance.reducer';
 import { handleChangeAmount } from 'utils/handleChangeAmount';
 

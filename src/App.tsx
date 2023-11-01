@@ -2,16 +2,20 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import { Slide, toast, ToastContainer } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { checkAuth, logOut, setAuth } from 'store/reducers/user.reducer';
-import { userData } from 'store/selectors';
-import AppHeader from 'components/AppHeader';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { userData } from 'features/user';
+import Header from 'components/Layout/Header';
 import AppRouter from 'navigation/';
-import { loginResponseType } from 'types/user.type';
 import axiosInstance, { baseUrl } from 'api/axiosInstance';
-import { useTranslation } from 'react-i18next';
+import {
+  AuthResponse,
+  logOutThunk,
+  refreshTokenThunk,
+  setAuth,
+} from 'features/user';
 
 import './App.scss';
 
@@ -20,6 +24,8 @@ const App = () => {
   const dispatch = useAppDispatch();
   const { isAuth, user } = useAppSelector(userData);
   const { t } = useTranslation();
+
+  console.log(isAuth, user);
 
   // TODO: move this somewhere
 
@@ -36,9 +42,10 @@ const App = () => {
 
     if (token) {
       const isTokenExpired = checkIsAccessTokenExpired();
+      console.log(isTokenExpired);
 
       if (isTokenExpired) {
-        dispatch(checkAuth());
+        dispatch(refreshTokenThunk());
       } else {
         dispatch(setAuth(true));
       }
@@ -48,13 +55,11 @@ const App = () => {
   }, []);
 
   let isRefreshingToken = false;
-  let refreshRequest: Promise<AxiosResponse<loginResponseType>> | null = null;
+  let refreshRequest: Promise<AxiosResponse<AuthResponse>> | null = null;
 
   useEffect(() => {
     if (isAuth && user?.isFirstEnter) {
       history.push('/guide');
-    } else {
-      setAuth(false);
     }
   }, [isAuth, user]);
 
@@ -80,7 +85,7 @@ const App = () => {
         try {
           if (!isRefreshingToken) {
             isRefreshingToken = true;
-            refreshRequest = axios.get<loginResponseType>(
+            refreshRequest = axios.get<AuthResponse>(
               `${baseUrl}/api/user/refresh`,
               { withCredentials: true },
             );
@@ -101,7 +106,7 @@ const App = () => {
           });
 
           const refreshToken = localStorage.getItem('refreshToken');
-          dispatch(logOut({ refreshToken }));
+          dispatch(logOutThunk({ refreshToken }));
         }
       }
       throw error;
@@ -110,7 +115,7 @@ const App = () => {
 
   return (
     <>
-      {isAuth && <AppHeader />}
+      {isAuth && <Header />}
       <AppRouter isAuth={isAuth} />
       <ToastContainer
         transition={Slide}

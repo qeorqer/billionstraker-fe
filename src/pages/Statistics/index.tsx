@@ -2,11 +2,11 @@ import React, { FC, useEffect, useState } from 'react';
 import moment from 'moment';
 import { useLocation } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
 import { statisticData } from 'store/selectors';
 import { getBalances } from 'store/reducers/balance.reducer';
-import Loader from 'components/Loader';
+import Loader from 'components/Layout/Loader';
 import 'moment/locale/ru';
 
 import Statistics from './view';

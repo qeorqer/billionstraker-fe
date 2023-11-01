@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { createCategory, getCategories } from 'store/reducers/category.reducer';
 import { categoriesTypes } from 'types/category.type';
 

@@ -11,10 +11,10 @@ import {
   getBalanceResponseType,
 } from 'types/balance.type';
 import {
-  createTransaction,
-  deleteTransaction,
-  updateTransaction,
-} from './transaction.reducer';
+  createTransactionThunk,
+  deleteTransactionThunk,
+  updateTransactionThunk,
+} from 'features/transaction';
 
 export const getBalances = createAsyncThunk(
   'balance/getBalances',
@@ -115,7 +115,7 @@ const balanceReducer = createSlice({
       );
     });
 
-    builder.addCase(createTransaction.fulfilled, (state, action) => {
+    builder.addCase(createTransactionThunk.fulfilled, (state, action) => {
       const updatedBalance = action.payload.data.balances;
 
       state.balances = state.balances.map((balance) => {
@@ -127,7 +127,7 @@ const balanceReducer = createSlice({
       });
     });
 
-    builder.addCase(updateTransaction.fulfilled, (state, action) => {
+    builder.addCase(updateTransactionThunk.fulfilled, (state, action) => {
       const updatedBalance = action.payload.data.balances;
 
       state.balances = state.balances.map((balance) => {
@@ -139,7 +139,7 @@ const balanceReducer = createSlice({
       });
     });
 
-    builder.addCase(deleteTransaction.fulfilled, (state, action) => {
+    builder.addCase(deleteTransactionThunk.fulfilled, (state, action) => {
       const updatedBalance = action.payload.data.balances;
 
       state.balances = state.balances.map((balance) => {

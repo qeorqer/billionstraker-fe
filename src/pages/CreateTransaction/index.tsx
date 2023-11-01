@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
 import { categoryData } from 'store/selectors';
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import {
-  submitTransactionType,
-  transactionTypes,
-} from 'types/transaction.type';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getCategories } from 'store/reducers/category.reducer';
 import { getBalances } from 'store/reducers/balance.reducer';
-import { createTransaction } from 'store/reducers/transaction.reducer';
+import {
+  createTransactionThunk,
+  SubmitTransaction,
+  TransactionType,
+} from 'features/transaction';
 
 import CreateTransaction from './view';
 
@@ -23,7 +23,7 @@ const CreateTransactionPage = () => {
   const [canCreateTransaction, setCanCreateTransaction] =
     useState<boolean>(false);
   const [transactionType, setTransactionType] =
-    useState<transactionTypes>('expense');
+    useState<TransactionType>('expense');
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,9 +31,9 @@ const CreateTransactionPage = () => {
   const dispatch = useAppDispatch();
   const { push } = useHistory();
 
-  const handleSubmit = (dataForSubmit: submitTransactionType | null) => {
+  const handleSubmit = (dataForSubmit: SubmitTransaction | null) => {
     if (dataForSubmit) {
-      dispatch(createTransaction(dataForSubmit));
+      dispatch(createTransactionThunk(dataForSubmit));
     }
   };
 

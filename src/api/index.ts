@@ -1,11 +1,10 @@
 import { AxiosResponse } from 'axios';
 
 import {
-  authData,
-  loginResponseType,
-  signUpResponseType,
-  updateUserResponseType,
-} from 'types/user.type';
+  AuthData,
+  AuthResponse,
+  UpdateUserResponse,
+} from 'features/user/types';
 import {
   categoryType,
   createCategoryResponseType,
@@ -13,11 +12,11 @@ import {
   getCategoriesResponseType,
 } from 'types/category.type';
 import {
-  addTransactionResponseType,
-  deleteTransactionResponseType,
-  getTransactionsResponseType,
-  submitTransactionType,
-} from 'types/transaction.type';
+  AddTransactionResponse,
+  DeleteTransactionResponse,
+  GetTransactionsResponse,
+  SubmitTransaction,
+} from 'features/transaction/types';
 import { getStatisticsForBalanceResponseType } from 'types/statistic.type';
 import {
   balanceType,
@@ -28,54 +27,7 @@ import {
 
 import api from './axiosInstance';
 
-/* user requests */
-export const signUp = (
-  body: authData,
-): Promise<AxiosResponse<signUpResponseType>> => api.post('/user/signUp', body);
-
-export const logIn = (
-  body: authData,
-): Promise<AxiosResponse<loginResponseType>> => api.post('/user/logIn', body);
-
-export const logOut = (body: {
-  refreshToken: string | null;
-}): Promise<AxiosResponse<void>> => api.post('/user/logOut', body);
-
-export const refresh = (): Promise<AxiosResponse<loginResponseType>> =>
-  api.get('/user/refresh');
-
-export const setFirstEnter = (): Promise<
-  AxiosResponse<updateUserResponseType>
-> => api.patch('/user/setFirstEnter');
-
 /* transaction requests */
-export const addTransaction = (
-  body: submitTransactionType,
-): Promise<AxiosResponse<addTransactionResponseType>> =>
-  api.post('/transaction/createTransaction', body);
-
-export const editTransaction = (
-  body: submitTransactionType,
-): Promise<AxiosResponse<addTransactionResponseType>> =>
-  api.patch('/transaction/editTransaction', body);
-
-export const getAllUserTransactions = (body: {
-  limit: number;
-  numberToSkip: number;
-  filteringOptions: {
-    shownTransactionsTypes: string;
-    categoriesToShow: string[];
-    balancesToShow: string[];
-    from: Date;
-    to: Date;
-  };
-}): Promise<AxiosResponse<getTransactionsResponseType>> =>
-  api.post('/transaction/getAllUserTransactions', body);
-
-export const deleteTransaction = (body: {
-  transactionId: string;
-}): Promise<AxiosResponse<deleteTransactionResponseType>> =>
-  api.delete('/transaction/deleteTransaction', { data: body });
 
 /* statistics requests */
 export const getStatisticsForBalance = (body: {

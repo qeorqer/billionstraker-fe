@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useAppSelector } from 'hooks/react-redux.hook';
-import {
-  submitTransactionType,
-  transactionType,
-  transactionTypes,
-} from 'types/transaction.type';
+import { useAppSelector } from 'store/hooks';
 import { categoryData } from 'store/selectors';
-import { updateTransaction } from 'store/reducers/transaction.reducer';
 import { useDispatch } from 'react-redux';
+import {
+  updateTransactionThunk,
+  SubmitTransaction,
+  Transaction,
+  TransactionType,
+} from 'features/transaction';
 
 import Profile from './view';
 
@@ -20,14 +20,14 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
 
   const [transactionType, setTransactionType] =
-    useState<transactionTypes>('expense');
+    useState<TransactionType>('expense');
   const [isModalShown, setIsModalShown] = useState(false);
   const [selectedTransaction, setSelectedTransaction] =
-    useState<transactionType | null>(null);
+    useState<Transaction | null>(null);
 
-  const handleSubmit = (dataForSubmit: submitTransactionType | null) => {
+  const handleSubmit = (dataForSubmit: SubmitTransaction | null) => {
     if (dataForSubmit) {
-      dispatch(updateTransaction(dataForSubmit));
+      dispatch(updateTransactionThunk(dataForSubmit));
       setIsModalShown(false);
     }
   };

@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-import LoginForm from 'components/Authorization/LogInForm';
-import SignUpForm from 'components/Authorization/SignUpForm';
+import LoginForm from 'components/LogInForm';
+import SignUpForm from 'components/SignUpForm';
 import logo from 'assets/common/logo.png';
 import LanguageSwitcher from 'components/LanguageSwitcher';
 
@@ -35,8 +35,7 @@ const Authorization: React.FC<propsType> = ({
               <LoginForm />
               <p
                 onClick={() => setShowSignIn(false)}
-                className="my-2 cursor-pointer"
-              >
+                className="my-2 cursor-pointer">
                 {t('New to billionstracker')}? <span>{t('Sign up')}</span>
               </p>
             </>
@@ -46,8 +45,7 @@ const Authorization: React.FC<propsType> = ({
               <SignUpForm />
               <p
                 onClick={() => setShowSignIn(true)}
-                className="my-2 cursor-pointer"
-              >
+                className="my-2 cursor-pointer">
                 {t('Already on billionstracker')}? <span>{t('Sign in')}</span>
               </p>
             </>
@@ -59,8 +57,7 @@ const Authorization: React.FC<propsType> = ({
           </p>
           <div
             className="d-flex justify-content-around languagesController pb-3"
-            style={{ width: '100px', margin: '0 auto' }}
-          >
+            style={{ width: '100px', margin: '0 auto' }}>
             <LanguageSwitcher />
           </div>
         </Col>

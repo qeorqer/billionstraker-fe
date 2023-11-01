@@ -8,7 +8,7 @@ import {
   getBalances,
   updateBalance,
 } from 'store/reducers/balance.reducer';
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import CustomToggle from 'components/CustomToggle';
 import BalanceForm from 'components/Balances/BalanceForm';
 import { handleChangeAmount } from 'utils/handleChangeAmount';

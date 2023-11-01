@@ -1,17 +1,17 @@
-import React, { FC, lazy } from 'react';
+import React, { FC } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import CreateTransaction from 'pages/CreateTransaction';
 import ProfilePage from 'pages/Profile';
 import AuthorizationPage from 'pages/Authorization';
-import AboutApp from 'pages/AboutApp';
+import AboutApp from 'pages/About';
 import GuidePage from 'pages/Guide';
 import StatisticsPage from 'pages/Statistics';
 import BalancePage from 'pages/Balance';
 import CategoriesPage from 'pages/Categories';
-import Loader from 'components/Loader';
-import { useAppSelector } from 'hooks/react-redux.hook';
-import { userData } from 'store/selectors';
+import Loader from 'components/Layout/Loader';
+import { useAppSelector } from 'store/hooks';
+import { userData } from 'features/user';
 
 type propsType = {
   isAuth: boolean | null;
@@ -23,6 +23,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
   if (isAuth === null || isRefreshLoading) {
     return <Loader fullHeight={true} />;
   }
+  console.log(isAuth);
 
   return (
     <>
