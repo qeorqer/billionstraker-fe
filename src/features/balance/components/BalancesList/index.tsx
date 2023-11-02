@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import CustomToggle from 'components/CustomToggle';
+import CustomToggle from 'components/Shared/CustomToggle';
 import BalanceForm from 'features/balance/components/BalanceForm';
-import { handleChangeAmount } from 'utils/handleChangeAmount';
-import { formattingNumber } from 'utils/formattingNumber';
+import { handleChangeAmount } from 'features/balance/utils/handleChangeAmount';
+import { formattingSum } from 'features/transaction/utils/formattingSum';
 import {
   balanceData,
   updateBalanceThunk,
@@ -103,7 +103,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
                   <div>
                     <Card.Title>{balance.name}</Card.Title>
                     <Card.Text>
-                      {`${t('balance')}: ${formattingNumber(balance.amount)}`}
+                      {`${t('balance')}: ${formattingSum(balance.amount)}`}
                     </Card.Text>
                   </div>
                   {withMenu && (

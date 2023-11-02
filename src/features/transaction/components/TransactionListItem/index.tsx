@@ -3,11 +3,11 @@ import { Card, Col, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { Transaction } from 'features/transaction/types';
-import { formatTransactionDate } from 'utils/time';
-import { formattingNumber } from 'utils/formattingNumber';
+import { formatTransactionDate } from 'features/transaction/utils/formatTransactionDate';
+import { formattingSum } from 'features/transaction/utils/formattingSum';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
-import CustomToggle from 'components/CustomToggle';
+import CustomToggle from 'components/Shared/CustomToggle';
 import { deleteTransactionThunk } from 'features/transaction/index';
 
 import 'features/transaction/components/TransactionListItem/styles.scss';
@@ -43,19 +43,19 @@ const TransactionListItem: FC<propsType> = ({
                   <p>
                     <span>💰</span> {transaction.balanceToSubtract}
                   </p>
-                  <span>{formattingNumber(transaction.sumToSubtract!)}</span>
+                  <span>{formattingSum(transaction.sumToSubtract!)}</span>
                 </div>
                 <span className="exchangeSign">🔁</span>
                 <div className="to">
                   <p>
                     {transaction.balance} <span>💸</span>
                   </p>
-                  <span>{formattingNumber(transaction.sum)}</span>
+                  <span>{formattingSum(transaction.sum)}</span>
                 </div>
               </>
             ) : (
               <>
-                <span>{formattingNumber(transaction.sum)}</span>
+                <span>{formattingSum(transaction.sum)}</span>
                 <p>
                   <span>💰</span> {transaction.balance}
                 </p>

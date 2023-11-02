@@ -9,7 +9,7 @@ import { Balance } from 'features/balance/types';
 import { Category } from 'features/category/types';
 import Balances from 'features/balance/components/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
-import Loader from 'components/Layout/Loader';
+import Loader from 'components/Shared/Loader';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
 import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
 

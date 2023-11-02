@@ -9,7 +9,7 @@ import {
 import DatePicker from 'react-datepicker';
 import { toast } from 'react-toastify';
 
-import CustomSelect from 'components/CustomSelect';
+import CustomSelect from 'components/Shared/CustomSelect';
 import { Balance } from 'features/balance/types';
 import { Category } from 'features/category/types';
 import { useAppSelector } from 'store/hooks';

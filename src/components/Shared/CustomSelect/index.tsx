@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import './styles.scss';
+import 'components/Shared/CustomSelect/styles.scss';
 
 type dataType = {
   _id: string;

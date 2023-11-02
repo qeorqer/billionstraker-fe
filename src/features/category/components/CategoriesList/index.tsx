@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { CategoryTypes, Category } from 'features/category/types';
-import CustomToggle from 'components/CustomToggle';
+import CustomToggle from 'components/Shared/CustomToggle';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import CategoryForm from 'features/category/components/CategoryForm';
 import { deleteCategoryThunk, updateCategoryThunk } from 'features/category/index';

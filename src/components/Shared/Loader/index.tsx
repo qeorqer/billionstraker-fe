@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import loaderImage from 'assets/common/loader.gif';
 
-import 'components/Layout/Loader/styles.scss';
+import 'components/Shared/Loader/styles.scss';
 
 type propsType = {
   fullHeight?: boolean;

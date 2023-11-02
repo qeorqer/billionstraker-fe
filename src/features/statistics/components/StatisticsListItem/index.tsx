@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-import { formattingNumber } from 'utils/formattingNumber';
+import { formattingSum } from 'features/transaction/utils/formattingSum';
 import { listForRangeItem } from 'features/statistics/components/StatisticsList';
 
 import 'features/statistics/components/StatisticsListItem/styles.scss';
@@ -42,7 +42,7 @@ const StatisticsListItem: FC<propsType> = ({
       <Card.Body>
         <Row>
           <Col xs="6" lg="3">
-            {formattingNumber(listItem.value)}
+            {formattingSum(listItem.value)}
           </Col>
           <Col xs="12" lg="6" className="mb-2 mb-sm-0 title">
             {listItem.title}

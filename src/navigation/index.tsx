@@ -9,7 +9,7 @@ import GuidePage from 'pages/Guide';
 import StatisticsPage from 'pages/Statistics';
 import BalancePage from 'pages/Balance';
 import CategoryPage from 'pages/Category';
-import Loader from 'components/Layout/Loader';
+import Loader from 'components/Shared/Loader';
 import { useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
 

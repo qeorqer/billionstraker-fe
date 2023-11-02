@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import './styles.scss';
+import 'components/Shared/CustomToggle/styles.scss';
 
 type propsType = {
   children?: ReactNode;

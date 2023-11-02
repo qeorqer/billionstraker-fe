@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import Loader from 'components/Layout/Loader';
+import Loader from 'components/Shared/Loader';
 import { balanceData, getBalancesThunk } from 'features/balance';
 import {
   getStatisticsForSingleBalanceThunk,

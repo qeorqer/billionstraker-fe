@@ -6,12 +6,12 @@ import { useHistory } from 'react-router-dom';
 //todo: This library has an awful typing, but check it once in a while
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
-import Loader from 'components/Layout/Loader';
+import Loader from 'components/Shared/Loader';
 import { useAppSelector } from 'store/hooks';
 import { statisticsData } from 'features/statistics/store/selector';
 import { userData } from 'features/user';
 import { StatisticsForBalance } from 'features/statistics/types';
-import CustomSelect from 'components/CustomSelect';
+import CustomSelect from 'components/Shared/CustomSelect';
 import RangeStatisticsItem from 'features/statistics/components/RangeStatisticsItem';
 
 import 'features/statistics/components/RangeStatistic/styles.scss';

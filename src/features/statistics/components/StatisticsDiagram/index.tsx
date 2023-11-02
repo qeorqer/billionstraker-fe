@@ -5,7 +5,7 @@ import i18next from 'i18next';
 import Decimal from 'decimal.js';
 
 import { ExpenseIncome } from 'features/statistics/types';
-import { formattingNumber } from 'utils/formattingNumber';
+import { formattingSum } from 'features/transaction/utils/formattingSum';
 
 type propsType = {
   statisticForRange: ExpenseIncome[];
@@ -58,7 +58,7 @@ const StatisticsDiagram: FC<propsType> = ({
       formattedStatistic.map((el, index) => ({
         value: el.total,
         color: hovered === index ? '#9bb4c0' : colors[index % colors.length],
-        tooltip: `${el._id}, ${formattingNumber(el.total)}`,
+        tooltip: `${el._id}, ${formattingSum(el.total)}`,
       })),
     );
   }, [statisticForRange, totalSpent, hovered]);

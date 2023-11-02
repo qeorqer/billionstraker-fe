@@ -8,8 +8,8 @@ import { ReactComponent as Profile } from 'assets/tabMenu/profile.svg';
 import { ReactComponent as Transactions } from 'assets/tabMenu/transactions.svg';
 import { ReactComponent as Statistics } from 'assets/tabMenu/statistics.svg';
 import { useAppDispatch } from 'store/hooks';
-import LanguageSwitcher from 'components/LanguageSwitcher';
-import CustomToggle from 'components/CustomToggle';
+import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
+import CustomToggle from 'components/Shared/CustomToggle';
 import { logOutThunk } from 'features/user';
 
 import 'components/Layout/Header/styles.scss';

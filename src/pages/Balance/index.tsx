@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { handleChangeAmount } from 'utils/handleChangeAmount';
+import { handleChangeAmount } from 'features/balance/utils/handleChangeAmount';
 import { balanceData, createBalanceThunk } from 'features/balance';
 
 import BalancePageView from './view';
