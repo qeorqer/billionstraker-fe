@@ -121,6 +121,7 @@ const userReducer = createSlice({
 
     builder.addCase(updateUserThunk.fulfilled, (state, action) => {
       state.user = action.payload.data.user;
+      localStorage.setItem('user', JSON.stringify(action.payload.data.user));
     });
   },
 });

@@ -2,19 +2,21 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 
 import {
-  logInRequest,
-  logOutRequest,
-  refreshTokenRequest,
-  signUpRequest,
-  updateUserRequest,
   AuthData,
   AuthError,
   AuthResponse,
-  UpdateUserResponse,
+  logInRequest,
   logInRoute,
+  LogOutPayload,
+  logOutRequest,
   logOutRoute,
+  refreshTokenRequest,
   refreshTokenRoute,
+  signUpRequest,
   signUpRoute,
+  UpdateUserPayload,
+  updateUserRequest,
+  UpdateUserResponse,
   updateUserRoute,
 } from 'features/user';
 
@@ -58,7 +60,7 @@ export const logInThunk = createAsyncThunk<
 
 export const logOutThunk = createAsyncThunk(
   logOutRoute,
-  async (body: { refreshToken: string | null }): Promise<AxiosResponse<void>> =>
+  async (body: LogOutPayload): Promise<AxiosResponse<void>> =>
     await logOutRequest(body),
 );
 
@@ -69,6 +71,6 @@ export const refreshTokenThunk = createAsyncThunk(
 
 export const updateUserThunk = createAsyncThunk(
   updateUserRoute,
-  async (): Promise<AxiosResponse<UpdateUserResponse>> =>
-    await updateUserRequest(),
+  async (body: UpdateUserPayload): Promise<AxiosResponse<UpdateUserResponse>> =>
+    await updateUserRequest(body),
 );

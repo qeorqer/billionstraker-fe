@@ -26,7 +26,7 @@ const GuidePage = () => {
 
   useEffect(() => {
     if (user.isFirstEnter) {
-      dispatch(updateUserThunk());
+      dispatch(updateUserThunk({ updatedFields: { isFirstEnter: false } }));
     }
   }, []);
 
