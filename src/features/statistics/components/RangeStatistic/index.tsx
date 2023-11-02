@@ -8,17 +8,17 @@ import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
 import Loader from 'components/Layout/Loader';
 import { useAppSelector } from 'store/hooks';
-import { statisticData } from 'store/selectors';
+import { statisticsData } from 'features/statistics/store/selector';
 import { userData } from 'features/user';
-import { getStatisticsForBalanceType } from 'types/statistic.type';
+import { StatisticsForBalance } from 'features/statistics/types';
 import CustomSelect from 'components/CustomSelect';
-import RangeStatisticsItem from 'components/Statistics/RangeStatisticsItem';
+import RangeStatisticsItem from 'features/statistics/components/RangeStatisticsItem';
 
-import './styles.scss';
+import 'features/statistics/components/RangeStatistic/styles.scss';
 import { balanceData } from 'features/balance';
 
 type propsType = {
-  statisticsForRange: getStatisticsForBalanceType | null;
+  statisticsForRange: StatisticsForBalance | null;
   setMonthsRange: React.Dispatch<React.SetStateAction<Date[]>>;
   monthsRange: Date[];
   balance: string;
@@ -36,7 +36,7 @@ const RangeStatistic: FC<propsType> = ({
   const { push } = useHistory();
 
   const { lang, user } = useAppSelector(userData);
-  const { isStatisticsForBalanceLoading } = useAppSelector(statisticData);
+  const { isStatisticsForBalanceLoading } = useAppSelector(statisticsData);
   const { balances } = useAppSelector(balanceData);
   const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
     'year' | 'month'

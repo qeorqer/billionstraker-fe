@@ -2,15 +2,15 @@ import React, { FC, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import Diagram from 'components/Statistics/Diagram';
-import { List } from 'components/Statistics/List';
-import { getStatisticsForBalanceType } from 'types/statistic.type';
+import StatisticsDiagram from 'features/statistics/components/StatisticsDiagram';
+import { StatisticsList } from 'features/statistics/components/StatisticsList';
+import { StatisticsForBalance } from 'features/statistics/types';
 import { formattingNumber } from 'utils/formattingNumber';
 
-import './styles.scss';
+import 'features/statistics/components/RangeStatisticsItem/styles.scss';
 
 type propsType = {
-  statisticsForRange: getStatisticsForBalanceType;
+  statisticsForRange: StatisticsForBalance;
   type: 'expense' | 'income';
   selectedBalance: string;
   monthsRange: Date[];
@@ -69,12 +69,12 @@ const RangeStatisticsItem: FC<propsType> = ({
         </span>
       </p>
       {useDiagram ? (
-        <Diagram
+        <StatisticsDiagram
           totalSpent={fieldsToUse.totalValue}
           statisticForRange={fieldsToUse.statisticsInRange}
         />
       ) : (
-        <List
+        <StatisticsList
           selectedBalance={selectedBalance}
           monthsRange={monthsRange}
           totalSpent={fieldsToUse.totalValue}

@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import 'components/Statistics/BackToStatisticsButton/styles.scss';
+import './styles.scss';
 
 const BackToStatisticsButton = () => {
   const { t } = useTranslation();

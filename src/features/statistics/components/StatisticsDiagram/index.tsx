@@ -4,29 +4,32 @@ import ReactTooltip from 'react-tooltip';
 import i18next from 'i18next';
 import Decimal from 'decimal.js';
 
-import { expenseIncomeType } from 'types/statistic.type';
+import { ExpenseIncome } from 'features/statistics/types';
 import { formattingNumber } from 'utils/formattingNumber';
 
 type propsType = {
-  statisticForRange: expenseIncomeType[];
+  statisticForRange: ExpenseIncome[];
   totalSpent: number;
 };
 
-const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
+type RangeData = {
+  value: number;
+  color: string;
+  tooltip: string;
+};
+
+const StatisticsDiagram: FC<propsType> = ({
+  statisticForRange,
+  totalSpent,
+}) => {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [statistic, setStatistic] = useState<rangeDataType[]>([]);
+  const [statistic, setStatistic] = useState<RangeData[]>([]);
 
   const colors = ['#E38627', '#C13C37', '#6A2135'];
 
-  type rangeDataType = {
-    value: number;
-    color: string;
-    tooltip: string;
-  };
-
   useEffect(() => {
-    let formattedStatistic: expenseIncomeType[] = statisticForRange;
-    const otherItems: expenseIncomeType = {
+    let formattedStatistic: ExpenseIncome[] = statisticForRange;
+    const otherItems: ExpenseIncome = {
       _id: i18next.t('other'),
       total: 0,
     };
@@ -99,4 +102,4 @@ const Diagram: FC<propsType> = ({ statisticForRange, totalSpent }) => {
   );
 };
 
-export default Diagram;
+export default StatisticsDiagram;

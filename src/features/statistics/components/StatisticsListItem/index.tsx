@@ -3,9 +3,9 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 import { formattingNumber } from 'utils/formattingNumber';
-import { listForRangeItem } from 'components/Statistics/List';
+import { listForRangeItem } from 'features/statistics/components/StatisticsList';
 
-import './styles.scss';
+import 'features/statistics/components/StatisticsListItem/styles.scss';
 
 type propsType = {
   listItem: listForRangeItem;
@@ -13,7 +13,7 @@ type propsType = {
   monthsRange: Date[];
 };
 
-const ListItem: FC<propsType> = ({
+const StatisticsListItem: FC<propsType> = ({
   listItem,
   selectedBalance,
   monthsRange,
@@ -56,4 +56,4 @@ const ListItem: FC<propsType> = ({
   );
 };
 
-export default ListItem;
+export default StatisticsListItem;

@@ -3,16 +3,18 @@ import moment from 'moment';
 import { useLocation } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
-import { statisticData } from 'store/selectors';
 import Loader from 'components/Layout/Loader';
 import { balanceData, getBalancesThunk } from 'features/balance';
+import {
+  getStatisticsForSingleBalanceThunk,
+  statisticsData,
+} from 'features/statistics';
 import 'moment/locale/ru';
 
 import StatisticsPageView from './view';
 
 const StatisticsPage: FC = () => {
-  const { statisticsForBalance } = useAppSelector(statisticData);
+  const { statisticsForBalance } = useAppSelector(statisticsData);
   const { isLoadingBalances, balances } = useAppSelector(balanceData);
 
   const dispatch = useAppDispatch();
@@ -34,7 +36,7 @@ const StatisticsPage: FC = () => {
   useEffect(() => {
     if (balance) {
       dispatch(
-        getStatisticsForBalance({
+        getStatisticsForSingleBalanceThunk({
           from: monthsRange[0],
           to: monthsRange[1],
           balance,

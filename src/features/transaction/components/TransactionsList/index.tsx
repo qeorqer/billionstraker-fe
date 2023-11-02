@@ -20,7 +20,7 @@ import {
   getTransactionsThunk,
   resetTransactions,
 } from 'features/transaction';
-import BackToStatisticsButton from 'components/Statistics/BackToStatisticsButton';
+import BackToStatisticsButton from 'features/statistics/components/BackToStatisticsButton';
 
 import {
   formTransactionsSections,

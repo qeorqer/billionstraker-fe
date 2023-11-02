@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from 'features/user/store/reducer';
 import categoryReducer from 'features/category/store/reducer';
 import transactionReducer from 'features/transaction/store/reducer';
-import statisticReducer from 'store/reducers/statistic.reducer';
+import statisticsReducer from 'features/statistics/store/reducer';
 import balanceReducer from 'features/balance/store/reducer';
 
 const store = configureStore({
@@ -11,7 +11,7 @@ const store = configureStore({
     userData: userReducer,
     categoryDate: categoryReducer,
     transactionData: transactionReducer,
-    statisticData: statisticReducer,
+    statisticsData: statisticsReducer,
     balanceData: balanceReducer,
   },
   middleware: (getDefaultMiddleware) =>

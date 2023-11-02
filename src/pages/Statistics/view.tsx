@@ -1,11 +1,11 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import { Container } from 'react-bootstrap';
 
-import RangeStatistic from 'components/Statistics/RangeStatistic';
-import { getStatisticsForBalanceType } from 'types/statistic.type';
+import RangeStatistic from 'features/statistics/components/RangeStatistic';
+import { StatisticsForBalance } from 'features/statistics/types';
 
 type propsType = {
-  statisticsForBalance: getStatisticsForBalanceType | null;
+  statisticsForBalance: StatisticsForBalance | null;
   monthsRange: Date[];
   setMonthsRange: Dispatch<SetStateAction<Date[]>>;
   balance: string;

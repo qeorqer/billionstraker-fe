@@ -6,15 +6,15 @@ import { useTranslation } from 'react-i18next';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { userData } from 'features/user';
 import Header from 'components/Layout/Header';
-import AppRouter from 'navigation/';
+import AppRouter from 'navigation';
 import axiosInstance, { baseUrl } from 'api/axiosInstance';
 import {
   AuthResponse,
   logOutThunk,
   refreshTokenThunk,
   setAuth,
+  userData,
 } from 'features/user';
 
 import './App.scss';
@@ -24,8 +24,6 @@ const App = () => {
   const dispatch = useAppDispatch();
   const { isAuth, user } = useAppSelector(userData);
   const { t } = useTranslation();
-
-  console.log(isAuth, user);
 
   // TODO: move this somewhere
 

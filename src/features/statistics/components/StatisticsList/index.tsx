@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { expenseIncomeType } from 'types/statistic.type';
-import ListItem from 'components/Statistics/ListItem';
+import { ExpenseIncome } from 'features/statistics/types';
+import StatisticsListItem from 'features/statistics/components/StatisticsListItem';
 
 type propsType = {
-  statisticForRange: expenseIncomeType[];
+  statisticForRange: ExpenseIncome[];
   totalSpent: number;
   selectedBalance: string;
   monthsRange: Date[];
@@ -17,7 +17,7 @@ export type listForRangeItem = {
   percentage: number | string;
 };
 
-export const List: FC<propsType> = ({
+export const StatisticsList: FC<propsType> = ({
   statisticForRange,
   totalSpent,
   selectedBalance,
@@ -41,7 +41,7 @@ export const List: FC<propsType> = ({
       {dataForRange
         .sort((a, b) => b.value - a.value)
         .map((listItem) => (
-          <ListItem
+          <StatisticsListItem
             key={listItem.title}
             listItem={listItem}
             selectedBalance={selectedBalance}
