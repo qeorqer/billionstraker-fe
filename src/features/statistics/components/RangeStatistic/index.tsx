@@ -2,8 +2,6 @@ import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import { Button, Col, Row, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-//@ts-ignore
-//todo: This library has an awful typing, but check it once in a while
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
 import Loader from 'components/Shared/Loader';
@@ -13,14 +11,16 @@ import { userData } from 'features/user';
 import { StatisticsForBalance } from 'features/statistics/types';
 import CustomSelect from 'components/Shared/CustomSelect';
 import RangeStatisticsItem from 'features/statistics/components/RangeStatisticsItem';
-
-import 'features/statistics/components/RangeStatistic/styles.scss';
 import { balanceData } from 'features/balance';
+
+import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import './styles.scss';
 
 type propsType = {
   statisticsForRange: StatisticsForBalance | null;
-  setMonthsRange: React.Dispatch<React.SetStateAction<Date[]>>;
-  monthsRange: Date[];
+  setMonthsRange: React.Dispatch<React.SetStateAction<[Date, Date]>>;
+  monthsRange: [Date, Date];
   balance: string;
   setBalance: Dispatch<SetStateAction<string>>;
 };
@@ -52,7 +52,7 @@ const RangeStatistic: FC<propsType> = ({
           <p className="mb-1 fw-bold text-center">{t('Select range')}:</p>
           <DateRangePicker
             autoFocus={false}
-            onChange={setMonthsRange}
+            onChange={(newValue) => setMonthsRange(newValue as [Date, Date])}
             maxDetail={dateRangeMaxDetail}
             value={monthsRange}
             locale={lang}

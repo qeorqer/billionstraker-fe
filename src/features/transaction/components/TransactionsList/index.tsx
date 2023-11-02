@@ -3,14 +3,11 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroller';
-//@ts-ignore
-//todo: This library has an awful typing, but check it once in a while
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import TransactionListItem from 'features/transaction/components/TransactionListItem';
 import Loader from 'components/Shared/Loader';
-import { Balance } from 'features/balance/types';
 import { userData } from 'features/user';
 import CustomSelect from 'components/Shared/CustomSelect';
 import {
@@ -21,15 +18,15 @@ import {
   resetTransactions,
 } from 'features/transaction';
 import BackToStatisticsButton from 'features/statistics/components/BackToStatisticsButton';
+import { Balance, balanceData } from 'features/balance';
+import { categoryData, Category, getCategoriesThunk } from 'features/category';
 
 import {
   formTransactionsSections,
   transactionTypesToShow,
   transactionTypesToShowType,
-} from 'features/transaction/components/TransactionsList/utils';
-import 'features/transaction/components/TransactionsList/styles.scss';
-import { balanceData } from 'features/balance';
-import { categoryData, Category, getCategoriesThunk } from 'features/category';
+} from './utils';
+import './styles.scss';
 
 type propsType = {
   setSelectedTransaction: Dispatch<SetStateAction<Transaction | null>>;
@@ -66,11 +63,13 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
   const [balancesToShow, setBalancesToShow] = useState<string>(
     initialBalance || 'all',
   );
-  const [monthsRange, setMonthsRange] = useState<Date[]>([
+  const [monthsRange, setMonthsRange] = useState<[Date, Date]>([
     new Date(initialDateFrom || user.created),
     new Date(initialDateTo || new Date()),
   ]);
-  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<string>('year');
+  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
+    'year' | 'month'
+  >('year');
   const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
 
   const handleLoadMore = () => {
@@ -240,7 +239,10 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
                 {t('Select range')}:
               </p>
               <DateRangePicker
-                onChange={setMonthsRange}
+                autoFocus={false}
+                onChange={(newValue) =>
+                  setMonthsRange(newValue as [Date, Date])
+                }
                 maxDetail={dateRangeMaxDetail}
                 value={monthsRange}
                 locale={lang}

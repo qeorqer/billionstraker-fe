@@ -13,7 +13,7 @@ type propsType = {
   statisticsForRange: StatisticsForBalance;
   type: 'expense' | 'income';
   selectedBalance: string;
-  monthsRange: Date[];
+  monthsRange: [Date, Date];
 };
 
 const RangeStatisticsItem: FC<propsType> = ({

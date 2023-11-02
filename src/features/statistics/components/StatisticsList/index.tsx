@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Value } from '@wojtekmaj/react-daterange-picker/src/shared/types';
 
 import { ExpenseIncome } from 'features/statistics/types';
 import StatisticsListItem from 'features/statistics/components/StatisticsListItem';
@@ -8,7 +9,7 @@ type propsType = {
   statisticForRange: ExpenseIncome[];
   totalSpent: number;
   selectedBalance: string;
-  monthsRange: Date[];
+  monthsRange: [Date, Date];
 };
 
 export type listForRangeItem = {

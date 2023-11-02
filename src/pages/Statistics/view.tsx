@@ -6,8 +6,8 @@ import { StatisticsForBalance } from 'features/statistics/types';
 
 type propsType = {
   statisticsForBalance: StatisticsForBalance | null;
-  monthsRange: Date[];
-  setMonthsRange: Dispatch<SetStateAction<Date[]>>;
+  monthsRange: [Date, Date];
+  setMonthsRange: Dispatch<SetStateAction<[Date, Date]>>;
   balance: string;
   setBalance: Dispatch<SetStateAction<string>>;
 };

@@ -27,7 +27,7 @@ const StatisticsPage: FC = () => {
   const initialDateTo = params.get('dateTo');
 
   const startOfMonth = new Date(moment().startOf('month').toISOString());
-  const [monthsRange, setMonthsRange] = useState<Date[]>([
+  const [monthsRange, setMonthsRange] = useState<[Date, Date]>([
     new Date(initialDateFrom || startOfMonth),
     new Date(initialDateTo || new Date()),
   ]);

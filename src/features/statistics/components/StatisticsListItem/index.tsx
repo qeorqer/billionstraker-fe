@@ -10,7 +10,7 @@ import 'features/statistics/components/StatisticsListItem/styles.scss';
 type propsType = {
   listItem: listForRangeItem;
   selectedBalance: string;
-  monthsRange: Date[];
+  monthsRange: [Date, Date];
 };
 
 const StatisticsListItem: FC<propsType> = ({
