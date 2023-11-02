@@ -12,7 +12,7 @@ type propsType = {
   handleCheckOutClick: () => void;
 };
 
-const About: FC<propsType> = ({ t, handleCheckOutClick }) => (
+const AboutPageView: FC<propsType> = ({ t, handleCheckOutClick }) => (
   <section className="aboutSection text-center text-white py-4 px-2">
     <Container>
       <h1 className="yellowText fs-2">{t('what does this app do')}</h1>
@@ -33,4 +33,4 @@ const About: FC<propsType> = ({ t, handleCheckOutClick }) => (
   </section>
 );
 
-export default About;
+export default AboutPageView;

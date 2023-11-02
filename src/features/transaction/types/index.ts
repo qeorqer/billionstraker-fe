@@ -1,4 +1,4 @@
-import { balanceType } from 'types/balance.type';
+import { Balance } from 'features/balance/types';
 
 export type TransactionType = 'expense' | 'profit' | 'exchange';
 
@@ -15,19 +15,19 @@ export type Transaction = {
   _id?: string;
 };
 
-export type SubmitTransaction = {
+export type CreateTransactionPayload = {
   transaction: Transaction;
   balanceId: string;
   balanceToSubtractId?: string;
 };
 
-export type AddTransactionResponse = {
+export type CreateTransactionResponse = {
   message: string;
   transaction: Transaction;
-  balances: balanceType[];
+  balances: Balance[];
 };
 
-export type GetTransactions = {
+export type GetTransactionsPayload = {
   limit: number;
   numberToSkip: number;
   filteringOptions: {
@@ -44,10 +44,14 @@ export type GetTransactionsResponse = {
   numberOfTransactions?: number;
 };
 
+export type DeleteTransactionPayload = {
+  transactionId: string;
+};
+
 export type DeleteTransactionResponse = {
   message: string;
   transactionId: string;
-  balances: balanceType[];
+  balances: Balance[];
 };
 
 type TransactionsSection = {

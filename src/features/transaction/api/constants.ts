@@ -1,9 +1,9 @@
 import {
-  AddTransactionResponse,
+  CreateTransactionResponse,
   DeleteTransactionResponse,
-  GetTransactions,
+  GetTransactionsPayload,
   GetTransactionsResponse,
-  SubmitTransaction,
+  CreateTransactionPayload,
 } from 'features/transaction/types';
 import { AxiosResponse } from 'axios';
 import api from 'api/axiosInstance';

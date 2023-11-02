@@ -16,7 +16,7 @@ type propsType = {
   isLoading: boolean;
 };
 
-const Categories: React.FC<propsType> = ({
+const CategoryPageView: React.FC<propsType> = ({
   t,
   categories,
   name,
@@ -54,4 +54,4 @@ const Categories: React.FC<propsType> = ({
   </>
 );
 
-export default Categories;
+export default CategoryPageView;

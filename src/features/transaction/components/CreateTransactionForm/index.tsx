@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Button, Col, FormControl, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import {
-  SubmitTransaction,
+  CreateTransactionPayload,
   Transaction,
   TransactionType,
 } from 'features/transaction/types';
@@ -10,16 +10,16 @@ import DatePicker from 'react-datepicker';
 import { toast } from 'react-toastify';
 
 import CustomSelect from 'components/CustomSelect';
-import { balanceType } from 'types/balance.type';
+import { Balance } from 'features/balance/types';
 import { categoryType } from 'types/category.type';
 import { useAppSelector } from 'store/hooks';
 import { transactionData } from 'features/transaction/index';
 
 type propsType = {
   selectedTransactionType: TransactionType;
-  balances: balanceType[];
+  balances: Balance[];
   categories: categoryType[];
-  handleSubmit: (transaction: SubmitTransaction | null) => void;
+  handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   initialValues?: Transaction | null;
   isModal?: boolean;
   isEdit?: boolean;

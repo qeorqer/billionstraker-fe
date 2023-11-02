@@ -1,10 +1,13 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
-import { SubmitTransaction, TransactionType } from 'features/transaction/types';
-import { balanceType } from 'types/balance.type';
+import {
+  CreateTransactionPayload,
+  TransactionType,
+} from 'features/transaction/types';
+import { Balance } from 'features/balance/types';
 import { categoryType } from 'types/category.type';
-import Balances from 'components/Balances/BalancesList';
+import Balances from 'features/balance/components/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from 'components/Layout/Loader';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
@@ -14,16 +17,16 @@ type propsType = {
   t: (text: string) => string;
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
-  balances: balanceType[];
+  balances: Balance[];
   categories: categoryType[];
-  handleSubmit: (transaction: SubmitTransaction | null) => void;
+  handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   canCreateTransaction: boolean;
   handleCreateBalance: () => void;
   handleCreateCategory: () => void;
   isLoading: boolean;
 };
 
-const CreateTransaction: React.FC<propsType> = ({
+const CreateTransactionPageView: React.FC<propsType> = ({
   t,
   transactionType,
   setTransactionType,
@@ -101,4 +104,4 @@ const CreateTransaction: React.FC<propsType> = ({
   </>
 );
 
-export default CreateTransaction;
+export default CreateTransactionPageView;

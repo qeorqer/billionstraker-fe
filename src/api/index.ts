@@ -12,18 +12,18 @@ import {
   getCategoriesResponseType,
 } from 'types/category.type';
 import {
-  AddTransactionResponse,
+  CreateTransactionResponse,
   DeleteTransactionResponse,
   GetTransactionsResponse,
-  SubmitTransaction,
+  CreateTransactionPayload,
 } from 'features/transaction/types';
 import { getStatisticsForBalanceResponseType } from 'types/statistic.type';
 import {
-  balanceType,
-  createBalanceResponseType,
-  deleteBalanceResponseType,
-  getBalanceResponseType,
-} from 'types/balance.type';
+  Balance,
+  CreateBalanceResponse,
+  DeleteBalanceResponse,
+  GetBalanceResponse,
+} from 'features/balance/types';
 
 import api from './axiosInstance';
 
@@ -57,24 +57,3 @@ export const deleteCategory = (body: {
   categoryId: string;
 }): Promise<AxiosResponse<deleteCategoryResponseType>> =>
   api.delete('/category/deleteCategory', { data: body });
-
-/* balance requests */
-export const createBalance = (body: {
-  name: string;
-  amount: number;
-}): Promise<AxiosResponse<createBalanceResponseType>> =>
-  api.post('/balance/createBalance', body);
-
-export const getBalances = (): Promise<AxiosResponse<getBalanceResponseType>> =>
-  api.get('/balance/getBalances');
-
-export const updateBalance = (body: {
-  balanceId: string;
-  balance: balanceType;
-}): Promise<AxiosResponse<createBalanceResponseType>> =>
-  api.patch('/balance/updateBalance', body);
-
-export const deleteBalance = (body: {
-  balanceId: string;
-}): Promise<AxiosResponse<deleteBalanceResponseType>> =>
-  api.delete('/balance/deleteBalance', { data: body });

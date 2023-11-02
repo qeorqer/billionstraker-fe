@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { updateUserThunk, userData } from 'features/user';
 
-import Guide from './view';
+import GuidePageView from './view';
 
 const GuidePage = () => {
   const { user } = useAppSelector(userData);
@@ -31,7 +31,7 @@ const GuidePage = () => {
   }, []);
 
   return (
-    <Guide
+    <GuidePageView
       t={t}
       handleCreateBalance={handleCreateBalance}
       handleCreateCategory={handleCreateCategory}

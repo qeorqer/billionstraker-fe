@@ -6,9 +6,9 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { createCategory, getCategories } from 'store/reducers/category.reducer';
 import { categoriesTypes } from 'types/category.type';
 
-import Categories from './view';
+import CategoryPageView from './view';
 
-const CategoriesPage = () => {
+const CategoryPage = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const { categories, isLoadingCategories } = useAppSelector(
@@ -55,7 +55,7 @@ const CategoriesPage = () => {
   };
 
   return (
-    <Categories
+    <CategoryPageView
       t={t}
       categories={categories}
       name={name}
@@ -68,4 +68,4 @@ const CategoriesPage = () => {
   );
 };
 
-export default CategoriesPage;
+export default CategoryPage;

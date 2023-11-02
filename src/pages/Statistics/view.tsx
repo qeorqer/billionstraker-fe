@@ -12,7 +12,7 @@ type propsType = {
   setBalance: Dispatch<SetStateAction<string>>;
 };
 
-const Statistics: FC<propsType> = ({
+const StatisticsPageView: FC<propsType> = ({
   statisticsForBalance,
   monthsRange,
   setMonthsRange,
@@ -30,4 +30,4 @@ const Statistics: FC<propsType> = ({
   </Container>
 );
 
-export default Statistics;
+export default StatisticsPageView;

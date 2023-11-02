@@ -1,53 +1,51 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  AddTransactionResponse,
-  DeleteTransactionResponse,
-  GetTransactions,
-  GetTransactionsResponse,
-  SubmitTransaction,
-} from 'features/transaction/types';
 import { AxiosResponse } from 'axios';
+
 import {
-  createTransactionRoute,
-  deleteTransactionRoute,
-  getTransactionsRoute,
-  updateTransactionRoute,
-} from 'features/transaction/api/constants';
-import {
+  CreateTransactionPayload,
   createTransactionRequest,
+  CreateTransactionResponse,
+  createTransactionRoute,
+  DeleteTransactionPayload,
   deleteTransactionRequest,
+  DeleteTransactionResponse,
+  deleteTransactionRoute,
+  GetTransactionsPayload,
   getTransactionsRequest,
+  GetTransactionsResponse,
+  getTransactionsRoute,
   updateTransactionRequest,
-} from 'features/transaction/api/requests';
+  updateTransactionRoute,
+} from 'features/transaction';
 
 export const createTransactionThunk = createAsyncThunk(
   createTransactionRoute,
   async (
-    body: SubmitTransaction,
-  ): Promise<AxiosResponse<AddTransactionResponse>> =>
+    body: CreateTransactionPayload,
+  ): Promise<AxiosResponse<CreateTransactionResponse>> =>
     await createTransactionRequest(body),
 );
 
 export const getTransactionsThunk = createAsyncThunk(
   getTransactionsRoute,
   async (
-    body: GetTransactions,
+    body: GetTransactionsPayload,
   ): Promise<AxiosResponse<GetTransactionsResponse>> =>
     await getTransactionsRequest(body),
 );
 
 export const deleteTransactionThunk = createAsyncThunk(
   deleteTransactionRoute,
-  async (body: {
-    transactionId: string;
-  }): Promise<AxiosResponse<DeleteTransactionResponse>> =>
+  async (
+    body: DeleteTransactionPayload,
+  ): Promise<AxiosResponse<DeleteTransactionResponse>> =>
     await deleteTransactionRequest(body),
 );
 
 export const updateTransactionThunk = createAsyncThunk(
   updateTransactionRoute,
   async (
-    body: SubmitTransaction,
-  ): Promise<AxiosResponse<AddTransactionResponse>> =>
+    body: CreateTransactionPayload,
+  ): Promise<AxiosResponse<CreateTransactionResponse>> =>
     await updateTransactionRequest(body),
 );

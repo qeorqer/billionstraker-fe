@@ -5,17 +5,15 @@ import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
 import { statisticData } from 'store/selectors';
-import { getBalances } from 'store/reducers/balance.reducer';
 import Loader from 'components/Layout/Loader';
+import { balanceData, getBalancesThunk } from 'features/balance';
 import 'moment/locale/ru';
 
-import Statistics from './view';
+import StatisticsPageView from './view';
 
 const StatisticsPage: FC = () => {
   const { statisticsForBalance } = useAppSelector(statisticData);
-  const { isLoadingBalances, balances } = useAppSelector(
-    (state) => state.balanceData,
-  );
+  const { isLoadingBalances, balances } = useAppSelector(balanceData);
 
   const dispatch = useAppDispatch();
   const { search } = useLocation();
@@ -46,7 +44,7 @@ const StatisticsPage: FC = () => {
   }, [monthsRange, balance]);
 
   useEffect(() => {
-    dispatch(getBalances());
+    dispatch(getBalancesThunk());
   }, []);
 
   useEffect(() => {
@@ -60,7 +58,7 @@ const StatisticsPage: FC = () => {
   }
 
   return (
-    <Statistics
+    <StatisticsPageView
       statisticsForBalance={statisticsForBalance}
       monthsRange={monthsRange}
       setMonthsRange={setMonthsRange}

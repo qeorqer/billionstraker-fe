@@ -6,15 +6,16 @@ import { categoryData } from 'store/selectors';
 import { useDispatch } from 'react-redux';
 import {
   updateTransactionThunk,
-  SubmitTransaction,
+  CreateTransactionPayload,
   Transaction,
   TransactionType,
 } from 'features/transaction';
 
-import Profile from './view';
+import ProfilePageView from './view';
+import { balanceData } from 'features/balance';
 
 const ProfilePage = () => {
-  const { balances } = useAppSelector((state) => state.balanceData);
+  const { balances } = useAppSelector(balanceData);
   const { categories } = useAppSelector(categoryData);
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const ProfilePage = () => {
   const [selectedTransaction, setSelectedTransaction] =
     useState<Transaction | null>(null);
 
-  const handleSubmit = (dataForSubmit: SubmitTransaction | null) => {
+  const handleSubmit = (dataForSubmit: CreateTransactionPayload | null) => {
     if (dataForSubmit) {
       dispatch(updateTransactionThunk(dataForSubmit));
       setIsModalShown(false);
@@ -37,7 +38,7 @@ const ProfilePage = () => {
   }, [selectedTransaction]);
 
   return (
-    <Profile
+    <ProfilePageView
       balances={balances}
       categories={categories}
       t={t}

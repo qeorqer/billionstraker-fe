@@ -1,13 +1,13 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import { balanceType } from 'types/balance.type';
-import BalancesList from 'components/Balances/BalancesList';
-import BalanceForm from 'components/Balances/BalanceForm';
+import { Balance } from 'features/balance/types';
+import BalancesList from 'features/balance/components/BalancesList';
+import BalanceForm from 'features/balance/components/BalanceForm';
 
 type propsType = {
   t: (text: string) => string;
-  balances: balanceType[];
+  balances: Balance[];
   name: string;
   setName: Dispatch<SetStateAction<string>>;
   amount: string | number;
@@ -16,7 +16,7 @@ type propsType = {
   isLoading: boolean;
 };
 
-const Balance: React.FC<propsType> = ({
+const BalancePageView: React.FC<propsType> = ({
   t,
   balances,
   name,
@@ -52,4 +52,4 @@ const Balance: React.FC<propsType> = ({
   </>
 );
 
-export default Balance;
+export default BalancePageView;

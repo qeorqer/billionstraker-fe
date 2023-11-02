@@ -15,6 +15,7 @@ import CustomSelect from 'components/CustomSelect';
 import RangeStatisticsItem from 'components/Statistics/RangeStatisticsItem';
 
 import './styles.scss';
+import { balanceData } from 'features/balance';
 
 type propsType = {
   statisticsForRange: getStatisticsForBalanceType | null;
@@ -36,7 +37,7 @@ const RangeStatistic: FC<propsType> = ({
 
   const { lang, user } = useAppSelector(userData);
   const { isStatisticsForBalanceLoading } = useAppSelector(statisticData);
-  const { balances } = useAppSelector((state) => state.balanceData);
+  const { balances } = useAppSelector(balanceData);
   const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
     'year' | 'month'
   >('year');

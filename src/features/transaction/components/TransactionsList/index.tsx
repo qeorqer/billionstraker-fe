@@ -13,7 +13,7 @@ import TransactionListItem from 'features/transaction/components/TransactionList
 import Loader from 'components/Layout/Loader';
 import { getCategories } from 'store/reducers/category.reducer';
 import { categoryType } from 'types/category.type';
-import { balanceType } from 'types/balance.type';
+import { Balance } from 'features/balance/types';
 import { userData } from 'features/user';
 import CustomSelect from 'components/CustomSelect';
 import {
@@ -33,6 +33,7 @@ import {
   getTransactionsThunk,
   resetTransactions,
 } from 'features/transaction/index';
+import { balanceData } from 'features/balance';
 
 type propsType = {
   setSelectedTransaction: Dispatch<SetStateAction<Transaction | null>>;
@@ -43,7 +44,7 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
     useAppSelector(transactionData);
   const { categories } = useAppSelector(categoryData);
   const { lang, user } = useAppSelector(userData);
-  const { balances } = useAppSelector((state) => state.balanceData);
+  const { balances } = useAppSelector(balanceData);
 
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -188,7 +189,7 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
               <CustomSelect
                 defaultButtonText={t('show all')}
                 defaultButtonValue="all"
-                data={balances.map((balance: balanceType) => ({
+                data={balances.map((balance: Balance) => ({
                   _id: balance._id,
                   name: balance.name,
                 }))}

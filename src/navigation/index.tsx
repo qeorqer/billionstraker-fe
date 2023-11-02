@@ -8,7 +8,7 @@ import AboutApp from 'pages/About';
 import GuidePage from 'pages/Guide';
 import StatisticsPage from 'pages/Statistics';
 import BalancePage from 'pages/Balance';
-import CategoriesPage from 'pages/Categories';
+import CategoryPage from 'pages/Category';
 import Loader from 'components/Layout/Loader';
 import { useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
@@ -34,7 +34,7 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
           <Route path="/home" component={ProfilePage} />
           <Route path="/guide" component={GuidePage} />
           <Route path="/balance" component={BalancePage} />
-          <Route path="/categories" component={CategoriesPage} />
+          <Route path="/categories" component={CategoryPage} />
           <Redirect to="/home" />
         </Switch>
       ) : (

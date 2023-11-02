@@ -3,16 +3,17 @@ import { Card, Dropdown, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import {
-  deleteBalance,
-  getBalances,
-  updateBalance,
-} from 'store/reducers/balance.reducer';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import CustomToggle from 'components/CustomToggle';
-import BalanceForm from 'components/Balances/BalanceForm';
+import BalanceForm from 'features/balance/components/BalanceForm';
 import { handleChangeAmount } from 'utils/handleChangeAmount';
 import { formattingNumber } from 'utils/formattingNumber';
+import {
+  balanceData,
+  updateBalanceThunk,
+  deleteBalanceThunk,
+  getBalancesThunk,
+} from 'features/balance';
 
 type propsType = {
   withMenu?: boolean;
@@ -26,9 +27,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { balances, isLoadingBalances } = useAppSelector(
-    (state) => state.balanceData,
-  );
+  const { balances, isLoadingBalances } = useAppSelector(balanceData);
 
   const handleEditClick = (balanceId: string) => {
     const selectedBalance = balances.find(
@@ -54,7 +53,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
       };
 
       dispatch(
-        updateBalance({
+        updateBalanceThunk({
           balanceId: selectedBalanceId,
           balance: balanceForUpdate,
         }),
@@ -68,7 +67,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
   };
 
   useEffect(() => {
-    dispatch(getBalances());
+    dispatch(getBalancesThunk());
   }, []);
 
   if (!balances.length) {
@@ -122,7 +121,9 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
                         <Dropdown.Item
                           as="span"
                           onClick={() =>
-                            dispatch(deleteBalance({ balanceId: balance._id }))
+                            dispatch(
+                              deleteBalanceThunk({ balanceId: balance._id }),
+                            )
                           }>
                           {t('remove')}
                         </Dropdown.Item>

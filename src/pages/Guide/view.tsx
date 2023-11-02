@@ -21,7 +21,7 @@ type propsType = {
   handleCheckStatistics: () => void;
 };
 
-const Guide: React.FC<propsType> = ({
+const GuidePageView: React.FC<propsType> = ({
   t,
   handleCreateBalance,
   handleCreateCategory,
@@ -111,4 +111,4 @@ const Guide: React.FC<propsType> = ({
   </>
 );
 
-export default Guide;
+export default GuidePageView;

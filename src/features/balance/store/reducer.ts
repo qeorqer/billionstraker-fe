@@ -1,60 +1,27 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AxiosResponse } from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18next from 'i18next';
 
-import * as api from 'api/index';
 import {
-  balanceType,
-  createBalanceResponseType,
-  deleteBalanceResponseType,
-  getBalanceResponseType,
-} from 'types/balance.type';
+  Balance,
+  createBalanceThunk,
+  deleteBalanceThunk,
+  getBalancesThunk,
+  updateBalanceThunk,
+} from 'features/balance';
 import {
   createTransactionThunk,
   deleteTransactionThunk,
   updateTransactionThunk,
 } from 'features/transaction';
 
-export const getBalances = createAsyncThunk(
-  'balance/getBalances',
-  async (): Promise<AxiosResponse<getBalanceResponseType>> =>
-    await api.getBalances(),
-);
-
-export const createBalance = createAsyncThunk(
-  'balance/createBalance',
-  async (body: {
-    name: string;
-    amount: number;
-  }): Promise<AxiosResponse<createBalanceResponseType>> =>
-    await api.createBalance(body),
-);
-
-export const updateBalance = createAsyncThunk(
-  'balance/updateBalance',
-  async (body: {
-    balanceId: string;
-    balance: balanceType;
-  }): Promise<AxiosResponse<createBalanceResponseType>> =>
-    await api.updateBalance(body),
-);
-
-export const deleteBalance = createAsyncThunk(
-  'balance/deleteBalance',
-  async (body: {
-    balanceId: string;
-  }): Promise<AxiosResponse<deleteBalanceResponseType>> =>
-    await api.deleteBalance(body),
-);
-
-export type balanceState = {
-  balances: balanceType[];
+export type BalanceState = {
+  balances: Balance[];
   isLoadingBalances: boolean;
 };
 
-const initialState: balanceState = {
-  balances: [] as balanceType[],
+const initialState: BalanceState = {
+  balances: [] as Balance[],
   isLoadingBalances: false,
 };
 
@@ -63,24 +30,11 @@ const balanceReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getBalances.pending, (state) => {
+    builder.addCase(createBalanceThunk.pending, (state) => {
       state.isLoadingBalances = true;
     });
 
-    builder.addCase(getBalances.rejected, (state) => {
-      state.isLoadingBalances = false;
-    });
-
-    builder.addCase(getBalances.fulfilled, (state, action) => {
-      state.balances = action.payload.data.balances;
-      state.isLoadingBalances = false;
-    });
-
-    builder.addCase(createBalance.pending, (state) => {
-      state.isLoadingBalances = true;
-    });
-
-    builder.addCase(createBalance.fulfilled, (state, action) => {
+    builder.addCase(createBalanceThunk.fulfilled, (state, action) => {
       state.isLoadingBalances = false;
       toast(i18next.t('creating balance success'), {
         type: 'success',
@@ -89,11 +43,24 @@ const balanceReducer = createSlice({
       state.balances = [...state.balances, action.payload.data.balance];
     });
 
-    builder.addCase(createBalance.rejected, (state, action) => {
+    builder.addCase(createBalanceThunk.rejected, (state, action) => {
       state.isLoadingBalances = false;
     });
 
-    builder.addCase(updateBalance.fulfilled, (state, action) => {
+    builder.addCase(getBalancesThunk.pending, (state) => {
+      state.isLoadingBalances = true;
+    });
+
+    builder.addCase(getBalancesThunk.rejected, (state) => {
+      state.isLoadingBalances = false;
+    });
+
+    builder.addCase(getBalancesThunk.fulfilled, (state, action) => {
+      state.balances = action.payload.data.balances;
+      state.isLoadingBalances = false;
+    });
+
+    builder.addCase(updateBalanceThunk.fulfilled, (state, action) => {
       toast(i18next.t('updating balance success'), {
         type: 'success',
       });
@@ -104,7 +71,7 @@ const balanceReducer = createSlice({
       );
     });
 
-    builder.addCase(deleteBalance.fulfilled, (state, action) => {
+    builder.addCase(deleteBalanceThunk.fulfilled, (state, action) => {
       toast(i18next.t('deleting balance success'), {
         type: 'success',
       });

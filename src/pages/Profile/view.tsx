@@ -2,32 +2,32 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Container, Modal } from 'react-bootstrap';
 
 import TransactionsList from 'features/transaction/components/TransactionsList';
-import BalancesList from 'components/Balances/BalancesList';
+import BalancesList from 'features/balance/components/BalancesList';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
 
 import './styles.scss';
 import {
-  SubmitTransaction,
+  CreateTransactionPayload,
   Transaction,
   TransactionType,
 } from 'features/transaction/types';
 import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
-import { balanceType } from 'types/balance.type';
+import { Balance } from 'features/balance/types';
 import { categoryType } from 'types/category.type';
 
 type propsType = {
-  balances: balanceType[];
+  balances: Balance[];
   categories: categoryType[];
   t: (text: string) => string;
   isModalShown: boolean;
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
   setSelectedTransaction: Dispatch<SetStateAction<Transaction | null>>;
-  handleSubmit: (transaction: SubmitTransaction | null) => void;
+  handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   selectedTransaction: Transaction | null;
 };
 
-const Profile: React.FC<propsType> = ({
+const ProfilePageView: React.FC<propsType> = ({
   balances,
   categories,
   t,
@@ -74,4 +74,4 @@ const Profile: React.FC<propsType> = ({
   </Container>
 );
 
-export default Profile;
+export default ProfilePageView;

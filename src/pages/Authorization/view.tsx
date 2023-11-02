@@ -15,7 +15,7 @@ type propsType = {
   setShowSignIn: Dispatch<SetStateAction<boolean>>;
 };
 
-const Authorization: React.FC<propsType> = ({
+const AuthorizationPageView: React.FC<propsType> = ({
   t,
   setShowSignIn,
   showSignIn,
@@ -66,4 +66,4 @@ const Authorization: React.FC<propsType> = ({
   </section>
 );
 
-export default Authorization;
+export default AuthorizationPageView;

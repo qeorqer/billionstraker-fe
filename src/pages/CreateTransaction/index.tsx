@@ -5,20 +5,18 @@ import { useHistory } from 'react-router-dom';
 import { categoryData } from 'store/selectors';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getCategories } from 'store/reducers/category.reducer';
-import { getBalances } from 'store/reducers/balance.reducer';
 import {
   createTransactionThunk,
-  SubmitTransaction,
+  CreateTransactionPayload,
   TransactionType,
 } from 'features/transaction';
+import { balanceData, getBalancesThunk } from 'features/balance';
 
-import CreateTransaction from './view';
+import CreateTransactionPageView from './view';
 
 const CreateTransactionPage = () => {
   const { categories, isLoadingCategories } = useAppSelector(categoryData);
-  const { balances, isLoadingBalances } = useAppSelector(
-    (state) => state.balanceData,
-  );
+  const { balances, isLoadingBalances } = useAppSelector(balanceData);
 
   const [canCreateTransaction, setCanCreateTransaction] =
     useState<boolean>(false);
@@ -31,7 +29,7 @@ const CreateTransactionPage = () => {
   const dispatch = useAppDispatch();
   const { push } = useHistory();
 
-  const handleSubmit = (dataForSubmit: SubmitTransaction | null) => {
+  const handleSubmit = (dataForSubmit: CreateTransactionPayload | null) => {
     if (dataForSubmit) {
       dispatch(createTransactionThunk(dataForSubmit));
     }
@@ -69,7 +67,7 @@ const CreateTransactionPage = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-    dispatch(getBalances());
+    dispatch(getBalancesThunk());
   }, []);
 
   useEffect(() => {
@@ -77,7 +75,7 @@ const CreateTransactionPage = () => {
   }, [isLoadingBalances, isLoadingCategories]);
 
   return (
-    <CreateTransaction
+    <CreateTransactionPageView
       t={t}
       transactionType={transactionType}
       setTransactionType={setTransactionType}

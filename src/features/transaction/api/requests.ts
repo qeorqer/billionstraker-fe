@@ -1,9 +1,10 @@
 import {
-  AddTransactionResponse,
+  CreateTransactionResponse,
   DeleteTransactionResponse,
-  GetTransactions,
+  GetTransactionsPayload,
   GetTransactionsResponse,
-  SubmitTransaction,
+  CreateTransactionPayload,
+  DeleteTransactionPayload,
 } from 'features/transaction/types';
 import { AxiosResponse } from 'axios';
 import api from 'api/axiosInstance';
@@ -15,21 +16,21 @@ import {
 } from 'features/transaction/api/constants';
 
 export const createTransactionRequest = (
-  body: SubmitTransaction,
-): Promise<AxiosResponse<AddTransactionResponse>> =>
+  body: CreateTransactionPayload,
+): Promise<AxiosResponse<CreateTransactionResponse>> =>
   api.post(createTransactionRoute, body);
 
 export const updateTransactionRequest = (
-  body: SubmitTransaction,
-): Promise<AxiosResponse<AddTransactionResponse>> =>
+  body: CreateTransactionPayload,
+): Promise<AxiosResponse<CreateTransactionResponse>> =>
   api.patch(updateTransactionRoute, body);
 
 export const getTransactionsRequest = (
-  body: GetTransactions,
+  body: GetTransactionsPayload,
 ): Promise<AxiosResponse<GetTransactionsResponse>> =>
   api.post(getTransactionsRoute, body);
 
-export const deleteTransactionRequest = (body: {
-  transactionId: string;
-}): Promise<AxiosResponse<DeleteTransactionResponse>> =>
+export const deleteTransactionRequest = (
+  body: DeleteTransactionPayload,
+): Promise<AxiosResponse<DeleteTransactionResponse>> =>
   api.delete(deleteTransactionRoute, { data: body });

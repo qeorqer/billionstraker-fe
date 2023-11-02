@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import About from './view';
+import AboutPageView from './view';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const AboutPage: FC = () => {
 
   const handleCheckOutClick = () => push('/authorization');
 
-  return <About t={t} handleCheckOutClick={handleCheckOutClick} />;
+  return <AboutPageView t={t} handleCheckOutClick={handleCheckOutClick} />;
 };
 
 export default AboutPage;

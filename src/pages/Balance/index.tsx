@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { createBalance } from 'store/reducers/balance.reducer';
 import { handleChangeAmount } from 'utils/handleChangeAmount';
+import { balanceData, createBalanceThunk } from 'features/balance';
 
-import Balance from './view';
+import BalancePageView from './view';
 
 const BalancePage = () => {
   const [name, setName] = useState<string>('');
@@ -14,9 +14,7 @@ const BalancePage = () => {
 
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { balances, isLoadingBalances } = useAppSelector(
-    (state) => state.balanceData,
-  );
+  const { balances, isLoadingBalances } = useAppSelector(balanceData);
 
   const handleAddBalance = () => {
     if (!name || !amount) {
@@ -34,14 +32,14 @@ const BalancePage = () => {
       });
     }
 
-    dispatch(createBalance({ name, amount: Number(amount) }));
+    dispatch(createBalanceThunk({ name, amount: Number(amount) }));
 
     setName('');
     setAmount('');
   };
 
   return (
-    <Balance
+    <BalancePageView
       t={t}
       balances={balances}
       name={name}
