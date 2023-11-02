@@ -1,17 +1,17 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import { categoriesTypes, categoryType } from 'types/category.type';
-import CategoriesList from 'components/Categories/CategoriesList';
-import CategoryForm from 'components/Categories/CategoryForm';
+import { CategoryTypes, Category } from 'features/category/types';
+import CategoriesList from 'features/category/components/CategoriesList';
+import CategoryForm from 'features/category/components/CategoryForm';
 
 type propsType = {
   t: (text: string) => string;
-  categories: categoryType[];
+  categories: Category[];
   name: string;
   setName: Dispatch<SetStateAction<string>>;
   categoryType: string;
-  setCategoryType: Dispatch<SetStateAction<categoriesTypes>>;
+  setCategoryType: Dispatch<SetStateAction<CategoryTypes>>;
   handleAddCategory: () => void;
   isLoading: boolean;
 };

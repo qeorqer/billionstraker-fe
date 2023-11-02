@@ -2,13 +2,13 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Form, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { categoriesTypes } from 'types/category.type';
+import { CategoryTypes } from 'features/category/types';
 
 type propsType = {
   name: string;
   setName: Dispatch<SetStateAction<string>>;
   categoryType: string;
-  setCategoryType: Dispatch<SetStateAction<categoriesTypes>>;
+  setCategoryType: Dispatch<SetStateAction<CategoryTypes>>;
   buttonText: string;
   handleSubmit: () => void;
   isLoading: boolean;
@@ -39,8 +39,7 @@ const CategoryForm: React.FC<propsType> = ({
           <Button
             variant={categoryType === 'expense' ? 'danger' : 'outline-danger'}
             onClick={() => setCategoryType('expense')}
-            className="w-50"
-          >
+            className="w-50">
             {t('expense')}
           </Button>
         </div>
@@ -48,8 +47,7 @@ const CategoryForm: React.FC<propsType> = ({
           <Button
             variant={categoryType === 'profit' ? 'success' : 'outline-success'}
             onClick={() => setCategoryType('profit')}
-            className="w-50"
-          >
+            className="w-50">
             {t('profit')}
           </Button>
         </div>
@@ -58,8 +56,7 @@ const CategoryForm: React.FC<propsType> = ({
         variant="warning"
         className="w300Px text-white"
         onClick={handleSubmit}
-        disabled={isLoading}
-      >
+        disabled={isLoading}>
         {t(buttonText)}
       </Button>
     </Form>

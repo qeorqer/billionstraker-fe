@@ -11,14 +11,14 @@ import { toast } from 'react-toastify';
 
 import CustomSelect from 'components/CustomSelect';
 import { Balance } from 'features/balance/types';
-import { categoryType } from 'types/category.type';
+import { Category } from 'features/category/types';
 import { useAppSelector } from 'store/hooks';
 import { transactionData } from 'features/transaction/index';
 
 type propsType = {
   selectedTransactionType: TransactionType;
   balances: Balance[];
-  categories: categoryType[];
+  categories: Category[];
   handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   initialValues?: Transaction | null;
   isModal?: boolean;

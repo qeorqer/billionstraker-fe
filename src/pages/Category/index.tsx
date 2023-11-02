@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { createCategory, getCategories } from 'store/reducers/category.reducer';
-import { categoriesTypes } from 'types/category.type';
+import {
+  CategoryTypes,
+  createCategoryThunk,
+  getCategoriesThunk,
+} from 'features/category';
 
 import CategoryPageView from './view';
 
@@ -16,10 +19,10 @@ const CategoryPage = () => {
   );
 
   const [name, setName] = useState<string>('');
-  const [categoryType, setCategoryType] = useState<categoriesTypes>('expense');
+  const [categoryType, setCategoryType] = useState<CategoryTypes>('expense');
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategoriesThunk());
   }, []);
 
   const handleAddCategory = () => {
@@ -42,7 +45,7 @@ const CategoryPage = () => {
     }
 
     dispatch(
-      createCategory({
+      createCategoryThunk({
         category: {
           name,
           categoryType,

@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-import { categoryData } from 'store/selectors';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getCategories } from 'store/reducers/category.reducer';
 import {
   createTransactionThunk,
   CreateTransactionPayload,
@@ -13,6 +11,7 @@ import {
 import { balanceData, getBalancesThunk } from 'features/balance';
 
 import CreateTransactionPageView from './view';
+import { categoryData, getCategoriesThunk } from 'features/category';
 
 const CreateTransactionPage = () => {
   const { categories, isLoadingCategories } = useAppSelector(categoryData);
@@ -66,7 +65,7 @@ const CreateTransactionPage = () => {
   }, [categories, balances, transactionType]);
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategoriesThunk());
     dispatch(getBalancesThunk());
   }, []);
 

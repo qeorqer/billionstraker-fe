@@ -8,11 +8,8 @@ import InfiniteScroll from 'react-infinite-scroller';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import { categoryData } from 'store/selectors';
 import TransactionListItem from 'features/transaction/components/TransactionListItem';
 import Loader from 'components/Layout/Loader';
-import { getCategories } from 'store/reducers/category.reducer';
-import { categoryType } from 'types/category.type';
 import { Balance } from 'features/balance/types';
 import { userData } from 'features/user';
 import CustomSelect from 'components/CustomSelect';
@@ -20,7 +17,9 @@ import {
   TransactionsSections,
   Transaction,
   transactionData,
-} from 'features/transaction/index';
+  getTransactionsThunk,
+  resetTransactions,
+} from 'features/transaction';
 import BackToStatisticsButton from 'components/Statistics/BackToStatisticsButton';
 
 import {
@@ -29,11 +28,8 @@ import {
   transactionTypesToShowType,
 } from 'features/transaction/components/TransactionsList/utils';
 import 'features/transaction/components/TransactionsList/styles.scss';
-import {
-  getTransactionsThunk,
-  resetTransactions,
-} from 'features/transaction/index';
 import { balanceData } from 'features/balance';
+import { categoryData, Category, getCategoriesThunk } from 'features/category';
 
 type propsType = {
   setSelectedTransaction: Dispatch<SetStateAction<Transaction | null>>;
@@ -137,7 +133,7 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
   }, [transactions, lang]);
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategoriesThunk());
   }, []);
 
   if (isLoadingTransactions && !numberOfTransactions) {
@@ -164,14 +160,14 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
                 defaultButtonText={t('show all')}
                 defaultButtonValue="all"
                 data={categories
-                  .filter((category: categoryType) => {
+                  .filter((category: Category) => {
                     if (shownTransactionsTypes === 'all transactions') {
                       return category;
                     }
 
                     return category.categoryType === shownTransactionsTypes;
                   })
-                  .map((category: categoryType) => ({
+                  .map((category: Category) => ({
                     _id: category._id!,
                     name: category.name,
                   }))}

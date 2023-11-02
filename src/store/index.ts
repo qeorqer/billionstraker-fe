@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import userReducer from 'features/user/store/reducer';
-import categoryReducer from 'store/reducers/category.reducer';
+import categoryReducer from 'features/category/store/reducer';
 import transactionReducer from 'features/transaction/store/reducer';
 import statisticReducer from 'store/reducers/statistic.reducer';
 import balanceReducer from 'features/balance/store/reducer';

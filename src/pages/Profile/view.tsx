@@ -13,11 +13,11 @@ import {
 } from 'features/transaction/types';
 import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
 import { Balance } from 'features/balance/types';
-import { categoryType } from 'types/category.type';
+import { Category } from 'features/category/types';
 
 type propsType = {
   balances: Balance[];
-  categories: categoryType[];
+  categories: Category[];
   t: (text: string) => string;
   isModalShown: boolean;
   transactionType: TransactionType;

@@ -3,23 +3,20 @@ import { Card, Dropdown, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { categoriesTypes, categoryType } from 'types/category.type';
+import { CategoryTypes, Category } from 'features/category/types';
 import CustomToggle from 'components/CustomToggle';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import {
-  deleteCategory,
-  updateCategory,
-} from 'store/reducers/category.reducer';
-import CategoryForm from 'components/Categories/CategoryForm';
+import CategoryForm from 'features/category/components/CategoryForm';
+import { deleteCategoryThunk, updateCategoryThunk } from 'features/category/index';
 
 type propsType = {
-  categories: categoryType[];
+  categories: Category[];
 };
 
 const CategoriesList: React.FC<propsType> = ({ categories }) => {
   const [isModalShown, setIsModalShown] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
-  const [categoryType, setCategoryType] = useState<categoriesTypes>('expense');
+  const [categoryType, setCategoryType] = useState<CategoryTypes>('expense');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
 
   const { isLoadingCategories } = useAppSelector((state) => state.categoryDate);
@@ -51,7 +48,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
       };
 
       dispatch(
-        updateCategory({
+        updateCategoryThunk({
           categoryId: selectedCategoryId,
           category: categoryForUpdate,
         }),
@@ -115,7 +112,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
                         as="span"
                         onClick={() =>
                           dispatch(
-                            deleteCategory({ categoryId: category._id! }),
+                            deleteCategoryThunk({ categoryId: category._id! }),
                           )
                         }>
                         {t('remove')}

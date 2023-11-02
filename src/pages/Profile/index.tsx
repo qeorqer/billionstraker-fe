@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppSelector } from 'store/hooks';
-import { categoryData } from 'store/selectors';
 import { useDispatch } from 'react-redux';
 import {
   updateTransactionThunk,
@@ -10,9 +9,10 @@ import {
   Transaction,
   TransactionType,
 } from 'features/transaction';
+import { balanceData } from 'features/balance';
+import { categoryData } from 'features/category';
 
 import ProfilePageView from './view';
-import { balanceData } from 'features/balance';
 
 const ProfilePage = () => {
   const { balances } = useAppSelector(balanceData);

@@ -6,7 +6,7 @@ import {
   TransactionType,
 } from 'features/transaction/types';
 import { Balance } from 'features/balance/types';
-import { categoryType } from 'types/category.type';
+import { Category } from 'features/category/types';
 import Balances from 'features/balance/components/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from 'components/Layout/Loader';
@@ -18,7 +18,7 @@ type propsType = {
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
   balances: Balance[];
-  categories: categoryType[];
+  categories: Category[];
   handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   canCreateTransaction: boolean;
   handleCreateBalance: () => void;
