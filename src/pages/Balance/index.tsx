@@ -14,7 +14,7 @@ const BalancePage = () => {
 
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { balances, isLoadingBalances } = useAppSelector(balanceData);
+  const { balances } = useAppSelector(balanceData);
 
   const handleAddBalance = () => {
     if (!name || !amount) {
@@ -47,7 +47,6 @@ const BalancePage = () => {
       amount={amount}
       handleChangeAmount={handleChangeAmount(setAmount)}
       handleAddBalance={handleAddBalance}
-      isLoading={isLoadingBalances}
     />
   );
 };

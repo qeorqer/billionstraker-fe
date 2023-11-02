@@ -1,25 +1,18 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-import LoginForm from 'features/authorization/components/LogInForm';
-import SignUpForm from 'features/authorization/components/SignUpForm';
 import logo from 'assets/common/logo.png';
 import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
 
 import './styles.scss';
+import AuthForm from 'features/authorization/components/AuthForm/authForm';
 
 type propsType = {
   t: (text: string) => string;
-  showSignIn: boolean;
-  setShowSignIn: Dispatch<SetStateAction<boolean>>;
 };
 
-const AuthorizationPageView: React.FC<propsType> = ({
-  t,
-  setShowSignIn,
-  showSignIn,
-}) => (
+const AuthorizationPageView: React.FC<propsType> = ({ t }) => (
   <section className="signUp align-items-md-center d-flex">
     <Container>
       <Row className="h-100">
@@ -29,27 +22,7 @@ const AuthorizationPageView: React.FC<propsType> = ({
           <p>{t('Powerful app for controlling your budget')}</p>
         </Col>
         <Col xs="12" sm="6" className="authFormContainer mt-sm-3">
-          {showSignIn ? (
-            <>
-              <h2>{t('Sign in')}</h2>
-              <LoginForm />
-              <p
-                onClick={() => setShowSignIn(false)}
-                className="my-2 cursor-pointer">
-                {t('New to billionstracker')}? <span>{t('Sign up')}</span>
-              </p>
-            </>
-          ) : (
-            <>
-              <h2>{t('Sign up')}</h2>
-              <SignUpForm />
-              <p
-                onClick={() => setShowSignIn(true)}
-                className="my-2 cursor-pointer">
-                {t('Already on billionstracker')}? <span>{t('Sign in')}</span>
-              </p>
-            </>
-          )}
+          <AuthForm />
           <p>
             <NavLink to="/about" className="fw-bold fs-6">
               {t('what is this')}

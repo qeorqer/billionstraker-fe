@@ -13,7 +13,6 @@ type propsType = {
   amount: string | number;
   handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleAddBalance: () => void;
-  isLoading: boolean;
 };
 
 const BalancePageView: React.FC<propsType> = ({
@@ -24,32 +23,26 @@ const BalancePageView: React.FC<propsType> = ({
   amount,
   handleChangeAmount,
   handleAddBalance,
-  isLoading,
 }) => (
-  <>
-    <Container className="py-4">
-      <p className="fs-4 fw-bold text-center py-2">
-        {t(
-          balances.length ? 'all your balances' : 'your balances will be here',
-        )}
-      </p>
-      <BalancesList withMenu />
-      <Row className="text-center">
-        <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
-          <p className="fs-5 fw-bold">{t('add new balance')}:</p>
-          <BalanceForm
-            name={name}
-            setName={setName}
-            amount={amount}
-            handleChangeAmount={handleChangeAmount}
-            handleSubmit={handleAddBalance}
-            buttonText="create"
-            isLoading={isLoading}
-          />
-        </Col>
-      </Row>
-    </Container>
-  </>
+  <Container className="py-4">
+    <p className="fs-4 fw-bold text-center py-2">
+      {t(balances.length ? 'all your balances' : 'your balances will be here')}
+    </p>
+    <BalancesList withMenu />
+    <Row className="text-center">
+      <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
+        <p className="fs-5 fw-bold">{t('add new balance')}:</p>
+        <BalanceForm
+          name={name}
+          setName={setName}
+          amount={amount}
+          handleChangeAmount={handleChangeAmount}
+          handleSubmit={handleAddBalance}
+          buttonText="create"
+        />
+      </Col>
+    </Row>
+  </Container>
 );
 
 export default BalancePageView;

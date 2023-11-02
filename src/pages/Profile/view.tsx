@@ -14,7 +14,6 @@ import {
 import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
 import { Balance } from 'features/balance/types';
 import { Category } from 'features/category/types';
-import Header from 'components/Layout/Header';
 
 type propsType = {
   balances: Balance[];

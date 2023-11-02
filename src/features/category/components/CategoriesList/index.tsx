@@ -3,11 +3,15 @@ import { Card, Dropdown, Modal, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { CategoryTypes, Category } from 'features/category/types';
 import CustomToggle from 'components/Shared/CustomToggle';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch } from 'store/hooks';
 import CategoryForm from 'features/category/components/CategoryForm';
-import { deleteCategoryThunk, updateCategoryThunk } from 'features/category/index';
+import {
+  deleteCategoryThunk,
+  updateCategoryThunk,
+  CategoryTypes,
+  Category,
+} from 'features/category';
 
 type propsType = {
   categories: Category[];
@@ -18,8 +22,6 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
   const [name, setName] = useState<string>('');
   const [categoryType, setCategoryType] = useState<CategoryTypes>('expense');
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
-
-  const { isLoadingCategories } = useAppSelector((state) => state.categoryDate);
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -139,7 +141,6 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
               setCategoryType={setCategoryType}
               handleSubmit={handleEditBalance}
               buttonText="update"
-              isLoading={isLoadingCategories}
             />
           </Modal.Body>
         </Modal>

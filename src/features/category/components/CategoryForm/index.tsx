@@ -3,6 +3,8 @@ import { Button, Form, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { CategoryTypes } from 'features/category/types';
+import { useAppSelector } from 'store/hooks';
+import { categoryData } from 'features/category/store/selector';
 
 type propsType = {
   name: string;
@@ -11,7 +13,6 @@ type propsType = {
   setCategoryType: Dispatch<SetStateAction<CategoryTypes>>;
   buttonText: string;
   handleSubmit: () => void;
-  isLoading: boolean;
 };
 
 const CategoryForm: React.FC<propsType> = ({
@@ -21,8 +22,8 @@ const CategoryForm: React.FC<propsType> = ({
   setCategoryType,
   buttonText,
   handleSubmit,
-  isLoading,
 }) => {
+  const { isLoadingCategories } = useAppSelector(categoryData);
   const { t } = useTranslation();
 
   return (
@@ -56,7 +57,7 @@ const CategoryForm: React.FC<propsType> = ({
         variant="warning"
         className="w300Px text-white"
         onClick={handleSubmit}
-        disabled={isLoading}>
+        disabled={isLoadingCategories}>
         {t(buttonText)}
       </Button>
     </Form>

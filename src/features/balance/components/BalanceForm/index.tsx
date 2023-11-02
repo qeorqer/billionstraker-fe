@@ -1,6 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { Button, Form, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useAppSelector } from 'store/hooks';
+import { balanceData } from 'features/balance/store/selector';
 
 type propsType = {
   name: string;
@@ -9,7 +11,6 @@ type propsType = {
   handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
   buttonText: string;
   handleSubmit: () => void;
-  isLoading?: boolean;
 };
 
 const BalanceForm: React.FC<propsType> = ({
@@ -19,9 +20,9 @@ const BalanceForm: React.FC<propsType> = ({
   handleChangeAmount,
   buttonText,
   handleSubmit,
-  isLoading,
 }) => {
   const { t } = useTranslation();
+  const { isLoadingBalances } = useAppSelector(balanceData);
 
   return (
     <Form className="text-center">
@@ -43,8 +44,7 @@ const BalanceForm: React.FC<propsType> = ({
         variant="warning"
         className="w300Px text-white"
         onClick={handleSubmit}
-        disabled={isLoading}
-      >
+        disabled={isLoadingBalances}>
         {t(buttonText)}
       </Button>
     </Form>

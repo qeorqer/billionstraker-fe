@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import {
+  categoryData,
   CategoryTypes,
   createCategoryThunk,
   getCategoriesThunk,
@@ -14,9 +15,7 @@ import CategoryPageView from './view';
 const CategoryPage = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { categories, isLoadingCategories } = useAppSelector(
-    (state) => state.categoryDate,
-  );
+  const { categories } = useAppSelector(categoryData);
 
   const [name, setName] = useState<string>('');
   const [categoryType, setCategoryType] = useState<CategoryTypes>('expense');
@@ -66,7 +65,6 @@ const CategoryPage = () => {
       categoryType={categoryType}
       setCategoryType={setCategoryType}
       handleAddCategory={handleAddCategory}
-      isLoading={isLoadingCategories}
     />
   );
 };

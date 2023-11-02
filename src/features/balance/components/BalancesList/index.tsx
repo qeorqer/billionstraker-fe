@@ -27,7 +27,7 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
 
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { balances, isLoadingBalances } = useAppSelector(balanceData);
+  const { balances } = useAppSelector(balanceData);
 
   const handleEditClick = (balanceId: string) => {
     const selectedBalance = balances.find(
@@ -148,7 +148,6 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
             handleChangeAmount={handleChangeAmount(setAmount)}
             buttonText="update"
             handleSubmit={handleEditBalance}
-            isLoading={isLoadingBalances}
           />
         </Modal.Body>
       </Modal>

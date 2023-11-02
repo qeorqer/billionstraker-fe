@@ -13,7 +13,6 @@ type propsType = {
   categoryType: string;
   setCategoryType: Dispatch<SetStateAction<CategoryTypes>>;
   handleAddCategory: () => void;
-  isLoading: boolean;
 };
 
 const CategoryPageView: React.FC<propsType> = ({
@@ -24,7 +23,6 @@ const CategoryPageView: React.FC<propsType> = ({
   categoryType,
   setCategoryType,
   handleAddCategory,
-  isLoading,
 }) => (
   <>
     <Container className="py-4">
@@ -46,7 +44,6 @@ const CategoryPageView: React.FC<propsType> = ({
             setCategoryType={setCategoryType}
             handleSubmit={handleAddCategory}
             buttonText="create"
-            isLoading={isLoading}
           />
         </Col>
       </Row>

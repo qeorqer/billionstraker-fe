@@ -9,9 +9,9 @@ import {
   TransactionType,
 } from 'features/transaction';
 import { balanceData, getBalancesThunk } from 'features/balance';
+import { categoryData, getCategoriesThunk } from 'features/category';
 
 import CreateTransactionPageView from './view';
-import { categoryData, getCategoriesThunk } from 'features/category';
 
 const CreateTransactionPage = () => {
   const { categories, isLoadingCategories } = useAppSelector(categoryData);
