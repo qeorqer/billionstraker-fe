@@ -23,7 +23,6 @@ const AppRouter: FC<propsType> = ({ isAuth }) => {
   if (isAuth === null || isRefreshLoading) {
     return <Loader fullHeight={true} />;
   }
-  console.log(isAuth);
 
   return (
     <>

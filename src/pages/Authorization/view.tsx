@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-import LoginForm from 'components/LogInForm';
-import SignUpForm from 'components/SignUpForm';
+import LoginForm from 'features/Authorization/components/LogInForm';
+import SignUpForm from 'features/Authorization/components/SignUpForm';
 import logo from 'assets/common/logo.png';
 import LanguageSwitcher from 'components/LanguageSwitcher';
 

@@ -40,7 +40,6 @@ const App = () => {
 
     if (token) {
       const isTokenExpired = checkIsAccessTokenExpired();
-      console.log(isTokenExpired);
 
       if (isTokenExpired) {
         dispatch(refreshTokenThunk());
