@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
@@ -12,7 +12,40 @@ import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
 import CustomToggle from 'components/Shared/CustomToggle';
 import { logOutThunk } from 'features/user';
 
-import 'components/Layout/Header/styles.scss';
+import './styles.scss';
+
+type DropdownMenuItem = {
+  title: string;
+  actions: {
+    onClick?: () => void;
+    href?: string;
+    target?: string;
+  };
+};
+
+type TabMenuItem = {
+  title: string;
+  link: string;
+  Component: FC;
+};
+
+const tabMenuItems: TabMenuItem[] = [
+  {
+    title: 'Profile',
+    Component: Profile,
+    link: '/home',
+  },
+  {
+    title: 'New transaction',
+    Component: Transactions,
+    link: '/createTransaction',
+  },
+  {
+    title: 'Statistics',
+    Component: Statistics,
+    link: '/statistics',
+  },
+];
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +57,40 @@ const Header = () => {
     dispatch(logOutThunk({ refreshToken }));
     history.push('/authorization');
   };
+
+  const dropdownMenuItems: DropdownMenuItem[] = [
+    {
+      title: 'balance',
+      actions: {
+        onClick: () => history.push('/balance'),
+      },
+    },
+    {
+      title: 'categories',
+      actions: {
+        onClick: () => history.push('/categories'),
+      },
+    },
+    {
+      title: 'usage guide',
+      actions: {
+        onClick: () => history.push('/guide'),
+      },
+    },
+    {
+      title: 'Support',
+      actions: {
+        href: 'https://t.me/qeorqe',
+        target: '_blank',
+      },
+    },
+    {
+      title: 'Log out',
+      actions: {
+        onClick: handleLogout,
+      },
+    },
+  ];
 
   return (
     <header>
@@ -37,24 +104,14 @@ const Header = () => {
           </Col>
           <Col md="6" xs="12" className="menu order-1 order-md-0">
             <ul className="m-0 p-0">
-              <li>
-                <NavLink to="/home">
-                  <Profile />
-                  {t('Profile')}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/createTransaction">
-                  <Transactions />
-                  {t('New transaction')}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/statistics">
-                  <Statistics />
-                  {t('Statistics')}
-                </NavLink>
-              </li>
+              {tabMenuItems.map(({ title, Component, link }) => (
+                <li key={title}>
+                  <NavLink to={link}>
+                    <Component />
+                    {t(title)}
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </Col>
           <Col md="3" xs="6">
@@ -69,25 +126,11 @@ const Header = () => {
                   className="d-flex justify-content-around languagesController">
                   <LanguageSwitcher />
                 </Dropdown.Item>
-                <Dropdown.Item
-                  as="span"
-                  onClick={() => history.push('/balance')}>
-                  {t('balance')}
-                </Dropdown.Item>
-                <Dropdown.Item
-                  as="span"
-                  onClick={() => history.push('/categories')}>
-                  {t('categories')}
-                </Dropdown.Item>
-                <Dropdown.Item as="span" onClick={() => history.push('/guide')}>
-                  {t('usage guide')}
-                </Dropdown.Item>
-                <Dropdown.Item href="https://t.me/qeorqe" target="_blank">
-                  {t('Support')}{' '}
-                </Dropdown.Item>
-                <Dropdown.Item as="span" onClick={handleLogout}>
-                  {t('Log out')}
-                </Dropdown.Item>
+                {dropdownMenuItems.map(({ title, actions }) => (
+                  <Dropdown.Item as="span" key={title} {...actions}>
+                    {t(title)}
+                  </Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
           </Col>

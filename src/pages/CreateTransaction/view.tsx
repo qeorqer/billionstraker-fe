@@ -38,70 +38,68 @@ const CreateTransactionPageView: React.FC<propsType> = ({
   handleCreateCategory,
   isLoading,
 }) => (
-  <>
-    <Container className="py-md-4 my-4 pb-5 pb-sm-0">
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <SelectTransactionType
-            transactionType={transactionType}
-            setTransactionType={setTransactionType}
-          />
+  <Container className="py-md-4 my-4 pb-5 pb-sm-0">
+    {isLoading ? (
+      <Loader />
+    ) : (
+      <>
+        <SelectTransactionType
+          transactionType={transactionType}
+          setTransactionType={setTransactionType}
+        />
 
-          {canCreateTransaction ? (
-            <>
-              <p className="fs-4 fw-bold text-center my-2">
-                {t(
-                  balances.length
-                    ? 'all your balances'
-                    : 'your balances will be here',
-                )}
-              </p>
-              <Balances />
-
-              <CreateTransactionForm
-                selectedTransactionType={transactionType}
-                balances={balances}
-                categories={categories}
-                handleSubmit={handleSubmit}
-              />
-            </>
-          ) : (
-            <>
-              {transactionType === 'expense' || transactionType === 'profit' ? (
-                <div className="text-center mt-2">
-                  <p className="fw-bold">{t('you need to have one balance')}</p>
-                  <Button
-                    variant="warning"
-                    className="w300Px text-white mx-1"
-                    onClick={handleCreateBalance}>
-                    {t('create balance')}
-                  </Button>
-                  <Button
-                    variant="warning"
-                    className="w300Px text-white mx-1 my-2 my-md-0"
-                    onClick={handleCreateCategory}>
-                    {t('create category')}
-                  </Button>
-                </div>
-              ) : (
-                <div className="text-center mt-2">
-                  <p className="fw-bold">{t('you need to have two balance')}</p>
-                  <Button
-                    variant="warning"
-                    className="w300Px text-white"
-                    onClick={handleCreateBalance}>
-                    {t('create balance')}
-                  </Button>
-                </div>
+        {canCreateTransaction ? (
+          <>
+            <p className="fs-4 fw-bold text-center my-2">
+              {t(
+                balances.length
+                  ? 'all your balances'
+                  : 'your balances will be here',
               )}
-            </>
-          )}
-        </>
-      )}
-    </Container>
-  </>
+            </p>
+            <Balances />
+
+            <CreateTransactionForm
+              selectedTransactionType={transactionType}
+              balances={balances}
+              categories={categories}
+              handleSubmit={handleSubmit}
+            />
+          </>
+        ) : (
+          <>
+            {transactionType === 'expense' || transactionType === 'profit' ? (
+              <div className="text-center mt-2">
+                <p className="fw-bold">{t('you need to have one balance')}</p>
+                <Button
+                  variant="warning"
+                  className="w300Px text-white mx-1"
+                  onClick={handleCreateBalance}>
+                  {t('create balance')}
+                </Button>
+                <Button
+                  variant="warning"
+                  className="w300Px text-white mx-1 my-2 my-md-0"
+                  onClick={handleCreateCategory}>
+                  {t('create category')}
+                </Button>
+              </div>
+            ) : (
+              <div className="text-center mt-2">
+                <p className="fw-bold">{t('you need to have two balance')}</p>
+                <Button
+                  variant="warning"
+                  className="w300Px text-white"
+                  onClick={handleCreateBalance}>
+                  {t('create balance')}
+                </Button>
+              </div>
+            )}
+          </>
+        )}
+      </>
+    )}
+  </Container>
 );
 
 export default CreateTransactionPageView;
