@@ -179,7 +179,7 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
             </Col>
             <Col xs="6" sm="4" className="max-width-220  p-1">
               <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-                {t('balance')}:
+                {t('balances')}:
               </p>
               <CustomSelect
                 defaultButtonText={t('show all')}

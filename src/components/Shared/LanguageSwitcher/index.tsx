@@ -2,8 +2,6 @@ import React from 'react';
 import i18next from 'i18next';
 
 import { changeLang } from 'features/user';
-import enFlag from 'assets/common/en.png';
-import ruFlag from 'assets/common/ru.png';
 import { userData } from 'features/user';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
@@ -21,12 +19,12 @@ const LanguageSwitcher = () => {
       <span
         onClick={handleLangChange('en')}
         className={lang === 'en' ? 'activeLang' : ''}>
-        <img src={enFlag} alt="en" />
+        EN
       </span>
       <span
         onClick={handleLangChange('ru')}
         className={lang === 'ru' ? 'activeLang' : ''}>
-        <img src={ruFlag} alt="en" />
+        Not EN
       </span>
     </>
   );

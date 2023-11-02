@@ -60,7 +60,7 @@ const Header = () => {
 
   const dropdownMenuItems: DropdownMenuItem[] = [
     {
-      title: 'balance',
+      title: 'balances',
       actions: {
         onClick: () => history.push('/balance'),
       },

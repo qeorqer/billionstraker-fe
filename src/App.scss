@@ -45,9 +45,10 @@ body {
   span {
     cursor: pointer;
     transition: .3s;
+    opacity: .7;
 
     &:hover, &.activeLang {
-      opacity: .7;
+      opacity: 1;
     }
   }
 }
