@@ -96,7 +96,7 @@
   "the main idea of the app": "Главная задача этого приложения дать возможность максимально легко управлять своим бюджетом. Благодаря Billionstraker буквально ВСЯ информация о доходах и расходах хранится в одном месте в удобном формате.",
   "about statistics": "Ко всему этому, Billionstraker это шикарный позволяет анализировать свои финансы. Легко увидеть всю картину расходов и доходов, и, на основе этого, планировать свой бюджет.",
   "more over the has mobile version": "Приложение полностью адаптивно, его кайфово использовать на мобилках(Лично я только так и делаю). А ещее, скоро планирую сделать PWA версию",
-  "so there is no reason not to check it out": "Я не вижу абсолютно никаких причин чтобы не заценить Billionstraker. Регестрируйся и убедись лично.",
+  "so there is no reason not to check it out": "Я не вижу абсолютно никаких причин чтобы не заценить Billionstraker. Регистрируйся и убедись лично.",
   "check it out": "Начать",
   "usage guide": "Гайд",
   "here comes the usage guide": "И так, как этим пользоваться",
@@ -142,5 +142,10 @@
   "month": "Месяц",
   "range detail": "Детализация диапазона",
   "back to statistics": "Вернуться к статистике",
-  "click on item to see transactions": "Нажми на категорию чтобы увидеть транзакции"
+  "click on item to see transactions": "Нажми на категорию чтобы увидеть транзакции",
+  "Email is invalid": "Неправильная почта",
+  "Email is required": "Почта обязательна",
+  "Password is required": "Без пароля никуда",
+  "Password must contain at least 6 symbols": "Минимум 6 символов",
+  "Passwords do not match": "Пароли не совпадают"
 }

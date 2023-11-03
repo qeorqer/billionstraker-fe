@@ -52,7 +52,7 @@
   "balance": "Balance",
   "balances": "Balances",
   "all your balances": "All your balances",
-  "your balances will be here": "Your balance will be here",
+  "your balances will be here": "Your balances will be here",
   "add new balance": "Add new balance",
   "name the balance": "Name the balance",
   "set amount": "Set amount",
@@ -142,5 +142,10 @@
   "month": "Month",
   "range detail": "Range detail",
   "back to statistics": "Back to statistics",
-  "click on item to see transactions": "Click on item to see transactions"
+  "click on item to see transactions": "Click on item to see transactions",
+  "Email is invalid": "Email is invalid",
+  "Email is required": "Email is required",
+  "Password is required": "Password is required",
+  "Password must contain at least 6 symbols": "Password must contain at least 6 symbols",
+  "Passwords do not match": "Passwords do not match"
 }

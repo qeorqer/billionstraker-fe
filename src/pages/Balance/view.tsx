@@ -5,7 +5,7 @@ import { Balance } from 'features/balance/types';
 import BalancesList from 'features/balance/components/BalancesList';
 import BalanceForm from 'features/balance/components/BalanceForm';
 
-type propsType = {
+type BalancePageViewProps = {
   t: (text: string) => string;
   balances: Balance[];
   name: string;
@@ -15,7 +15,7 @@ type propsType = {
   handleAddBalance: () => void;
 };
 
-const BalancePageView: React.FC<propsType> = ({
+const BalancePageView: React.FC<BalancePageViewProps> = ({
   t,
   balances,
   name,
@@ -26,7 +26,7 @@ const BalancePageView: React.FC<propsType> = ({
 }) => (
   <Container className="py-4">
     <p className="fs-4 fw-bold text-center py-2">
-      {t(balances.length ? 'all your balances' : 'your balances will be here')}
+      {t(!balances.length ? 'all your balances' : 'your balances will be here')}
     </p>
     <BalancesList withMenu />
     <Row className="text-center">

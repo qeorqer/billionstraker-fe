@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { Button, Form, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'store/hooks';
@@ -21,6 +21,9 @@ const BalanceForm: React.FC<propsType> = ({
   buttonText,
   handleSubmit,
 }) => {
+  /*  const [name, setName] = useState<string>('');
+  const [amount, setAmount] = useState<number | string>('');*/
+
   const { t } = useTranslation();
   const { isLoadingBalances } = useAppSelector(balanceData);
 
