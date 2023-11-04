@@ -3,6 +3,7 @@ export type Balance = {
   name: string;
   amount: number;
   ownerId: string;
+  currency: string;
 };
 
 export type CreateBalancePayload = {

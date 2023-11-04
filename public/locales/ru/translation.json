@@ -147,5 +147,10 @@
   "Email is required": "Почта обязательна",
   "Password is required": "Без пароля никуда",
   "Password must contain at least 6 symbols": "Минимум 6 символов",
-  "Passwords do not match": "Пароли не совпадают"
+  "Passwords do not match": "Пароли не совпадают",
+  "select currency": "Выбери валюту",
+  "Balance name is required": "Нужно имя",
+  "Must be a positive value": "Только позитивные значение",
+  "Amount value is required": "Сумма обязательна",
+  "Currency is required": "Нужно выбрать валюту"
 }

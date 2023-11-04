@@ -1,56 +1,131 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { Button, Form, FormControl } from 'react-bootstrap';
+import React from 'react';
+import { Button, Form, FormControl, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from 'store/hooks';
 import { balanceData } from 'features/balance/store/selector';
+import * as Yup from 'yup';
+import { Field, FieldProps, Formik, FormikProps } from 'formik';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import { CurrencyOption, getListOfAllCurrencies } from 'features/currency';
 
-type propsType = {
-  name: string;
-  setName: Dispatch<SetStateAction<string>>;
-  amount: string | number;
-  handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
+type BalanceFormProps = {
   buttonText: string;
-  handleSubmit: () => void;
 };
 
-const BalanceForm: React.FC<propsType> = ({
-  name,
-  setName,
-  amount,
-  handleChangeAmount,
-  buttonText,
-  handleSubmit,
-}) => {
-  /*  const [name, setName] = useState<string>('');
-  const [amount, setAmount] = useState<number | string>('');*/
+type BalanceFormFields = {
+  name: string;
+  amount: number | '';
+  currency: string;
+};
 
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required('Balance name is required'),
+  amount: Yup.number()
+    .positive('Must be a positive value')
+    .required('Amount value is required'),
+  currency: Yup.string().required('Currency is required'),
+});
+
+const initialValues: BalanceFormFields = {
+  name: '',
+  amount: '',
+  currency: '',
+};
+
+const BalanceForm: React.FC<BalanceFormProps> = ({ buttonText }) => {
   const { t } = useTranslation();
   const { isLoadingBalances } = useAppSelector(balanceData);
 
+  const onSubmit = (values: BalanceFormFields) => {
+    console.log(values);
+  };
+
   return (
-    <Form className="text-center">
-      <FormControl
-        type="text"
-        placeholder={t('name the balance')}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="mb-3"
-      />
-      <FormControl
-        type="number"
-        placeholder={t('set amount')}
-        value={amount}
-        onChange={handleChangeAmount}
-        className="mb-3"
-      />
-      <Button
-        variant="warning"
-        className="w300Px text-white"
-        onClick={handleSubmit}
-        disabled={isLoadingBalances}>
-        {t(buttonText)}
-      </Button>
-    </Form>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+      render={({
+        errors,
+        touched,
+        handleSubmit,
+        isSubmitting,
+        setFieldValue,
+      }: FormikProps<BalanceFormFields>) => (
+        <Form onSubmit={handleSubmit}>
+          <Field name="name">
+            {({ field }: FieldProps) => (
+              <FormGroup className="mb-4 position-relative">
+                <FormControl
+                  {...field}
+                  placeholder={t('name the balance')}
+                  isInvalid={Boolean(touched.name && errors.name)}
+                />
+                <FormControl.Feedback
+                  type="invalid"
+                  className="position-absolute">
+                  {errors?.name && t(errors.name)}
+                </FormControl.Feedback>
+              </FormGroup>
+            )}
+          </Field>
+
+          <Field name="amount">
+            {({ field }: FieldProps) => (
+              <FormGroup className="mb-4 position-relative">
+                <FormControl
+                  {...field}
+                  type="number"
+                  placeholder={t('set amount')}
+                  isInvalid={Boolean(touched.amount && errors.amount)}
+                />
+                <FormControl.Feedback
+                  type="invalid"
+                  className="position-absolute">
+                  {errors?.amount && t(errors.amount)}
+                </FormControl.Feedback>
+              </FormGroup>
+            )}
+          </Field>
+
+          <Field name="currency">
+            {() => (
+              <FormGroup className="mb-4 position-relative">
+                <Typeahead
+                  id="currency-typeahead"
+                  onChange={(selected) =>
+                    setFieldValue(
+                      'currency',
+                      (selected as CurrencyOption[])[0]?.value ?? '',
+                    )
+                  }
+                  options={getListOfAllCurrencies()}
+                  placeholder={t('select currency')}
+                  isInvalid={Boolean(touched.currency && errors.currency)}
+                />
+                {touched.currency && errors.currency && (
+                  <FormControl.Feedback
+                    type="invalid"
+                    className="position-absolute">
+                    {errors?.currency && t(errors.currency)}
+                  </FormControl.Feedback>
+                )}
+              </FormGroup>
+            )}
+          </Field>
+
+          <div className="text-center">
+            <Button
+              type="submit"
+              variant="warning"
+              className="w300Px text-white"
+              disabled={isLoadingBalances}>
+              {t(buttonText)}
+            </Button>
+          </div>
+        </Form>
+      )}
+    />
   );
 };
 

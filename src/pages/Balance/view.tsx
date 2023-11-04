@@ -29,17 +29,10 @@ const BalancePageView: React.FC<BalancePageViewProps> = ({
       {t(!balances.length ? 'all your balances' : 'your balances will be here')}
     </p>
     <BalancesList withMenu />
-    <Row className="text-center">
+    <Row>
       <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
-        <p className="fs-5 fw-bold">{t('add new balance')}:</p>
-        <BalanceForm
-          name={name}
-          setName={setName}
-          amount={amount}
-          handleChangeAmount={handleChangeAmount}
-          handleSubmit={handleAddBalance}
-          buttonText="create"
-        />
+        <p className="fs-5 fw-bold text-center">{t('add new balance')}:</p>
+        <BalanceForm buttonText="create" />
       </Col>
     </Row>
   </Container>

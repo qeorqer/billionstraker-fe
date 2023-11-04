@@ -7,13 +7,13 @@ import { useTranslation } from 'react-i18next';
 import { signUpThunk } from 'features/user';
 import { useAppDispatch } from 'store/hooks';
 
-type SignupFields = {
+type SignUpFormFields = {
   login: string;
   password: string;
   confirmPassword: string;
 };
 
-const initialValues: SignupFields = {
+const initialValues: SignUpFormFields = {
   login: '',
   password: '',
   confirmPassword: '',
@@ -35,7 +35,7 @@ const SignUpForm = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const handleSignUp = ({ login, password }: SignupFields) =>
+  const handleSignUp = ({ login, password }: SignUpFormFields) =>
     dispatch(
       signUpThunk({
         login: login.trim().toLowerCase(),
@@ -53,7 +53,7 @@ const SignUpForm = () => {
         touched,
         handleSubmit,
         isSubmitting,
-      }: FormikProps<SignupFields>) => (
+      }: FormikProps<SignUpFormFields>) => (
         <Form onSubmit={handleSubmit}>
           <Field name="login">
             {({ field }: FieldProps) => (

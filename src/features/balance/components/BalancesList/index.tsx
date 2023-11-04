@@ -141,14 +141,14 @@ const BalancesList: React.FC<propsType> = ({ withMenu }) => {
           <Modal.Title>{t('edit balance')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <BalanceForm
-            name={name}
-            setName={setName}
-            amount={amount}
-            handleChangeAmount={handleChangeAmount(setAmount)}
-            buttonText="update"
-            handleSubmit={handleEditBalance}
-          />
+          {/*<BalanceForm*/}
+          {/*  name={name}*/}
+          {/*  setName={setName}*/}
+          {/*  amount={amount}*/}
+          {/*  handleChangeAmount={handleChangeAmount(setAmount)}*/}
+          {/*  buttonText="update"*/}
+          {/*  handleSubmit={handleEditBalance}*/}
+          {/*/>*/}
         </Modal.Body>
       </Modal>
     </>

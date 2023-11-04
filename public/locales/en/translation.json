@@ -147,5 +147,10 @@
   "Email is required": "Email is required",
   "Password is required": "Password is required",
   "Password must contain at least 6 symbols": "Password must contain at least 6 symbols",
-  "Passwords do not match": "Passwords do not match"
+  "Passwords do not match": "Passwords do not match",
+  "select currency": "Select currency",
+  "Balance name is required": "Balance name is required",
+  "Must be a positive value": "Must be a positive value",
+  "Amount value is required": "Amount value is required",
+  "Currency is required": "Currency is required"
 }
