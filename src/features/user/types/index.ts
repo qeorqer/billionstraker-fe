@@ -3,6 +3,7 @@ export type User = {
   login: string;
   created: Date;
   isFirstEnter: boolean;
+  preferredCurrency: string | null;
 };
 
 export type AuthResponse = {

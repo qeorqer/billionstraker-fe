@@ -131,6 +131,7 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
             {({ field }: FieldProps) => (
               <FormGroup className="mb-4 position-relative">
                 <SelectCurrencyTypeahead
+                  id="currency-typeahead"
                   ref={typeaheadRef as ForwardedRef<TypeaheadRef>}
                   onChange={(selectedOptions) =>
                     setFieldValue(

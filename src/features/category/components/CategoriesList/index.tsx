@@ -100,10 +100,7 @@ const CategoriesList: React.FC<propsType> = ({ categories }) => {
                     </Card.Text>
                   </div>
                   <Dropdown drop="start">
-                    <Dropdown.Toggle
-                      as={CustomToggle}
-                      id="dropdown-custom-components"
-                    />
+                    <Dropdown.Toggle as={CustomToggle} />
                     <Dropdown.Menu>
                       <Dropdown.Item
                         as="span"

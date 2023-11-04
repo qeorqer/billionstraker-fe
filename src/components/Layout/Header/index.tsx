@@ -116,10 +116,7 @@ const Header = () => {
           </Col>
           <Col md="3" xs="6">
             <Dropdown>
-              <Dropdown.Toggle
-                as={CustomToggle}
-                id="dropdown-custom-components"
-              />
+              <Dropdown.Toggle as={CustomToggle} />
               <Dropdown.Menu variant="dark">
                 <Dropdown.Item
                   as="span"

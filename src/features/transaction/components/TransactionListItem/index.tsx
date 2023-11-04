@@ -71,11 +71,7 @@ const TransactionListItem: FC<propsType> = ({
                 </p>
               )}
               <Dropdown drop="start">
-                <Dropdown.Toggle
-                  as={CustomToggle}
-                  variant="circle"
-                  id="dropdown-custom-components"
-                />
+                <Dropdown.Toggle as={CustomToggle} variant="circle" />
                 <Dropdown.Menu>
                   <Dropdown.Item
                     as="span"

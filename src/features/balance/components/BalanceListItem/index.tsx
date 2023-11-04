@@ -47,11 +47,8 @@ const BalanceListItem: FC<BalanceListItemProps> = ({ balance, showMenu }) => {
             </Card.Text>
           </div>
           {showMenu && (
-            <Dropdown drop="start" onClick={(e) => e.stopPropagation()}>
-              <Dropdown.Toggle
-                as={CustomToggle}
-                id="dropdown-custom-components"
-              />
+            <Dropdown drop="start">
+              <Dropdown.Toggle as={CustomToggle} />
               <Dropdown.Menu>
                 {options.map(({ title, onClick }) => (
                   <Dropdown.Item as="span" onClick={onClick} key={title}>
