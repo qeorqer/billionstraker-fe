@@ -6,12 +6,11 @@ export type Balance = {
   currency: string;
 };
 
-export type CreateBalancePayload = {
-  name: string;
-  amount: number;
+export type CreateUpdateBalancePayload = {
+  balance: Partial<Balance>;
 };
 
-export type CreateBalanceResponse = {
+export type CreateUpdateBalanceResponse = {
   message: string;
   balance: Balance;
 };
@@ -19,11 +18,6 @@ export type CreateBalanceResponse = {
 export type GetBalanceResponse = {
   message: string;
   balances: Balance[];
-};
-
-export type UpdateBalancePayload = {
-  balanceId: string;
-  balance: Balance;
 };
 
 export type DeleteBalancePayload = {

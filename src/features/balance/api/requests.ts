@@ -2,21 +2,21 @@ import { AxiosResponse } from 'axios';
 
 import api from 'api/axiosInstance';
 import {
-  CreateBalancePayload,
-  CreateBalanceResponse,
+  Balance,
+  CreateUpdateBalancePayload,
+  CreateUpdateBalanceResponse,
   createBalanceRoute,
   DeleteBalancePayload,
   DeleteBalanceResponse,
   deleteBalanceRoute,
   GetBalanceResponse,
   getBalancesRoute,
-  UpdateBalancePayload,
   updateBalanceRoute,
 } from 'features/balance';
 
 export const createBalanceRequest = (
-  body: CreateBalancePayload,
-): Promise<AxiosResponse<CreateBalanceResponse>> =>
+  body: CreateUpdateBalancePayload,
+): Promise<AxiosResponse<CreateUpdateBalanceResponse>> =>
   api.post(createBalanceRoute, body);
 
 export const getBalancesRequest = (): Promise<
@@ -24,8 +24,8 @@ export const getBalancesRequest = (): Promise<
 > => api.get(getBalancesRoute);
 
 export const updateBalanceRequest = (
-  body: UpdateBalancePayload,
-): Promise<AxiosResponse<CreateBalanceResponse>> =>
+  body: CreateUpdateBalancePayload,
+): Promise<AxiosResponse<CreateUpdateBalanceResponse>> =>
   api.patch(updateBalanceRoute, body);
 
 export const deleteBalanceRequest = (

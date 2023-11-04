@@ -152,5 +152,6 @@
   "Balance name is required": "Balance name is required",
   "Must be a positive value": "Must be a positive value",
   "Amount value is required": "Amount value is required",
-  "Currency is required": "Currency is required"
+  "Currency is required": "Currency is required",
+  "Name must be unique": "Name must be unique"
 }

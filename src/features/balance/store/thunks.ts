@@ -1,12 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 import {
-  CreateBalancePayload,
-  CreateBalanceResponse,
+  CreateUpdateBalancePayload,
+  CreateUpdateBalanceResponse,
   DeleteBalancePayload,
   DeleteBalanceResponse,
   GetBalanceResponse,
-  UpdateBalancePayload,
 } from 'features/balance/types';
 
 import {
@@ -25,8 +24,8 @@ import {
 export const createBalanceThunk = createAsyncThunk(
   createBalanceRoute,
   async (
-    body: CreateBalancePayload,
-  ): Promise<AxiosResponse<CreateBalanceResponse>> =>
+    body: CreateUpdateBalancePayload,
+  ): Promise<AxiosResponse<CreateUpdateBalanceResponse>> =>
     await createBalanceRequest(body),
 );
 
@@ -39,8 +38,8 @@ export const getBalancesThunk = createAsyncThunk(
 export const updateBalanceThunk = createAsyncThunk(
   updateBalanceRoute,
   async (
-    body: UpdateBalancePayload,
-  ): Promise<AxiosResponse<CreateBalanceResponse>> =>
+    body: CreateUpdateBalancePayload,
+  ): Promise<AxiosResponse<CreateUpdateBalanceResponse>> =>
     await updateBalanceRequest(body),
 );
 

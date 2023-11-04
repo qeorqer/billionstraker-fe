@@ -38,17 +38,7 @@ const BalancePage = () => {
     setAmount('');
   };
 
-  return (
-    <BalancePageView
-      t={t}
-      balances={balances}
-      name={name}
-      setName={setName}
-      amount={amount}
-      handleChangeAmount={handleChangeAmount(setAmount)}
-      handleAddBalance={handleAddBalance}
-    />
-  );
+  return <BalancePageView t={t} hasBalances={balances.length > 0} />;
 };
 
 export default BalancePage;

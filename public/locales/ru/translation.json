@@ -152,5 +152,6 @@
   "Balance name is required": "Нужно имя",
   "Must be a positive value": "Только позитивные значение",
   "Amount value is required": "Сумма обязательна",
-  "Currency is required": "Нужно выбрать валюту"
+  "Currency is required": "Нужно выбрать валюту",
+  "Name must be unique": "Имя должно быть уникальным"
 }

@@ -7,26 +7,16 @@ import BalanceForm from 'features/balance/components/BalanceForm';
 
 type BalancePageViewProps = {
   t: (text: string) => string;
-  balances: Balance[];
-  name: string;
-  setName: Dispatch<SetStateAction<string>>;
-  amount: string | number;
-  handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleAddBalance: () => void;
+  hasBalances: boolean;
 };
 
 const BalancePageView: React.FC<BalancePageViewProps> = ({
   t,
-  balances,
-  name,
-  setName,
-  amount,
-  handleChangeAmount,
-  handleAddBalance,
+  hasBalances,
 }) => (
   <Container className="py-4">
     <p className="fs-4 fw-bold text-center py-2">
-      {t(!balances.length ? 'all your balances' : 'your balances will be here')}
+      {t(hasBalances ? 'all your balances' : 'your balances will be here')}
     </p>
     <BalancesList withMenu />
     <Row>
