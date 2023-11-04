@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { ForwardedRef, useRef } from 'react';
 import { Button, Form, FormControl, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import * as Yup from 'yup';
 import { Field, FieldProps, Formik, FormikProps } from 'formik';
+import { TypeaheadRef } from 'react-bootstrap-typeahead';
 
 import { CurrencyOption } from 'features/currency';
 import {
@@ -13,10 +14,12 @@ import {
   updateBalanceThunk,
 } from 'features/balance';
 import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
+import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
 
 type BalanceFormProps = {
   buttonText: string;
   balance?: Balance;
+  onSuccess?: () => void;
 };
 
 type BalanceFormFields = {
@@ -34,7 +37,9 @@ const initialValues: BalanceFormFields = {
 const BalanceForm: React.FC<BalanceFormProps> = ({
   buttonText,
   balance = null,
+  onSuccess = () => {},
 }) => {
+  const typeaheadRef = useRef<TypeaheadRef>();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { balances, isLoadingBalances } = useAppSelector(balanceData);
@@ -59,15 +64,20 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
     values: BalanceFormFields,
     { resetForm }: { resetForm: () => void },
   ) => {
-    const payload = { balance: values as Partial<Balance> };
+    try {
+      const payload = { balance: values as Partial<Balance> };
 
-    if (balance) {
-      await dispatch(updateBalanceThunk(payload));
-    } else {
-      await dispatch(createBalanceThunk(payload));
+      if (balance) {
+        await dispatch(updateBalanceThunk(payload));
+        onSuccess();
+      } else {
+        await dispatch(createBalanceThunk(payload));
+        resetForm();
+        typeaheadRef.current?.clear();
+      }
+    } catch (err) {
+      console.log(err);
     }
-
-    resetForm();
   };
 
   return (
@@ -80,7 +90,6 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
         touched,
         handleSubmit,
         setFieldValue,
-        resetForm,
       }: FormikProps<BalanceFormFields>) => (
         <Form onSubmit={handleSubmit}>
           <Field name="name">
@@ -119,9 +128,10 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
           </Field>
 
           <Field name="currency">
-            {() => (
+            {({ field }: FieldProps) => (
               <FormGroup className="mb-4 position-relative">
                 <SelectCurrencyTypeahead
+                  ref={typeaheadRef as ForwardedRef<TypeaheadRef>}
                   onChange={(selectedOptions) =>
                     setFieldValue(
                       'currency',
@@ -129,6 +139,7 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
                     )
                   }
                   isInvalid={Boolean(touched.currency && errors.currency)}
+                  value={getCurrencyLabel(field.value)}
                 />
                 <FormControl.Feedback
                   type="invalid"

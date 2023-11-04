@@ -18,7 +18,7 @@ const BalancePageView: React.FC<BalancePageViewProps> = ({
     <p className="fs-4 fw-bold text-center py-2">
       {t(hasBalances ? 'all your balances' : 'your balances will be here')}
     </p>
-    <BalancesList withMenu />
+    <BalancesList showMenu />
     <Row>
       <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
         <p className="fs-5 fw-bold text-center">{t('add new balance')}:</p>

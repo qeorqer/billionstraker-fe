@@ -3,7 +3,7 @@ import { cryptocurrenciesList, CurrencyOption } from 'features/currency';
 
 const preferredCurrencies = ['UAH', 'EUR', 'USD', 'USDT', 'BTC'];
 
-export const getListOfAllCurrencies = () => {
+export const getListOfAllCurrencies = (): CurrencyOption[] => {
   const formattedFiatCurrencies: CurrencyOption[] = fiatCurrencies.map(
     ({ currency, code }) => ({ label: `${currency} (${code})`, value: code }),
   );
