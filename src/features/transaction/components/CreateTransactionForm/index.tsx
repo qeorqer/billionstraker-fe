@@ -14,6 +14,7 @@ import { Balance } from 'features/balance/types';
 import { Category } from 'features/category/types';
 import { useAppSelector } from 'store/hooks';
 import { transactionData } from 'features/transaction/index';
+import { userData } from 'features/user';
 
 type propsType = {
   selectedTransactionType: TransactionType;
@@ -42,6 +43,7 @@ const CreateTransactionForm: React.FC<propsType> = ({
   const [categoryId, setCategoryId] = useState<string>('');
   const [date, setDate] = useState<Date>(new Date());
 
+  const { lang } = useAppSelector(userData);
   const { isLoadingTransactions } = useAppSelector(transactionData);
   const { t } = useTranslation();
 
@@ -312,7 +314,9 @@ const CreateTransactionForm: React.FC<propsType> = ({
               selected={date}
               onChange={(newDate) => setDate(newDate || new Date())}
               className="form-control"
+              wrapperClassName="w-100"
               dateFormat="dd/MM/yyyy"
+              locale={lang}
               onFocus={(e) => (e.target.readOnly = true)}
               maxDate={new Date()}
             />

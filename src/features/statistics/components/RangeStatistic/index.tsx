@@ -32,16 +32,17 @@ const RangeStatistic: FC<propsType> = ({
   balance,
   setBalance,
 }) => {
+  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
+    'year' | 'month'
+  >('year');
+  const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
+
   const { t } = useTranslation();
   const { push } = useHistory();
 
   const { lang, user } = useAppSelector(userData);
   const { isStatisticsForBalanceLoading } = useAppSelector(statisticsData);
   const { balances } = useAppSelector(balanceData);
-  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
-    'year' | 'month'
-  >('year');
-  const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
 
   const handleCreateTransaction = () => push('createTransaction');
 
