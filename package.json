@@ -10,6 +10,7 @@
     "@wojtekmaj/react-daterange-picker": "^5.4.4",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
+    "bootstrap-icons": "^1.11.1",
     "currency-codes": "^2.1.0",
     "date-fns": "^2.23.0",
     "decimal.js": "^10.4.0",

@@ -25,21 +25,18 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
   return (
     <Row>
       <Swiper
-        spaceBetween={20}
-        slidesPerView={1}
+        spaceBetween={15}
+        slidesPerView={2}
         className="justify-content-center d-flex overflow-y-visible"
         breakpoints={{
-          450: {
-            slidesPerView: 2,
-            spaceBetween: 30,
+          500: {
+            slidesPerView: 3,
           },
           768: {
-            slidesPerView: 3,
-            spaceBetween: 40,
+            slidesPerView: 4,
           },
           1200: {
-            slidesPerView: 4,
-            spaceBetween: 50,
+            slidesPerView: 5,
           },
         }}
         centerInsufficientSlides>

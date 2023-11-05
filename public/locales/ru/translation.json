@@ -154,5 +154,9 @@
   "Amount value is required": "Сумма обязательна",
   "Currency is required": "Нужно выбрать валюту",
   "Name must be unique": "Имя должно быть уникальным",
-  "Select main currency": "Выбери основную валюту"
+  "Select main currency": "Выбери основную валюту",
+  "currency": "Валюта",
+  "do you want to delete balance": "Удалить счет {{balanceName}}?",
+  "delete": "Удалить",
+  "cancel": "Отмена"
 }

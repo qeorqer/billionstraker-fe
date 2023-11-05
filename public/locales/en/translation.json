@@ -154,5 +154,9 @@
   "Amount value is required": "Amount value is required",
   "Currency is required": "Currency is required",
   "Name must be unique": "Name must be unique",
-  "Select main currency": "Select main currency"
+  "Select main currency": "Select main currency",
+  "currency": "Currency",
+  "do you want to delete balance": "Permanently delete balance {{balanceName}}?",
+  "delete": "Delete",
+  "cancel": "Cancel"
 }
