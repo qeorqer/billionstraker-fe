@@ -1,8 +1,8 @@
-import { getListOfAllCurrencies } from 'features/currency';
 import { Typeahead, TypeaheadRef } from 'react-bootstrap-typeahead';
 import React, { forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Option } from 'react-bootstrap-typeahead/types/types';
+import { currenciesList } from 'features/currency/constants';
 
 type SelectCurrencyTypeaheadProps = {
   onChange: (option: Option[]) => void;
@@ -24,7 +24,7 @@ const SelectCurrencyTypeahead = forwardRef<
       id={id}
       onChange={onChange}
       selected={value ? [value] : undefined}
-      options={getListOfAllCurrencies()}
+      options={currenciesList}
       placeholder={t('select currency')}
       isInvalid={isInvalid}
       className="w-100"

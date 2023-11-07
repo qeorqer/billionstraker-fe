@@ -1,7 +1,7 @@
-import { getListOfAllCurrencies } from 'features/currency/utils/getListOfAllCurrencies';
+import { currenciesList } from 'features/currency/constants';
 
 export const getCurrencyLabel = (val: string) => {
-  const currency = getListOfAllCurrencies().find(({ value }) => val === value);
+  const currency = currenciesList.find(({ value }) => val === value);
 
   if (currency) {
     return currency.label;
