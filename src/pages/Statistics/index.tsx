@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import Loader from 'components/Shared/Loader';
 import { balanceData, getBalancesThunk } from 'features/balance';
 import {
+  getNetWorthThunk,
   getStatisticsForSingleBalanceThunk,
   statisticsData,
 } from 'features/statistics';

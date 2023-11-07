@@ -27,6 +27,7 @@ const SelectCurrencyTypeahead = forwardRef<
       options={getListOfAllCurrencies()}
       placeholder={t('select currency')}
       isInvalid={isInvalid}
+      className="w-100"
     />
   );
 });

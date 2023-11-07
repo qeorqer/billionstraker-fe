@@ -18,5 +18,15 @@ export type StatisticsForBalancePayload = {
 
 export type GetStatisticsForBalanceResponse = {
   message: string;
-  statistic: StatisticsForBalance | null;
+  statistics: StatisticsForBalance | null;
+};
+
+export type NetWorth = {
+  value: number;
+  currency: string;
+};
+
+export type GetNetWorthResponse = {
+  message: string;
+  statistics: NetWorth;
 };

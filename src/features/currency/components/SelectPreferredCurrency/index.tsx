@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { CurrencyOption } from 'features/currency/types';
 import { Option } from 'react-bootstrap-typeahead/types/types';
 import { TypeaheadRef } from 'react-bootstrap-typeahead';
+import ReactTooltip from 'react-tooltip';
 
 const SelectPreferredCurrency = () => {
   const { user } = useAppSelector(userData);
@@ -40,13 +41,24 @@ const SelectPreferredCurrency = () => {
   return (
     <Row>
       <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
-        <p className="fs-5 fw-bold text-center">{t('Select main currency')}:</p>
-        <SelectCurrencyTypeahead
-          id="preferred-currency-typeahead"
-          ref={typeaheadRef as ForwardedRef<TypeaheadRef>}
-          onChange={handleValueSelect}
-          value={currency}
-        />
+        <p className="fs-5 fw-bold text-center ">
+          {t('Select main currency')}:
+        </p>
+        <div className="d-flex justify-content-between align-items-center">
+          <SelectCurrencyTypeahead
+            id="preferred-currency-typeahead"
+            ref={typeaheadRef as ForwardedRef<TypeaheadRef>}
+            onChange={handleValueSelect}
+            value={currency}
+          />
+          <span
+            className="cursor-pointer align-middle mx-2"
+            data-tip={t('Main currency is used for calculating the net worth')}
+            data-for="question">
+            <i className="bi bi-question-circle" />
+          </span>
+          <ReactTooltip id="question" />
+        </div>
       </Col>
     </Row>
   );

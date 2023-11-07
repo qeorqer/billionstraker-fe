@@ -1,10 +1,11 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 
 import RangeStatistic from 'features/statistics/components/RangeStatistic';
 import { StatisticsForBalance } from 'features/statistics/types';
+import NetWorthView from 'features/statistics/components/NetWorth';
 
-type propsType = {
+type StatisticsPageViewProps = {
   statisticsForBalance: StatisticsForBalance | null;
   monthsRange: [Date, Date];
   setMonthsRange: Dispatch<SetStateAction<[Date, Date]>>;
@@ -12,7 +13,7 @@ type propsType = {
   setBalance: Dispatch<SetStateAction<string>>;
 };
 
-const StatisticsPageView: FC<propsType> = ({
+const StatisticsPageView: FC<StatisticsPageViewProps> = ({
   statisticsForBalance,
   monthsRange,
   setMonthsRange,
@@ -20,13 +21,16 @@ const StatisticsPageView: FC<propsType> = ({
   setBalance,
 }) => (
   <Container className="py-md-4 my-4 pb-5 pb-sm-0">
-    <RangeStatistic
-      statisticsForRange={statisticsForBalance}
-      monthsRange={monthsRange}
-      setMonthsRange={setMonthsRange}
-      balance={balance}
-      setBalance={setBalance}
-    />
+    <Stack gap={2}>
+      <NetWorthView />
+      <RangeStatistic
+        statisticsForRange={statisticsForBalance}
+        monthsRange={monthsRange}
+        setMonthsRange={setMonthsRange}
+        balance={balance}
+        setBalance={setBalance}
+      />
+    </Stack>
   </Container>
 );
 

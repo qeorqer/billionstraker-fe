@@ -158,5 +158,8 @@
   "currency": "Currency",
   "do you want to delete balance": "Permanently delete balance {{balanceName}}?",
   "delete": "Delete",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "Your total net worth": "Your total net worth:",
+  "You can change main currency on the balances page": "Total value of all balances. You can change main currency on the balances page",
+  "Main currency is used for calculating the net worth": "Main currency is used for calculating the net worth"
 }

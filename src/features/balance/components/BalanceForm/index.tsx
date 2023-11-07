@@ -55,9 +55,9 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
         return true;
       }),
     amount: Yup.number()
-      .positive('Must be a positive value')
+      .min(0, 'Must be a positive value')
       .required('Amount value is required'),
-    currency: Yup.string().required('Currency is required'),
+    currency: Yup.string().nullable(true).required('Currency is required'),
   });
 
   const onSubmit = async (

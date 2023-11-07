@@ -5,6 +5,9 @@ import {
   getStatisticsForSingleBalanceRequest,
   getStatisticsForSingleBalanceRoute,
   GetStatisticsForBalanceResponse,
+  getNetWorthRoute,
+  getNetWorthRequest,
+  GetNetWorthResponse,
 } from 'features/statistics';
 
 export const getStatisticsForSingleBalanceThunk = createAsyncThunk(
@@ -15,4 +18,10 @@ export const getStatisticsForSingleBalanceThunk = createAsyncThunk(
     balance: string;
   }): Promise<AxiosResponse<GetStatisticsForBalanceResponse>> =>
     await getStatisticsForSingleBalanceRequest(body),
+);
+
+export const getNetWorthThunk = createAsyncThunk(
+  getNetWorthRoute,
+  async (): Promise<AxiosResponse<GetNetWorthResponse>> =>
+    await getNetWorthRequest(),
 );

@@ -158,5 +158,8 @@
   "currency": "Валюта",
   "do you want to delete balance": "Удалить счет {{balanceName}}?",
   "delete": "Удалить",
-  "cancel": "Отмена"
+  "cancel": "Отмена",
+  "Your total net worth": "Капитал:",
+  "You can change main currency on the balances page": "Сумма всех счетов. Изменить основную валюту можно на странице счетов",
+  "Main currency is used for calculating the net worth": "Основная валюта используется для расчета капитала"
 }
