@@ -1,34 +1,36 @@
 import React, { Dispatch, FC, SetStateAction } from 'react';
 import { Container, Stack } from 'react-bootstrap';
 
-import RangeStatistic from 'features/statistics/components/RangeStatistic';
+import StatisticsForBalanceView from 'features/statistics/components/StatisticsForBalanceView';
 import { StatisticsForBalance } from 'features/statistics/types';
 import NetWorthView from 'features/statistics/components/NetWorth';
+import SelectStatisticsDetails from 'features/statistics/components/SelectStatisticsDetails/SelectStatisticsDetails';
 
 type StatisticsPageViewProps = {
-  statisticsForBalance: StatisticsForBalance | null;
   monthsRange: [Date, Date];
   setMonthsRange: Dispatch<SetStateAction<[Date, Date]>>;
-  balance: string;
-  setBalance: Dispatch<SetStateAction<string>>;
+  balanceName: string;
+  setBalanceName: Dispatch<SetStateAction<string>>;
 };
 
 const StatisticsPageView: FC<StatisticsPageViewProps> = ({
-  statisticsForBalance,
   monthsRange,
   setMonthsRange,
-  balance,
-  setBalance,
+  balanceName,
+  setBalanceName,
 }) => (
   <Container className="py-md-4 my-4 pb-5 pb-sm-0">
     <Stack gap={2}>
       <NetWorthView />
-      <RangeStatistic
-        statisticsForRange={statisticsForBalance}
-        monthsRange={monthsRange}
+      <SelectStatisticsDetails
+        balanceName={balanceName}
+        setBalanceName={setBalanceName}
         setMonthsRange={setMonthsRange}
-        balance={balance}
-        setBalance={setBalance}
+        monthsRange={monthsRange}
+      />
+      <StatisticsForBalanceView
+        monthsRange={monthsRange}
+        balanceName={balanceName}
       />
     </Stack>
   </Container>

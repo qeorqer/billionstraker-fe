@@ -63,42 +63,42 @@ const StatisticsDiagram: FC<propsType> = ({
     );
   }, [statisticForRange, totalSpent, hovered]);
 
+  if (totalSpent <= 0) {
+    return null;
+  }
+
   return (
-    <>
-      {totalSpent > 0 && (
-        <div data-tip="" data-for="chart">
-          <PieChart
-            data={statistic}
-            style={{ height: '300px', width: '100%' }}
-            label={({ dataEntry }) =>
-              `${
-                Math.round(dataEntry.percentage)
-                  ? Math.round(dataEntry.percentage)
-                  : '<1'
-              }%`
-            }
-            totalValue={totalSpent}
-            labelStyle={{
-              fontSize: '5px',
-              fill: 'white',
-            }}
-            onMouseOver={(el, index) => {
-              setHovered(index);
-            }}
-            onMouseOut={() => {
-              setHovered(null);
-            }}
-            segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
-          />
-          <ReactTooltip
-            id="chart"
-            getContent={() =>
-              typeof hovered == 'number' ? statistic[hovered]?.tooltip : null
-            }
-          />
-        </div>
-      )}
-    </>
+    <div data-tip="" data-for="chart">
+      <PieChart
+        data={statistic}
+        style={{ height: '300px', width: '100%' }}
+        label={({ dataEntry }) =>
+          `${
+            Math.round(dataEntry.percentage)
+              ? Math.round(dataEntry.percentage)
+              : '<1'
+          }%`
+        }
+        totalValue={totalSpent}
+        labelStyle={{
+          fontSize: '5px',
+          fill: 'white',
+        }}
+        onMouseOver={(el, index) => {
+          setHovered(index);
+        }}
+        onMouseOut={() => {
+          setHovered(null);
+        }}
+        segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
+      />
+      <ReactTooltip
+        id="chart"
+        getContent={() =>
+          typeof hovered == 'number' ? statistic[hovered]?.tooltip : null
+        }
+      />
+    </div>
   );
 };
 

@@ -21,21 +21,23 @@ const NetWorthView = () => {
   }
 
   return (
-    <p className="fw-bold text-center">
-      {t('Your total net worth')}
-      <span className="fst-italic yellowText">
-        {` ${formattingSum(
-          netWorth.value,
-        )} (${netWorth.currency.toUpperCase()}) `}
-      </span>
-      <span
-        className="cursor-pointer"
-        data-tip={t('You can change main currency on the balances page')}
-        data-for="question">
-        <i className="bi bi-question-circle" />
-      </span>
+    <>
+      <p className="h3 fw-bold text-center">
+        {t('Your total net worth')}
+        <span className="fst-italic yellowText">
+          {` ${formattingSum(
+            netWorth.value,
+          )} (${netWorth.currency.toUpperCase()}) `}
+        </span>
+        <span
+          className="cursor-pointer"
+          data-tip={t('You can change main currency on the balances page')}
+          data-for="question">
+          <i className="bi bi-question-circle" />
+        </span>
+      </p>
       <ReactTooltip id="question" />
-    </p>
+    </>
   );
 };
 

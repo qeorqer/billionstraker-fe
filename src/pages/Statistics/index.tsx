@@ -5,17 +5,12 @@ import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import Loader from 'components/Shared/Loader';
 import { balanceData, getBalancesThunk } from 'features/balance';
-import {
-  getNetWorthThunk,
-  getStatisticsForSingleBalanceThunk,
-  statisticsData,
-} from 'features/statistics';
+import { getStatisticsForSingleBalanceThunk } from 'features/statistics';
 import 'moment/locale/ru';
 
 import StatisticsPageView from './view';
 
 const StatisticsPage: FC = () => {
-  const { statisticsForBalance } = useAppSelector(statisticsData);
   const { isLoadingBalances, balances } = useAppSelector(balanceData);
 
   const dispatch = useAppDispatch();
@@ -62,11 +57,10 @@ const StatisticsPage: FC = () => {
 
   return (
     <StatisticsPageView
-      statisticsForBalance={statisticsForBalance}
       monthsRange={monthsRange}
       setMonthsRange={setMonthsRange}
-      balance={balance}
-      setBalance={setBalance}
+      balanceName={balance}
+      setBalanceName={setBalance}
     />
   );
 };

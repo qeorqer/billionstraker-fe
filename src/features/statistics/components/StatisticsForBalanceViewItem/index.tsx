@@ -7,7 +7,7 @@ import { StatisticsList } from 'features/statistics/components/StatisticsList';
 import { StatisticsForBalance } from 'features/statistics/types';
 import { formattingSum } from 'features/transaction/utils/formattingSum';
 
-import 'features/statistics/components/RangeStatisticsItem/styles.scss';
+import 'features/statistics/components/StatisticsForBalanceViewItem/styles.scss';
 
 type propsType = {
   statisticsForRange: StatisticsForBalance;
@@ -16,7 +16,7 @@ type propsType = {
   monthsRange: [Date, Date];
 };
 
-const RangeStatisticsItem: FC<propsType> = ({
+const StatisticsForBalanceViewItem: FC<propsType> = ({
   statisticsForRange,
   type,
   selectedBalance,
@@ -64,8 +64,7 @@ const RangeStatisticsItem: FC<propsType> = ({
         )}
         :
         <span className="fst-italic yellowText">
-          {' '}
-          {formattingSum(fieldsToUse.totalValue)}
+          {` ${formattingSum(fieldsToUse.totalValue)}`}
         </span>
       </p>
       {useDiagram ? (
@@ -85,4 +84,4 @@ const RangeStatisticsItem: FC<propsType> = ({
   );
 };
 
-export default RangeStatisticsItem;
+export default StatisticsForBalanceViewItem;
