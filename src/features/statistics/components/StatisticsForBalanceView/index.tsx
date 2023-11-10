@@ -7,7 +7,7 @@ import Loader from 'components/Shared/Loader';
 import { useAppSelector } from 'store/hooks';
 import { statisticsData } from 'features/statistics/store/selector';
 import StatisticsForBalanceViewItem from 'features/statistics/components/StatisticsForBalanceViewItem';
-import CreateTransactionToSeeStatistics from 'features/statistics/components/CreateTransactionToSeeStatistics';
+import CreateTransactionFirstButton from 'features/transaction/components/CreateTransactionFirstButton';
 
 import './styles.scss';
 
@@ -24,7 +24,9 @@ const StatisticsForBalanceView: FC<propsType> = ({
   const { isStatisticsForBalanceLoading } = useAppSelector(statisticsData);
 
   if (!statisticsForBalance) {
-    return <CreateTransactionToSeeStatistics />;
+    return (
+      <CreateTransactionFirstButton text="Some of your statistic will be here" />
+    );
   }
 
   if (isStatisticsForBalanceLoading) {

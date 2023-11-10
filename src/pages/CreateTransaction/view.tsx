@@ -7,7 +7,7 @@ import {
 } from 'features/transaction/types';
 import { Balance } from 'features/balance/types';
 import { Category } from 'features/category/types';
-import Balances from 'features/balance/components/BalancesList';
+import BalancesList from 'features/balance/components/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from 'components/Shared/Loader';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
@@ -50,14 +50,7 @@ const CreateTransactionPageView: React.FC<propsType> = ({
 
         {canCreateTransaction ? (
           <>
-            <p className="fs-4 fw-bold text-center my-2">
-              {t(
-                balances.length
-                  ? 'all your balances'
-                  : 'your balances will be here',
-              )}
-            </p>
-            <Balances />
+            <BalancesList />
 
             <CreateTransactionForm
               selectedTransactionType={transactionType}

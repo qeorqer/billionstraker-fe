@@ -1,131 +1,36 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroller';
-import DateRangePicker from '@wojtekmaj/react-daterange-picker';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Stack } from 'react-bootstrap';
 
 import TransactionListItem from 'features/transaction/components/TransactionListItem';
 import Loader from 'components/Shared/Loader';
 import { userData } from 'features/user';
-import CustomSelect from 'components/Shared/CustomSelect';
-import {
-  TransactionsSections,
-  Transaction,
-  transactionData,
-  getTransactionsThunk,
-  resetTransactions,
-} from 'features/transaction';
-import BackToStatisticsButton from 'features/statistics/components/BackToStatisticsButton';
-import { Balance, balanceData } from 'features/balance';
-import { categoryData, Category, getCategoriesThunk } from 'features/category';
+import { transactionData, TransactionsSections } from 'features/transaction';
+import { getCategoriesThunk } from 'features/category';
+import CreateTransactionFirstButton from 'features/transaction/components/CreateTransactionFirstButton';
 
-import {
-  formTransactionsSections,
-  transactionTypesToShow,
-  transactionTypesToShowType,
-} from './utils';
+import { formTransactionsSections } from './utils';
 import './styles.scss';
 
-type propsType = {
-  setSelectedTransaction: Dispatch<SetStateAction<Transaction | null>>;
+type TransactionsListProps = {
+  handleLoadMoreTransactions: () => void;
+  hasMore: boolean;
 };
 
-const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
+const TransactionsList: FC<TransactionsListProps> = ({
+  handleLoadMoreTransactions,
+  hasMore,
+}) => {
   const { isLoadingTransactions, transactions, numberOfTransactions } =
     useAppSelector(transactionData);
-  const { categories } = useAppSelector(categoryData);
-  const { lang, user } = useAppSelector(userData);
-  const { balances } = useAppSelector(balanceData);
-
   const dispatch = useAppDispatch();
+  const { lang } = useAppSelector(userData);
   const { t } = useTranslation();
-  const { push } = useHistory();
-  const { search } = useLocation();
 
-  const params = new URLSearchParams(search);
-
-  const initialBalance = params.get('balance');
-  const initialCategory = params.get('category');
-  const initialDateFrom = params.get('dateFrom');
-  const initialDateTo = params.get('dateTo');
-
-  const LIMIT = 10;
   const [transactionsSections, setTransactionsSections] =
     useState<TransactionsSections>([]);
-  const [numberToSkip, setNumberToSkip] = useState<number>(LIMIT);
-  const [categoriesToShow, setCategoriesToShow] = useState<string>(
-    initialCategory || 'all',
-  );
-  const [shownTransactionsTypes, setShownTransactionsTypes] =
-    useState<transactionTypesToShowType>('all transactions');
-  const [balancesToShow, setBalancesToShow] = useState<string>(
-    initialBalance || 'all',
-  );
-  const [monthsRange, setMonthsRange] = useState<[Date, Date]>([
-    new Date(initialDateFrom || user.created),
-    new Date(initialDateTo || new Date()),
-  ]);
-  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
-    'year' | 'month'
-  >('year');
-  const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
-
-  const handleLoadMore = () => {
-    if (!isLoadingTransactions) {
-      dispatch(
-        getTransactionsThunk({
-          limit: LIMIT,
-          numberToSkip: numberToSkip,
-          filteringOptions: {
-            shownTransactionsTypes,
-            categoriesToShow:
-              categoriesToShow === 'all' ? [] : [categoriesToShow],
-            balancesToShow: balancesToShow === 'all' ? [] : [balancesToShow],
-            from: monthsRange[0],
-            to: monthsRange[1],
-          },
-        }),
-      );
-      setNumberToSkip(LIMIT + numberToSkip);
-    }
-  };
-
-  const handleCreateTransaction = () => push('createTransaction');
-
-  useEffect(() => {
-    setNumberToSkip(LIMIT);
-
-    if (shownTransactionsTypes === 'exchange') {
-      setCategoriesToShow('all');
-      setBalancesToShow('all');
-    }
-
-    if (!isLoadingTransactions) {
-      dispatch(resetTransactions());
-      dispatch(
-        getTransactionsThunk({
-          limit: LIMIT,
-          numberToSkip: 0,
-          filteringOptions: {
-            shownTransactionsTypes,
-            categoriesToShow:
-              categoriesToShow === 'all' ||
-              shownTransactionsTypes === 'exchange'
-                ? []
-                : [categoriesToShow],
-            balancesToShow:
-              balancesToShow === 'all' || shownTransactionsTypes === 'exchange'
-                ? []
-                : [balancesToShow],
-            from: monthsRange[0],
-            to: monthsRange[1],
-          },
-        }),
-      );
-    }
-  }, [shownTransactionsTypes, categoriesToShow, balancesToShow, monthsRange]);
 
   useEffect(() => {
     setTransactionsSections(formTransactionsSections(transactions, lang));
@@ -139,166 +44,31 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
     return <Loader />;
   }
 
-  return (
-    <div className="mt-4">
-      {!(
-        !numberOfTransactions &&
-        shownTransactionsTypes === 'all transactions' &&
-        !categoriesToShow.length &&
-        !balancesToShow.length &&
-        !isLoadingTransactions
-      ) && (
-        <>
-          <p className="text-center fw-bold fs-4">{t('apply filters')}</p>
-          <Row className="mb-3 align-items-center justify-content-center">
-            <Col xs="6" sm="4" className="max-width-220 p-1">
-              <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-                {t('categories')}:
-              </p>
-              <CustomSelect
-                defaultButtonText={t('show all')}
-                defaultButtonValue="all"
-                data={categories
-                  .filter((category: Category) => {
-                    if (shownTransactionsTypes === 'all transactions') {
-                      return category;
-                    }
+  if (!numberOfTransactions) {
+    return <CreateTransactionFirstButton text="There is no transactions yet" />;
+  }
 
-                    return category.categoryType === shownTransactionsTypes;
-                  })
-                  .map((category: Category) => ({
-                    _id: category._id!,
-                    name: category.name,
-                  }))}
-                selectedValue={categoriesToShow}
-                setSelectedValue={setCategoriesToShow}
-                fieldToSelect="name"
-                withTranslate
-                disabled={shownTransactionsTypes === 'exchange'}
+  return (
+    <Stack gap={1}>
+      <p className="text-center fw-bold fs-4">{t('Your transactions')}</p>
+      <InfiniteScroll
+        initialLoad={false}
+        loadMore={handleLoadMoreTransactions}
+        hasMore={hasMore}
+        loader={<Loader key={0} />}>
+        {transactionsSections.map((section) => (
+          <React.Fragment key={section.title}>
+            <p className="sectionTitle fs-5 w-75 mx-auto">{section.title}</p>
+            {section.data.map((transaction, index) => (
+              <TransactionListItem
+                key={transaction._id}
+                transaction={transaction}
               />
-            </Col>
-            <Col xs="6" sm="4" className="max-width-220  p-1">
-              <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-                {t('balances')}:
-              </p>
-              <CustomSelect
-                defaultButtonText={t('show all')}
-                defaultButtonValue="all"
-                data={balances.map((balance: Balance) => ({
-                  _id: balance._id,
-                  name: balance.name,
-                }))}
-                selectedValue={balancesToShow}
-                setSelectedValue={setBalancesToShow}
-                fieldToSelect="name"
-                withTranslate
-                disabled={shownTransactionsTypes === 'exchange'}
-              />
-            </Col>
-            <Col xs="6" sm="4" className="max-width-220 p-1">
-              <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-                {t('transactions types')}:
-              </p>
-              <CustomSelect
-                defaultButtonText={t('show all')}
-                defaultButtonValue="all transactions"
-                data={transactionTypesToShow.map((type, index) => ({
-                  _id: String(index),
-                  name: type,
-                }))}
-                selectedValue={shownTransactionsTypes}
-                setSelectedValue={
-                  setShownTransactionsTypes as Dispatch<SetStateAction<string>>
-                }
-                fieldToSelect="name"
-                withTranslate
-              />
-            </Col>
-            <Col xs="6" sm="6" lg="4" className="max-width-220 p-1">
-              <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-                {t('range detail')}:
-              </p>
-              <CustomSelect
-                defaultButtonText={t('year')}
-                defaultButtonValue="year"
-                data={[
-                  { name: 'year', _id: 'year' },
-                  { name: 'month', _id: 'month' },
-                ]}
-                selectedValue={dateRangeMaxDetail}
-                setSelectedValue={
-                  setDateRangeMaxDetail as Dispatch<SetStateAction<string>>
-                }
-                fieldToSelect="name"
-                withTranslate
-                showDefaultValue={false}
-              />
-            </Col>
-            <Col xs="12" sm="6" lg="4" className="max-width-220  p-1">
-              <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-                {t('Select range')}:
-              </p>
-              <DateRangePicker
-                autoFocus={false}
-                onChange={(newValue) =>
-                  setMonthsRange(newValue as [Date, Date])
-                }
-                maxDetail={dateRangeMaxDetail}
-                value={monthsRange}
-                locale={lang}
-                calendarIcon={null}
-                clearIcon={null}
-                format="MM.y"
-                minDetail="year"
-                minDate={new Date(user.created)}
-                maxDate={new Date()}
-                className="data-range-picker"
-                onFocus={(e: any) => (e.target.readOnly = true)}
-                onClick={() => setIsDateRangeOpen(true)}
-                onCalendarClose={() => setIsDateRangeOpen(false)}
-                isOpen={isDateRangeOpen}
-              />
-            </Col>
-          </Row>
-        </>
-      )}
-      {numberOfTransactions ? (
-        <>
-          <p className="text-center fw-bold fs-4">{t('Your transactions')}</p>
-          <InfiniteScroll
-            initialLoad={false}
-            loadMore={handleLoadMore}
-            hasMore={numberToSkip <= numberOfTransactions}
-            loader={<Loader key={0} />}>
-            {transactionsSections.map((section) => (
-              <React.Fragment key={section.title}>
-                <p className="sectionTitle fs-5 w-75 mx-auto">
-                  {section.title}
-                </p>
-                {section.data.map((transaction, index) => (
-                  <TransactionListItem
-                    key={transaction._id}
-                    transaction={transaction}
-                    setSelectedTransaction={setSelectedTransaction}
-                  />
-                ))}
-              </React.Fragment>
             ))}
-          </InfiniteScroll>
-          {initialDateFrom && initialDateTo ? <BackToStatisticsButton /> : null}
-        </>
-      ) : (
-        <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 mt-3 flex-column">
-          <p className="fs-5 mb-2">{t('There is no transactions yet')}</p>
-          <Button
-            variant="warning"
-            className="w300Px text-white"
-            onClick={handleCreateTransaction}>
-            {t('create transaction')}
-          </Button>
-        </div>
-      )}
-    </div>
+          </React.Fragment>
+        ))}
+      </InfiniteScroll>
+    </Stack>
   );
 };
 

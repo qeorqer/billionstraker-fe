@@ -5,12 +5,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { balanceData, getBalancesThunk } from 'features/balance';
 import BalanceListItem from 'features/balance/components/BalanceListItem';
+import { useTranslation } from 'react-i18next';
 
 type BalanceListProps = {
   showMenu?: boolean;
 };
 
 const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { balances } = useAppSelector(balanceData);
 
@@ -24,6 +26,11 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
 
   return (
     <Row>
+      {Boolean(balances.length) && (
+        <p className="fs-4 fw-bold text-center py-2">
+          {t('all your balances')}
+        </p>
+      )}
       <Swiper
         spaceBetween={15}
         slidesPerView={2}

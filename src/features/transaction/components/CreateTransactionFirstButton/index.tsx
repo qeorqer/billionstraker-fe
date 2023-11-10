@@ -1,9 +1,15 @@
 import { Button } from 'react-bootstrap';
-import React from 'react';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-const CreateTransactionToSeeStatistics = () => {
+type CreateTransactionFirstButtonProps = {
+  text: string;
+};
+
+const CreateTransactionFirstButton: FC<CreateTransactionFirstButtonProps> = ({
+  text,
+}) => {
   const { t } = useTranslation();
   const { push } = useHistory();
 
@@ -11,7 +17,7 @@ const CreateTransactionToSeeStatistics = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 flex-column">
-      <p className="mb-2">{t('Some of your statistic will be here')}</p>
+      <p className="mb-2">{t(text)}</p>
       <Button
         variant="warning"
         className="w300Px text-white"
@@ -22,4 +28,4 @@ const CreateTransactionToSeeStatistics = () => {
   );
 };
 
-export default CreateTransactionToSeeStatistics;
+export default CreateTransactionFirstButton;

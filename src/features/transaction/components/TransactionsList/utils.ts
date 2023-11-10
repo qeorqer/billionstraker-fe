@@ -1,14 +1,12 @@
 import moment from 'moment';
 
-import { TransactionsSections, Transaction } from 'features/transaction/types';
+import {
+  TransactionsSections,
+  Transaction,
+  TransactionTypesToShow,
+} from 'features/transaction/types';
 
-export type transactionTypesToShowType =
-  | 'all transactions'
-  | 'profit'
-  | 'expense'
-  | 'exchange';
-
-export const transactionTypesToShow: transactionTypesToShowType[] = [
+export const transactionTypesToShow: TransactionTypesToShow[] = [
   'profit',
   'expense',
   'exchange',

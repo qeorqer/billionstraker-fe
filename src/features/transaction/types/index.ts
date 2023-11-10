@@ -27,16 +27,18 @@ export type CreateTransactionResponse = {
   balances: Balance[];
 };
 
+export type GetTransactionsFilteringOptions = {
+  shownTransactionsTypes: string;
+  categoriesToShow: string[];
+  balancesToShow: string[];
+  from: Date;
+  to: Date;
+};
+
 export type GetTransactionsPayload = {
   limit: number;
   numberToSkip: number;
-  filteringOptions: {
-    shownTransactionsTypes: string;
-    categoriesToShow: string[];
-    balancesToShow: string[];
-    from: Date;
-    to: Date;
-  };
+  filteringOptions: GetTransactionsFilteringOptions;
 };
 
 export type GetTransactionsResponse = {
@@ -60,3 +62,9 @@ type TransactionsSection = {
 };
 
 export type TransactionsSections = TransactionsSection[];
+
+export type TransactionTypesToShow =
+  | 'all transactions'
+  | 'profit'
+  | 'expense'
+  | 'exchange';

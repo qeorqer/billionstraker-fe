@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import { Card, Col, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -11,19 +11,35 @@ import CustomToggle from 'components/Shared/CustomToggle';
 import { deleteTransactionThunk } from 'features/transaction/index';
 
 import 'features/transaction/components/TransactionListItem/styles.scss';
+import EditTransactionModal from 'features/transaction/components/EditTransactionModal';
+import DeleteTransactionModal from 'features/transaction/components/DeleteTransactionModal';
 
-type propsType = {
+type TransactionListItemProps = {
   transaction: Transaction;
-  setSelectedTransaction: Dispatch<SetStateAction<Transaction | null>>;
 };
 
-const TransactionListItem: FC<propsType> = ({
-  transaction,
-  setSelectedTransaction,
-}) => {
+type ActionOption = {
+  title: string;
+  onClick: () => void;
+};
+
+const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const { lang } = useAppSelector(userData);
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
+
+  const actions: ActionOption[] = [
+    {
+      title: 'edit',
+      onClick: () => setIsEditModalOpen(true),
+    },
+    {
+      title: 'delete',
+      onClick: () => setIsDeleteModalOpen(true),
+    },
+  ];
 
   return (
     <Card
@@ -73,22 +89,11 @@ const TransactionListItem: FC<propsType> = ({
               <Dropdown drop="start">
                 <Dropdown.Toggle as={CustomToggle} variant="circle" />
                 <Dropdown.Menu>
-                  <Dropdown.Item
-                    as="span"
-                    onClick={() => setSelectedTransaction(transaction)}>
-                    {t('edit')}
-                  </Dropdown.Item>
-                  <Dropdown.Item
-                    as="span"
-                    onClick={() =>
-                      dispatch(
-                        deleteTransactionThunk({
-                          transactionId: transaction._id!,
-                        }),
-                      )
-                    }>
-                    {t('remove')}
-                  </Dropdown.Item>
+                  {actions.map(({ title, onClick }) => (
+                    <Dropdown.Item key={title} as="span" onClick={onClick}>
+                      {t(title)}
+                    </Dropdown.Item>
+                  ))}
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -98,6 +103,16 @@ const TransactionListItem: FC<propsType> = ({
           </Col>
         </Row>
       </Card.Body>
+      <EditTransactionModal
+        transaction={transaction}
+        isOpen={isEditModalOpen}
+        handleClose={() => setIsEditModalOpen(false)}
+      />
+      <DeleteTransactionModal
+        transaction={transaction}
+        isOpen={isDeleteModalOpen}
+        handleClose={() => setIsDeleteModalOpen(false)}
+      />
     </Card>
   );
 };
