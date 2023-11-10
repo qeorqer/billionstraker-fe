@@ -20,9 +20,11 @@ const BalancePageView: React.FC<BalancePageViewProps> = ({
   hasBalances,
 }) => (
   <Container className="py-4">
-    <p className="fs-4 fw-bold text-center py-2">
-      {t(hasBalances ? 'all your balances' : 'your balances will be here')}
-    </p>
+    {!hasBalances && (
+      <p className="fs-4 fw-bold text-center py-2">
+        {t(hasBalances ? 'all your balances' : 'your balances will be here')}
+      </p>
+    )}
     <Stack gap={3}>
       <BalancesList showMenu />
       <SelectPreferredCurrency />

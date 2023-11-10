@@ -27,7 +27,7 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
   return (
     <Row>
       {Boolean(balances.length) && (
-        <p className="fs-4 fw-bold text-center py-2">
+        <p className="fs-4 fw-bold text-center pt-2">
           {t('all your balances')}
         </p>
       )}
