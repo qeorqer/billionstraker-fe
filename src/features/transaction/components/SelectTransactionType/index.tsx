@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 
 import { Transaction, TransactionType } from 'features/transaction/types';
 
-type propsType = {
+type SelectTransactionTypeProps = {
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
   isModal?: boolean;
   initialValues?: Transaction | null;
 };
 
-const SelectTransactionType: React.FC<propsType> = ({
+const SelectTransactionType: React.FC<SelectTransactionTypeProps> = ({
   transactionType,
   setTransactionType,
   isModal,

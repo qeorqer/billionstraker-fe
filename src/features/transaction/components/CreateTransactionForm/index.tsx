@@ -15,26 +15,27 @@ import { Category } from 'features/category/types';
 import { useAppSelector } from 'store/hooks';
 import { transactionData } from 'features/transaction/index';
 import { userData } from 'features/user';
+import { categoryData } from 'features/category';
+import { balanceData } from 'features/balance';
 
-type propsType = {
+type CreateTransactionProps = {
   selectedTransactionType: TransactionType;
-  balances: Balance[];
-  categories: Category[];
   handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   initialValues?: Transaction | null;
   isModal?: boolean;
   isEdit?: boolean;
 };
 
-const CreateTransactionForm: React.FC<propsType> = ({
+const CreateTransactionForm: React.FC<CreateTransactionProps> = ({
   selectedTransactionType,
-  balances,
-  categories,
   handleSubmit,
-  initialValues,
-  isModal,
-  isEdit,
+  initialValues = null,
+  isModal = false,
+  isEdit = false,
 }) => {
+  const { categories } = useAppSelector(categoryData);
+  const { balances } = useAppSelector(balanceData);
+
   const [balanceId, setBalanceId] = useState<string>('');
   const [exchangeBalanceId, setExchangeBalanceId] = useState<string>('');
   const [sum, setSum] = useState<number | string>('');

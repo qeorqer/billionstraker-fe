@@ -5,92 +5,41 @@ import {
   CreateTransactionPayload,
   TransactionType,
 } from 'features/transaction/types';
-import { Balance } from 'features/balance/types';
-import { Category } from 'features/category/types';
 import BalancesList from 'features/balance/components/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
-import Loader from 'components/Shared/Loader';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
 import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
+import CannotCreateTransactionButtons from 'features/transaction/components/CannotCreateTransactionButtons';
 
-type propsType = {
-  t: (text: string) => string;
+type CreateTransactionPageViewProps = {
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
-  balances: Balance[];
-  categories: Category[];
   handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   canCreateTransaction: boolean;
-  handleCreateBalance: () => void;
-  handleCreateCategory: () => void;
-  isLoading: boolean;
 };
 
-const CreateTransactionPageView: React.FC<propsType> = ({
-  t,
+const CreateTransactionPageView: React.FC<CreateTransactionPageViewProps> = ({
   transactionType,
   setTransactionType,
-  balances,
-  categories,
   handleSubmit,
   canCreateTransaction,
-  handleCreateBalance,
-  handleCreateCategory,
-  isLoading,
 }) => (
   <Container className="py-md-4 my-4 pb-5 pb-sm-0">
-    {isLoading ? (
-      <Loader />
-    ) : (
+    <SelectTransactionType
+      transactionType={transactionType}
+      setTransactionType={setTransactionType}
+    />
+
+    {canCreateTransaction ? (
       <>
-        <SelectTransactionType
-          transactionType={transactionType}
-          setTransactionType={setTransactionType}
+        <BalancesList />
+        <CreateTransactionForm
+          selectedTransactionType={transactionType}
+          handleSubmit={handleSubmit}
         />
-
-        {canCreateTransaction ? (
-          <>
-            <BalancesList />
-
-            <CreateTransactionForm
-              selectedTransactionType={transactionType}
-              balances={balances}
-              categories={categories}
-              handleSubmit={handleSubmit}
-            />
-          </>
-        ) : (
-          <>
-            {transactionType === 'expense' || transactionType === 'profit' ? (
-              <div className="text-center mt-2">
-                <p className="fw-bold">{t('you need to have one balance')}</p>
-                <Button
-                  variant="warning"
-                  className="w300Px text-white mx-1"
-                  onClick={handleCreateBalance}>
-                  {t('create balance')}
-                </Button>
-                <Button
-                  variant="warning"
-                  className="w300Px text-white mx-1 my-2 my-md-0"
-                  onClick={handleCreateCategory}>
-                  {t('create category')}
-                </Button>
-              </div>
-            ) : (
-              <div className="text-center mt-2">
-                <p className="fw-bold">{t('you need to have two balance')}</p>
-                <Button
-                  variant="warning"
-                  className="w300Px text-white"
-                  onClick={handleCreateBalance}>
-                  {t('create balance')}
-                </Button>
-              </div>
-            )}
-          </>
-        )}
       </>
+    ) : (
+      <CannotCreateTransactionButtons transactionType={transactionType} />
     )}
   </Container>
 );
