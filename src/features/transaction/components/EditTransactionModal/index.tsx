@@ -8,9 +8,6 @@ import {
   TransactionType,
 } from 'features/transaction/types';
 import { useTranslation } from 'react-i18next';
-import { useAppSelector } from 'store/hooks';
-import { balanceData } from 'features/balance';
-import { categoryData } from 'features/category';
 import { updateTransactionThunk } from 'features/transaction/store/thunks';
 import { useDispatch } from 'react-redux';
 
@@ -28,8 +25,6 @@ const EditTransactionModal: FC<EditTransactionModalProps> = ({
   const [transactionType, setTransactionType] =
     useState<TransactionType>('expense');
 
-  const { balances } = useAppSelector(balanceData);
-  const { categories } = useAppSelector(categoryData);
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -55,8 +50,6 @@ const EditTransactionModal: FC<EditTransactionModalProps> = ({
           />
           <CreateTransactionForm
             selectedTransactionType={transactionType}
-            balances={balances}
-            categories={categories}
             handleSubmit={handleSubmit}
             initialValues={transaction}
             isModal
