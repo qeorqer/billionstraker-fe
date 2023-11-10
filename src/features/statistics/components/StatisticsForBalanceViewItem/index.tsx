@@ -32,8 +32,8 @@ const StatisticsForBalanceViewItem: FC<propsType> = ({
         : statisticsForRange.profits.total,
     statisticsInRange:
       type === 'expense'
-        ? statisticsForRange.expenses.range
-        : statisticsForRange.profits.range,
+        ? statisticsForRange.expenses.categoryRange
+        : statisticsForRange.profits.categoryRange,
   };
 
   return (

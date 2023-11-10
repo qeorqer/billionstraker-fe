@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Value } from '@wojtekmaj/react-daterange-picker/src/shared/types';
 
-import { CategoryStatistics } from 'features/statistics/types';
+import { RangeStatisticsItem } from 'features/statistics/types';
 import StatisticsListItem from 'features/statistics/components/StatisticsListItem';
 
 type propsType = {
-  statisticForRange: CategoryStatistics[];
+  statisticForRange: RangeStatisticsItem[];
   totalSpent: number;
   selectedBalance: string;
   monthsRange: [Date, Date];

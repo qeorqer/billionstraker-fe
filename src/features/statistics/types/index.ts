@@ -1,10 +1,11 @@
-export type CategoryStatistics = {
+export type RangeStatisticsItem = {
   name: string;
   amount: number;
 };
 
 type StatisticsForTransactionType = {
-  range: CategoryStatistics[];
+  categoryRange: RangeStatisticsItem[];
+  balanceRange?: RangeStatisticsItem[];
   total: number;
 };
 

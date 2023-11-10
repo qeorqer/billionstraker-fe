@@ -4,11 +4,11 @@ import ReactTooltip from 'react-tooltip';
 import i18next from 'i18next';
 import Decimal from 'decimal.js';
 
-import { CategoryStatistics } from 'features/statistics/types';
+import { RangeStatisticsItem } from 'features/statistics/types';
 import { formattingSum } from 'features/transaction/utils/formattingSum';
 
 type propsType = {
-  statisticForRange: CategoryStatistics[];
+  statisticForRange: RangeStatisticsItem[];
   totalSpent: number;
 };
 
@@ -28,8 +28,8 @@ const StatisticsDiagram: FC<propsType> = ({
   const colors = ['#E38627', '#C13C37', '#6A2135'];
 
   useEffect(() => {
-    let formattedStatistic: CategoryStatistics[] = statisticForRange;
-    const otherItems: CategoryStatistics = {
+    let formattedStatistic: RangeStatisticsItem[] = statisticForRange;
+    const otherItems: RangeStatisticsItem = {
       name: i18next.t('other'),
       amount: 0,
     };
