@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Value } from '@wojtekmaj/react-daterange-picker/src/shared/types';
 
-import { ExpenseIncome } from 'features/statistics/types';
+import { CategoryStatistics } from 'features/statistics/types';
 import StatisticsListItem from 'features/statistics/components/StatisticsListItem';
 
 type propsType = {
-  statisticForRange: ExpenseIncome[];
+  statisticForRange: CategoryStatistics[];
   totalSpent: number;
   selectedBalance: string;
   monthsRange: [Date, Date];
@@ -28,9 +28,9 @@ export const StatisticsList: FC<propsType> = ({
 
   const dataForRange: listForRangeItem[] = statisticForRange.map(
     (el, index) => ({
-      title: el._id,
-      value: el.total,
-      percentage: Math.round((100 * el.total) / totalSpent) || '<1',
+      title: el.name,
+      value: el.amount,
+      percentage: Math.round((100 * el.amount) / totalSpent) || '<1',
     }),
   );
 

@@ -285,9 +285,7 @@ const TransactionsList: React.FC<propsType> = ({ setSelectedTransaction }) => {
               </React.Fragment>
             ))}
           </InfiniteScroll>
-          {initialBalance && initialDateFrom && initialDateTo ? (
-            <BackToStatisticsButton />
-          ) : null}
+          {initialDateFrom && initialDateTo ? <BackToStatisticsButton /> : null}
         </>
       ) : (
         <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 mt-3 flex-column">

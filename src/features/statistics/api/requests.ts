@@ -1,18 +1,18 @@
 import { AxiosResponse } from 'axios';
 
 import {
-  GetStatisticsForBalanceResponse,
-  StatisticsForBalancePayload,
-  getStatisticsForSingleBalanceRoute,
+  GetStatisticsPayload,
+  getStatisticsRoute,
   getNetWorthRoute,
   GetNetWorthResponse,
+  GetStatisticsResponse,
 } from 'features/statistics';
 import api from 'api/axiosInstance';
 
-export const getStatisticsForSingleBalanceRequest = (
-  body: StatisticsForBalancePayload,
-): Promise<AxiosResponse<GetStatisticsForBalanceResponse>> =>
-  api.post(getStatisticsForSingleBalanceRoute, body);
+export const getStatisticsRequest = (
+  body: GetStatisticsPayload,
+): Promise<AxiosResponse<GetStatisticsResponse>> =>
+  api.post(getStatisticsRoute, body);
 
 export const getNetWorthRequest = (): Promise<
   AxiosResponse<GetNetWorthResponse>

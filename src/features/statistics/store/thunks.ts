@@ -2,22 +2,21 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 
 import {
-  getStatisticsForSingleBalanceRequest,
-  getStatisticsForSingleBalanceRoute,
-  GetStatisticsForBalanceResponse,
+  getStatisticsRequest,
+  getStatisticsRoute,
   getNetWorthRoute,
   getNetWorthRequest,
   GetNetWorthResponse,
+  GetStatisticsResponse,
+  GetStatisticsPayload,
 } from 'features/statistics';
 
-export const getStatisticsForSingleBalanceThunk = createAsyncThunk(
-  getStatisticsForSingleBalanceRoute,
-  async (body: {
-    from: Date;
-    to: Date;
-    balance: string;
-  }): Promise<AxiosResponse<GetStatisticsForBalanceResponse>> =>
-    await getStatisticsForSingleBalanceRequest(body),
+export const getStatisticsThunk = createAsyncThunk(
+  getStatisticsRoute,
+  async (
+    body: GetStatisticsPayload,
+  ): Promise<AxiosResponse<GetStatisticsResponse>> =>
+    await getStatisticsRequest(body),
 );
 
 export const getNetWorthThunk = createAsyncThunk(

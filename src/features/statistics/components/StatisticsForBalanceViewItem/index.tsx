@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 import StatisticsDiagram from 'features/statistics/components/StatisticsDiagram';
 import { StatisticsList } from 'features/statistics/components/StatisticsList';
-import { StatisticsForBalance } from 'features/statistics/types';
+import { Statistics } from 'features/statistics/types';
 import { formattingSum } from 'features/transaction/utils/formattingSum';
 
-import 'features/statistics/components/StatisticsForBalanceViewItem/styles.scss';
+import './styles.scss';
 
 type propsType = {
-  statisticsForRange: StatisticsForBalance;
+  statisticsForRange: Statistics;
   type: 'expense' | 'income';
   selectedBalance: string;
   monthsRange: [Date, Date];
@@ -28,12 +28,12 @@ const StatisticsForBalanceViewItem: FC<propsType> = ({
   const fieldsToUse = {
     totalValue:
       type === 'expense'
-        ? statisticsForRange.totallySpent
-        : statisticsForRange.totallyEarned,
+        ? statisticsForRange.expenses.total
+        : statisticsForRange.profits.total,
     statisticsInRange:
       type === 'expense'
-        ? statisticsForRange.expensesInRange
-        : statisticsForRange.profitsInRange,
+        ? statisticsForRange.expenses.range
+        : statisticsForRange.profits.range,
   };
 
   return (

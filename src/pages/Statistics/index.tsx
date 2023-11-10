@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import Loader from 'components/Shared/Loader';
 import { balanceData, getBalancesThunk } from 'features/balance';
-import { getStatisticsForSingleBalanceThunk } from 'features/statistics';
+import { getStatisticsThunk } from 'features/statistics';
 import 'moment/locale/ru';
 
 import StatisticsPageView from './view';
@@ -27,29 +27,21 @@ const StatisticsPage: FC = () => {
     new Date(initialDateFrom || startOfMonth),
     new Date(initialDateTo || new Date()),
   ]);
-  const [balance, setBalance] = useState<string>(initialBalance || '');
+  const [balanceName, setBalanceName] = useState<string>(initialBalance || '');
 
   useEffect(() => {
-    if (balance) {
-      dispatch(
-        getStatisticsForSingleBalanceThunk({
-          from: monthsRange[0],
-          to: monthsRange[1],
-          balance,
-        }),
-      );
-    }
-  }, [monthsRange, balance]);
+    dispatch(
+      getStatisticsThunk({
+        from: monthsRange[0],
+        to: monthsRange[1],
+        balance: balanceName ? balanceName : null,
+      }),
+    );
+  }, [monthsRange, balanceName]);
 
   useEffect(() => {
     dispatch(getBalancesThunk());
   }, []);
-
-  useEffect(() => {
-    if (balances.length && !initialBalance) {
-      setBalance(balances[0].name);
-    }
-  }, [balances]);
 
   if (isLoadingBalances) {
     return <Loader />;
@@ -59,8 +51,8 @@ const StatisticsPage: FC = () => {
     <StatisticsPageView
       monthsRange={monthsRange}
       setMonthsRange={setMonthsRange}
-      balanceName={balance}
-      setBalanceName={setBalance}
+      balanceName={balanceName}
+      setBalanceName={setBalanceName}
     />
   );
 };

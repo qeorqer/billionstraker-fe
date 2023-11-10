@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   getNetWorthThunk,
-  getStatisticsForSingleBalanceThunk,
+  getStatisticsThunk,
   NetWorth,
-  StatisticsForBalance,
+  Statistics,
 } from 'features/statistics';
 
 export type StatisticsState = {
-  statisticsForBalance: StatisticsForBalance | null;
+  statisticsForBalance: Statistics | null;
   isStatisticsForBalanceLoading: boolean;
   isNetWorthLoading: boolean;
   netWorth: NetWorth | null;
@@ -25,19 +25,16 @@ const statisticsReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getStatisticsForSingleBalanceThunk.pending, (state) => {
+    builder.addCase(getStatisticsThunk.pending, (state) => {
       state.isStatisticsForBalanceLoading = true;
     });
 
-    builder.addCase(
-      getStatisticsForSingleBalanceThunk.fulfilled,
-      (state, action) => {
-        state.statisticsForBalance = action.payload.data.statistics;
-        state.isStatisticsForBalanceLoading = false;
-      },
-    );
+    builder.addCase(getStatisticsThunk.fulfilled, (state, action) => {
+      state.statisticsForBalance = action.payload.data.statistics;
+      state.isStatisticsForBalanceLoading = false;
+    });
 
-    builder.addCase(getStatisticsForSingleBalanceThunk.rejected, (state) => {
+    builder.addCase(getStatisticsThunk.rejected, (state) => {
       state.isStatisticsForBalanceLoading = false;
     });
 

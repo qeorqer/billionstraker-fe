@@ -1,3 +1,2 @@
-export const getStatisticsForSingleBalanceRoute =
-  '/statistics/getForSingleBalance';
+export const getStatisticsRoute = '/statistics/get';
 export const getNetWorthRoute = '/statistics/getNetWorth';

@@ -4,11 +4,11 @@ import ReactTooltip from 'react-tooltip';
 import i18next from 'i18next';
 import Decimal from 'decimal.js';
 
-import { ExpenseIncome } from 'features/statistics/types';
+import { CategoryStatistics } from 'features/statistics/types';
 import { formattingSum } from 'features/transaction/utils/formattingSum';
 
 type propsType = {
-  statisticForRange: ExpenseIncome[];
+  statisticForRange: CategoryStatistics[];
   totalSpent: number;
 };
 
@@ -28,21 +28,21 @@ const StatisticsDiagram: FC<propsType> = ({
   const colors = ['#E38627', '#C13C37', '#6A2135'];
 
   useEffect(() => {
-    let formattedStatistic: ExpenseIncome[] = statisticForRange;
-    const otherItems: ExpenseIncome = {
-      _id: i18next.t('other'),
-      total: 0,
+    let formattedStatistic: CategoryStatistics[] = statisticForRange;
+    const otherItems: CategoryStatistics = {
+      name: i18next.t('other'),
+      amount: 0,
     };
 
     if (statisticForRange.length >= 5) {
       formattedStatistic = [];
 
       statisticForRange.forEach((item) => {
-        const percentage = (100 * item.total) / totalSpent;
+        const percentage = (100 * item.amount) / totalSpent;
         if (percentage < 5) {
-          otherItems.total = Decimal.add(
-            otherItems.total,
-            item.total,
+          otherItems.amount = Decimal.add(
+            otherItems.amount,
+            item.amount,
           ).toNumber();
         } else {
           formattedStatistic.push(item);
@@ -50,15 +50,15 @@ const StatisticsDiagram: FC<propsType> = ({
       });
     }
 
-    if (otherItems.total > 0) {
+    if (otherItems.amount > 0) {
       formattedStatistic.push(otherItems);
     }
 
     setStatistic(
       formattedStatistic.map((el, index) => ({
-        value: el.total,
+        value: el.amount,
         color: hovered === index ? '#9bb4c0' : colors[index % colors.length],
-        tooltip: `${el._id}, ${formattingSum(el.total)}`,
+        tooltip: `${el.name}, ${formattingSum(el.amount)}`,
       })),
     );
   }, [statisticForRange, totalSpent, hovered]);

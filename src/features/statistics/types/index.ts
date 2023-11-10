@@ -1,24 +1,33 @@
-export type ExpenseIncome = {
-  _id: string;
+export type CategoryStatistics = {
+  name: string;
+  amount: number;
+};
+
+type StatisticsForTransactionType = {
+  range: CategoryStatistics[];
   total: number;
 };
 
-export type StatisticsForBalance = {
-  expensesInRange: ExpenseIncome[];
-  profitsInRange: ExpenseIncome[];
-  totallySpent: number;
-  totallyEarned: number;
+export type ExchangesStatistics = {
+  totallySend: number;
+  totallyReceived: number;
 };
 
-export type StatisticsForBalancePayload = {
+export type Statistics = {
+  expenses: StatisticsForTransactionType;
+  profits: StatisticsForTransactionType;
+  exchanges: ExchangesStatistics | null;
+};
+
+export type GetStatisticsPayload = {
   from: Date;
   to: Date;
-  balance: string;
+  balance: string | null;
 };
 
-export type GetStatisticsForBalanceResponse = {
+export type GetStatisticsResponse = {
   message: string;
-  statistics: StatisticsForBalance | null;
+  statistics: Statistics;
 };
 
 export type NetWorth = {
