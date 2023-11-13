@@ -38,15 +38,20 @@ const CustomSelect: React.FC<propsType> = ({
   const { t } = useTranslation();
 
   useEffect(() => {
+    console.log(selectedValue, data);
+
+    if (selectedValue === defaultButtonValue) {
+      // setSelectedValue(defaultButtonValue);
+      setValueToShow(defaultButtonText);
+      return;
+    }
+
     const selectedItem = data.find(
       (item) =>
         item[fieldToSelect] === selectedValue || item['name'] === selectedValue,
     );
 
-    if (!selectedItem) {
-      setSelectedValue(defaultButtonValue);
-      setValueToShow(defaultButtonText);
-    } else {
+    if (selectedItem) {
       setValueToShow(selectedItem.name);
     }
   }, [data, selectedValue]);
@@ -82,12 +87,6 @@ const CustomSelect: React.FC<propsType> = ({
       </Dropdown.Menu>
     </Dropdown>
   );
-};
-
-CustomSelect.defaultProps = {
-  fieldToSelect: '_id',
-  withTranslate: false,
-  disabled: false,
 };
 
 export default CustomSelect;

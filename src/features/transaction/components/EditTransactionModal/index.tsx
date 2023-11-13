@@ -51,7 +51,7 @@ const EditTransactionModal: FC<EditTransactionModalProps> = ({
           <CreateTransactionForm
             selectedTransactionType={transactionType}
             handleSubmit={handleSubmit}
-            initialValues={transaction}
+            defaultValues={transaction}
             isModal
             isEdit
           />
