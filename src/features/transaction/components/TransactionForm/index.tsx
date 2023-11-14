@@ -358,7 +358,6 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                         <FormGroup className="mb-4 position-relative">
                           <FormControl
                             {...field}
-                            type="number"
                             placeholder={t('Transaction sum')}
                             isInvalid={Boolean(touched.sum && errors.sum)}
                           />
