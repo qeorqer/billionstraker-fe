@@ -8,7 +8,7 @@ import {
 import BalancesList from 'features/balance/components/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
-import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
+import TransactionForm from 'features/transaction/components/TransactionForm';
 import CannotCreateTransactionButtons from 'features/transaction/components/CannotCreateTransactionButtons';
 
 type CreateTransactionPageViewProps = {
@@ -33,9 +33,9 @@ const CreateTransactionPageView: React.FC<CreateTransactionPageViewProps> = ({
     {canCreateTransaction ? (
       <>
         <BalancesList />
-        <CreateTransactionForm
+        <TransactionForm
           selectedTransactionType={transactionType}
-          handleSubmit={handleSubmit}
+          //handleSubmit={handleSubmit}
         />
       </>
     ) : (

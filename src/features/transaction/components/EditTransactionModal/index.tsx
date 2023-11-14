@@ -1,15 +1,9 @@
 import { Container, Modal } from 'react-bootstrap';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
-import CreateTransactionForm from 'features/transaction/components/CreateTransactionForm';
+import TransactionForm from 'features/transaction/components/TransactionForm';
 import React, { FC, useState } from 'react';
-import {
-  CreateTransactionPayload,
-  Transaction,
-  TransactionType,
-} from 'features/transaction/types';
+import { Transaction, TransactionType } from 'features/transaction/types';
 import { useTranslation } from 'react-i18next';
-import { updateTransactionThunk } from 'features/transaction/store/thunks';
-import { useDispatch } from 'react-redux';
 
 type EditTransactionModalProps = {
   isOpen: boolean;
@@ -22,18 +16,11 @@ const EditTransactionModal: FC<EditTransactionModalProps> = ({
   transaction,
   handleClose,
 }) => {
-  const [transactionType, setTransactionType] =
-    useState<TransactionType>('expense');
+  const [transactionType, setTransactionType] = useState<TransactionType>(
+    transaction.transactionType,
+  );
 
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-
-  const handleSubmit = (dataForSubmit: CreateTransactionPayload | null) => {
-    if (dataForSubmit) {
-      dispatch(updateTransactionThunk(dataForSubmit));
-      handleClose();
-    }
-  };
 
   return (
     <Modal show={isOpen} onHide={handleClose} centered>
@@ -48,12 +35,11 @@ const EditTransactionModal: FC<EditTransactionModalProps> = ({
             isModal
             initialValues={transaction}
           />
-          <CreateTransactionForm
+          <TransactionForm
             selectedTransactionType={transactionType}
-            handleSubmit={handleSubmit}
-            defaultValues={transaction}
+            transaction={transaction}
             isModal
-            isEdit
+            onSuccess={handleClose}
           />
         </Container>
       </Modal.Body>

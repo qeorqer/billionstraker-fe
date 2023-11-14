@@ -38,10 +38,7 @@ const CustomSelect: React.FC<propsType> = ({
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log(selectedValue, data);
-
     if (selectedValue === defaultButtonValue) {
-      // setSelectedValue(defaultButtonValue);
       setValueToShow(defaultButtonText);
       return;
     }

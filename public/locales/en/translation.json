@@ -163,5 +163,10 @@
   "You can change main currency on the balances page": "Total value of all balances. You can change main currency on the balances page",
   "Main currency is used for calculating the net worth": "Main currency is used for calculating the net worth",
   "Configure to see detailed statistics": "Configure to see detailed statistics:",
-  "do you want to delete transaction": "Permanently delete transaction {{transactionName}}?"
+  "do you want to delete transaction": "Permanently delete transaction {{transactionName}}?",
+  "Title is required": "Title is required",
+  "Sum is required": "Sum is required",
+  "Category is required": "Category is required",
+  "Date is required": "Date is required",
+  "Balance is required": "Balance is required"
 }

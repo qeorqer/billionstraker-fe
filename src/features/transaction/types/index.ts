@@ -68,3 +68,13 @@ export type TransactionTypesToShow =
   | 'profit'
   | 'expense'
   | 'exchange';
+
+export type TransactionFormData = {
+  title: string;
+  sum: number | '';
+  sum2?: number | '';
+  categoryId?: string;
+  date: Date;
+  balanceId: string;
+  balanceId2?: string;
+};

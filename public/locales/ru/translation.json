@@ -163,5 +163,10 @@
   "You can change main currency on the balances page": "Сумма всех счетов. Изменить основную валюту можно на странице счетов",
   "Main currency is used for calculating the net worth": "Основная валюта используется для расчета капитала",
   "Configure to see detailed statistics": "Настройки статистики:",
-  "do you want to delete transaction": "Удалить транзакцию {{transactionName}}?"
+  "do you want to delete transaction": "Удалить транзакцию {{transactionName}}?",
+  "Title is required": "Название обязательно",
+  "Sum is required": "Сумма обязательна",
+  "Category is required": "Категория обязательна",
+  "Date is required": "Дата обязятельна",
+  "Balance is required": "Счет обязателен"
 }
