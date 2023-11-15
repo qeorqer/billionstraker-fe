@@ -2,17 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosResponse } from 'axios';
 
 import {
-  CreateCategoryPayload,
   createCategoryRequest,
-  CreateCategoryResponse,
   createCategoryRoute,
+  CreateUpdateCategoryPayload,
+  CreateUpdateCategoryResponse,
   deleteCategoryRequest,
   DeleteCategoryResponse,
   deleteCategoryRoute,
   getCategoriesRequest,
   GetCategoriesResponse,
   getCategoriesRoute,
-  UpdateCategoryPayload,
   updateCategoryRequest,
   updateCategoryRoute,
 } from 'features/category';
@@ -26,16 +25,16 @@ export const getCategoriesThunk = createAsyncThunk(
 export const createCategoryThunk = createAsyncThunk(
   createCategoryRoute,
   async (
-    body: CreateCategoryPayload,
-  ): Promise<AxiosResponse<CreateCategoryResponse>> =>
+    body: CreateUpdateCategoryPayload,
+  ): Promise<AxiosResponse<CreateUpdateCategoryResponse>> =>
     await createCategoryRequest(body),
 );
 
 export const updateCategoryThunk = createAsyncThunk(
   updateCategoryRoute,
   async (
-    body: UpdateCategoryPayload,
-  ): Promise<AxiosResponse<CreateCategoryResponse>> =>
+    body: CreateUpdateCategoryPayload,
+  ): Promise<AxiosResponse<CreateUpdateCategoryResponse>> =>
     await updateCategoryRequest(body),
 );
 

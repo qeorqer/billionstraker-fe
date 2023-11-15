@@ -31,10 +31,11 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
           {t('all your balances')}
         </p>
       )}
+
       <Swiper
         spaceBetween={15}
         slidesPerView={2}
-        className="justify-content-center d-flex overflow-y-visible"
+        className="justify-content-center d-flex"
         breakpoints={{
           500: {
             slidesPerView: 3,

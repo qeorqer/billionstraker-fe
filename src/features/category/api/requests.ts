@@ -1,16 +1,15 @@
 import { AxiosResponse } from 'axios';
 
 import {
-  CreateCategoryPayload,
-  CreateCategoryResponse,
+  CreateUpdateCategoryResponse,
   createCategoryRoute,
   DeleteCategoryPayload,
   DeleteCategoryResponse,
   deleteCategoryRoute,
   GetCategoriesResponse,
   getCategoriesRoute,
-  UpdateCategoryPayload,
   updateCategoryRoute,
+  CreateUpdateCategoryPayload,
 } from 'features/category';
 import api from 'api/axiosInstance';
 
@@ -19,13 +18,13 @@ export const getCategoriesRequest = (): Promise<
 > => api.get(getCategoriesRoute);
 
 export const createCategoryRequest = (
-  body: CreateCategoryPayload,
-): Promise<AxiosResponse<CreateCategoryResponse>> =>
+  body: CreateUpdateCategoryPayload,
+): Promise<AxiosResponse<CreateUpdateCategoryResponse>> =>
   api.post(createCategoryRoute, body);
 
 export const updateCategoryRequest = (
-  body: UpdateCategoryPayload,
-): Promise<AxiosResponse<CreateCategoryResponse>> =>
+  body: CreateUpdateCategoryPayload,
+): Promise<AxiosResponse<CreateUpdateCategoryResponse>> =>
   api.patch(updateCategoryRoute, body);
 
 export const deleteCategoryRequest = (

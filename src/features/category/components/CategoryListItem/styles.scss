@@ -1,30 +1,29 @@
-.balance-card-body-content {
+.category-card-body-content {
   padding: 10px !important;
 
   >div:first-child {
     padding-right: 5px;
   }
 
-  .balance-card-body-title {
+  .category-card-body-title {
     margin-bottom: 0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
   }
 
-  .balance-card-body-currency,
-  .balance-card-body-amount {
+  .category-card-body-type {
     margin-bottom: 0;
     font-size: 13px;
     font-weight: 500;
     font-style: italic;
 
     @media (max-width: 1024px) {
-      font-size: 11px;
+      font-size: 12px;
     }
 
   }
 
-  .balance-action-button {
+  .category-action-button {
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -33,4 +32,3 @@
     align-items: center;
   }
 }
-

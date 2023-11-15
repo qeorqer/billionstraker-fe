@@ -1,9 +1,9 @@
-export type CategoryTypes = 'expense' | 'profit';
+export type CategoryType = 'expense' | 'profit';
 
 export type Category = {
   _id?: string;
   name: string;
-  categoryType: CategoryTypes;
+  categoryType: CategoryType;
   ownerId?: string;
 };
 
@@ -12,20 +12,14 @@ export type GetCategoriesResponse = {
   categories: Category[];
 };
 
-export type CreateCategoryPayload = {
-  category: Category;
+export type CreateUpdateCategoryPayload = {
+  category: Partial<Category>;
 };
 
-export type CreateCategoryResponse = {
+export type CreateUpdateCategoryResponse = {
   message: string;
   category: Category;
 };
-
-export type UpdateCategoryPayload = {
-  category: Category;
-  categoryId: string;
-};
-
 export type DeleteCategoryPayload = {
   categoryId: string;
 };
