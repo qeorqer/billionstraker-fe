@@ -91,9 +91,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
         onSuccess();
       } else {
         await dispatch(createTransactionThunk(payload));
-        setFieldValue('title', '', false);
-        setFieldValue('sum', '', false);
-        setFieldValue('sum2', '', false);
+
+        ['title', 'sum', 'sum2'].map((name) => setFieldValue(name, '', false));
       }
     } catch (err) {
       console.log(err);

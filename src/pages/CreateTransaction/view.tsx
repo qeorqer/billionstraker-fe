@@ -14,14 +14,12 @@ import CannotCreateTransactionButtons from 'features/transaction/components/Cann
 type CreateTransactionPageViewProps = {
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
-  handleSubmit: (transaction: CreateTransactionPayload | null) => void;
   canCreateTransaction: boolean;
 };
 
 const CreateTransactionPageView: React.FC<CreateTransactionPageViewProps> = ({
   transactionType,
   setTransactionType,
-  handleSubmit,
   canCreateTransaction,
 }) => (
   <Container className="py-md-4 my-4 pb-5 pb-sm-0">
@@ -33,10 +31,7 @@ const CreateTransactionPageView: React.FC<CreateTransactionPageViewProps> = ({
     {canCreateTransaction ? (
       <>
         <BalancesList />
-        <TransactionForm
-          selectedTransactionType={transactionType}
-          //handleSubmit={handleSubmit}
-        />
+        <TransactionForm selectedTransactionType={transactionType} />
       </>
     ) : (
       <CannotCreateTransactionButtons transactionType={transactionType} />

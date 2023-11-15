@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import {
-  CreateTransactionPayload,
-  createTransactionThunk,
-  TransactionType,
-} from 'features/transaction';
+import { TransactionType } from 'features/transaction';
 import { balanceData, getBalancesThunk } from 'features/balance';
 import { categoryData, getCategoriesThunk } from 'features/category';
 import Loader from 'components/Shared/Loader';
@@ -22,12 +18,6 @@ const CreateTransactionPage = () => {
     useState<TransactionType>('expense');
 
   const dispatch = useAppDispatch();
-
-  const handleSubmit = (dataForSubmit: CreateTransactionPayload | null) => {
-    if (dataForSubmit) {
-      dispatch(createTransactionThunk(dataForSubmit));
-    }
-  };
 
   useEffect(() => {
     switch (transactionType) {
@@ -68,7 +58,6 @@ const CreateTransactionPage = () => {
     <CreateTransactionPageView
       transactionType={transactionType}
       setTransactionType={setTransactionType}
-      handleSubmit={handleSubmit}
       canCreateTransaction={canCreateTransaction}
     />
   );
