@@ -24,7 +24,7 @@ export const AuthRoutes: Routes = {
     { path: '/createTransaction', Component: CreateTransaction },
     { path: '/statistics', Component: StatisticsPage },
     { path: '/balance', Component: BalancePage },
-    { path: '/categories', Component: CategoryPage },
+    { path: '/category', Component: CategoryPage },
     { path: '/guide', Component: GuidePage },
   ],
   redirect: '/home',

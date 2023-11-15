@@ -4,48 +4,18 @@ import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 
 import logo from 'assets/common/logo.png';
-import { ReactComponent as Profile } from 'assets/tabMenu/profile.svg';
-import { ReactComponent as Transactions } from 'assets/tabMenu/transactions.svg';
-import { ReactComponent as Statistics } from 'assets/tabMenu/statistics.svg';
 import { useAppDispatch } from 'store/hooks';
 import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
 import CustomToggle from 'components/Shared/CustomToggle';
 import { logOutThunk } from 'features/user';
 
 import './styles.scss';
+import { tabMenuItems } from './constants';
 
 type DropdownMenuItem = {
   title: string;
-  actions: {
-    onClick?: () => void;
-    href?: string;
-    target?: string;
-  };
+  onClick: () => void;
 };
-
-type TabMenuItem = {
-  title: string;
-  link: string;
-  Component: FC;
-};
-
-const tabMenuItems: TabMenuItem[] = [
-  {
-    title: 'Profile',
-    Component: Profile,
-    link: '/home',
-  },
-  {
-    title: 'New transaction',
-    Component: Transactions,
-    link: '/createTransaction',
-  },
-  {
-    title: 'Statistics',
-    Component: Statistics,
-    link: '/statistics',
-  },
-];
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -61,34 +31,23 @@ const Header = () => {
   const dropdownMenuItems: DropdownMenuItem[] = [
     {
       title: 'balances',
-      actions: {
-        onClick: () => history.push('/balance'),
-      },
+      onClick: () => history.push('/balance'),
     },
     {
       title: 'categories',
-      actions: {
-        onClick: () => history.push('/categories'),
-      },
+      onClick: () => history.push('/category'),
     },
     {
       title: 'usage guide',
-      actions: {
-        onClick: () => history.push('/guide'),
-      },
+      onClick: () => history.push('/guide', '_blank'),
     },
     {
       title: 'Support',
-      actions: {
-        href: 'https://t.me/qeorqe',
-        target: '_blank',
-      },
+      onClick: () => window.open('https://t.me/qeorqe', '_blank'),
     },
     {
       title: 'Log out',
-      actions: {
-        onClick: handleLogout,
-      },
+      onClick: handleLogout,
     },
   ];
 
@@ -123,8 +82,8 @@ const Header = () => {
                   className="d-flex justify-content-around languagesController">
                   <LanguageSwitcher />
                 </Dropdown.Item>
-                {dropdownMenuItems.map(({ title, actions }) => (
-                  <Dropdown.Item as="span" key={title} {...actions}>
+                {dropdownMenuItems.map(({ title, onClick }) => (
+                  <Dropdown.Item as="span" key={title} onClick={onClick}>
                     {t(title)}
                   </Dropdown.Item>
                 ))}
