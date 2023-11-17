@@ -50,7 +50,7 @@ const TransactionsList: FC<TransactionsListProps> = ({
 
   return (
     <Stack gap={1}>
-      <p className="text-center fw-bold fs-4">{t('Your transactions')}</p>
+      <p className="text-center fw-bold fs-4 mb-0">{t('Your transactions')}</p>
       <InfiniteScroll
         initialLoad={false}
         loadMore={handleLoadMoreTransactions}

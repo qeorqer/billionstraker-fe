@@ -30,7 +30,7 @@ export const StatisticsList: FC<propsType> = ({
     (el, index) => ({
       title: el.name,
       value: el.amount,
-      percentage: Math.round((100 * el.amount) / totalSpent) || '<1',
+      percentage: ((100 * el.amount) / totalSpent).toFixed(2),
     }),
   );
 

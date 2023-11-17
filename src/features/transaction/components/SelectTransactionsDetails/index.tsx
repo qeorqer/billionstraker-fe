@@ -56,7 +56,7 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
 
   return (
     <Stack gap={1}>
-      <p className="text-center fw-bold fs-4">{t('apply filters')}</p>
+      <p className="text-center fw-bold fs-4 mb-0">{t('apply filters')}</p>
       <Row className="mb-3 align-items-center justify-content-center">
         <Col xs="6" sm="4" className="max-width-220 p-1">
           <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">

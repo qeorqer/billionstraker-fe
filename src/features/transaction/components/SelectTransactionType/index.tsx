@@ -27,7 +27,7 @@ const SelectTransactionType: React.FC<SelectTransactionTypeProps> = ({
 
   return (
     <Row>
-      <p className="mb-1 fs-4 text-center fw-bold">
+      <p className="mb-2 fs-4 text-center fw-bold">
         {t('Select operation type')}:
       </p>
       <Col xs="12" lg={isModal ? '12' : '4'} className="mx-auto d-flex">

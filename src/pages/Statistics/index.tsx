@@ -9,9 +9,11 @@ import { getStatisticsThunk } from 'features/statistics';
 import 'moment/locale/ru';
 
 import StatisticsPageView from './view';
+import { userData } from 'features/user';
 
 const StatisticsPage: FC = () => {
-  const { isLoadingBalances, balances } = useAppSelector(balanceData);
+  const { isLoadingBalances } = useAppSelector(balanceData);
+  const { user } = useAppSelector(userData);
 
   const dispatch = useAppDispatch();
   const { search } = useLocation();
@@ -37,7 +39,7 @@ const StatisticsPage: FC = () => {
         balance: balanceName ? balanceName : null,
       }),
     );
-  }, [monthsRange, balanceName]);
+  }, [monthsRange, balanceName, user]);
 
   useEffect(() => {
     dispatch(getBalancesThunk());

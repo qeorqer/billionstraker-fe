@@ -159,8 +159,8 @@
   "do you want to delete balance": "Permanently delete balance {{balanceName}}?",
   "delete": "Delete",
   "cancel": "Cancel",
-  "Your total net worth": "Your total net worth:",
-  "You can change main currency on the balances page": "Total value of all balances. You can change main currency on the balances page",
+  "Your total net worth": "Net worth:",
+  "You can change main currency on the balances page": "Total value of all balances converted to the main currency",
   "Main currency is used for calculating the net worth": "Main currency is used for calculating the net worth",
   "Configure to see detailed statistics": "Configure to see detailed statistics:",
   "do you want to delete transaction": "Permanently delete transaction {{transactionName}}?",
@@ -170,5 +170,6 @@
   "Category is required": "Category is required",
   "Date is required": "Date is required",
   "Balance is required": "Balance is required",
-  "Category name is required": "Category name is required"
+  "Category name is required": "Category name is required",
+  "edit currency": "Edit main currency"
 }

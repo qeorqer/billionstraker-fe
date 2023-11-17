@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import StatisticsDiagram from 'features/statistics/components/StatisticsDiagram';
+import DiagramStatistics from 'features/statistics/components/DiagramStatistics';
 import { StatisticsList } from 'features/statistics/components/StatisticsList';
 import { Statistics } from 'features/statistics/types';
 import { formattingSum } from 'features/transaction/utils/formattingSum';
@@ -68,9 +68,9 @@ const StatisticsForBalanceViewItem: FC<propsType> = ({
         </span>
       </p>
       {useDiagram ? (
-        <StatisticsDiagram
-          totalSpent={fieldsToUse.totalValue}
-          statisticForRange={fieldsToUse.statisticsInRange}
+        <DiagramStatistics
+          totallySpent={fieldsToUse.totalValue}
+          rangeStatistics={fieldsToUse.statisticsInRange}
         />
       ) : (
         <StatisticsList

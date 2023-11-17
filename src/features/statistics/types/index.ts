@@ -40,3 +40,9 @@ export type GetNetWorthResponse = {
   message: string;
   statistics: NetWorth;
 };
+
+export type DiagramPiece = {
+  value: number;
+  color: string;
+  tooltip: string;
+};

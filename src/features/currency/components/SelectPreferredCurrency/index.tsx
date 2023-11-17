@@ -3,14 +3,20 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { Col, Row } from 'react-bootstrap';
 import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
-import React, { ForwardedRef, useRef, useState } from 'react';
+import React, { FC, ForwardedRef, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CurrencyOption } from 'features/currency/types';
 import { Option } from 'react-bootstrap-typeahead/types/types';
 import { TypeaheadRef } from 'react-bootstrap-typeahead';
 import ReactTooltip from 'react-tooltip';
 
-const SelectPreferredCurrency = () => {
+type SelectPreferredCurrencyProps = {
+  isModal?: boolean;
+};
+
+const SelectPreferredCurrency: FC<SelectPreferredCurrencyProps> = ({
+  isModal = false,
+}) => {
   const { user } = useAppSelector(userData);
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -40,7 +46,7 @@ const SelectPreferredCurrency = () => {
 
   return (
     <Row>
-      <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
+      <Col xs="12" lg={isModal ? '12' : '6'} className="mb-3 mb-lg-0 mx-auto">
         <p className="fs-5 fw-bold text-center ">
           {t('Select main currency')}:
         </p>

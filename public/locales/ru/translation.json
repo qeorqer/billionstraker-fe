@@ -160,7 +160,7 @@
   "delete": "Удалить",
   "cancel": "Отмена",
   "Your total net worth": "Капитал:",
-  "You can change main currency on the balances page": "Сумма всех счетов. Изменить основную валюту можно на странице счетов",
+  "You can change main currency on the balances page": "Сумма всех счетов конвертированная в основную валюту",
   "Main currency is used for calculating the net worth": "Основная валюта используется для расчета капитала",
   "Configure to see detailed statistics": "Настройки статистики:",
   "do you want to delete transaction": "Удалить транзакцию {{transactionName}}?",
@@ -170,5 +170,6 @@
   "Category is required": "Категория обязательна",
   "Date is required": "Дата обязятельна",
   "Balance is required": "Счет обязателен",
-  "Category name is required": "Имя категории обязательно"
+  "Category name is required": "Имя категории обязательно",
+  "edit currency": "Изменить основную валюту"
 }
