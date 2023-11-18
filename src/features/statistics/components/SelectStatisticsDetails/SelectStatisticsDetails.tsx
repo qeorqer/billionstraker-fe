@@ -85,7 +85,7 @@ const SelectStatisticsDetails: FC<SelectStatisticsDetailsProps> = ({
           {t('select balance')}
         </p>
         <CustomSelect
-          defaultButtonText={t('select balance')}
+          defaultButtonText={t('show all')}
           defaultButtonValue=""
           data={balances.map((balance) => ({
             _id: balance._id,

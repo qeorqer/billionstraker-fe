@@ -142,7 +142,7 @@
   "month": "Месяц",
   "range detail": "Детализация диапазона",
   "back to statistics": "Вернуться к статистике",
-  "click on item to see transactions": "Нажми на категорию чтобы увидеть транзакции",
+  "click on item to see transactions": "Нажми чтобы увидеть транзакции",
   "Email is invalid": "Неправильная почта",
   "Email is required": "Почта обязательна",
   "Password is required": "Без пароля никуда",
@@ -175,5 +175,9 @@
   "exchange statistics": "Статистика обменов для выбранного счета",
   "sent": "Отправил",
   "received": "Получил",
-  "view transaction": "Посмотреть транзакции"
+  "view transaction": "Посмотреть транзакции",
+  "profit expense statistics": "Статистика расходов и доходов",
+  "use balances": "Сгруппировать по счету",
+  "expenses": "Расходы",
+  "incomes": "Доходы"
 }

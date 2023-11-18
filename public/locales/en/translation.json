@@ -175,5 +175,9 @@
   "exchange statistics": "Exchange statistics for the selected balance",
   "sent": "Sent",
   "received": "Received",
-  "view transaction": "View transactions"
+  "view transaction": "View transactions",
+  "profit expense statistics": "Statistics of expenses and incomes",
+  "use balances": "Group by balance",
+  "expenses": "Expenses",
+  "incomes": "Incomes"
 }

@@ -3,8 +3,9 @@ import { PieChart } from 'react-minimal-pie-chart';
 import ReactTooltip from 'react-tooltip';
 
 import { DiagramPiece, RangeStatisticsItem } from 'features/statistics/types';
-import { formattingSum } from 'features/transaction/utils/formattingSum';
+import { formatSum } from 'features/transaction/utils/formatSum';
 import { calculateStatisticsForDiagram } from 'features/statistics/utils/calculateStatisticsForDiagram';
+import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
 
 type DiagramStatisticsProps = {
   rangeStatistics: RangeStatisticsItem[];
@@ -35,11 +36,12 @@ const DiagramStatistics: FC<DiagramStatisticsProps> = ({
         style={{ height: '300px', width: '100%' }}
         lineWidth={30}
         paddingAngle={statistics.length > 1 ? 2 : 0}
-        label={() => formattingSum(totallySpent)}
+        label={() => formatSum(totallySpent)}
         totalValue={totallySpent}
         labelPosition={0}
         labelStyle={{
-          fontSize: '10px',
+          fontSize: '11px',
+          fill: '#F3C709',
         }}
         onMouseOver={(el, index) => {
           setHovered(index);

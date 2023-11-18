@@ -2,15 +2,16 @@ import React, { FC } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { useTranslation } from 'react-i18next';
 
 import Loader from 'components/Shared/Loader';
 import { useAppSelector } from 'store/hooks';
 import { statisticsData } from 'features/statistics/store/selector';
 import StatisticsViewItem from 'features/statistics/components/StatisticsViewItem';
 import CreateTransactionFirstButton from 'features/transaction/components/CreateTransactionFirstButton';
+import ExchangeStatistics from 'features/statistics/components/ExchangeStatistics';
 
 import './styles.scss';
-import ExchangeStatistics from 'features/statistics/components/ExchangeStatistics';
 
 type StatisticsViewProps = {
   monthsRange: [Date, Date];
@@ -23,6 +24,8 @@ const StatisticsView: FC<StatisticsViewProps> = ({
 }) => {
   const { statistics } = useAppSelector(statisticsData);
   const { isLoadingStatistics } = useAppSelector(statisticsData);
+
+  const { t } = useTranslation();
 
   if (!statistics) {
     return (
@@ -40,11 +43,12 @@ const StatisticsView: FC<StatisticsViewProps> = ({
         selectedBalance={balanceName}
         monthsRange={monthsRange}
       />
+      <p className="fw-bold h5">{t('profit expense statistics')}</p>
       <Col xs={12} md={6} className="mb-5 mb-md-0">
         <StatisticsViewItem
           selectedBalance={balanceName}
           monthsRange={monthsRange}
-          statisticsForRange={statistics}
+          statistics={statistics.expenses}
           type="expense"
         />
       </Col>
@@ -52,8 +56,8 @@ const StatisticsView: FC<StatisticsViewProps> = ({
         <StatisticsViewItem
           selectedBalance={balanceName}
           monthsRange={monthsRange}
-          statisticsForRange={statistics}
-          type="income"
+          statistics={statistics.profits}
+          type="profit"
         />
       </Col>
     </Row>

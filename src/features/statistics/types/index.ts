@@ -3,7 +3,7 @@ export type RangeStatisticsItem = {
   amount: number;
 };
 
-type StatisticsForTransactionType = {
+export type StatisticsForTransactionType = {
   categoryRange: RangeStatisticsItem[];
   balanceRange?: RangeStatisticsItem[];
   total: number;

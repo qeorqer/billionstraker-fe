@@ -1,18 +1,17 @@
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Card, Col, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import { Transaction } from 'features/transaction/types';
 import { formatTransactionDate } from 'features/transaction/utils/formatTransactionDate';
-import { formattingSum } from 'features/transaction/utils/formattingSum';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
 import CustomToggle from 'components/Shared/CustomToggle';
-import { deleteTransactionThunk } from 'features/transaction/index';
-
-import 'features/transaction/components/TransactionListItem/styles.scss';
 import EditTransactionModal from 'features/transaction/components/EditTransactionModal';
 import DeleteTransactionModal from 'features/transaction/components/DeleteTransactionModal';
+import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
+
+import './styles.scss';
 
 type TransactionListItemProps = {
   transaction: Transaction;
@@ -29,6 +28,7 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
 
   const { lang } = useAppSelector(userData);
   const { t } = useTranslation();
+  const { formatSumByBalanceName } = useFormatSumByBalanceName();
 
   const actions: ActionOption[] = [
     {
@@ -59,19 +59,31 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
                   <p>
                     <span>💰</span> {transaction.balanceToSubtract}
                   </p>
-                  <span>{formattingSum(transaction.sumToSubtract!)}</span>
+                  <span>
+                    {formatSumByBalanceName(
+                      transaction.sumToSubtract!,
+                      transaction?.balanceToSubtract!,
+                    )}
+                  </span>
                 </div>
                 <span className="exchangeSign">🔁</span>
                 <div className="to">
                   <p>
                     {transaction.balance} <span>💸</span>
                   </p>
-                  <span>{formattingSum(transaction.sum)}</span>
+                  <span>
+                    {formatSumByBalanceName(
+                      transaction.sum,
+                      transaction.balance,
+                    )}
+                  </span>
                 </div>
               </>
             ) : (
               <>
-                <span>{formattingSum(transaction.sum)}</span>
+                <span>
+                  {formatSumByBalanceName(transaction.sum, transaction.balance)}
+                </span>
                 <p>
                   <span>💰</span> {transaction.balance}
                 </p>

@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap';
-import { formattingSum } from 'features/transaction/utils/formattingSum';
+import { formatSum } from 'features/transaction/utils/formatSum';
 import React, { FC, useState } from 'react';
 import { Balance } from 'features/balance/types';
 import EditBalanceModal from 'features/balance/components/EditBalanceModal';
@@ -43,7 +43,7 @@ const BalanceListItem: FC<BalanceListItemProps> = ({ balance, showMenu }) => {
               {balance.name}
             </Card.Title>
             <Card.Text className="balance-card-body-amount">
-              {`💰: ${formattingSum(balance.amount)}`}
+              {`💰: ${formatSum(balance.amount)}`}
             </Card.Text>
             {balance.currency && (
               <Card.Text className="balance-card-body-currency">

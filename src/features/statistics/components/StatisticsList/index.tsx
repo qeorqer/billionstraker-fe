@@ -1,15 +1,18 @@
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Value } from '@wojtekmaj/react-daterange-picker/src/shared/types';
 
 import { RangeStatisticsItem } from 'features/statistics/types';
 import StatisticsListItem from 'features/statistics/components/StatisticsListItem';
+import { TransactionType } from 'features/transaction';
+import { formatSum } from 'features/transaction/utils/formatSum';
 
 type propsType = {
   statisticForRange: RangeStatisticsItem[];
   totalSpent: number;
   selectedBalance: string;
   monthsRange: [Date, Date];
+  fieldToGroupBy: 'balance' | 'category';
+  transactionType: TransactionType;
 };
 
 export type listForRangeItem = {
@@ -23,6 +26,8 @@ export const StatisticsList: FC<propsType> = ({
   totalSpent,
   selectedBalance,
   monthsRange,
+  fieldToGroupBy,
+  transactionType,
 }) => {
   const { t } = useTranslation();
 
@@ -46,7 +51,9 @@ export const StatisticsList: FC<propsType> = ({
             key={listItem.title}
             listItem={listItem}
             selectedBalance={selectedBalance}
+            fieldToGroupBy={fieldToGroupBy}
             monthsRange={monthsRange}
+            transactionType={transactionType}
           />
         ))}
     </div>

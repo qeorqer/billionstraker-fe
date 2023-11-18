@@ -2,39 +2,61 @@ import React, { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-import { formattingSum } from 'features/transaction/utils/formattingSum';
+import { formatSum } from 'features/transaction/utils/formatSum';
 import { listForRangeItem } from 'features/statistics/components/StatisticsList';
-
 import 'features/statistics/components/StatisticsListItem/styles.scss';
+import { TransactionType } from 'features/transaction';
+import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
+import { useAppSelector } from 'store/hooks';
+import { userData } from 'features/user';
+import { formatSumByCurrencyCode } from 'features/statistics/utils/formatSumByCurrencyCode';
 
 type propsType = {
   listItem: listForRangeItem;
   selectedBalance: string;
   monthsRange: [Date, Date];
+  fieldToGroupBy: 'balance' | 'category';
+  transactionType: TransactionType;
 };
 
 const StatisticsListItem: FC<propsType> = ({
   listItem,
   selectedBalance,
   monthsRange,
+  fieldToGroupBy,
+  transactionType,
 }) => {
   const { push } = useHistory();
 
+  const { formatSumByBalanceName } = useFormatSumByBalanceName();
+  const { user } = useAppSelector(userData);
+
   const handleItemClick = () => {
-    const queryString = new URLSearchParams({
+    const statisticsQueryString = new URLSearchParams({
+      dateFrom: monthsRange[0].toISOString(),
+      dateTo: monthsRange[1].toISOString(),
+      transactionType,
+      ...(fieldToGroupBy === 'category' && { balance: selectedBalance }),
+    });
+
+    const homeQueryString = new URLSearchParams({
+      // @ts-ignore
       balance: selectedBalance,
       dateFrom: monthsRange[0].toISOString(),
       dateTo: monthsRange[1].toISOString(),
-      category: listItem.title,
+      transactionType,
+      ...(fieldToGroupBy === 'balance'
+        ? { balance: listItem.title }
+        : { category: listItem.title }),
     });
 
     push({
       pathname: '/statistics',
-      search: queryString.toString(),
+      search: statisticsQueryString.toString(),
     });
     push({
       pathname: '/home',
-      search: queryString.toString(),
+      search: homeQueryString.toString(),
     });
   };
 
@@ -46,10 +68,15 @@ const StatisticsListItem: FC<propsType> = ({
       onClick={handleItemClick}>
       <Card.Body>
         <Row>
-          <Col xs="6" lg="3">
-            {formattingSum(listItem.value)}
+          <Col xs="6" lg="4">
+            {selectedBalance
+              ? formatSumByBalanceName(listItem.value, selectedBalance)
+              : formatSumByCurrencyCode(
+                  listItem.value,
+                  user.preferredCurrency ?? '',
+                )}
           </Col>
-          <Col xs="12" lg="6" className="mb-2 mb-sm-0 title">
+          <Col xs="12" lg="5" className="mb-2 mb-sm-0 title">
             {listItem.title}
           </Col>
           <Col xs="6" lg="3">

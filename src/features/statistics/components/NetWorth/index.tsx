@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactTooltip from 'react-tooltip';
 
-import { formattingSum } from 'features/transaction/utils/formattingSum';
+import { formatSum } from 'features/transaction/utils/formatSum';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getNetWorthThunk } from 'features/statistics/store/thunks';
 import { statisticsData } from 'features/statistics/store/selector';
@@ -32,9 +32,7 @@ const NetWorthView = () => {
       <p className="h3 fw-bold text-center next-worth-text">
         {t('Your total net worth')}
         <span className="fst-italic yellowText">
-          {` ${formattingSum(
-            netWorth.value,
-          )} (${netWorth.currency.toUpperCase()}) `}
+          {` ${formatSum(netWorth.value)} ${netWorth.currency.toUpperCase()} `}
         </span>
         <span
           className="cursor-pointer"
