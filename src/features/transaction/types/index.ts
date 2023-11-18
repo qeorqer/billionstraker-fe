@@ -63,7 +63,7 @@ type TransactionsSection = {
 
 export type TransactionsSections = TransactionsSection[];
 
-export type TransactionTypesToShow =
+export type TransactionTypeToShow =
   | 'all transactions'
   | 'profit'
   | 'expense'

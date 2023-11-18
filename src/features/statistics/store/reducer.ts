@@ -7,16 +7,16 @@ import {
 } from 'features/statistics';
 
 export type StatisticsState = {
-  statisticsForBalance: Statistics | null;
-  isStatisticsForBalanceLoading: boolean;
-  isNetWorthLoading: boolean;
+  statistics: Statistics | null;
+  isLoadingStatistics: boolean;
+  isLoadingNetWorth: boolean;
   netWorth: NetWorth | null;
 };
 
 const initialState: StatisticsState = {
-  statisticsForBalance: null,
-  isStatisticsForBalanceLoading: false,
-  isNetWorthLoading: false,
+  statistics: null,
+  isLoadingStatistics: false,
+  isLoadingNetWorth: false,
   netWorth: null,
 };
 
@@ -26,29 +26,29 @@ const statisticsReducer = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getStatisticsThunk.pending, (state) => {
-      state.isStatisticsForBalanceLoading = true;
+      state.isLoadingStatistics = true;
     });
 
     builder.addCase(getStatisticsThunk.fulfilled, (state, action) => {
-      state.statisticsForBalance = action.payload.data.statistics;
-      state.isStatisticsForBalanceLoading = false;
+      state.statistics = action.payload.data.statistics;
+      state.isLoadingStatistics = false;
     });
 
     builder.addCase(getStatisticsThunk.rejected, (state) => {
-      state.isStatisticsForBalanceLoading = false;
+      state.isLoadingStatistics = false;
     });
 
     builder.addCase(getNetWorthThunk.pending, (state) => {
-      state.isNetWorthLoading = true;
+      state.isLoadingNetWorth = true;
     });
 
     builder.addCase(getNetWorthThunk.fulfilled, (state, action) => {
       state.netWorth = action.payload.data.statistics;
-      state.isNetWorthLoading = false;
+      state.isLoadingNetWorth = false;
     });
 
     builder.addCase(getNetWorthThunk.rejected, (state) => {
-      state.isNetWorthLoading = false;
+      state.isLoadingNetWorth = false;
     });
   },
 });

@@ -21,15 +21,20 @@ const StatisticsListItem: FC<propsType> = ({
   const { push } = useHistory();
 
   const handleItemClick = () => {
+    const queryString = new URLSearchParams({
+      balance: selectedBalance,
+      dateFrom: monthsRange[0].toISOString(),
+      dateTo: monthsRange[1].toISOString(),
+      category: listItem.title,
+    });
+
     push({
       pathname: '/statistics',
-      search: `?balance=${selectedBalance}&dateFrom=${monthsRange[0].toISOString()}&dateTo=${monthsRange[1].toISOString()}`,
+      search: queryString.toString(),
     });
     push({
       pathname: '/home',
-      search: `?balance=${selectedBalance}&category=${
-        listItem.title
-      }&dateFrom=${monthsRange[0].toISOString()}&dateTo=${monthsRange[1].toISOString()}`,
+      search: queryString.toString(),
     });
   };
 

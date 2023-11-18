@@ -171,5 +171,9 @@
   "Date is required": "Дата обязятельна",
   "Balance is required": "Счет обязателен",
   "Category name is required": "Имя категории обязательно",
-  "edit currency": "Изменить основную валюту"
+  "edit currency": "Изменить основную валюту",
+  "exchange statistics": "Статистика обменов для выбранного счета",
+  "sent": "Отправил",
+  "received": "Получил",
+  "view transaction": "Посмотреть транзакции"
 }

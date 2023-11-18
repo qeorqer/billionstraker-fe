@@ -1,3 +1,7 @@
 .rangeHolderControls button {
   width: 100px;
+
+  &:hover, &.active{
+    color: white;
+  }
 }

@@ -21,7 +21,7 @@ const SelectStatisticsDetails: FC<SelectStatisticsDetailsProps> = ({
   balanceName,
   setBalanceName,
 }) => {
-  const { statisticsForBalance } = useAppSelector(statisticsData);
+  const { statistics } = useAppSelector(statisticsData);
 
   const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
     'year' | 'month'
@@ -32,7 +32,7 @@ const SelectStatisticsDetails: FC<SelectStatisticsDetailsProps> = ({
   const { lang, user } = useAppSelector(userData);
   const { balances } = useAppSelector(balanceData);
 
-  if (!statisticsForBalance) {
+  if (!statistics) {
     return null;
   }
 

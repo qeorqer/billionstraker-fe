@@ -171,5 +171,9 @@
   "Date is required": "Date is required",
   "Balance is required": "Balance is required",
   "Category name is required": "Category name is required",
-  "edit currency": "Edit main currency"
+  "edit currency": "Edit main currency",
+  "exchange statistics": "Exchange statistics for the selected balance",
+  "sent": "Sent",
+  "received": "Received",
+  "view transaction": "View transactions"
 }

@@ -9,14 +9,14 @@ import { formattingSum } from 'features/transaction/utils/formattingSum';
 
 import './styles.scss';
 
-type propsType = {
+type StatisticsViewItemProps = {
   statisticsForRange: Statistics;
   type: 'expense' | 'income';
   selectedBalance: string;
   monthsRange: [Date, Date];
 };
 
-const StatisticsForBalanceViewItem: FC<propsType> = ({
+const StatisticsViewItem: FC<StatisticsViewItemProps> = ({
   statisticsForRange,
   type,
   selectedBalance,
@@ -84,4 +84,4 @@ const StatisticsForBalanceViewItem: FC<propsType> = ({
   );
 };
 
-export default StatisticsForBalanceViewItem;
+export default StatisticsViewItem;

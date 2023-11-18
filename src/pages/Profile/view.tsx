@@ -6,12 +6,12 @@ import BalancesList from 'features/balance/components/BalancesList';
 
 import './styles.scss';
 import SelectTransactionsDetails from 'features/transaction/components/SelectTransactionsDetails';
-import { TransactionTypesToShow } from 'features/transaction';
+import { TransactionTypeToShow } from 'features/transaction';
 import BackToStatisticsButton from 'features/statistics/components/BackToStatisticsButton';
 
 type ProfilePageViewProps = {
-  shownTransactionsTypes: TransactionTypesToShow;
-  setShownTransactionsTypes: Dispatch<SetStateAction<TransactionTypesToShow>>;
+  shownTransactionsTypes: TransactionTypeToShow;
+  setShownTransactionsTypes: Dispatch<SetStateAction<TransactionTypeToShow>>;
   categoriesToShow: string;
   balancesToShow: string;
   setCategoriesToShow: Dispatch<SetStateAction<string>>;

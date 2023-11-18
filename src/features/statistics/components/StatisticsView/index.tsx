@@ -6,48 +6,53 @@ import 'react-calendar/dist/Calendar.css';
 import Loader from 'components/Shared/Loader';
 import { useAppSelector } from 'store/hooks';
 import { statisticsData } from 'features/statistics/store/selector';
-import StatisticsForBalanceViewItem from 'features/statistics/components/StatisticsForBalanceViewItem';
+import StatisticsViewItem from 'features/statistics/components/StatisticsViewItem';
 import CreateTransactionFirstButton from 'features/transaction/components/CreateTransactionFirstButton';
 
 import './styles.scss';
+import ExchangeStatistics from 'features/statistics/components/ExchangeStatistics';
 
-type propsType = {
+type StatisticsViewProps = {
   monthsRange: [Date, Date];
   balanceName: string;
 };
 
-const StatisticsForBalanceView: FC<propsType> = ({
+const StatisticsView: FC<StatisticsViewProps> = ({
   monthsRange,
   balanceName,
 }) => {
-  const { statisticsForBalance } = useAppSelector(statisticsData);
-  const { isStatisticsForBalanceLoading } = useAppSelector(statisticsData);
+  const { statistics } = useAppSelector(statisticsData);
+  const { isLoadingStatistics } = useAppSelector(statisticsData);
 
-  if (!statisticsForBalance) {
+  if (!statistics) {
     return (
       <CreateTransactionFirstButton text="Some of your statistic will be here" />
     );
   }
 
-  if (isStatisticsForBalanceLoading) {
+  if (isLoadingStatistics) {
     return <Loader />;
   }
 
   return (
     <Row className="rangeHolder mt-3 text-center">
+      <ExchangeStatistics
+        selectedBalance={balanceName}
+        monthsRange={monthsRange}
+      />
       <Col xs={12} md={6} className="mb-5 mb-md-0">
-        <StatisticsForBalanceViewItem
+        <StatisticsViewItem
           selectedBalance={balanceName}
           monthsRange={monthsRange}
-          statisticsForRange={statisticsForBalance}
+          statisticsForRange={statistics}
           type="expense"
         />
       </Col>
       <Col xs={12} md={6}>
-        <StatisticsForBalanceViewItem
+        <StatisticsViewItem
           selectedBalance={balanceName}
           monthsRange={monthsRange}
-          statisticsForRange={statisticsForBalance}
+          statisticsForRange={statistics}
           type="income"
         />
       </Col>
@@ -55,4 +60,4 @@ const StatisticsForBalanceView: FC<propsType> = ({
   );
 };
 
-export default StatisticsForBalanceView;
+export default StatisticsView;

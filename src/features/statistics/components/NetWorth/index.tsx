@@ -7,9 +7,9 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getNetWorthThunk } from 'features/statistics/store/thunks';
 import { statisticsData } from 'features/statistics/store/selector';
 import EditMainCurrencyModal from 'features/currency/components/EditMainCurrencyModal';
+import { userData } from 'features/user';
 
 import './styles.scss';
-import { userData } from 'features/user';
 
 const NetWorthView = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

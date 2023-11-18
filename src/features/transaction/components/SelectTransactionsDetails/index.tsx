@@ -7,13 +7,13 @@ import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import { useAppSelector } from 'store/hooks';
 import { transactionData } from 'features/transaction/store/selector';
-import { TransactionTypesToShow } from 'features/transaction/types';
+import { TransactionTypeToShow } from 'features/transaction/types';
 import { useTranslation } from 'react-i18next';
 import { userData } from 'features/user';
 
 type SelectTransactionsDetailsProps = {
-  shownTransactionsTypes: TransactionTypesToShow;
-  setShownTransactionsTypes: Dispatch<SetStateAction<TransactionTypesToShow>>;
+  shownTransactionsTypes: TransactionTypeToShow;
+  setShownTransactionsTypes: Dispatch<SetStateAction<TransactionTypeToShow>>;
   categoriesToShow: string;
   balancesToShow: string;
   setCategoriesToShow: Dispatch<SetStateAction<string>>;

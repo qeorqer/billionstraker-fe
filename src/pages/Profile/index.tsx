@@ -8,7 +8,7 @@ import {
   getTransactionsThunk,
   resetTransactions,
   transactionData,
-  TransactionTypesToShow,
+  TransactionTypeToShow,
 } from 'features/transaction';
 
 const LIMIT = 10;
@@ -26,13 +26,16 @@ const ProfilePage = () => {
   const initialCategory = params.get('category');
   const initialDateFrom = params.get('dateFrom');
   const initialDateTo = params.get('dateTo');
+  const initialTransactionType = params.get('transactionType');
 
   const [numberToSkip, setNumberToSkip] = useState<number>(LIMIT);
   const [categoriesToShow, setCategoriesToShow] = useState<string>(
     initialCategory || 'all',
   );
   const [shownTransactionsTypes, setShownTransactionsTypes] =
-    useState<TransactionTypesToShow>('all transactions');
+    useState<TransactionTypeToShow>(
+      (initialTransactionType as TransactionTypeToShow) || 'all transactions',
+    );
   const [balancesToShow, setBalancesToShow] = useState<string>(
     initialBalance || 'all',
   );
