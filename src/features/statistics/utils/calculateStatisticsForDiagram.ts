@@ -1,7 +1,7 @@
 import { DiagramPiece, RangeStatisticsItem } from 'features/statistics/types';
 import i18next from 'i18next';
 import Decimal from 'decimal.js';
-import { formattingSum } from 'features/transaction/utils/formattingSum';
+import { formatSum } from 'features/transaction/utils/formatSum';
 
 const colors = ['#E38627', '#C13C37', '#832942'];
 
@@ -37,7 +37,6 @@ export const calculateStatisticsForDiagram = (
 
   const formattedResult = result.map((el, index, array) => {
     const percentage = (100 * el.amount) / totallySpent;
-    const percentageToFixed = percentage.toFixed(2);
     const isPercentageLessThan1 = percentage < 1;
 
     if (isPercentageLessThan1) {
@@ -47,7 +46,7 @@ export const calculateStatisticsForDiagram = (
     return {
       value: isPercentageLessThan1 ? totallySpent * 0.01 : el.amount,
       color: hovered === index ? '#31333C' : colors[index % colors.length],
-      tooltip: `${el.name}, ${formattingSum(el.amount)}, ${percentageToFixed}%`,
+      tooltip: `${el.name}, ${formatSum(el.amount)}`,
     };
   });
 
