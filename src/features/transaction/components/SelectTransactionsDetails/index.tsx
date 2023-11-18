@@ -41,7 +41,7 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
   const { balances } = useAppSelector(balanceData);
   const { categories } = useAppSelector(categoryData);
   const { t } = useTranslation();
-  const { isLoadingTransactions, transactions, numberOfTransactions } =
+  const { isLoadingTransactions, numberOfTransactions } =
     useAppSelector(transactionData);
 
   if (
@@ -99,7 +99,6 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
             setSelectedValue={setBalancesToShow}
             fieldToSelect="name"
             withTranslate
-            disabled={shownTransactionsTypes === 'exchange'}
           />
         </Col>
         <Col xs="6" sm="4" className="max-width-220 p-1">

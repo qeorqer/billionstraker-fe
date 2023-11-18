@@ -3,25 +3,44 @@ import { PieChart } from 'react-minimal-pie-chart';
 import ReactTooltip from 'react-tooltip';
 
 import { DiagramPiece, RangeStatisticsItem } from 'features/statistics/types';
-import { formatSum } from 'features/transaction/utils/formatSum';
 import { calculateStatisticsForDiagram } from 'features/statistics/utils/calculateStatisticsForDiagram';
 import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
+import { useAppSelector } from 'store/hooks';
+import { userData } from 'features/user';
+import { balanceData } from 'features/balance';
+import { formatSum } from 'features/transaction/utils/formatSum';
 
 type DiagramStatisticsProps = {
   rangeStatistics: RangeStatisticsItem[];
   totallySpent: number;
+  selectedBalance: string;
 };
 
 const DiagramStatistics: FC<DiagramStatisticsProps> = ({
   rangeStatistics,
   totallySpent,
+  selectedBalance,
 }) => {
   const [hovered, setHovered] = useState<number | null>(null);
   const [statistics, setStatistics] = useState<DiagramPiece[]>([]);
 
+  const { balances } = useAppSelector(balanceData);
+  const { formatSumByBalanceName } = useFormatSumByBalanceName();
+  const { user } = useAppSelector(userData);
+
   useEffect(() => {
+    const currencyCode =
+      balances.find(({ name }) => name === selectedBalance)?.currency ??
+      user.preferredCurrency ??
+      '';
+
     setStatistics(
-      calculateStatisticsForDiagram(rangeStatistics, totallySpent, hovered),
+      calculateStatisticsForDiagram({
+        statistics: rangeStatistics,
+        totallySpent,
+        hovered,
+        currencyCode: currencyCode,
+      }),
     );
   }, [rangeStatistics, totallySpent, hovered]);
 
@@ -40,7 +59,7 @@ const DiagramStatistics: FC<DiagramStatisticsProps> = ({
         totalValue={totallySpent}
         labelPosition={0}
         labelStyle={{
-          fontSize: '11px',
+          fontSize: '10px',
           fill: '#F3C709',
         }}
         onMouseOver={(el, index) => {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import ProfilePageView from './view';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
@@ -11,13 +10,15 @@ import {
   TransactionTypeToShow,
 } from 'features/transaction';
 
+import ProfilePageView from './view';
+
 const LIMIT = 10;
 
 const ProfilePage = () => {
-  const { isLoadingTransactions, transactions, numberOfTransactions } =
+  const { isLoadingTransactions, numberOfTransactions } =
     useAppSelector(transactionData);
   const dispatch = useAppDispatch();
-  const { lang, user } = useAppSelector(userData);
+  const { user } = useAppSelector(userData);
   const { search } = useLocation();
 
   const params = new URLSearchParams(search);
@@ -69,7 +70,6 @@ const ProfilePage = () => {
 
     if (shownTransactionsTypes === 'exchange') {
       setCategoriesToShow('all');
-      setBalancesToShow('all');
     }
 
     if (!isLoadingTransactions) {
@@ -85,10 +85,7 @@ const ProfilePage = () => {
               shownTransactionsTypes === 'exchange'
                 ? []
                 : [categoriesToShow],
-            balancesToShow:
-              balancesToShow === 'all' || shownTransactionsTypes === 'exchange'
-                ? []
-                : [balancesToShow],
+            balancesToShow: balancesToShow === 'all' ? [] : [balancesToShow],
             from: monthsRange[0],
             to: monthsRange[1],
           },

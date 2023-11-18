@@ -95,6 +95,7 @@ const StatisticsViewItem: FC<StatisticsViewItemProps> = ({
               ? statistics.balanceRange!
               : statistics.categoryRange
           }
+          selectedBalance={selectedBalance}
         />
       ) : (
         <StatisticsList

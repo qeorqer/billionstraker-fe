@@ -1,15 +1,23 @@
 import { DiagramPiece, RangeStatisticsItem } from 'features/statistics/types';
 import i18next from 'i18next';
 import Decimal from 'decimal.js';
-import { formatSum } from 'features/transaction/utils/formatSum';
+import { formatSumByCurrencyCode } from 'features/statistics/utils/formatSumByCurrencyCode';
 
 const colors = ['#E38627', '#C13C37', '#832942'];
 
-export const calculateStatisticsForDiagram = (
-  statistics: RangeStatisticsItem[],
-  totallySpent: number,
-  hovered: number | null,
-): DiagramPiece[] => {
+type CalculateStatisticsForDiagramOptions = {
+  statistics: RangeStatisticsItem[];
+  totallySpent: number;
+  hovered: number | null;
+  currencyCode: string;
+};
+
+export const calculateStatisticsForDiagram = ({
+  statistics,
+  totallySpent,
+  hovered,
+  currencyCode,
+}: CalculateStatisticsForDiagramOptions): DiagramPiece[] => {
   let numberOfItemsWithSmallPercentage = 0;
   const otherItems: RangeStatisticsItem = {
     name: i18next.t('other'),
@@ -46,7 +54,10 @@ export const calculateStatisticsForDiagram = (
     return {
       value: isPercentageLessThan1 ? totallySpent * 0.01 : el.amount,
       color: hovered === index ? '#31333C' : colors[index % colors.length],
-      tooltip: `${el.name}, ${formatSum(el.amount)}`,
+      tooltip: `${el.name}, ${formatSumByCurrencyCode(
+        el.amount,
+        currencyCode,
+      )}`,
     };
   });
 
