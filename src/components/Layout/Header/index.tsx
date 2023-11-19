@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
@@ -8,6 +8,7 @@ import { useAppDispatch } from 'store/hooks';
 import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
 import CustomToggle from 'components/Shared/CustomToggle';
 import { logOutThunk } from 'features/user';
+import { UseInstallPWA } from 'features/PWA/hooks/useInstallPWA';
 
 import './styles.scss';
 import { tabMenuItems } from './constants';
@@ -15,12 +16,15 @@ import { tabMenuItems } from './constants';
 type DropdownMenuItem = {
   title: string;
   onClick: () => void;
+  isShown: boolean;
 };
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { t } = useTranslation();
+
+  const { supportsPWA, installPWA } = UseInstallPWA();
 
   const handleLogout = () => {
     const refreshToken = localStorage.getItem('refreshToken');
@@ -32,22 +36,32 @@ const Header = () => {
     {
       title: 'balances',
       onClick: () => history.push('/balance'),
+      isShown: true,
     },
     {
       title: 'categories',
       onClick: () => history.push('/category'),
+      isShown: true,
     },
     {
       title: 'usage guide',
       onClick: () => history.push('/guide', '_blank'),
+      isShown: true,
     },
     {
       title: 'Support',
       onClick: () => window.open('https://t.me/qeorqe', '_blank'),
+      isShown: true,
+    },
+    {
+      title: 'install PWA',
+      onClick: installPWA,
+      isShown: supportsPWA,
     },
     {
       title: 'Log out',
       onClick: handleLogout,
+      isShown: true,
     },
   ];
 
@@ -82,11 +96,13 @@ const Header = () => {
                   className="d-flex justify-content-around languagesController">
                   <LanguageSwitcher />
                 </Dropdown.Item>
-                {dropdownMenuItems.map(({ title, onClick }) => (
-                  <Dropdown.Item as="span" key={title} onClick={onClick}>
-                    {t(title)}
-                  </Dropdown.Item>
-                ))}
+                {dropdownMenuItems
+                  .filter(({ isShown }) => isShown)
+                  .map(({ title, onClick }) => (
+                    <Dropdown.Item as="span" key={title} onClick={onClick}>
+                      {t(title)}
+                    </Dropdown.Item>
+                  ))}
               </Dropdown.Menu>
             </Dropdown>
           </Col>
