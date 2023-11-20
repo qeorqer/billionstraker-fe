@@ -8,12 +8,16 @@ import Header from 'components/Layout/Header';
 import AppRouter from 'navigation/AppRouter';
 import { refreshTokenThunk, setAuth, userData } from 'features/user';
 import { checkIsAccessTokenExpired } from 'features/user/utils/checkIsAccessTokenExpired';
+import NoInternetConnectionPage from 'pages/NoInternetConnection';
+import { usePwa } from '@dotmind/react-use-pwa';
 
 import './App.scss';
 
 const App = () => {
   const dispatch = useAppDispatch();
   const { isAuth } = useAppSelector(userData);
+
+  const { isOffline } = usePwa();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -30,6 +34,10 @@ const App = () => {
       dispatch(setAuth(false));
     }
   }, []);
+
+  if (isOffline) {
+    return <NoInternetConnectionPage />;
+  }
 
   return (
     <>

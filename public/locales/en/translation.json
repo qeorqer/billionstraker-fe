@@ -181,5 +181,7 @@
   "use balances": "Group by balance",
   "expenses": "Expenses",
   "incomes": "Incomes",
-  "install PWA": "Install app"
+  "install PWA": "Install app",
+  "No internet connection": "This app does not work offline, get you internet connection and come again",
+  "Try again": "Try again"
 }
