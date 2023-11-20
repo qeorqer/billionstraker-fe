@@ -2,13 +2,13 @@ import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
+import { usePwa } from '@dotmind/react-use-pwa';
 
 import logo from 'assets/common/logo.png';
 import { useAppDispatch } from 'store/hooks';
 import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
 import CustomToggle from 'components/Shared/CustomToggle';
 import { logOutThunk } from 'features/user';
-import { UseInstallPWA } from 'features/PWA/hooks/useInstallPWA';
 
 import './styles.scss';
 import { tabMenuItems } from './constants';
@@ -24,7 +24,7 @@ const Header = () => {
   const history = useHistory();
   const { t } = useTranslation();
 
-  const { supportsPWA, installPWA } = UseInstallPWA();
+  const { installPrompt, canInstall } = usePwa();
 
   const handleLogout = () => {
     const refreshToken = localStorage.getItem('refreshToken');
@@ -55,8 +55,8 @@ const Header = () => {
     },
     {
       title: 'install PWA',
-      onClick: installPWA,
-      isShown: supportsPWA,
+      onClick: installPrompt,
+      isShown: canInstall,
     },
     {
       title: 'Log out',
