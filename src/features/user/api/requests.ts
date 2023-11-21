@@ -4,7 +4,6 @@ import {
   AuthData,
   AuthResponse,
   logInRoute,
-  LogOutPayload,
   logOutRoute,
   refreshTokenRoute,
   signUpRoute,
@@ -21,12 +20,15 @@ export const logInRequest = (
   body: AuthData,
 ): Promise<AxiosResponse<AuthResponse>> => api.post(logInRoute, body);
 
-export const logOutRequest = (
-  body: LogOutPayload,
-): Promise<AxiosResponse<void>> => api.post(logOutRoute, body);
+export const logOutRequest = (): Promise<AxiosResponse<void>> => {
+  const refreshToken = localStorage.getItem('refreshToken');
+  return api.post(logOutRoute, { refreshToken });
+};
 
-export const refreshTokenRequest = (): Promise<AxiosResponse<AuthResponse>> =>
-  api.get(refreshTokenRoute);
+export const refreshTokenRequest = (): Promise<AxiosResponse<AuthResponse>> => {
+  const refreshToken = localStorage.getItem('refreshToken');
+  return api.post(refreshTokenRoute, { refreshToken });
+};
 
 export const updateUserRequest = (
   body: UpdateUserPayload,

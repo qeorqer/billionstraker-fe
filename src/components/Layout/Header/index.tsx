@@ -27,8 +27,7 @@ const Header = () => {
   const { installPrompt, canInstall } = usePwa();
 
   const handleLogout = () => {
-    const refreshToken = localStorage.getItem('refreshToken');
-    dispatch(logOutThunk({ refreshToken }));
+    dispatch(logOutThunk());
     history.push('/authorization');
   };
 

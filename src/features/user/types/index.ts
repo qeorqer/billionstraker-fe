@@ -22,10 +22,6 @@ export type AuthData = {
   password: string;
 };
 
-export type LogOutPayload = {
-  refreshToken: string | null;
-};
-
 export type UpdateUserPayload = {
   updatedFields: Partial<User>;
 };

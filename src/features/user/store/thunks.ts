@@ -7,7 +7,6 @@ import {
   AuthResponse,
   logInRequest,
   logInRoute,
-  LogOutPayload,
   logOutRequest,
   logOutRoute,
   refreshTokenRequest,
@@ -60,8 +59,7 @@ export const logInThunk = createAsyncThunk<
 
 export const logOutThunk = createAsyncThunk(
   logOutRoute,
-  async (body: LogOutPayload): Promise<AxiosResponse<void>> =>
-    await logOutRequest(body),
+  async (): Promise<AxiosResponse<void>> => logOutRequest(),
 );
 
 export const refreshTokenThunk = createAsyncThunk(

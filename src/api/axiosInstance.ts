@@ -59,8 +59,7 @@ axiosInstance.interceptors.response.use(
           type: 'warning',
         });
 
-        const refreshToken = localStorage.getItem('refreshToken');
-        logOutRequest({ refreshToken });
+        logOutRequest();
         clearDataFromLocalStorage();
       }
     }
