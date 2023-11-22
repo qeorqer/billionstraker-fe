@@ -27,14 +27,14 @@ const StatisticsView: FC<StatisticsViewProps> = ({
 
   const { t } = useTranslation();
 
+  if (isLoadingStatistics) {
+    return <Loader />;
+  }
+
   if (!statistics) {
     return (
       <CreateTransactionFirstButton text="Some of your statistic will be here" />
     );
-  }
-
-  if (isLoadingStatistics) {
-    return <Loader />;
   }
 
   return (
