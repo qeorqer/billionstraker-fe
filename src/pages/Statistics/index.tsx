@@ -2,20 +2,18 @@ import React, { FC, useEffect, useState } from 'react';
 import moment from 'moment';
 import { useLocation } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { getStatisticsForBalance } from 'store/reducers/statistic.reducer';
-import { statisticData } from 'store/selectors';
-import { getBalances } from 'store/reducers/balance.reducer';
-import Loader from 'components/Loader';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import Loader from 'components/Shared/Loader';
+import { balanceData, getBalancesThunk } from 'features/balance';
+import { getStatisticsThunk } from 'features/statistics';
 import 'moment/locale/ru';
 
-import Statistics from './view';
+import StatisticsPageView from './view';
+import { userData } from 'features/user';
 
 const StatisticsPage: FC = () => {
-  const { statisticsForBalance } = useAppSelector(statisticData);
-  const { isLoadingBalances, balances } = useAppSelector(
-    (state) => state.balanceData,
-  );
+  const { isLoadingBalances } = useAppSelector(balanceData);
+  const { user } = useAppSelector(userData);
 
   const dispatch = useAppDispatch();
   const { search } = useLocation();
@@ -27,45 +25,36 @@ const StatisticsPage: FC = () => {
   const initialDateTo = params.get('dateTo');
 
   const startOfMonth = new Date(moment().startOf('month').toISOString());
-  const [monthsRange, setMonthsRange] = useState<Date[]>([
+  const [monthsRange, setMonthsRange] = useState<[Date, Date]>([
     new Date(initialDateFrom || startOfMonth),
     new Date(initialDateTo || new Date()),
   ]);
-  const [balance, setBalance] = useState<string>(initialBalance || '');
+  const [balanceName, setBalanceName] = useState<string>(initialBalance || '');
 
   useEffect(() => {
-    if (balance) {
-      dispatch(
-        getStatisticsForBalance({
-          from: monthsRange[0],
-          to: monthsRange[1],
-          balance,
-        }),
-      );
-    }
-  }, [monthsRange, balance]);
+    dispatch(
+      getStatisticsThunk({
+        from: monthsRange[0],
+        to: monthsRange[1],
+        balance: balanceName ? balanceName : null,
+      }),
+    );
+  }, [monthsRange, balanceName, user]);
 
   useEffect(() => {
-    dispatch(getBalances());
+    dispatch(getBalancesThunk());
   }, []);
-
-  useEffect(() => {
-    if (balances.length && !initialBalance) {
-      setBalance(balances[0].name);
-    }
-  }, [balances]);
 
   if (isLoadingBalances) {
     return <Loader />;
   }
 
   return (
-    <Statistics
-      statisticsForBalance={statisticsForBalance}
+    <StatisticsPageView
       monthsRange={monthsRange}
       setMonthsRange={setMonthsRange}
-      balance={balance}
-      setBalance={setBalance}
+      balanceName={balanceName}
+      setBalanceName={setBalanceName}
     />
   );
 };

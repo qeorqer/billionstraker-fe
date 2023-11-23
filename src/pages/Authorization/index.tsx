@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Authorization from './view';
+import AuthorizationPageView from './view';
 
 const AuthPage = () => {
-  const [showSignIn, setShowSignIn] = useState<boolean>(true);
   const { t } = useTranslation();
 
-  return (
-    <Authorization
-      t={t}
-      setShowSignIn={setShowSignIn}
-      showSignIn={showSignIn}
-    />
-  );
+  return <AuthorizationPageView t={t} />;
 };
 
 export default AuthPage;

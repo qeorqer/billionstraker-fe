@@ -1,55 +1,41 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import React, { Dispatch, ForwardedRef, SetStateAction } from 'react';
+import { Col, Container, Row, Stack } from 'react-bootstrap';
 
-import { balanceType } from 'types/balance.type';
-import BalancesList from 'components/Balances/BalancesList';
-import BalanceForm from 'components/Balances/BalanceForm';
+import { Balance } from 'features/balance/types';
+import BalancesList from 'features/balance/components/BalancesList';
+import BalanceForm from 'features/balance/components/BalanceForm';
+import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
+import { TypeaheadRef } from 'react-bootstrap-typeahead';
+import { CurrencyOption } from 'features/currency';
+import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
+import SelectPreferredCurrency from 'features/currency/components/SelectPreferredCurrency';
 
-type propsType = {
+type BalancePageViewProps = {
   t: (text: string) => string;
-  balances: balanceType[];
-  name: string;
-  setName: Dispatch<SetStateAction<string>>;
-  amount: string | number;
-  handleChangeAmount: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleAddBalance: () => void;
-  isLoading: boolean;
+  hasBalances: boolean;
 };
 
-const Balance: React.FC<propsType> = ({
+const BalancePageView: React.FC<BalancePageViewProps> = ({
   t,
-  balances,
-  name,
-  setName,
-  amount,
-  handleChangeAmount,
-  handleAddBalance,
-  isLoading,
+  hasBalances,
 }) => (
-  <>
-    <Container className="py-4">
+  <Container className="py-4">
+    {!hasBalances && (
       <p className="fs-4 fw-bold text-center py-2">
-        {t(
-          balances.length ? 'all your balances' : 'your balances will be here',
-        )}
+        {t(hasBalances ? 'all your balances' : 'your balances will be here')}
       </p>
-      <BalancesList withMenu />
-      <Row className="text-center">
+    )}
+    <Stack gap={3}>
+      <BalancesList showMenu />
+      <SelectPreferredCurrency />
+      <Row>
         <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
-          <p className="fs-5 fw-bold">{t('add new balance')}:</p>
-          <BalanceForm
-            name={name}
-            setName={setName}
-            amount={amount}
-            handleChangeAmount={handleChangeAmount}
-            handleSubmit={handleAddBalance}
-            buttonText="create"
-            isLoading={isLoading}
-          />
+          <p className="fs-5 fw-bold text-center">{t('add new balance')}:</p>
+          <BalanceForm buttonText="create" />
         </Col>
       </Row>
-    </Container>
-  </>
+    </Stack>
+  </Container>
 );
 
-export default Balance;
+export default BalancePageView;

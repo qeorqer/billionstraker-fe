@@ -1,77 +1,61 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Container, Modal } from 'react-bootstrap';
+import React, { Dispatch, FC, SetStateAction } from 'react';
+import { Container, Stack } from 'react-bootstrap';
 
-import Transactions from 'components/Profile/Transactions';
-import BalancesList from 'components/Balances/BalancesList';
-import SelectTransactionType from 'components/CreateTransaction/SelectTransactionType';
+import TransactionsList from 'features/transaction/components/TransactionsList';
+import BalancesList from 'features/balance/components/BalancesList';
 
 import './styles.scss';
-import {
-  submitTransactionType,
-  transactionType,
-  transactionTypes,
-} from 'types/transaction.type';
-import CreateTransactionForm from 'components/CreateTransaction/CreateTransactionForm';
-import { balanceType } from 'types/balance.type';
-import { categoryType } from 'types/category.type';
+import SelectTransactionsDetails from 'features/transaction/components/SelectTransactionsDetails';
+import { TransactionTypeToShow } from 'features/transaction';
+import BackToStatisticsButton from 'features/statistics/components/BackToStatisticsButton';
 
-type propsType = {
-  balances: balanceType[];
-  categories: categoryType[];
-  t: (text: string) => string;
-  isModalShown: boolean;
-  transactionType: transactionTypes;
-  setTransactionType: Dispatch<SetStateAction<transactionTypes>>;
-  setSelectedTransaction: Dispatch<SetStateAction<transactionType | null>>;
-  handleSubmit: (transaction: submitTransactionType | null) => void;
-  selectedTransaction: transactionType | null;
+type ProfilePageViewProps = {
+  shownTransactionsTypes: TransactionTypeToShow;
+  setShownTransactionsTypes: Dispatch<SetStateAction<TransactionTypeToShow>>;
+  categoriesToShow: string;
+  balancesToShow: string;
+  setCategoriesToShow: Dispatch<SetStateAction<string>>;
+  setBalancesToShow: Dispatch<SetStateAction<string>>;
+  setMonthsRange: React.Dispatch<React.SetStateAction<[Date, Date]>>;
+  monthsRange: [Date, Date];
+  isBackToStatisticsShown: boolean;
+  handleLoadMoreTransactions: () => void;
+  hasMoreTransactions: boolean;
 };
 
-const Profile: React.FC<propsType> = ({
-  balances,
-  categories,
-  t,
-  isModalShown,
-  transactionType,
-  setTransactionType,
-  setSelectedTransaction,
-  handleSubmit,
-  selectedTransaction,
+const ProfilePageView: FC<ProfilePageViewProps> = ({
+  shownTransactionsTypes,
+  categoriesToShow,
+  balancesToShow,
+  setCategoriesToShow,
+  setBalancesToShow,
+  setShownTransactionsTypes,
+  setMonthsRange,
+  monthsRange,
+  isBackToStatisticsShown,
+  hasMoreTransactions,
+  handleLoadMoreTransactions,
 }) => (
   <Container className="py-4 mb-4 mb-sm-0">
-    {Boolean(balances.length) && (
-      <p className="fs-4 fw-bold text-center py-2">{t('all your balances')}</p>
-    )}
-    <BalancesList />
-    <Transactions setSelectedTransaction={setSelectedTransaction} />
-    <Modal
-      show={isModalShown}
-      onHide={() => setSelectedTransaction(null)}
-      centered>
-      <Modal.Header closeButton>
-        <Modal.Title>{t('edit transaction')}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Container>
-          <SelectTransactionType
-            transactionType={transactionType}
-            setTransactionType={setTransactionType}
-            isModal
-            initialValues={selectedTransaction}
-          />
-          <CreateTransactionForm
-            selectedTransactionType={transactionType}
-            balances={balances}
-            categories={categories}
-            handleSubmit={handleSubmit}
-            initialValues={selectedTransaction}
-            isModal
-            isEdit
-          />
-        </Container>
-      </Modal.Body>
-    </Modal>
+    <Stack gap={2}>
+      <BalancesList />
+      <SelectTransactionsDetails
+        shownTransactionsTypes={shownTransactionsTypes}
+        categoriesToShow={categoriesToShow}
+        balancesToShow={balancesToShow}
+        setCategoriesToShow={setCategoriesToShow}
+        setBalancesToShow={setBalancesToShow}
+        setShownTransactionsTypes={setShownTransactionsTypes}
+        setMonthsRange={setMonthsRange}
+        monthsRange={monthsRange}
+      />
+      <TransactionsList
+        handleLoadMoreTransactions={handleLoadMoreTransactions}
+        hasMore={hasMoreTransactions}
+      />
+      {isBackToStatisticsShown && <BackToStatisticsButton />}
+    </Stack>
   </Container>
 );
 
-export default Profile;
+export default ProfilePageView;

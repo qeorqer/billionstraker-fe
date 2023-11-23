@@ -1,57 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import { createBalance } from 'store/reducers/balance.reducer';
-import { handleChangeAmount } from 'utils/handleChangeAmount';
+import { useAppSelector } from 'store/hooks';
+import { balanceData } from 'features/balance';
 
-import Balance from './view';
+import BalancePageView from './view';
 
 const BalancePage = () => {
-  const [name, setName] = useState<string>('');
-  const [amount, setAmount] = useState<number | string>('');
-
-  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const { balances, isLoadingBalances } = useAppSelector(
-    (state) => state.balanceData,
-  );
+  const { balances } = useAppSelector(balanceData);
 
-  const handleAddBalance = () => {
-    if (!name || !amount) {
-      return toast(t('All fields are required'), {
-        type: 'error',
-      });
-    }
-
-    const isNameAlreadyUsed = balances.some(
-      (balance) => balance.name.toLowerCase().trim() === name,
-    );
-    if (isNameAlreadyUsed) {
-      return toast(t('name should be unique'), {
-        type: 'error',
-      });
-    }
-
-    dispatch(createBalance({ name, amount: Number(amount) }));
-
-    setName('');
-    setAmount('');
-  };
-
-  return (
-    <Balance
-      t={t}
-      balances={balances}
-      name={name}
-      setName={setName}
-      amount={amount}
-      handleChangeAmount={handleChangeAmount(setAmount)}
-      handleAddBalance={handleAddBalance}
-      isLoading={isLoadingBalances}
-    />
-  );
+  return <BalancePageView t={t} hasBalances={balances.length > 0} />;
 };
 
 export default BalancePage;

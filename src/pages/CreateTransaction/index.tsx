@@ -1,45 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 
-import { categoryData } from 'store/selectors';
-import { useAppDispatch, useAppSelector } from 'hooks/react-redux.hook';
-import {
-  submitTransactionType,
-  transactionTypes,
-} from 'types/transaction.type';
-import { getCategories } from 'store/reducers/category.reducer';
-import { getBalances } from 'store/reducers/balance.reducer';
-import { createTransaction } from 'store/reducers/transaction.reducer';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { TransactionType } from 'features/transaction';
+import { balanceData, getBalancesThunk } from 'features/balance';
+import { categoryData, getCategoriesThunk } from 'features/category';
+import Loader from 'components/Shared/Loader';
 
-import CreateTransaction from './view';
+import CreateTransactionPageView from './view';
 
 const CreateTransactionPage = () => {
   const { categories, isLoadingCategories } = useAppSelector(categoryData);
-  const { balances, isLoadingBalances } = useAppSelector(
-    (state) => state.balanceData,
-  );
+  const { balances, isLoadingBalances } = useAppSelector(balanceData);
 
   const [canCreateTransaction, setCanCreateTransaction] =
     useState<boolean>(false);
   const [transactionType, setTransactionType] =
-    useState<transactionTypes>('expense');
+    useState<TransactionType>('expense');
 
-  const [isLoading, setIsLoading] = useState(false);
-
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { push } = useHistory();
-
-  const handleSubmit = (dataForSubmit: submitTransactionType | null) => {
-    if (dataForSubmit) {
-      dispatch(createTransaction(dataForSubmit));
-    }
-  };
-
-  const handleCreateBalance = () => push('balance');
-
-  const handleCreateCategory = () => push('categories');
 
   useEffect(() => {
     switch (transactionType) {
@@ -68,26 +46,19 @@ const CreateTransactionPage = () => {
   }, [categories, balances, transactionType]);
 
   useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getBalances());
+    dispatch(getCategoriesThunk());
+    dispatch(getBalancesThunk());
   }, []);
 
-  useEffect(() => {
-    setIsLoading(isLoadingCategories && isLoadingBalances);
-  }, [isLoadingBalances, isLoadingCategories]);
+  if (isLoadingCategories && isLoadingBalances) {
+    return <Loader />;
+  }
 
   return (
-    <CreateTransaction
-      t={t}
+    <CreateTransactionPageView
       transactionType={transactionType}
       setTransactionType={setTransactionType}
-      balances={balances}
-      categories={categories}
-      handleSubmit={handleSubmit}
       canCreateTransaction={canCreateTransaction}
-      handleCreateBalance={handleCreateBalance}
-      handleCreateCategory={handleCreateCategory}
-      isLoading={isLoading}
     />
   );
 };

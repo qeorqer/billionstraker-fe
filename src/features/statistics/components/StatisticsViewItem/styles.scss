@@ -1,0 +1,17 @@
+.rangeHolderControls button {
+  width: 100px;
+
+  &:hover, &.active{
+    color: white;
+  }
+}
+
+.balancesSwitch {
+  display: flex;
+  justify-content: center;
+
+  label {
+    display: inline-block;
+    margin-left: 5px
+  }
+}

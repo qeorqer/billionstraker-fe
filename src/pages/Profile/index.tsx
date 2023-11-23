@@ -1,52 +1,112 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import { useAppSelector } from 'hooks/react-redux.hook';
+import { useLocation } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { userData } from 'features/user';
 import {
-  submitTransactionType,
-  transactionType,
-  transactionTypes,
-} from 'types/transaction.type';
-import { categoryData } from 'store/selectors';
-import { updateTransaction } from 'store/reducers/transaction.reducer';
-import { useDispatch } from 'react-redux';
+  getTransactionsThunk,
+  resetTransactions,
+  transactionData,
+  TransactionTypeToShow,
+} from 'features/transaction';
 
-import Profile from './view';
+import ProfilePageView from './view';
+
+const LIMIT = 10;
 
 const ProfilePage = () => {
-  const { balances } = useAppSelector((state) => state.balanceData);
-  const { categories } = useAppSelector(categoryData);
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const { isLoadingTransactions, numberOfTransactions } =
+    useAppSelector(transactionData);
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector(userData);
+  const { search } = useLocation();
 
-  const [transactionType, setTransactionType] =
-    useState<transactionTypes>('expense');
-  const [isModalShown, setIsModalShown] = useState(false);
-  const [selectedTransaction, setSelectedTransaction] =
-    useState<transactionType | null>(null);
+  const params = new URLSearchParams(search);
 
-  const handleSubmit = (dataForSubmit: submitTransactionType | null) => {
-    if (dataForSubmit) {
-      dispatch(updateTransaction(dataForSubmit));
-      setIsModalShown(false);
+  const initialBalance = params.get('balance');
+  const initialCategory = params.get('category');
+  const initialDateFrom = params.get('dateFrom');
+  const initialDateTo = params.get('dateTo');
+  const initialTransactionType = params.get('transactionType');
+
+  const [numberToSkip, setNumberToSkip] = useState<number>(LIMIT);
+  const [categoriesToShow, setCategoriesToShow] = useState<string>(
+    initialCategory || 'all',
+  );
+  const [shownTransactionsTypes, setShownTransactionsTypes] =
+    useState<TransactionTypeToShow>(
+      (initialTransactionType as TransactionTypeToShow) || 'all transactions',
+    );
+  const [balancesToShow, setBalancesToShow] = useState<string>(
+    initialBalance || 'all',
+  );
+  const [monthsRange, setMonthsRange] = useState<[Date, Date]>([
+    new Date(initialDateFrom || user.created),
+    new Date(initialDateTo || new Date()),
+  ]);
+
+  const handleLoadMoreTransactions = () => {
+    if (!isLoadingTransactions) {
+      dispatch(
+        getTransactionsThunk({
+          limit: LIMIT,
+          numberToSkip: numberToSkip,
+          filteringOptions: {
+            shownTransactionsTypes,
+            categoriesToShow:
+              categoriesToShow === 'all' ? [] : [categoriesToShow],
+            balancesToShow: balancesToShow === 'all' ? [] : [balancesToShow],
+            from: monthsRange[0],
+            to: monthsRange[1],
+          },
+        }),
+      );
+      setNumberToSkip(LIMIT + numberToSkip);
     }
   };
 
   useEffect(() => {
-    setIsModalShown(Boolean(selectedTransaction));
-  }, [selectedTransaction]);
+    setNumberToSkip(LIMIT);
+
+    if (shownTransactionsTypes === 'exchange') {
+      setCategoriesToShow('all');
+    }
+
+    if (!isLoadingTransactions) {
+      dispatch(resetTransactions());
+      dispatch(
+        getTransactionsThunk({
+          limit: LIMIT,
+          numberToSkip: 0,
+          filteringOptions: {
+            shownTransactionsTypes,
+            categoriesToShow:
+              categoriesToShow === 'all' ||
+              shownTransactionsTypes === 'exchange'
+                ? []
+                : [categoriesToShow],
+            balancesToShow: balancesToShow === 'all' ? [] : [balancesToShow],
+            from: monthsRange[0],
+            to: monthsRange[1],
+          },
+        }),
+      );
+    }
+  }, [shownTransactionsTypes, categoriesToShow, balancesToShow, monthsRange]);
 
   return (
-    <Profile
-      balances={balances}
-      categories={categories}
-      t={t}
-      transactionType={transactionType}
-      setTransactionType={setTransactionType}
-      isModalShown={isModalShown}
-      setSelectedTransaction={setSelectedTransaction}
-      selectedTransaction={selectedTransaction}
-      handleSubmit={handleSubmit}
+    <ProfilePageView
+      shownTransactionsTypes={shownTransactionsTypes}
+      categoriesToShow={categoriesToShow}
+      balancesToShow={balancesToShow}
+      setCategoriesToShow={setCategoriesToShow}
+      setBalancesToShow={setBalancesToShow}
+      setShownTransactionsTypes={setShownTransactionsTypes}
+      setMonthsRange={setMonthsRange}
+      monthsRange={monthsRange}
+      isBackToStatisticsShown={Boolean(initialDateFrom && initialDateTo)}
+      handleLoadMoreTransactions={handleLoadMoreTransactions}
+      hasMoreTransactions={numberToSkip <= numberOfTransactions}
     />
   );
 };

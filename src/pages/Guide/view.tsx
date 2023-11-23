@@ -9,6 +9,7 @@ import guide5 from 'assets/guide/guide-5.png';
 import guide6 from 'assets/guide/guide-6.png';
 import guide7 from 'assets/guide/guide-7.png';
 import guide8 from 'assets/guide/guide-8.png';
+import guide9 from 'assets/guide/guide-9.png';
 
 import './styles.scss';
 
@@ -21,7 +22,7 @@ type propsType = {
   handleCheckStatistics: () => void;
 };
 
-const Guide: React.FC<propsType> = ({
+const GuidePageView: React.FC<propsType> = ({
   t,
   handleCreateBalance,
   handleCreateCategory,
@@ -89,16 +90,18 @@ const Guide: React.FC<propsType> = ({
       <p className="fs-6 my-2 yellowText">
         {t('select dates range and balance')}
       </p>
+      <img src={guide7} alt="statistics page" />
+      <p className="fs-5 my-2">{t('by default statistics is shown')}</p>
+      <img src={guide8} alt="statistics page2" />
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
         onClick={handleCheckStatistics}>
         {t('check out statistics')}
       </Button>
-      <img src={guide7} alt="statistics page" />
       <p className="fs-5 mt-3 mb-2">{t('pro tip')}</p>
       <p className="fs-6 my-2 yellowText">{t('get pwa')}</p>
-      <img src={guide8} alt="get PWA" className="max-width-220" />
+      <img src={guide9} alt="get PWA" className="max-width-220" />
       <p className="fs-5 mt-2 mb-3">{t('that is all for the guidance')}</p>
       <p className="fs-6 mt-3 mb-2">{t('if you read here')}</p>
       <Button
@@ -111,4 +114,4 @@ const Guide: React.FC<propsType> = ({
   </>
 );
 
-export default Guide;
+export default GuidePageView;
