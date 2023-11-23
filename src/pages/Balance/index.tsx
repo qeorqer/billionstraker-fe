@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
 
-import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { balanceData, createBalanceThunk } from 'features/balance';
+import { useAppSelector } from 'store/hooks';
+import { balanceData } from 'features/balance';
 
 import BalancePageView from './view';
 

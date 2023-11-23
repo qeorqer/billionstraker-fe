@@ -15,6 +15,7 @@ import {
 } from 'features/balance';
 import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
+import { updateUserThunk, userData } from 'features/user';
 
 type BalanceFormProps = {
   buttonText: string;
@@ -43,6 +44,7 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { balances, isLoadingBalances } = useAppSelector(balanceData);
+  const { user } = useAppSelector(userData);
 
   const validationSchema = Yup.object().shape({
     name: Yup.string()
@@ -72,6 +74,17 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
         onSuccess();
       } else {
         await dispatch(createBalanceThunk(payload));
+
+        if (!user?.preferredCurrency) {
+          await dispatch(
+            updateUserThunk({
+              updatedFields: {
+                preferredCurrency: values.currency,
+              },
+            }),
+          );
+        }
+
         resetForm();
         typeaheadRef.current?.clear();
       }

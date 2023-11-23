@@ -17,7 +17,7 @@ const CannotCreateTransactionButtons: FC<
 
   const handleCreateBalance = () => push('balance');
 
-  const handleCreateCategory = () => push('categories');
+  const handleCreateCategory = () => push('category');
 
   if (transactionType === 'exchange') {
     return (
