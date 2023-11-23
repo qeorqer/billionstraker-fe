@@ -322,7 +322,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                   </Col>
                 </Row>
 
-                <Row className="mt-3">
+                <Row>
                   <Col xs={selectedTransactionType === 'exchange' ? 12 : 6}>
                     <p className="mb-1 fs-5">{t('Name the transaction')}:</p>
                     <Field name="title">
