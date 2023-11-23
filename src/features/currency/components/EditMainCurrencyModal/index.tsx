@@ -1,11 +1,6 @@
 import { Container, Modal } from 'react-bootstrap';
-import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
-import TransactionForm from 'features/transaction/components/TransactionForm';
-import React, { FC, ForwardedRef, useRef, useState } from 'react';
-import { Transaction, TransactionType } from 'features/transaction/types';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
-import { TypeaheadRef } from 'react-bootstrap-typeahead';
 import SelectPreferredCurrency from 'features/currency/components/SelectPreferredCurrency';
 
 type EditMainCurrencyModalProps = {
