@@ -112,8 +112,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                       variant={
                         value === 'expense' ? 'danger' : 'outline-danger'
                       }
-                      onClick={() => setFieldValue(name, 'expense')}
-                      className="w-50">
+                      onClick={() => setFieldValue(name, 'expense')}>
                       {t('expense')}
                     </Button>
                   </div>
@@ -122,8 +121,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                       variant={
                         value === 'profit' ? 'success' : 'outline-success'
                       }
-                      onClick={() => setFieldValue(name, 'profit')}
-                      className="w-50">
+                      onClick={() => setFieldValue(name, 'profit')}>
                       {t('profit')}
                     </Button>
                   </div>
