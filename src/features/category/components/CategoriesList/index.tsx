@@ -28,7 +28,7 @@ const CategoriesList = () => {
       <Swiper
         spaceBetween={15}
         slidesPerView={2}
-        className="justify-content-center d-flex"
+        className="justify-content-center d-flex px-2"
         breakpoints={{
           400: {
             slidesPerView: 3,
