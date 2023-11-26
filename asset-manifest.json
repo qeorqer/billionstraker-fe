@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/billionstraker-fe/static/css/main.da974314.css",
-    "main.js": "/billionstraker-fe/static/js/main.1fe5528f.js",
+    "main.js": "/billionstraker-fe/static/js/main.741b81bc.js",
     "static/media/guide-1.png": "/billionstraker-fe/static/media/guide-1.2d28ab9836696cc57fea.png",
     "static/media/guide-2.png": "/billionstraker-fe/static/media/guide-2.0c30b66753f45feec49f.png",
     "static/media/guide-4.png": "/billionstraker-fe/static/media/guide-4.1a5ee1353ff8cdb4d4f5.png",
@@ -23,10 +23,10 @@
     "index.html": "/billionstraker-fe/index.html",
     "static/media/getFetch.cjs": "/billionstraker-fe/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.da974314.css.map": "/billionstraker-fe/static/css/main.da974314.css.map",
-    "main.1fe5528f.js.map": "/billionstraker-fe/static/js/main.1fe5528f.js.map"
+    "main.741b81bc.js.map": "/billionstraker-fe/static/js/main.741b81bc.js.map"
   },
   "entrypoints": [
     "static/css/main.da974314.css",
-    "static/js/main.1fe5528f.js"
+    "static/js/main.741b81bc.js"
   ]
 }
