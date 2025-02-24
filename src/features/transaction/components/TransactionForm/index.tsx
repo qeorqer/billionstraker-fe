@@ -214,7 +214,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                     </Field>
                   </Col>
 
-                  {selectedTransactionType === 'exchange' && (
+                  {selectedTransactionType === 'exchange' ? (
                     <Col xs="12" sm={isModal ? '12' : '4'}>
                       <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
                         {t('select balance (receive)')}:
@@ -248,48 +248,45 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                         )}
                       </Field>
                     </Col>
-                  )}
+                  ): ( <Col xs="12" sm={isModal ? '12' : '4'}>
+                    <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
+                      {t('Select category')}:
+                    </p>
+                    <Field name="categoryId">
+                      {({ field: { value, name } }: FieldProps) => (
+                        <FormGroup className="mb-4 position-relative w-100">
+                          <CustomSelect
+                            defaultButtonText={t('Select category')}
+                            defaultButtonValue=""
+                            data={categories
+                            .filter(
+                              (category) =>
+                                category.categoryType ===
+                                selectedTransactionType,
+                            )
+                            .map((category) => ({
+                              _id: category._id!,
+                              name: category.name,
+                            }))}
+                            selectedValue={value}
+                            setSelectedValue={
+                              updateDropdownValue(name) as Dispatch<
+                                SetStateAction<string>
+                              >
+                            }
+                          />
+                          <FormControl.Feedback
+                            type="invalid"
+                            className={`position-absolute ${
+                              touched.categoryId && 'd-block'
+                            }`}>
+                            {errors?.categoryId && t(errors.categoryId)}
+                          </FormControl.Feedback>
+                        </FormGroup>
+                      )}
+                    </Field>
+                  </Col>)}
 
-                  {selectedTransactionType !== 'exchange' && (
-                    <Col xs="12" sm={isModal ? '12' : '4'}>
-                      <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
-                        {t('Select category')}:
-                      </p>
-                      <Field name="categoryId">
-                        {({ field: { value, name } }: FieldProps) => (
-                          <FormGroup className="mb-4 position-relative w-100">
-                            <CustomSelect
-                              defaultButtonText={t('Select category')}
-                              defaultButtonValue=""
-                              data={categories
-                                .filter(
-                                  (category) =>
-                                    category.categoryType ===
-                                    selectedTransactionType,
-                                )
-                                .map((category) => ({
-                                  _id: category._id!,
-                                  name: category.name,
-                                }))}
-                              selectedValue={value}
-                              setSelectedValue={
-                                updateDropdownValue(name) as Dispatch<
-                                  SetStateAction<string>
-                                >
-                              }
-                            />
-                            <FormControl.Feedback
-                              type="invalid"
-                              className={`position-absolute ${
-                                touched.categoryId && 'd-block'
-                              }`}>
-                              {errors?.categoryId && t(errors.categoryId)}
-                            </FormControl.Feedback>
-                          </FormGroup>
-                        )}
-                      </Field>
-                    </Col>
-                  )}
 
                   <Col xs="12" sm={isModal ? '12' : '4'}>
                     <p className="mb-1 fs-5 text-center w-100">
@@ -323,26 +320,6 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                 </Row>
 
                 <Row>
-                  <Col xs={selectedTransactionType === 'exchange' ? 12 : 6}>
-                    <p className="mb-1 fs-5">{t('Name the transaction')}:</p>
-                    <Field name="title">
-                      {({ field }: FieldProps) => (
-                        <FormGroup className="mb-4 position-relative">
-                          <FormControl
-                            {...field}
-                            placeholder={t('Transaction title')}
-                            isInvalid={Boolean(touched.title && errors.title)}
-                          />
-                          <FormControl.Feedback
-                            type="invalid"
-                            className="position-absolute">
-                            {errors?.title && t(errors.title)}
-                          </FormControl.Feedback>
-                        </FormGroup>
-                      )}
-                    </Field>
-                  </Col>
-
                   <Col xs={6}>
                     <p className="mb-1  fs-5">
                       {t(
@@ -358,6 +335,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                           <FormControl
                             {...field}
                             type="number"
+                            inputMode="numeric"
                             placeholder={t('Transaction sum')}
                             isInvalid={Boolean(touched.sum && errors.sum)}
                           />
@@ -380,6 +358,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                             <FormControl
                               {...field}
                               type="number"
+                              inputMode="numeric"
                               placeholder={t('Transaction sum')}
                               isInvalid={Boolean(touched.sum2 && errors.sum2)}
                             />
@@ -393,6 +372,26 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                       </Field>
                     </Col>
                   )}
+
+                  <Col xs={selectedTransactionType === 'exchange' ? 12 : 6}>
+                    <p className="mb-1 fs-5">{t('Name the transaction')}:</p>
+                    <Field name="title">
+                      {({ field }: FieldProps) => (
+                        <FormGroup className="mb-4 position-relative">
+                          <FormControl
+                            {...field}
+                            placeholder={t('Transaction title')}
+                            isInvalid={Boolean(touched.title && errors.title)}
+                          />
+                          <FormControl.Feedback
+                            type="invalid"
+                            className="position-absolute">
+                            {errors?.title && t(errors.title)}
+                          </FormControl.Feedback>
+                        </FormGroup>
+                      )}
+                    </Field>
+                  </Col>
                 </Row>
 
                 <Row>
