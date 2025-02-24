@@ -21,6 +21,8 @@ type ProfilePageViewProps = {
   isBackToStatisticsShown: boolean;
   handleLoadMoreTransactions: () => void;
   hasMoreTransactions: boolean;
+  transactionName: string;
+  setTransactionName: Dispatch<SetStateAction<string>>;
 };
 
 const ProfilePageView: FC<ProfilePageViewProps> = ({
@@ -35,6 +37,8 @@ const ProfilePageView: FC<ProfilePageViewProps> = ({
   isBackToStatisticsShown,
   hasMoreTransactions,
   handleLoadMoreTransactions,
+  transactionName,
+  setTransactionName,
 }) => (
   <Container className="py-4 mb-4 mb-sm-0">
     <Stack gap={2}>
@@ -48,6 +52,8 @@ const ProfilePageView: FC<ProfilePageViewProps> = ({
         setShownTransactionsTypes={setShownTransactionsTypes}
         setMonthsRange={setMonthsRange}
         monthsRange={monthsRange}
+        transactionName={transactionName}
+        setTransactionName={setTransactionName}
       />
       <TransactionsList
         handleLoadMoreTransactions={handleLoadMoreTransactions}
