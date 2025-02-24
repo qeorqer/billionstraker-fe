@@ -20,6 +20,7 @@ type propsType = {
   withTranslate?: boolean;
   disabled?: boolean;
   showDefaultValue?: boolean;
+  className?: string;
 };
 
 const CustomSelect: React.FC<propsType> = ({
@@ -32,6 +33,7 @@ const CustomSelect: React.FC<propsType> = ({
   disabled = false,
   fieldToSelect = '_id',
   showDefaultValue = true,
+  className,
 }) => {
   const [valueToShow, setValueToShow] = useState(defaultButtonText);
 
@@ -45,7 +47,7 @@ const CustomSelect: React.FC<propsType> = ({
 
     const selectedItem = data.find(
       (item) =>
-        item[fieldToSelect] === selectedValue || item['name'] === selectedValue,
+        item[fieldToSelect] === selectedValue || item.name === selectedValue,
     );
 
     if (selectedItem) {
@@ -54,7 +56,7 @@ const CustomSelect: React.FC<propsType> = ({
   }, [data, selectedValue]);
 
   return (
-    <Dropdown className="w-100 customDropdown">
+    <Dropdown className={`w-100 customDropdown ${className && className}`}>
       <Dropdown.Toggle
         variant="outline-warning"
         className="w-100 d-flex justify-content-between align-items-center"

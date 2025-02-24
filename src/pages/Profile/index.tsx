@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
+import { debounce } from 'lodash';
 import {
   getTransactionsThunk,
   resetTransactions,
@@ -44,13 +45,28 @@ const ProfilePage = () => {
     new Date(initialDateFrom || user.created),
     new Date(initialDateTo || new Date()),
   ]);
+  const [transactionName, setTransactionName] = useState<string>('');
+  const [debouncedTransactionName, setDebouncedTransactionName] =
+    useState<string>('');
+
+  useEffect(() => {
+    const handler = debounce(() => {
+      setDebouncedTransactionName(transactionName);
+    }, 500);
+
+    handler();
+
+    return () => {
+      handler.cancel();
+    };
+  }, [transactionName]);
 
   const handleLoadMoreTransactions = () => {
     if (!isLoadingTransactions) {
       dispatch(
         getTransactionsThunk({
           limit: LIMIT,
-          numberToSkip: numberToSkip,
+          numberToSkip,
           filteringOptions: {
             shownTransactionsTypes,
             categoriesToShow:
@@ -58,6 +74,7 @@ const ProfilePage = () => {
             balancesToShow: balancesToShow === 'all' ? [] : [balancesToShow],
             from: monthsRange[0],
             to: monthsRange[1],
+            transactionName: debouncedTransactionName,
           },
         }),
       );
@@ -88,11 +105,18 @@ const ProfilePage = () => {
             balancesToShow: balancesToShow === 'all' ? [] : [balancesToShow],
             from: monthsRange[0],
             to: monthsRange[1],
+            transactionName: debouncedTransactionName,
           },
         }),
       );
     }
-  }, [shownTransactionsTypes, categoriesToShow, balancesToShow, monthsRange]);
+  }, [
+    shownTransactionsTypes,
+    categoriesToShow,
+    balancesToShow,
+    monthsRange,
+    debouncedTransactionName,
+  ]);
 
   return (
     <ProfilePageView
@@ -107,6 +131,8 @@ const ProfilePage = () => {
       isBackToStatisticsShown={Boolean(initialDateFrom && initialDateTo)}
       handleLoadMoreTransactions={handleLoadMoreTransactions}
       hasMoreTransactions={numberToSkip <= numberOfTransactions}
+      transactionName={transactionName}
+      setTransactionName={setTransactionName}
     />
   );
 };

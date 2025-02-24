@@ -33,6 +33,7 @@ export type GetTransactionsFilteringOptions = {
   balancesToShow: string[];
   from: Date;
   to: Date;
+  transactionName: string;
 };
 
 export type GetTransactionsPayload = {

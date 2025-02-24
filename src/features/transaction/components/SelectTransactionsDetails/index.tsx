@@ -1,4 +1,4 @@
-import { Col, Row, Stack } from 'react-bootstrap';
+import { Col, FormControl, Row, Stack } from 'react-bootstrap';
 import CustomSelect from 'components/Shared/CustomSelect';
 import { Category, categoryData } from 'features/category';
 import { Balance, balanceData } from 'features/balance';
@@ -20,6 +20,8 @@ type SelectTransactionsDetailsProps = {
   setBalancesToShow: Dispatch<SetStateAction<string>>;
   setMonthsRange: React.Dispatch<React.SetStateAction<[Date, Date]>>;
   monthsRange: [Date, Date];
+  transactionName: string;
+  setTransactionName: Dispatch<SetStateAction<string>>;
 };
 
 const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
@@ -31,6 +33,8 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
   setShownTransactionsTypes,
   setMonthsRange,
   monthsRange,
+  transactionName,
+  setTransactionName,
 }) => {
   const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
   const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
@@ -58,7 +62,19 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
     <Stack gap={1}>
       <p className="text-center fw-bold fs-4 mb-0">{t('apply filters')}</p>
       <Row className="mb-3 align-items-center justify-content-center">
-        <Col xs="6" sm="4" className="max-width-220 p-1">
+        <Col xs="6" md="4" className="p-1">
+          <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
+            {t('Transaction title')}:
+          </p>
+          <FormControl
+            value={transactionName}
+            onChange={(e) => setTransactionName(e.target.value)}
+            type="text"
+            placeholder={t('Transaction title')}
+            className="mx-auto"
+          />
+        </Col>
+        <Col xs="6" md="4" className="p-1">
           <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
             {t('categories')}:
           </p>
@@ -82,9 +98,10 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
             fieldToSelect="name"
             withTranslate
             disabled={shownTransactionsTypes === 'exchange'}
+            className="mx-auto"
           />
         </Col>
-        <Col xs="6" sm="4" className="max-width-220  p-1">
+        <Col xs="6" md="4" className="p-1">
           <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
             {t('balances')}:
           </p>
@@ -99,9 +116,10 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
             setSelectedValue={setBalancesToShow}
             fieldToSelect="name"
             withTranslate
+            className="mx-auto"
           />
         </Col>
-        <Col xs="6" sm="4" className="max-width-220 p-1">
+        <Col xs="6" md="4" className="p-1">
           <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
             {t('transactions types')}:
           </p>
@@ -118,9 +136,10 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
             }
             fieldToSelect="name"
             withTranslate
+            className="mx-auto"
           />
         </Col>
-        <Col xs="6" sm="6" lg="4" className="max-width-220 p-1">
+        <Col xs="6" md="4" className="p-1">
           <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
             {t('range detail')}:
           </p>
@@ -138,9 +157,10 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
             fieldToSelect="name"
             withTranslate
             showDefaultValue={false}
+            className="mx-auto"
           />
         </Col>
-        <Col xs="12" sm="6" lg="4" className="max-width-220  p-1">
+        <Col xs="6" md="4" className="text-center p-1">
           <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
             {t('Select range')}:
           </p>
@@ -156,7 +176,7 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
             minDetail="year"
             minDate={new Date(user.created)}
             maxDate={new Date()}
-            className="data-range-picker"
+            className="data-range-picker w-100"
             onFocus={(e: any) => (e.target.readOnly = true)}
             onClick={() => setIsDateRangeOpen(true)}
             onCalendarClose={() => setIsDateRangeOpen(false)}
