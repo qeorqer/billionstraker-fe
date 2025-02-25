@@ -183,5 +183,9 @@
   "incomes": "Incomes",
   "install PWA": "Install app",
   "No internet connection": "This app does not work offline, get you internet connection and come again",
-  "Try again": "Try again"
+  "Try again": "Try again",
+  "Search by Name": "Search by Name",
+  "Start typing a transaction name": "Start typing a transaction name",
+  "Show more filters": "▼ More filters ▼",
+  "Show less filters": "▲ Less filters ▲"
 }
