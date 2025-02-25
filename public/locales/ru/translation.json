@@ -183,5 +183,9 @@
   "incomes": "Доходы",
   "install PWA": "Установить апку",
   "No internet connection": "Оффлайн апка не работает, намути себе интернет и зайди попозже",
-  "Try again": "Попробовать еще раз"
+  "Try again": "Попробовать еще раз",
+  "Search by Name": "Поиск по имени",
+  "Start typing a transaction name": "Начните вводить название транзакции",
+  "Show more filters": "▼ Больше фильтров ▼",
+  "Show less filters": "▲ Меньше фильтров ▲"
 }
