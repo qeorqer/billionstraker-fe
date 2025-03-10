@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactTooltip from 'react-tooltip';
 
@@ -37,12 +37,14 @@ const NetWorthView = () => {
         <span
           className="cursor-pointer"
           data-tip={t('You can change main currency on the balances page')}
-          data-for="question">
+          data-for="question"
+        >
           <i className="bi bi-question-circle" />
         </span>
         <span
           onClick={() => setIsModalOpen(true)}
-          className="balance-action-button">
+          className="balance-action-button"
+        >
           <i className="bi bi-pencil text-dark  mx-2 cursor-pointer" />
         </span>
       </p>

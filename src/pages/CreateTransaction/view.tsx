@@ -1,10 +1,7 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Dispatch, FC, SetStateAction } from 'react';
+import { Container } from 'react-bootstrap';
 
-import {
-  CreateTransactionPayload,
-  TransactionType,
-} from 'features/transaction/types';
+import { TransactionType } from 'features/transaction/types';
 import BalancesList from 'features/balance/components/BalancesList';
 import 'react-datepicker/dist/react-datepicker.css';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
@@ -17,7 +14,7 @@ type CreateTransactionPageViewProps = {
   canCreateTransaction: boolean;
 };
 
-const CreateTransactionPageView: React.FC<CreateTransactionPageViewProps> = ({
+const CreateTransactionPageView: FC<CreateTransactionPageViewProps> = ({
   transactionType,
   setTransactionType,
   canCreateTransaction,

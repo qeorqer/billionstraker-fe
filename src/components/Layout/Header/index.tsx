@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
@@ -92,7 +91,8 @@ const Header = () => {
               <Dropdown.Menu variant="dark">
                 <Dropdown.Item
                   as="span"
-                  className="d-flex justify-content-around languagesController">
+                  className="d-flex justify-content-around languagesController"
+                >
                   <LanguageSwitcher />
                 </Dropdown.Item>
                 {dropdownMenuItems

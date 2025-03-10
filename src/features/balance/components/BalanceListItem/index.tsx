@@ -1,6 +1,6 @@
 import { Card } from 'react-bootstrap';
 import { formatSum } from 'features/transaction/utils/formatSum';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Balance } from 'features/balance/types';
 import EditBalanceModal from 'features/balance/components/EditBalanceModal';
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
@@ -57,7 +57,8 @@ const BalanceListItem: FC<BalanceListItemProps> = ({ balance, showMenu }) => {
                 <div
                   key={index}
                   onClick={onClick}
-                  className="balance-action-button">
+                  className="balance-action-button"
+                >
                   <i className={classes} />
                 </div>
               ))}

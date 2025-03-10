@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { clearDataFromLocalStorage } from 'features/user/store/utils';
 import i18next from 'i18next';
 
-export const baseUrl: string = process.env.REACT_APP_BASE_URL!;
+export const baseUrl: string = import.meta.env.VITE_BASE_URL;
 let isRefreshingToken = false;
 let refreshRequest: Promise<AxiosResponse<AuthResponse>> | null = null;
 

@@ -38,7 +38,7 @@ const categoryReducer = createSlice({
       state.isLoadingCategories = false;
     });
 
-    builder.addCase(createCategoryThunk.pending, (state, action) => {
+    builder.addCase(createCategoryThunk.pending, (state, _action) => {
       state.isLoadingCategories = true;
     });
 
@@ -51,7 +51,7 @@ const categoryReducer = createSlice({
       state.categories = [...state.categories, action.payload.data.category];
     });
 
-    builder.addCase(createCategoryThunk.rejected, (state, action) => {
+    builder.addCase(createCategoryThunk.rejected, (state, _action) => {
       state.isLoadingCategories = false;
     });
 

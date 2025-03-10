@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 
 import 'components/Shared/CustomToggle/styles.scss';
 
@@ -8,7 +8,7 @@ type propsType = {
   variant?: string;
 };
 
-const CustomToggle = React.forwardRef<HTMLDivElement>(
+const CustomToggle = forwardRef<HTMLDivElement>(
   ({ onClick, variant }: propsType, ref) => (
     <div className={`dropdownMenu ${variant && variant}`}>
       <div className="menuTogglerContainer" ref={ref} onClick={onClick}>

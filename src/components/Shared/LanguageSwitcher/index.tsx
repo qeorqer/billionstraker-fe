@@ -1,4 +1,3 @@
-import React from 'react';
 import i18next from 'i18next';
 
 import { changeLang } from 'features/user';
@@ -18,12 +17,14 @@ const LanguageSwitcher = () => {
     <>
       <span
         onClick={handleLangChange('en')}
-        className={lang === 'en' ? 'activeLang' : ''}>
+        className={lang === 'en' ? 'activeLang' : ''}
+      >
         EN
       </span>
       <span
         onClick={handleLangChange('ru')}
-        className={lang === 'ru' ? 'activeLang' : ''}>
+        className={lang === 'ru' ? 'activeLang' : ''}
+      >
         Not EN
       </span>
     </>

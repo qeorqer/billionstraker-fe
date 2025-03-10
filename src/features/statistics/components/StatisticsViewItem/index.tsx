@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Button, Form, Stack } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -6,7 +6,6 @@ import DiagramStatistics from 'features/statistics/components/DiagramStatistics'
 import { StatisticsList } from 'features/statistics/components/StatisticsList';
 import { StatisticsForTransactionType } from 'features/statistics/types';
 import { TransactionType } from 'features/transaction';
-import { formatSum } from 'features/transaction/utils/formatSum';
 
 import './styles.scss';
 import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
@@ -47,14 +46,16 @@ const StatisticsViewItem: FC<StatisticsViewItemProps> = ({
               size="sm"
               className={`mx-2 ${useDiagram ? 'text-white' : ''}`}
               variant={useDiagram ? 'warning' : 'outline-warning'}
-              onClick={() => setUseDiagram(true)}>
+              onClick={() => setUseDiagram(true)}
+            >
               {t('Pie chart')}
             </Button>
             <Button
               size="sm"
               className={useDiagram ? '' : 'text-white'}
               variant={useDiagram ? 'outline-warning' : 'warning'}
-              onClick={() => setUseDiagram(false)}>
+              onClick={() => setUseDiagram(false)}
+            >
               {t('List')}
             </Button>
           </div>

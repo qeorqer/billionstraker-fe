@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
 import 'react-calendar/dist/Calendar.css';

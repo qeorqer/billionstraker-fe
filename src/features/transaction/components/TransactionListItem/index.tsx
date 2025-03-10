@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Card, Col, Dropdown, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -43,13 +43,15 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
 
   return (
     <Card
-      className={`mb-3 w-75 mx-auto text-center ${transaction.transactionType}`}>
+      className={`mb-3 w-75 mx-auto text-center ${transaction.transactionType}`}
+    >
       <Card.Body>
         <Row className="align-items-center">
           <Col
             xs="6"
             lg="3"
-            className="title order-1 order-md-1 order-order-lg-0">
+            className="title order-1 order-md-1 order-order-lg-0"
+          >
             <span className="mb-0">{transaction.title}</span>
           </Col>
           <Col xs="12" lg="6" className="sumAndBalance order-0 order-lg-1">

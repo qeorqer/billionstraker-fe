@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -55,17 +55,18 @@ const TransactionsList: FC<TransactionsListProps> = ({
         initialLoad={false}
         loadMore={handleLoadMoreTransactions}
         hasMore={hasMore}
-        loader={<Loader key={0} />}>
+        loader={<Loader key={0} />}
+      >
         {transactionsSections.map((section) => (
-          <React.Fragment key={section.title}>
+          <Fragment key={section.title}>
             <p className="sectionTitle fs-5 w-75 mx-auto">{section.title}</p>
-            {section.data.map((transaction, index) => (
+            {section.data.map((transaction) => (
               <TransactionListItem
                 key={transaction._id}
                 transaction={transaction}
               />
             ))}
-          </React.Fragment>
+          </Fragment>
         ))}
       </InfiniteScroll>
     </Stack>

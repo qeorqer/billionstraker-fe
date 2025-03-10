@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
@@ -21,7 +21,8 @@ const CreateTransactionFirstButton: FC<CreateTransactionFirstButtonProps> = ({
       <Button
         variant="warning"
         className="w300Px text-white"
-        onClick={handleCreateTransaction}>
+        onClick={handleCreateTransaction}
+      >
         {t('create transaction')}
       </Button>
     </div>

@@ -1,5 +1,5 @@
 import { Button, Modal, Stack } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'store/hooks';
 import { Category } from 'features/category/types';

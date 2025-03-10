@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Category } from 'features/category/types';
@@ -52,7 +52,8 @@ const CategoryListItem: FC<CategoryListItemProps> = ({ category }) => {
               <div
                 key={index}
                 onClick={onClick}
-                className="category-action-button">
+                className="category-action-button"
+              >
                 <i className={classes} />
               </div>
             ))}

@@ -1,8 +1,7 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { Container, Stack } from 'react-bootstrap';
 
 import StatisticsView from 'features/statistics/components/StatisticsView';
-import { Statistics } from 'features/statistics/types';
 import NetWorthView from 'features/statistics/components/NetWorth';
 import SelectStatisticsDetails from 'features/statistics/components/SelectStatisticsDetails/SelectStatisticsDetails';
 

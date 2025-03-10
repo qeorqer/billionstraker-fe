@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -47,7 +47,8 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
             slidesPerView: 5,
           },
         }}
-        centerInsufficientSlides>
+        centerInsufficientSlides
+      >
         {balances.map((balance) => (
           <SwiperSlide key={balance._id}>
             <BalanceListItem balance={balance} showMenu={showMenu} />

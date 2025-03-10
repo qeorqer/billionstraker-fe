@@ -1,25 +1,28 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
+import { registerSW } from 'virtual:pwa-register';
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import App from 'App';
-import store from 'store';
-import 'i18n';
+import App from './App';
+import store from './store';
+import './i18n';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'swiper/swiper.scss';
+import 'swiper/swiper.min.css';
+
+// Register service worker
+if ('serviceWorker' in navigator) {
+  registerSW();
+}
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
+    <StrictMode>
       <Router>
         <App />
       </Router>
-    </React.StrictMode>
+    </StrictMode>
   </Provider>,
   document.getElementById('root'),
 );
-
-serviceWorkerRegistration.register();

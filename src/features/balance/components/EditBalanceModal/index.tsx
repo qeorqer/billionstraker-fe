@@ -1,5 +1,5 @@
 import { Modal } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Balance } from 'features/balance/types';
 import BalanceForm from 'features/balance/components/BalanceForm';

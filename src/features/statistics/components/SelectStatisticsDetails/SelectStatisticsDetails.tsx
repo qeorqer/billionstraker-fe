@@ -1,7 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import CustomSelect from 'components/Shared/CustomSelect';
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
 import { balanceData } from 'features/balance';

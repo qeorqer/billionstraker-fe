@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Button, Container } from 'react-bootstrap';
 
 import about1 from 'assets/about/about-1.png';
@@ -26,7 +26,8 @@ const AboutPageView: FC<propsType> = ({ t, handleCheckOutClick }) => (
       <Button
         variant="warning"
         className="w300Px text-white"
-        onClick={handleCheckOutClick}>
+        onClick={handleCheckOutClick}
+      >
         {t('check it out')}
       </Button>
     </Container>

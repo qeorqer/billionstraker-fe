@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-import { CategoryType, Category } from 'features/category/types';
 import CategoriesList from 'features/category/components/CategoriesList';
 import CategoryForm from 'features/category/components/CategoryForm';
 
@@ -9,7 +8,7 @@ type CategoryPageViewProps = {
   t: (text: string) => string;
 };
 
-const CategoryPageView: React.FC<CategoryPageViewProps> = ({ t }) => (
+const CategoryPageView: FC<CategoryPageViewProps> = ({ t }) => (
   <Container className="py-4">
     <CategoriesList />
     <Row className="text-center">

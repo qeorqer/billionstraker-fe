@@ -1,4 +1,4 @@
-import React, { ForwardedRef, useRef } from 'react';
+import { ForwardedRef, useRef } from 'react';
 import { Button, Form, FormControl, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -115,7 +115,8 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
                 />
                 <FormControl.Feedback
                   type="invalid"
-                  className="position-absolute">
+                  className="position-absolute"
+                >
                   {errors?.name && t(errors.name)}
                 </FormControl.Feedback>
               </FormGroup>
@@ -133,7 +134,8 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
                 />
                 <FormControl.Feedback
                   type="invalid"
-                  className="position-absolute">
+                  className="position-absolute"
+                >
                   {errors?.amount && t(errors.amount)}
                 </FormControl.Feedback>
               </FormGroup>
@@ -157,7 +159,8 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
                 />
                 <FormControl.Feedback
                   type="invalid"
-                  className="position-absolute">
+                  className="position-absolute"
+                >
                   {errors?.currency && t(errors.currency)}
                 </FormControl.Feedback>
               </FormGroup>
@@ -169,7 +172,8 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
               type="submit"
               variant="warning"
               className="w300Px text-white"
-              disabled={isLoadingBalances}>
+              disabled={isLoadingBalances}
+            >
               {t(buttonText)}
             </Button>
           </div>

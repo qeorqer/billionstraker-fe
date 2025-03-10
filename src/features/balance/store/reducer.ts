@@ -43,7 +43,7 @@ const balanceReducer = createSlice({
       state.balances = [...state.balances, action.payload.data.balance];
     });
 
-    builder.addCase(createBalanceThunk.rejected, (state, action) => {
+    builder.addCase(createBalanceThunk.rejected, (state, _action) => {
       state.isLoadingBalances = false;
     });
 

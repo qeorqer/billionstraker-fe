@@ -10,7 +10,7 @@ import CustomSelect from 'components/Shared/CustomSelect';
 import { Category, categoryData } from 'features/category';
 import { Balance, balanceData } from 'features/balance';
 import { transactionTypesToShow } from 'features/transaction/components/TransactionsList/utils';
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import { useAppSelector } from 'store/hooks';
 import { transactionData } from 'features/transaction/store/selector';
@@ -208,7 +208,8 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
                 variant="link"
                 size="sm"
                 className="text-decoration-none text-dark fw-bold"
-                onClick={() => setIsFiltersVisible(!isFiltersVisible)}>
+                onClick={() => setIsFiltersVisible(!isFiltersVisible)}
+              >
                 {isFiltersVisible
                   ? t('Show less filters')
                   : t('Show more filters')}

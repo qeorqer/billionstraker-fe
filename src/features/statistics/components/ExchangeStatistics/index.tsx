@@ -1,8 +1,7 @@
-import { Button, Col, Row, Stack } from 'react-bootstrap';
+import { Button, Col, Stack } from 'react-bootstrap';
 import { useAppSelector } from 'store/hooks';
 import { statisticsData } from 'features/statistics/store/selector';
 import { useTranslation } from 'react-i18next';
-import { formatSum } from 'features/transaction/utils/formatSum';
 import { useHistory } from 'react-router-dom';
 import { FC } from 'react';
 import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
@@ -52,7 +51,8 @@ const ExchangeStatistics: FC<ExchangeStatisticsProps> = ({
         <Stack
           gap={4}
           direction="horizontal"
-          className="justify-content-center fw-bold">
+          className="justify-content-center fw-bold"
+        >
           <p className="mb-0">
             {`${t('sent')}: `}
             <span className="yellowText fst-italic d-inline-block ml-1">
@@ -79,7 +79,8 @@ const ExchangeStatistics: FC<ExchangeStatisticsProps> = ({
           <Button
             size="sm"
             variant="outline-secondary"
-            onClick={handleViewTransaction}>
+            onClick={handleViewTransaction}
+          >
             {t('view transaction')}
           </Button>
         )}

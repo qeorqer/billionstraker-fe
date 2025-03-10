@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -30,7 +29,8 @@ const AuthorizationPageView: React.FC<propsType> = ({ t }) => (
           </p>
           <div
             className="d-flex justify-content-around languagesController pb-3"
-            style={{ width: '100px', margin: '0 auto' }}>
+            style={{ width: '100px', margin: '0 auto' }}
+          >
             <LanguageSwitcher />
           </div>
         </Col>

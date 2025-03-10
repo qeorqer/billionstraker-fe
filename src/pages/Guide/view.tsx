@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Container } from 'react-bootstrap';
 
 import guide1 from 'assets/guide/guide-1.png';
@@ -46,7 +45,8 @@ const GuidePageView: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateBalance}>
+        onClick={handleCreateBalance}
+      >
         {t('create balance')}
       </Button>
       <p className="fs-5 mt-2 mb-3">
@@ -59,7 +59,8 @@ const GuidePageView: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateCategory}>
+        onClick={handleCreateCategory}
+      >
         {t('create category')}
       </Button>
       <p className="fs-5 mt-2 mb-3">{t('now we are ready for transactions')}</p>
@@ -72,7 +73,8 @@ const GuidePageView: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateTransaction}>
+        onClick={handleCreateTransaction}
+      >
         {t('create transaction')}
       </Button>
       <p className="fs-5 mt-2 mb-3">{t('time to explore the profile page')}</p>
@@ -83,7 +85,8 @@ const GuidePageView: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleExploreProfile}>
+        onClick={handleExploreProfile}
+      >
         {t('explore profile')}
       </Button>
       <p className="fs-5 mt-2 mb-3">{t('the last but not least')}</p>
@@ -96,7 +99,8 @@ const GuidePageView: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCheckStatistics}>
+        onClick={handleCheckStatistics}
+      >
         {t('check out statistics')}
       </Button>
       <p className="fs-5 mt-3 mb-2">{t('pro tip')}</p>
@@ -107,7 +111,8 @@ const GuidePageView: React.FC<propsType> = ({
       <Button
         variant="warning"
         className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateBalance}>
+        onClick={handleCreateBalance}
+      >
         {t('create balance')}
       </Button>
     </Container>

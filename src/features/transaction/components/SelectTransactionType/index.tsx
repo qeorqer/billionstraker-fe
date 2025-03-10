@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -37,7 +37,8 @@ const SelectTransactionType: React.FC<SelectTransactionTypeProps> = ({
             variant={
               transactionType === 'expense' ? 'danger' : 'outline-danger'
             }
-            onClick={() => setTransactionType('expense')}>
+            onClick={() => setTransactionType('expense')}
+          >
             {t('expense')}
           </Button>
         </div>
@@ -47,7 +48,8 @@ const SelectTransactionType: React.FC<SelectTransactionTypeProps> = ({
             variant={
               transactionType === 'profit' ? 'success' : 'outline-success'
             }
-            onClick={() => setTransactionType('profit')}>
+            onClick={() => setTransactionType('profit')}
+          >
             {t('profit')}
           </Button>
         </div>
@@ -58,7 +60,8 @@ const SelectTransactionType: React.FC<SelectTransactionTypeProps> = ({
             variant={
               transactionType === 'exchange' ? 'primary' : 'outline-primary'
             }
-            onClick={() => setTransactionType('exchange')}>
+            onClick={() => setTransactionType('exchange')}
+          >
             {t('exchange')}
           </Button>
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Loader from 'components/Shared/Loader';
 import { useAppSelector } from 'store/hooks';

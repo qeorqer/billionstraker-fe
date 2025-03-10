@@ -43,7 +43,7 @@ export const calculateStatisticsForDiagram = ({
     result.push(otherItems);
   }
 
-  const formattedResult = result.map((el, index, array) => {
+  const formattedResult = result.map((el, index) => {
     const percentage = (100 * el.amount) / totallySpent;
     const isPercentageLessThan1 = percentage < 1;
 

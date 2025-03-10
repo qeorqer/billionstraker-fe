@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormControl, FormGroup } from 'react-bootstrap';
@@ -88,7 +88,8 @@ const LoginForm = () => {
                 (errors.login && touched.login) ||
                   (errors.password && touched.password),
               )
-            }>
+            }
+          >
             {t('Sign in')}
           </Button>
         </Form>

@@ -1,6 +1,6 @@
 import LoginForm from 'features/authorization/components/LogInForm';
 import SignUpForm from 'features/authorization/components/SignUpForm';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const AuthForm = () => {

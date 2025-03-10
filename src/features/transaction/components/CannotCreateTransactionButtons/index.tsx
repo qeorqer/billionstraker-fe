@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
@@ -26,7 +26,8 @@ const CannotCreateTransactionButtons: FC<
         <Button
           variant="warning"
           className="w300Px text-white"
-          onClick={handleCreateBalance}>
+          onClick={handleCreateBalance}
+        >
           {t('create balance')}
         </Button>
       </div>
@@ -39,13 +40,15 @@ const CannotCreateTransactionButtons: FC<
       <Button
         variant="warning"
         className="w300Px text-white mx-1"
-        onClick={handleCreateBalance}>
+        onClick={handleCreateBalance}
+      >
         {t('create balance')}
       </Button>
       <Button
         variant="warning"
         className="w300Px text-white mx-1 my-2 my-md-0"
-        onClick={handleCreateCategory}>
+        onClick={handleCreateCategory}
+      >
         {t('create category')}
       </Button>
     </div>

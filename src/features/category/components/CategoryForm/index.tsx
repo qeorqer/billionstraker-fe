@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Form, FormControl, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
@@ -96,7 +95,8 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                 />
                 <FormControl.Feedback
                   type="invalid"
-                  className="position-absolute">
+                  className="position-absolute"
+                >
                   {errors?.name && t(errors.name)}
                 </FormControl.Feedback>
               </FormGroup>
@@ -112,7 +112,8 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                       variant={
                         value === 'expense' ? 'danger' : 'outline-danger'
                       }
-                      onClick={() => setFieldValue(name, 'expense')}>
+                      onClick={() => setFieldValue(name, 'expense')}
+                    >
                       {t('expense')}
                     </Button>
                   </div>
@@ -121,14 +122,16 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                       variant={
                         value === 'profit' ? 'success' : 'outline-success'
                       }
-                      onClick={() => setFieldValue(name, 'profit')}>
+                      onClick={() => setFieldValue(name, 'profit')}
+                    >
                       {t('profit')}
                     </Button>
                   </div>
                 </div>
                 <FormControl.Feedback
                   type="invalid"
-                  className="position-absolute">
+                  className="position-absolute"
+                >
                   {errors?.categoryType && t(errors.categoryType)}
                 </FormControl.Feedback>
               </FormGroup>
@@ -140,7 +143,8 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
               type="submit"
               variant="warning"
               className="w300Px text-white"
-              disabled={isLoadingCategories}>
+              disabled={isLoadingCategories}
+            >
               {t(buttonText)}
             </Button>
           </div>

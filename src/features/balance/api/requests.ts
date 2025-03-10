@@ -2,7 +2,6 @@ import { AxiosResponse } from 'axios';
 
 import api from 'api/axiosInstance';
 import {
-  Balance,
   CreateUpdateBalancePayload,
   CreateUpdateBalanceResponse,
   createBalanceRoute,

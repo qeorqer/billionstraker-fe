@@ -1,5 +1,5 @@
 import { Container, Modal } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import SelectPreferredCurrency from 'features/currency/components/SelectPreferredCurrency';
 

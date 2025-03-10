@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { Col, Row } from 'react-bootstrap';
 import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
-import React, { FC, ForwardedRef, useRef, useState } from 'react';
+import { FC, ForwardedRef, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CurrencyOption } from 'features/currency/types';
 import { Option } from 'react-bootstrap-typeahead/types/types';
@@ -60,7 +60,8 @@ const SelectPreferredCurrency: FC<SelectPreferredCurrencyProps> = ({
           <span
             className="cursor-pointer align-middle mx-2"
             data-tip={t('Main currency is used for calculating the net worth')}
-            data-for="question">
+            data-for="question"
+          >
             <i className="bi bi-question-circle" />
           </span>
           <ReactTooltip id="question" />

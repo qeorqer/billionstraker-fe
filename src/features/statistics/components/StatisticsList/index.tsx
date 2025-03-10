@@ -1,10 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { RangeStatisticsItem } from 'features/statistics/types';
 import StatisticsListItem from 'features/statistics/components/StatisticsListItem';
 import { TransactionType } from 'features/transaction';
-import { formatSum } from 'features/transaction/utils/formatSum';
 
 type propsType = {
   statisticForRange: RangeStatisticsItem[];
@@ -31,13 +30,11 @@ export const StatisticsList: FC<propsType> = ({
 }) => {
   const { t } = useTranslation();
 
-  const dataForRange: listForRangeItem[] = statisticForRange.map(
-    (el, index) => ({
-      title: el.name,
-      value: el.amount,
-      percentage: ((100 * el.amount) / totalSpent).toFixed(2),
-    }),
-  );
+  const dataForRange: listForRangeItem[] = statisticForRange.map((el) => ({
+    title: el.name,
+    value: el.amount,
+    percentage: ((100 * el.amount) / totalSpent).toFixed(2),
+  }));
 
   return (
     <div>

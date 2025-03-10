@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Slide, ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';

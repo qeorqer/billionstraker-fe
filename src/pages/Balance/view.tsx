@@ -1,13 +1,8 @@
-import React, { Dispatch, ForwardedRef, SetStateAction } from 'react';
+import { FC } from 'react';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
 
-import { Balance } from 'features/balance/types';
 import BalancesList from 'features/balance/components/BalancesList';
 import BalanceForm from 'features/balance/components/BalanceForm';
-import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
-import { TypeaheadRef } from 'react-bootstrap-typeahead';
-import { CurrencyOption } from 'features/currency';
-import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
 import SelectPreferredCurrency from 'features/currency/components/SelectPreferredCurrency';
 
 type BalancePageViewProps = {
@@ -15,10 +10,7 @@ type BalancePageViewProps = {
   hasBalances: boolean;
 };
 
-const BalancePageView: React.FC<BalancePageViewProps> = ({
-  t,
-  hasBalances,
-}) => (
+const BalancePageView: FC<BalancePageViewProps> = ({ t, hasBalances }) => (
   <Container className="py-4">
     {!hasBalances && (
       <p className="fs-4 fw-bold text-center py-2">

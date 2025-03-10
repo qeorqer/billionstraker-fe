@@ -1,10 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import ReactTooltip from 'react-tooltip';
 
 import { DiagramPiece, RangeStatisticsItem } from 'features/statistics/types';
 import { calculateStatisticsForDiagram } from 'features/statistics/utils/calculateStatisticsForDiagram';
-import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
 import { useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
 import { balanceData } from 'features/balance';
@@ -25,7 +24,6 @@ const DiagramStatistics: FC<DiagramStatisticsProps> = ({
   const [statistics, setStatistics] = useState<DiagramPiece[]>([]);
 
   const { balances } = useAppSelector(balanceData);
-  const { formatSumByBalanceName } = useFormatSumByBalanceName();
   const { user } = useAppSelector(userData);
 
   useEffect(() => {
@@ -62,7 +60,7 @@ const DiagramStatistics: FC<DiagramStatisticsProps> = ({
           fontSize: '10px',
           fill: '#F3C709',
         }}
-        onMouseOver={(el, index) => {
+        onMouseOver={(_el, index) => {
           setHovered(index);
         }}
         onMouseOut={() => {

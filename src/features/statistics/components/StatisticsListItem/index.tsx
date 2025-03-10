@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-import { formatSum } from 'features/transaction/utils/formatSum';
 import { listForRangeItem } from 'features/statistics/components/StatisticsList';
 import 'features/statistics/components/StatisticsListItem/styles.scss';
 import { TransactionType } from 'features/transaction';
@@ -65,7 +64,8 @@ const StatisticsListItem: FC<propsType> = ({
       className="mb-3 mx-auto text-center statisticsListItem cursor-pointer"
       bg="light"
       text="dark"
-      onClick={handleItemClick}>
+      onClick={handleItemClick}
+    >
       <Card.Body>
         <Row>
           <Col xs="6" lg="4">

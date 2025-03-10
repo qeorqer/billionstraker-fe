@@ -1,9 +1,8 @@
-import React from 'react';
 import { Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Category, categoryData } from 'features/category';
+import { categoryData } from 'features/category';
 import CategoryListItem from 'features/category/components/CategoryListItem';
 import { useAppSelector } from 'store/hooks';
 
@@ -40,7 +39,8 @@ const CategoriesList = () => {
             slidesPerView: 5,
           },
         }}
-        centerInsufficientSlides>
+        centerInsufficientSlides
+      >
         {categories.map((category) => (
           <SwiperSlide key={category._id}>
             <CategoryListItem category={category} />

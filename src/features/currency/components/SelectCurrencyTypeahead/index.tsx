@@ -1,5 +1,5 @@
 import { Typeahead, TypeaheadRef } from 'react-bootstrap-typeahead';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Option } from 'react-bootstrap-typeahead/types/types';
 import { currenciesList } from 'features/currency/constants';

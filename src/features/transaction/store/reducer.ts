@@ -48,7 +48,7 @@ const reducer = createSlice({
       state.isLoadingTransactions = false;
     });
 
-    builder.addCase(createTransactionThunk.pending, (state, action) => {
+    builder.addCase(createTransactionThunk.pending, (state, _action) => {
       state.isLoadingTransactions = true;
     });
 
@@ -65,7 +65,7 @@ const reducer = createSlice({
       });
     });
 
-    builder.addCase(createTransactionThunk.rejected, (state, action) => {
+    builder.addCase(createTransactionThunk.rejected, (state, _action) => {
       state.isLoadingTransactions = false;
 
       toast(i18next.t('failed to create transaction'), {
@@ -73,7 +73,7 @@ const reducer = createSlice({
       });
     });
 
-    builder.addCase(deleteTransactionThunk.pending, (state, action) => {
+    builder.addCase(deleteTransactionThunk.pending, (state, _action) => {
       state.isLoadingTransactions = true;
     });
 
@@ -90,7 +90,7 @@ const reducer = createSlice({
       );
     });
 
-    builder.addCase(deleteTransactionThunk.rejected, (state, action) => {
+    builder.addCase(deleteTransactionThunk.rejected, (state, _action) => {
       state.isLoadingTransactions = false;
 
       toast(i18next.t('deleting transaction failed'), {
@@ -98,7 +98,7 @@ const reducer = createSlice({
       });
     });
 
-    builder.addCase(updateTransactionThunk.pending, (state, action) => {
+    builder.addCase(updateTransactionThunk.pending, (state, _action) => {
       state.isLoadingTransactions = true;
     });
 
@@ -115,7 +115,7 @@ const reducer = createSlice({
       });
     });
 
-    builder.addCase(updateTransactionThunk.rejected, (state, action) => {
+    builder.addCase(updateTransactionThunk.rejected, (state, _action) => {
       state.isLoadingTransactions = false;
 
       toast(i18next.t('updating transaction failed'), {

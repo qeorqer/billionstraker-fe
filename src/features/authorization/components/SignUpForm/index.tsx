@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { Button, FormControl, FormGroup } from 'react-bootstrap';
@@ -92,7 +92,8 @@ const SignUpForm = () => {
             {({ field }: FieldProps) => (
               <FormGroup
                 controlId="confirmPassword"
-                className="authFormGroup mb-4">
+                className="authFormGroup mb-4"
+              >
                 <FormControl
                   {...field}
                   type={isPasswordShown ? 'text' : 'password'}
@@ -120,7 +121,8 @@ const SignUpForm = () => {
                   (errors.password && touched.password) ||
                   (touched.confirmPassword && errors.confirmPassword),
               )
-            }>
+            }
+          >
             {t('Sign up')}
           </Button>
         </Form>

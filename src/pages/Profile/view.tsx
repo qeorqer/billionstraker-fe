@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { Container, Stack } from 'react-bootstrap';
 
 import TransactionsList from 'features/transaction/components/TransactionsList';

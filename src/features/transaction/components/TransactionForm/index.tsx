@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { Button, Col, FormControl, FormGroup, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import {
@@ -19,7 +19,7 @@ import {
   updateTransactionThunk,
 } from 'features/transaction/index';
 import { userData } from 'features/user';
-import { categoryData } from 'features/category';
+import { Category, categoryData } from 'features/category';
 import { balanceData } from 'features/balance';
 import RevalidateFormOnTypeChange from 'features/transaction/components/RevalidateFormOnTypeChange';
 import {
@@ -27,6 +27,7 @@ import {
   formatPayloadForProfitOrExpense,
   transformTransactionIntoFormData,
 } from 'features/transaction/components/TransactionForm/utils';
+import { Balance } from 'features/balance/types';
 
 type TransactionFormProps = {
   selectedTransactionType: TransactionType;
@@ -191,7 +192,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                           <CustomSelect
                             defaultButtonText={t('select balance')}
                             defaultButtonValue=""
-                            data={balances.map((balance) => ({
+                            data={balances.map((balance: Balance) => ({
                               _id: balance._id,
                               name: balance.name,
                             }))}
@@ -206,7 +207,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                             type="invalid"
                             className={`position-absolute ${
                               touched.balanceId && 'd-block'
-                            }`}>
+                            }`}
+                          >
                             {errors?.balanceId && t(errors.balanceId)}
                           </FormControl.Feedback>
                         </FormGroup>
@@ -225,7 +227,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                             <CustomSelect
                               defaultButtonText={t('select balance')}
                               defaultButtonValue=""
-                              data={balances.map((balance) => ({
+                              data={balances.map((balance: Balance) => ({
                                 _id: balance._id,
                                 name: balance.name,
                                 disabled: balance._id === values.balanceId,
@@ -241,52 +243,55 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                               type="invalid"
                               className={`position-absolute ${
                                 touched.balanceId2 && 'd-block'
-                              }`}>
+                              }`}
+                            >
                               {errors?.balanceId2 && t(errors.balanceId2)}
                             </FormControl.Feedback>
                           </FormGroup>
                         )}
                       </Field>
                     </Col>
-                  ): ( <Col xs="12" sm={isModal ? '12' : '4'}>
-                    <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
-                      {t('Select category')}:
-                    </p>
-                    <Field name="categoryId">
-                      {({ field: { value, name } }: FieldProps) => (
-                        <FormGroup className="mb-4 position-relative w-100">
-                          <CustomSelect
-                            defaultButtonText={t('Select category')}
-                            defaultButtonValue=""
-                            data={categories
-                            .filter(
-                              (category) =>
-                                category.categoryType ===
-                                selectedTransactionType,
-                            )
-                            .map((category) => ({
-                              _id: category._id!,
-                              name: category.name,
-                            }))}
-                            selectedValue={value}
-                            setSelectedValue={
-                              updateDropdownValue(name) as Dispatch<
-                                SetStateAction<string>
-                              >
-                            }
-                          />
-                          <FormControl.Feedback
-                            type="invalid"
-                            className={`position-absolute ${
-                              touched.categoryId && 'd-block'
-                            }`}>
-                            {errors?.categoryId && t(errors.categoryId)}
-                          </FormControl.Feedback>
-                        </FormGroup>
-                      )}
-                    </Field>
-                  </Col>)}
-
+                  ) : (
+                    <Col xs="12" sm={isModal ? '12' : '4'}>
+                      <p className="mb-1 fs-5 text-center w-100 white-space-nowrap">
+                        {t('Select category')}:
+                      </p>
+                      <Field name="categoryId">
+                        {({ field: { value, name } }: FieldProps) => (
+                          <FormGroup className="mb-4 position-relative w-100">
+                            <CustomSelect
+                              defaultButtonText={t('Select category')}
+                              defaultButtonValue=""
+                              data={categories
+                                .filter(
+                                  (category: Category) =>
+                                    category.categoryType ===
+                                    selectedTransactionType,
+                                )
+                                .map((category: Category) => ({
+                                  _id: category._id!,
+                                  name: category.name,
+                                }))}
+                              selectedValue={value}
+                              setSelectedValue={
+                                updateDropdownValue(name) as Dispatch<
+                                  SetStateAction<string>
+                                >
+                              }
+                            />
+                            <FormControl.Feedback
+                              type="invalid"
+                              className={`position-absolute ${
+                                touched.categoryId && 'd-block'
+                              }`}
+                            >
+                              {errors?.categoryId && t(errors.categoryId)}
+                            </FormControl.Feedback>
+                          </FormGroup>
+                        )}
+                      </Field>
+                    </Col>
+                  )}
 
                   <Col xs="12" sm={isModal ? '12' : '4'}>
                     <p className="mb-1 fs-5 text-center w-100">
@@ -310,7 +315,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                           />
                           <FormControl.Feedback
                             type="invalid"
-                            className="position-absolute">
+                            className="position-absolute"
+                          >
                             {errors?.date && t(errors.date as string)}
                           </FormControl.Feedback>
                         </FormGroup>
@@ -341,7 +347,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                           />
                           <FormControl.Feedback
                             type="invalid"
-                            className="position-absolute">
+                            className="position-absolute"
+                          >
                             {errors?.sum && t(errors.sum)}
                           </FormControl.Feedback>
                         </FormGroup>
@@ -364,7 +371,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                             />
                             <FormControl.Feedback
                               type="invalid"
-                              className="position-absolute">
+                              className="position-absolute"
+                            >
                               {errors?.sum2 && t(errors.sum2)}
                             </FormControl.Feedback>
                           </FormGroup>
@@ -385,7 +393,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                           />
                           <FormControl.Feedback
                             type="invalid"
-                            className="position-absolute">
+                            className="position-absolute"
+                          >
                             {errors?.title && t(errors.title)}
                           </FormControl.Feedback>
                         </FormGroup>
@@ -401,7 +410,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
                       type="submit"
                       variant="warning"
                       className="w300Px text-white"
-                      disabled={isLoadingTransactions}>
+                      disabled={isLoadingTransactions}
+                    >
                       {t('Submit')}
                     </Button>
                   </Col>

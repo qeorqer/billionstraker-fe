@@ -1,7 +1,7 @@
 import { Container, Modal } from 'react-bootstrap';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
 import TransactionForm from 'features/transaction/components/TransactionForm';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { Transaction, TransactionType } from 'features/transaction/types';
 import { useTranslation } from 'react-i18next';
 
