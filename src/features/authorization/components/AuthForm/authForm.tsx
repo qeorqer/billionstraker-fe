@@ -1,33 +1,36 @@
-import LoginForm from 'features/authorization/components/LogInForm';
-import SignUpForm from 'features/authorization/components/SignUpForm';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Title, Text, Stack } from '@mantine/core';
+
+import LoginForm from 'features/authorization/components/LogInForm';
+import SignUpForm from 'features/authorization/components/SignUpForm';
 
 const AuthForm = () => {
   const [showSignIn, setShowSignIn] = useState<boolean>(true);
-
   const { t } = useTranslation();
 
   if (showSignIn) {
     return (
-      <>
-        <h2>{t('Sign in')}</h2>
+      <Stack gap="md" align="center">
+        <Title order={2} fw={700} fz={35}>{t('Sign in')}</Title>
         <LoginForm />
-        <p onClick={() => setShowSignIn(false)} className="my-2 cursor-pointer">
-          {t('New to billionstracker')}? <span>{t('Sign up')}</span>
-        </p>
-      </>
+        <Text onClick={() => setShowSignIn(false)} style={{ cursor: 'pointer' }} ta="center">
+          {t('New to billionstracker')}?{' '}
+          <Text span fw={700} component="span">{t('Sign up')}</Text>
+        </Text>
+      </Stack>
     );
   }
 
   return (
-    <>
-      <h2>{t('Sign up')}</h2>
+    <Stack gap="md" align="center">
+      <Title order={2} fw={700} fz={35}>{t('Sign up')}</Title>
       <SignUpForm />
-      <p onClick={() => setShowSignIn(true)} className="my-2 cursor-pointer">
-        {t('Already on billionstracker')}? <span>{t('Sign in')}</span>
-      </p>
-    </>
+      <Text onClick={() => setShowSignIn(true)} style={{ cursor: 'pointer' }} ta="center">
+        {t('Already on billionstracker')}?{' '}
+        <Text span fw={700} component="span">{t('Sign in')}</Text>
+      </Text>
+    </Stack>
   );
 };
 

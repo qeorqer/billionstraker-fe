@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
-import * as Yup from 'yup';
-import { Button, FormControl, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { TextInput, PasswordInput, Button, Stack } from '@mantine/core';
 
 import { AuthData } from 'features/user/types';
 import { logInThunk } from 'features/user';
@@ -22,79 +22,52 @@ const validationSchema = Yup.object().shape({
 
 const LoginForm = () => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
-
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const handleSignIn = ({ login, password }: AuthData) =>
-    dispatch(logInThunk({ login: login.trim().toLowerCase(), password }));
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: ({ login, password }) => {
+      dispatch(logInThunk({ login: login.trim().toLowerCase(), password }));
+    },
+  });
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSignIn}
-      render={({
-        errors,
-        touched,
-        handleSubmit,
-        isSubmitting,
-      }: FormikProps<AuthData>) => (
-        <Form onSubmit={handleSubmit}>
-          <Field name="login">
-            {({ field }: FieldProps) => (
-              <FormGroup className="authFormGroup mb-4">
-                <FormControl
-                  {...field}
-                  type="email"
-                  placeholder={t('login')}
-                  isInvalid={Boolean(touched.login && errors.login)}
-                />
-                {touched.login && errors.login && (
-                  <FormControl.Feedback type="invalid" tooltip>
-                    {t(errors.login)}
-                  </FormControl.Feedback>
-                )}
-              </FormGroup>
-            )}
-          </Field>
+    <form onSubmit={formik.handleSubmit}>
+      <Stack w={300} mx="auto">
+        <TextInput
+          size="md"
+          name="login"
+          type="email"
+          placeholder={t('login')}
+          value={formik.values.login}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.login && formik.errors.login ? t(formik.errors.login) : null}
+        />
 
-          <Field name="password">
-            {({ field }: FieldProps) => (
-              <FormGroup controlId="password" className="authFormGroup mb-4 ">
-                <FormControl
-                  {...field}
-                  type={isPasswordShown ? 'text' : 'password'}
-                  placeholder={t('password')}
-                />
-                <span onClick={() => setIsPasswordShown(!isPasswordShown)}>
-                  {t(isPasswordShown ? 'hide' : 'show')}
-                </span>
-                {touched.password && errors.password && (
-                  <FormControl.Feedback type="invalid" tooltip>
-                    {t(errors.password)}
-                  </FormControl.Feedback>
-                )}
-              </FormGroup>
-            )}
-          </Field>
+        <PasswordInput
+          size="md"
+          name="password"
+          placeholder={t('password')}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && formik.errors.password ? t(formik.errors.password) : null}
+          visible={isPasswordShown}
+          onVisibilityChange={setIsPasswordShown}
+        />
 
-          <Button
-            type="submit"
-            variant="warning"
-            disabled={
-              isSubmitting ||
-              Boolean(
-                (errors.login && touched.login) ||
-                  (errors.password && touched.password),
-              )
-            }
-          >
-            {t('Sign in')}
-          </Button>
-        </Form>
-      )}
-    />
+        <Button
+          type="submit"
+          color="primary"
+          disabled={formik.isSubmitting || !formik.isValid}
+        >
+          {t('Sign in')}
+        </Button>
+      </Stack>
+    </form>
   );
 };
 

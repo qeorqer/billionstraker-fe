@@ -1,10 +1,17 @@
 import i18next from 'i18next';
+import { Group, UnstyledButton, Text } from '@mantine/core';
+import { FC } from 'react';
 
 import { changeLang } from 'features/user';
 import { userData } from 'features/user';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
-const LanguageSwitcher = () => {
+const LANGUAGES = [
+  { code: 'en', label: 'EN' },
+  { code: 'ru', label: 'Not EN' },
+] as const;
+
+const LanguageSwitcher: FC = () => {
   const dispatch = useAppDispatch();
   const { lang } = useAppSelector(userData);
 
@@ -14,20 +21,19 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <>
-      <span
-        onClick={handleLangChange('en')}
-        className={lang === 'en' ? 'activeLang' : ''}
-      >
-        EN
-      </span>
-      <span
-        onClick={handleLangChange('ru')}
-        className={lang === 'ru' ? 'activeLang' : ''}
-      >
-        Not EN
-      </span>
-    </>
+    <Group gap="xs" justify="center">
+      {LANGUAGES.map(({ code, label }) => (
+        <UnstyledButton key={code} onClick={handleLangChange(code)}>
+          <Text
+            size="sm"
+            c={lang === code ? 'white' : 'dimmed'}
+            fw={lang === code ? 700 : 400}
+          >
+            {label}
+          </Text>
+        </UnstyledButton>
+      ))}
+    </Group>
   );
 };
 
