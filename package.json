@@ -18,6 +18,9 @@
   },
   "dependencies": {
     "@dotmind/react-use-pwa": "github:dotmind/react-use-pwa",
+    "@emotion/react": "^11.14.0",
+    "@mantine/core": "^7.17.1",
+    "@mantine/hooks": "^7.17.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@wojtekmaj/react-daterange-picker": "^5.4.4",
     "axios": "^1.7.9",
