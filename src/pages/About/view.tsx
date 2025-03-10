@@ -1,11 +1,9 @@
 import { FC } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Container, Title, Text, Image, Stack, Button, Box } from '@mantine/core';
 
 import about1 from 'assets/about/about-1.png';
 import about2 from 'assets/about/about-2.png';
 import about3 from 'assets/about/about-3.png';
-
-import './styles.scss';
 
 type propsType = {
   t: (text: string) => string;
@@ -13,25 +11,63 @@ type propsType = {
 };
 
 const AboutPageView: FC<propsType> = ({ t, handleCheckOutClick }) => (
-  <section className="aboutSection text-center text-white py-4 px-2">
-    <Container>
-      <h1 className="yellowText fs-2">{t('what does this app do')}</h1>
-      <p>{t('the main idea of the app')}</p>
-      <img src={about1} alt="transactions" />
-      <p>{t('about statistics')}</p>
-      <img src={about2} alt="statistics" />
-      <p>{t('more over the has mobile version')}</p>
-      <img src={about3} alt="mobile version" className="w-320" />
-      <p>{t('so there is no reason not to check it out')}</p>
-      <Button
-        variant="warning"
-        className="w300Px text-white"
-        onClick={handleCheckOutClick}
-      >
-        {t('check it out')}
-      </Button>
+  <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
+    <Container py="md" size="lg">
+      <Stack component="section" align="center" gap="md">
+        <Title c="primary" ta="center">
+          {t('what does this app do')}
+        </Title>
+        
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('the main idea of the app')}
+        </Text>
+        
+        <Box component="figure" style={{ border: '4px solid var(--mantine-color-primary-filled)', borderRadius: 'var(--mantine-radius-md)' }}>
+          <Image
+            src={about1}
+            alt="transactions"
+          />
+        </Box>
+        
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('about statistics')}
+        </Text>
+        
+        <Box component="figure" style={{ border: '4px solid var(--mantine-color-primary-filled)', borderRadius: 'var(--mantine-radius-md)' }}>
+          <Image
+            src={about2}
+            alt="statistics"
+          />
+        </Box>
+        
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('more over the has mobile version')}
+        </Text>
+        
+        <Box component="figure" style={{ border: '4px solid var(--mantine-color-primary-filled)', borderRadius: 'var(--mantine-radius-md)' }} maw={375}>
+          <Image
+            src={about3}
+            alt="mobile version"
+          />
+        </Box>
+        
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('so there is no reason not to check it out')}
+        </Text>
+        
+        <Button
+          component="a"
+          role="button"
+          variant="filled"
+          color="primary"
+          w={300}
+          onClick={handleCheckOutClick}
+        >
+          {t('check it out')}
+        </Button>
+      </Stack>
     </Container>
-  </section>
+  </Box>
 );
 
 export default AboutPageView;
