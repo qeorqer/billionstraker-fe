@@ -1,6 +1,10 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { balanceData, getBalancesThunk } from 'features/balance';
@@ -11,7 +15,7 @@ type BalanceListProps = {
   showMenu?: boolean;
 };
 
-const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
+const BalancesList: FC<BalanceListProps> = ({ showMenu = false }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { balances } = useAppSelector(balanceData);
@@ -33,6 +37,7 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
       )}
 
       <Swiper
+        modules={[FreeMode]}
         spaceBetween={15}
         slidesPerView={2}
         className="justify-content-center d-flex px-2"
@@ -47,7 +52,7 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
             slidesPerView: 5,
           },
         }}
-        centerInsufficientSlides
+        freeMode
       >
         {balances.map((balance) => (
           <SwiperSlide key={balance._id}>
@@ -57,10 +62,6 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
       </Swiper>
     </Row>
   );
-};
-
-BalancesList.defaultProps = {
-  showMenu: false,
 };
 
 export default BalancesList;

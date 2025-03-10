@@ -2564,15 +2564,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/swiper@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@types/swiper@npm:6.0.0"
-  dependencies:
-    swiper: "*"
-  checksum: 53688c7fd949895d24deff102679d1a1080cd876a7d493de263aff818666cfa06ccd043a8602e9ecabf581cd750815426aec544796f27d1bfa1d71b815a966e9
-  languageName: node
-  linkType: hard
-
 "@types/trusted-types@npm:^2.0.2":
   version: 2.0.7
   resolution: "@types/trusted-types@npm:2.0.7"
@@ -3153,7 +3144,6 @@ __metadata:
     "@types/react-infinite-scroller": ^1.2.3
     "@types/react-router-dom": ^5.1.8
     "@types/react-transition-group": ^4.4.2
-    "@types/swiper": ^6.0.0
     "@types/yup": ^0.29.13
     "@typescript-eslint/eslint-plugin": ^6.21.0
     "@typescript-eslint/parser": ^6.21.0
@@ -3195,7 +3185,7 @@ __metadata:
     react-toastify: ^8.0.2
     react-tooltip: ^4.2.21
     sass: ^1.85.0
-    swiper: ^6.8.4
+    swiper: ^11.0.6
     typescript: ^5.3.3
     vite: ^5.1.4
     vite-plugin-pwa: ^0.19.0
@@ -3769,15 +3759,6 @@ __metadata:
     "@babel/runtime": ^7.8.7
     csstype: ^3.0.2
   checksum: 863ba9e086f7093df3376b43e74ce4422571d404fc9828bf2c56140963d5edf0e56160f9b2f3bb61b282c07f8fc8134f023c98fd684bddcb12daf7b0f14d951c
-  languageName: node
-  linkType: hard
-
-"dom7@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "dom7@npm:3.0.0"
-  dependencies:
-    ssr-window: ^3.0.0-alpha.1
-  checksum: 5a1b8979ed35afb9cc6714ff048ce4599a24fd8a11069bb52a61ccae1bdc0716c2bd6b07c4338856d5664d984c0bee9f6b7616a01ffa09daaebfe02fee016e66
   languageName: node
   linkType: hard
 
@@ -7735,13 +7716,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ssr-window@npm:^3.0.0, ssr-window@npm:^3.0.0-alpha.1":
-  version: 3.0.0
-  resolution: "ssr-window@npm:3.0.0"
-  checksum: e619db7437874c89d2f4cea94ca8cbdfb4eed9f20d86fa193c29a17829c26d7ceefae344ac1699cc24ebb8d397fd0937a1043b5177a140c2504c9fda58bb5652
-  languageName: node
-  linkType: hard
-
 "ssri@npm:^12.0.0":
   version: 12.0.0
   resolution: "ssri@npm:12.0.0"
@@ -7951,20 +7925,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swiper@npm:*":
+"swiper@npm:^11.0.6":
   version: 11.2.5
   resolution: "swiper@npm:11.2.5"
   checksum: 3ebc36feca44b5b4af081ffd655a8dec683f2506676f7a1ebec059e68d0415d928f2502bb2008c03e3e8e815fb4a7f087e39b5726329f6c32a5c58667e43f5e3
-  languageName: node
-  linkType: hard
-
-"swiper@npm:^6.8.4":
-  version: 6.8.4
-  resolution: "swiper@npm:6.8.4"
-  dependencies:
-    dom7: ^3.0.0
-    ssr-window: ^3.0.0
-  checksum: 613239e71135b48378453a74abed9a33d56f147e704e3803f5ea960dbf9833a93e557ef0b75e7c2849328eb1b48fafab54f7ac5b88e8c3727283536c7740b13f
   languageName: node
   linkType: hard
 
