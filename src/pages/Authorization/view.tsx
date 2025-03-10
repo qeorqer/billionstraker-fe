@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import logo from 'assets/common/logo.png';
 import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
+import AuthForm from 'features/authorization/components/AuthForm/authForm';
 
 import './styles.scss';
-import AuthForm from 'features/authorization/components/AuthForm/authForm';
 
 type propsType = {
   t: (text: string) => string;
