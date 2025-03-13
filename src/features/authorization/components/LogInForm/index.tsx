@@ -44,7 +44,11 @@ const LoginForm = () => {
           value={formik.values.login}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.login && formik.errors.login ? t(formik.errors.login) : null}
+          error={
+            formik.touched.login && formik.errors.login
+              ? t(formik.errors.login)
+              : null
+          }
         />
 
         <PasswordInput
@@ -54,16 +58,16 @@ const LoginForm = () => {
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.password && formik.errors.password ? t(formik.errors.password) : null}
+          error={
+            formik.touched.password && formik.errors.password
+              ? t(formik.errors.password)
+              : null
+          }
           visible={isPasswordShown}
           onVisibilityChange={setIsPasswordShown}
         />
 
-        <Button
-          type="submit"
-          color="primary"
-          disabled={formik.isSubmitting || !formik.isValid}
-        >
+        <Button type="submit" disabled={formik.isSubmitting || !formik.isValid}>
           {t('Sign in')}
         </Button>
       </Stack>

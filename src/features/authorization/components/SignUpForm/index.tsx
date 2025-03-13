@@ -52,7 +52,11 @@ const SignUpForm = () => {
           value={formik.values.login}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.login && formik.errors.login ? t(formik.errors.login) : null}
+          error={
+            formik.touched.login && formik.errors.login
+              ? t(formik.errors.login)
+              : null
+          }
         />
 
         <PasswordInput
@@ -61,7 +65,11 @@ const SignUpForm = () => {
           value={formik.values.password}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.password && formik.errors.password ? t(formik.errors.password) : null}
+          error={
+            formik.touched.password && formik.errors.password
+              ? t(formik.errors.password)
+              : null
+          }
           visible={isPasswordShown}
           onVisibilityChange={setIsPasswordShown}
         />
@@ -72,7 +80,11 @@ const SignUpForm = () => {
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          error={formik.touched.confirmPassword && formik.errors.confirmPassword ? t(formik.errors.confirmPassword) : null}
+          error={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+              ? t(formik.errors.confirmPassword)
+              : null
+          }
           visible={isPasswordShown}
           onVisibilityChange={setIsPasswordShown}
         />
@@ -80,12 +92,10 @@ const SignUpForm = () => {
         <Button
           type="submit"
           variant="filled"
-          color="primary"
           disabled={formik.isSubmitting || !formik.isValid}
           h={40}
           fz="md"
-          fw={700}
-        >
+          fw={700}>
           {t('Sign up')}
         </Button>
       </Stack>

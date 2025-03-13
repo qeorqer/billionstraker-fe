@@ -92,10 +92,14 @@ const Header = () => {
   ];
 
   return (
-    <Box component="header" bg="dark" py={20}>
+    <Box
+      component="header"
+      bg="dark"
+      py={20}
+      style={{ borderBottom: '1px solid var(--mantine-color-dark-4)' }}>
       <Container size="lg">
         <Grid align="center">
-          <Grid.Col span={{ base: 6, md: 3 }} className="logo">
+          <Grid.Col span={{ base: 6, md: 3 }}>
             <Title order={1}>
               <Anchor
                 component={NavLink as any}
@@ -120,18 +124,17 @@ const Header = () => {
                     component={NavLink as any}
                     to={link}
                     underline="never"
-                    activeClassName={styles.active}
-                    className="d-flex flex-column align-items-center">
-                    <Component />
+                    className={styles.menuLink}>
+                    <Box className={styles.menuIcon}>
+                      <Component />
+                    </Box>
                     {t(title)}
                   </Anchor>
                 </li>
               ))}
             </ul>
           </Grid.Col>
-          <Grid.Col
-            span={{ base: 6, md: 3 }}
-            style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Grid.Col span={{ base: 6, md: 3 }} ta="right">
             <Menu
               opened={opened}
               onChange={toggle}

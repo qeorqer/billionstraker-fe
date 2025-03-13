@@ -4,6 +4,7 @@ import { HashRouter as Router } from 'react-router-dom';
 import { registerSW } from 'virtual:pwa-register';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 
 import App from './App';
 import store from './store';

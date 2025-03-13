@@ -79,6 +79,7 @@ export const theme = createTheme({
       defaultProps: {
         size: 'md',
         variant: 'filled',
+        color: 'primary.8',
       },
     },
     Input: {

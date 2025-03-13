@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Grid, Box, Title, Stack } from '@mantine/core';
 
 import CategoriesList from 'features/category/components/CategoriesList';
 import CategoryForm from 'features/category/components/CategoryForm';
@@ -9,15 +9,25 @@ type CategoryPageViewProps = {
 };
 
 const CategoryPageView: FC<CategoryPageViewProps> = ({ t }) => (
-  <Container className="py-4">
-    <CategoriesList />
-    <Row className="text-center">
-      <Col xs="12" lg="5" className="mb-3 mb-lg-0 mx-auto">
-        <p className="fs-5 fw-bold">{t('add new category')}:</p>
-        <CategoryForm buttonText="create" />
-      </Col>
-    </Row>
-  </Container>
+  <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
+    <Container size="lg" py="xl">
+      <Stack gap="xl">
+        <CategoriesList />
+        <Grid>
+          <Grid.Col span={{ base: 12, md: 5 }} offset={{ md: 3.5 }}>
+            <Stack align="center" gap="md">
+              <Title order={2} fw={500} ta="center">
+                {t('add new category')}
+              </Title>
+              <Box maw="320px">
+                <CategoryForm buttonText="create" />
+              </Box>
+            </Stack>
+          </Grid.Col>
+        </Grid>
+      </Stack>
+    </Container>
+  </Box>
 );
 
 export default CategoryPageView;

@@ -20,6 +20,7 @@
   "dependencies": {
     "@dotmind/react-use-pwa": "github:dotmind/react-use-pwa",
     "@emotion/react": "^11.14.0",
+    "@mantine/carousel": "^7.17.1",
     "@mantine/core": "^7.17.1",
     "@mantine/hooks": "^7.17.1",
     "@reduxjs/toolkit": "^1.6.1",
@@ -30,6 +31,7 @@
     "bootstrap-icons": "^1.11.1",
     "date-fns": "^2.23.0",
     "decimal.js": "^10.4.0",
+    "embla-carousel-react": "^8.5.2",
     "formik": "^2.2.9",
     "i18next": "^20.6.1",
     "i18next-browser-languagedetector": "^6.1.2",

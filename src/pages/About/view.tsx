@@ -74,7 +74,6 @@ const AboutPageView: FC<propsType> = ({ t, handleCheckOutClick }) => (
           component="a"
           role="button"
           variant="filled"
-          color="primary"
           w={300}
           onClick={handleCheckOutClick}>
           {t('check it out')}
