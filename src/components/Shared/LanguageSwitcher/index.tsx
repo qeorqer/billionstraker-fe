@@ -2,9 +2,10 @@ import i18next from 'i18next';
 import { Group, UnstyledButton, Text } from '@mantine/core';
 import { FC } from 'react';
 
-import { changeLang } from 'features/user';
-import { userData } from 'features/user';
+import { changeLang, userData } from 'features/user';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+
+import styles from './styles.module.css';
 
 const LANGUAGES = [
   { code: 'en', label: 'EN' },
@@ -25,10 +26,11 @@ const LanguageSwitcher: FC = () => {
       {LANGUAGES.map(({ code, label }) => (
         <UnstyledButton key={code} onClick={handleLangChange(code)}>
           <Text
+            component="span"
             size="sm"
             c={lang === code ? 'white' : 'dimmed'}
-            fw={lang === code ? 700 : 400}
-          >
+            fw={500}
+            className={styles.button}>
             {label}
           </Text>
         </UnstyledButton>

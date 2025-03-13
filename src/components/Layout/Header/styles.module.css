@@ -1,36 +1,12 @@
-$yellow: #F3C709;
-
-header {
-  background: #30333C;
-  padding: 20px 0;
-
-  @media (max-width: 1200px) {
-    padding: 15px 0;
-  }
-
-  .logo {
-    img {
-      max-width: 30px;
-      margin-right: 5px;
-    }
-
-    a {
-      align-items: center;
-      display: flex;
-      color: $yellow;
-      font-weight: bold;
-      text-decoration: none;
-    }
-  }
-
   .menu {
     @media (max-width: 480px) {
       position: fixed;
       bottom: 0;
       z-index: 1;
-      background: #30333C;
+      background: var(--mantine-color-dark-6);
       left: 0;
-      height: 50px;
+      right: 0;
+      height: 60px;
       align-items: center;
       display: flex;
       justify-content: center;
@@ -39,6 +15,9 @@ header {
     ul {
       display: flex;
       list-style: none;
+      width: 100%;
+      justify-content: center;
+      gap: 24px;
 
       @media(max-width: 1000px) {
         font-size: 12px;
@@ -52,34 +31,38 @@ header {
       }
 
       @media (max-width: 480px) {
-        margin-top: 0 !important;
-        padding-bottom: 0 !important;
+        margin: 0 !important;
+        padding: 0 16px !important;
         justify-content: space-between;
-        width: 80%;
-      }
-
-      @media(max-width: 480px) {
-        font-size: 10px;
+        width: 100%;
+        flex-wrap: nowrap;
+        gap: 0;
       }
     }
 
-
     li {
-      margin-right: 15px;
+      list-style: none;
+      margin: 0;
+
+      @media (max-width: 480px) {
+        flex: 1;
+        text-align: center;
+      }
     }
 
     a {
-      color: #fff;
+      color: var(--mantine-color-white);
       text-decoration: none;
       font-weight: bold;
       position: relative;
-      transition: .5s;
+      transition: .3s;
+      width: 100%;
 
       &:after {
         content: "";
         width: 0;
         height: 2px;
-        background-color: $yellow;
+        background-color: var(--mantine-color-primary-filled);
         position: absolute;
         left: 0;
         right: 0;
@@ -87,11 +70,11 @@ header {
         bottom: -10px;
         opacity: 0;
         transition: inherit;
-        border-radius: 0.25rem;
+        border-radius: var(--mantine-radius-sm);
       }
 
       &.active, &:hover {
-        color: $yellow;
+        color: var(--mantine-color-primary-filled);
 
         &:after {
           width: 65%;
@@ -103,17 +86,19 @@ header {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 4px;
+        font-size: 10px;
 
         svg {
-          fill: #fff;
+          fill: var(--mantine-color-white);
           height: 20px;
           width: 20px;
-          transition: .5s;
+          transition: .3s;
         }
 
         &.active, &:hover {
           svg {
-            fill: $yellow;
+            fill: var(--mantine-color-primary-filled);
           }
         }
 
@@ -129,25 +114,3 @@ header {
       }
     }
   }
-}
-
-.dropdown-item {
-  cursor: pointer;
-
-  &:active {
-    background-color: rgba(255, 255, 255, .15) !important;
-  }
-}
-
-.dropdown.show .menuTogglerContainer span {
-  transform: rotate(45deg);
-
-  &:before {
-    opacity: 0;
-  }
-
-  &:after {
-    top: 0;
-    transform: rotate(-90deg);
-  }
-}

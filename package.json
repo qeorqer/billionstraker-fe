@@ -23,6 +23,7 @@
     "@mantine/core": "^7.17.1",
     "@mantine/hooks": "^7.17.1",
     "@reduxjs/toolkit": "^1.6.1",
+    "@tabler/icons-react": "^3.31.0",
     "@wojtekmaj/react-daterange-picker": "^5.4.4",
     "axios": "^1.7.9",
     "bootstrap": "^5.1.0",

@@ -2333,6 +2333,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tabler/icons-react@npm:^3.31.0":
+  version: 3.31.0
+  resolution: "@tabler/icons-react@npm:3.31.0"
+  dependencies:
+    "@tabler/icons": 3.31.0
+  peerDependencies:
+    react: ">= 16"
+  checksum: 712e62b2ef35461c75216c58fd70e9480adbc149415710154d6dc60d81ca16323d3b7f2f0eb8f2f101b4431dd1c15a72b9722ba3cedfcb82d54401ff1aeffc7e
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:3.31.0":
+  version: 3.31.0
+  resolution: "@tabler/icons@npm:3.31.0"
+  checksum: 73d31d3737d9d684acd4a524796d42e6d82d312699851c1f0f5f09d948f5d3864391e6a5537fa677703976f830a7289bf10ec181d60a8c31ad202acb66d9220f
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.20.5":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
@@ -3136,6 +3154,7 @@ __metadata:
     "@mantine/core": ^7.17.1
     "@mantine/hooks": ^7.17.1
     "@reduxjs/toolkit": ^1.6.1
+    "@tabler/icons-react": ^3.31.0
     "@types/react": ^18.2.48
     "@types/react-calendar": ^3.4.3
     "@types/react-date-range": ^1.1.7

@@ -3,13 +3,13 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import { registerSW } from 'virtual:pwa-register';
 import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 import App from './App';
 import store from './store';
 import { theme } from './theme';
 import './i18n';
 
-import '@mantine/core/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'swiper/css';
 
@@ -29,5 +29,5 @@ root.render(
         <App />
       </Router>
     </MantineProvider>
-  </Provider>
+  </Provider>,
 );
