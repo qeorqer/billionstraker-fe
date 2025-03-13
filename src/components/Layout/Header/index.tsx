@@ -124,10 +124,8 @@ const Header = () => {
                     component={NavLink as any}
                     to={link}
                     underline="never"
-                    className={styles.menuLink}>
-                    <Box className={styles.menuIcon}>
-                      <Component />
-                    </Box>
+                    activeClassName={styles.active}>
+                    <Component />
                     {t(title)}
                   </Anchor>
                 </li>

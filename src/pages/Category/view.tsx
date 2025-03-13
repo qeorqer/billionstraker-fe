@@ -19,7 +19,7 @@ const CategoryPageView: FC<CategoryPageViewProps> = ({ t }) => (
               <Title order={2} fw={500} ta="center">
                 {t('add new category')}
               </Title>
-              <Box maw="320px">
+              <Box maw="320px" w="100%">
                 <CategoryForm buttonText="create" />
               </Box>
             </Stack>

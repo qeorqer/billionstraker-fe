@@ -45,7 +45,7 @@ const CategoryListItem: FC<CategoryListItemProps> = ({ category }) => {
             </ActionIcon>
             <ActionIcon
               variant="subtle"
-              color="red"
+              color="gray"
               onClick={() => setIsDeleteCategoryModalOpen(true)}
               size="sm">
               <IconX style={{ width: '70%', height: '70%' }} />

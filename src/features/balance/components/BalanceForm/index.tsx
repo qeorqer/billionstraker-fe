@@ -1,21 +1,28 @@
-import { ForwardedRef, useRef } from 'react';
-import { Button, Form, FormControl, FormGroup } from 'react-bootstrap';
+import { FC, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import * as Yup from 'yup';
 import { Field, FieldProps, Formik, FormikProps } from 'formik';
+import {
+  TextInput,
+  NumberInput,
+  Button,
+  Stack,
+  Autocomplete,
+} from '@mantine/core';
 import { TypeaheadRef } from 'react-bootstrap-typeahead';
 
-import { CurrencyOption } from 'features/currency';
+import { currenciesList } from 'features/currency';
 import {
   Balance,
   balanceData,
   createBalanceThunk,
   updateBalanceThunk,
 } from 'features/balance';
-import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
-import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
 import { updateUserThunk, userData } from 'features/user';
+
+import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
+import styles from './styles.module.css';
 
 type BalanceFormProps = {
   buttonText: string;
@@ -35,7 +42,7 @@ const initialValues: BalanceFormFields = {
   currency: '',
 };
 
-const BalanceForm: React.FC<BalanceFormProps> = ({
+const BalanceForm: FC<BalanceFormProps> = ({
   buttonText,
   balance = null,
   onSuccess = () => {},
@@ -59,7 +66,13 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
     amount: Yup.number()
       .min(0, 'Must be a positive value')
       .required('Amount value is required'),
-    currency: Yup.string().nullable(true).required('Currency is required'),
+    currency: Yup.string()
+      .nullable(true)
+      .oneOf(
+        currenciesList.map(({ label }) => label),
+        'Must be a value from the list',
+      )
+      .required('Currency is required'),
   });
 
   const onSubmit = async (
@@ -67,7 +80,14 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
     { resetForm }: { resetForm: () => void },
   ) => {
     try {
-      const payload = { balance: values as Partial<Balance> };
+      const payload = {
+        balance: {
+          ...values,
+          currency: currenciesList.find(
+            (currency) => currency.label === values.currency,
+          )!.value,
+        } as Partial<Balance>,
+      };
 
       if (balance) {
         await dispatch(updateBalanceThunk(payload));
@@ -97,89 +117,83 @@ const BalanceForm: React.FC<BalanceFormProps> = ({
     <Formik
       initialValues={balance ?? initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
-      render={({
+      onSubmit={onSubmit}>
+      {({
         errors,
         touched,
         handleSubmit,
         setFieldValue,
       }: FormikProps<BalanceFormFields>) => (
-        <Form onSubmit={handleSubmit}>
-          <Field name="name">
-            {({ field }: FieldProps) => (
-              <FormGroup className="mb-4 position-relative">
-                <FormControl
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <Stack gap="md">
+            <Field name="name">
+              {({ field }: FieldProps) => (
+                <TextInput
+                  size="md"
                   {...field}
                   placeholder={t('name the balance')}
-                  isInvalid={Boolean(touched.name && errors.name)}
+                  error={touched.name && errors.name ? t(errors.name) : null}
                 />
-                <FormControl.Feedback
-                  type="invalid"
-                  className="position-absolute"
-                >
-                  {errors?.name && t(errors.name)}
-                </FormControl.Feedback>
-              </FormGroup>
-            )}
-          </Field>
+              )}
+            </Field>
 
-          <Field name="amount">
-            {({ field }: FieldProps) => (
-              <FormGroup className="mb-4 position-relative">
-                <FormControl
+            <Field name="amount">
+              {({ field }: FieldProps) => (
+                <NumberInput
+                  size="md"
                   {...field}
-                  type="number"
+                  onChange={(value) => setFieldValue('amount', value)}
                   placeholder={t('set amount')}
-                  isInvalid={Boolean(touched.amount && errors.amount)}
-                />
-                <FormControl.Feedback
-                  type="invalid"
-                  className="position-absolute"
-                >
-                  {errors?.amount && t(errors.amount)}
-                </FormControl.Feedback>
-              </FormGroup>
-            )}
-          </Field>
-
-          <Field name="currency">
-            {({ field }: FieldProps) => (
-              <FormGroup className="mb-4 position-relative">
-                <SelectCurrencyTypeahead
-                  id="currency-typeahead"
-                  ref={typeaheadRef as ForwardedRef<TypeaheadRef>}
-                  onChange={(selectedOptions) =>
-                    setFieldValue(
-                      'currency',
-                      (selectedOptions as CurrencyOption[])[0]?.value ?? '',
-                    )
+                  error={
+                    touched.amount && errors.amount ? t(errors.amount) : null
                   }
-                  isInvalid={Boolean(touched.currency && errors.currency)}
-                  value={getCurrencyLabel(field.value)}
+                  allowNegative={false}
+                  hideControls
                 />
-                <FormControl.Feedback
-                  type="invalid"
-                  className="position-absolute"
-                >
-                  {errors?.currency && t(errors.currency)}
-                </FormControl.Feedback>
-              </FormGroup>
-            )}
-          </Field>
+              )}
+            </Field>
 
-          <div className="text-center">
-            <Button
-              type="submit"
-              variant="warning"
-              className="w300Px text-white"
-              disabled={isLoadingBalances}
-            >
-              {t(buttonText)}
-            </Button>
-          </div>
-        </Form>
+            <Field name="currency">
+              {({ field }: FieldProps) => (
+                <Autocomplete
+                  {...field}
+                  size="md"
+                  placeholder={t('select currency')}
+                  error={
+                    touched.currency && errors.currency
+                      ? t(errors.currency)
+                      : null
+                  }
+                  // todo: refactor
+                  value={
+                    currenciesList
+                      .map(({ label }) => label)
+                      .includes(field.value)
+                      ? field.value
+                      : getCurrencyLabel(field.value)
+                  }
+                  onChange={(selected) =>
+                    setFieldValue('currency', selected ?? '')
+                  }
+                  comboboxProps={{ zIndex: 1 }}
+                  data={currenciesList.map(({ label }) => label)}
+                />
+              )}
+            </Field>
+
+            <div className="text-center">
+              <Button
+                type="submit"
+                variant="warning"
+                className="w300Px text-white"
+                disabled={isLoadingBalances}>
+                {t(buttonText)}
+              </Button>
+            </div>
+          </Stack>
+        </form>
       )}
-    />
+    </Formik>
   );
 };
 

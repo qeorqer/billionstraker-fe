@@ -91,6 +91,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
             <Field name="name">
               {({ field }: FieldProps) => (
                 <TextInput
+                  size="md"
                   {...field}
                   placeholder={t('name the category')}
                   error={touched.name && errors.name ? t(errors.name) : null}

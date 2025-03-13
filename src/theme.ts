@@ -69,11 +69,6 @@ export const theme = createTheme({
   },
   black: '#1E1E1E',
   white: '#FFFFFF',
-  other: {
-    appBackground: '#1E1E1E',
-    cardBackground: '#333333',
-    borderColor: 'rgba(255, 255, 255, 0.1)',
-  },
   components: {
     Button: {
       defaultProps: {
