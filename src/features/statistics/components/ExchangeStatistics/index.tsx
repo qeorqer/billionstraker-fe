@@ -1,13 +1,13 @@
-import { Button, Col, Stack } from 'react-bootstrap';
 import { useAppSelector } from 'store/hooks';
 import { statisticsData } from 'features/statistics/store/selector';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { FC } from 'react';
 import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
+import { Title, Stack, Text, Group, Button } from '@mantine/core';
 
 type ExchangeStatisticsProps = {
-  selectedBalance: string;
+  selectedBalance: string | null;
   monthsRange: [Date, Date];
 };
 
@@ -24,7 +24,7 @@ const ExchangeStatistics: FC<ExchangeStatisticsProps> = ({
 
   const handleViewTransaction = () => {
     const queryString = new URLSearchParams({
-      balance: selectedBalance,
+      balance: selectedBalance as string,
       dateFrom: monthsRange[0].toISOString(),
       dateTo: monthsRange[1].toISOString(),
       transactionType: 'exchange',
@@ -40,52 +40,39 @@ const ExchangeStatistics: FC<ExchangeStatisticsProps> = ({
     });
   };
 
-  if (!statistics?.exchanges) {
+  if (!statistics?.exchanges || !selectedBalance) {
     return null;
   }
 
   return (
-    <Col xs={12}>
-      <Stack gap={2} className="align-items-center mb-3">
-        <p className="fw-bold h5">{t('exchange statistics')}</p>
-        <Stack
-          gap={4}
-          direction="horizontal"
-          className="justify-content-center fw-bold"
-        >
-          <p className="mb-0">
-            {`${t('sent')}: `}
-            <span className="yellowText fst-italic d-inline-block ml-1">
-              {formatSumByBalanceName(
-                statistics.exchanges.totallySend,
-                selectedBalance,
-              )}
-            </span>
-          </p>
-          <p className="mb-0">
-            {`${t('received')}: `}
-            <span className="yellowText fst-italic d-inline-block ml-1">
-              {formatSumByBalanceName(
-                statistics.exchanges.totallyReceived,
-                selectedBalance,
-              )}
-            </span>
-          </p>
-        </Stack>
-        {Boolean(
-          statistics.exchanges.totallyReceived ||
-            statistics.exchanges.totallySend,
-        ) && (
-          <Button
-            size="sm"
-            variant="outline-secondary"
-            onClick={handleViewTransaction}
-          >
-            {t('view transaction')}
-          </Button>
-        )}
-      </Stack>
-    </Col>
+    <Stack align="center">
+      <Title order={3} ta="center">
+        {t('exchange statistics')}
+      </Title>
+      <Group align="center" style={{ alignSelf: 'center' }} justify="center">
+        <Text size="md" ta="center">
+          {`${t('sent')}: `}
+          <Text size="md" c="primary" component="span">
+            {formatSumByBalanceName(
+              statistics.exchanges.totallySend,
+              selectedBalance,
+            )}
+          </Text>
+        </Text>
+        <Text size="md" ta="center">
+          {`${t('received')}: `}
+          <Text size="md" c="primary" component="span">
+            {formatSumByBalanceName(
+              statistics.exchanges.totallyReceived,
+              selectedBalance,
+            )}
+          </Text>
+        </Text>
+      </Group>
+      <Button onClick={handleViewTransaction} size="sm" variant="light">
+        {t('view transaction')}
+      </Button>
+    </Stack>
   );
 };
 

@@ -1,80 +1,34 @@
-import { FC, useEffect, useState } from 'react';
-import { PieChart } from 'react-minimal-pie-chart';
-import ReactTooltip from 'react-tooltip';
+import { FC } from 'react';
 
-import { DiagramPiece, RangeStatisticsItem } from 'features/statistics/types';
-import { calculateStatisticsForDiagram } from 'features/statistics/utils/calculateStatisticsForDiagram';
-import { useAppSelector } from 'store/hooks';
-import { userData } from 'features/user';
-import { balanceData } from 'features/balance';
-import { formatSum } from 'features/transaction/utils/formatSum';
+import { RangeStatisticsItem } from 'features/statistics/types';
+import { formatStatisticsForChart } from 'features/statistics/utils/formatStatisticsForChart';
+import { DonutChart } from '@mantine/charts';
 
 type DiagramStatisticsProps = {
   rangeStatistics: RangeStatisticsItem[];
   totallySpent: number;
-  selectedBalance: string;
 };
 
 const DiagramStatistics: FC<DiagramStatisticsProps> = ({
   rangeStatistics,
   totallySpent,
-  selectedBalance,
 }) => {
-  const [hovered, setHovered] = useState<number | null>(null);
-  const [statistics, setStatistics] = useState<DiagramPiece[]>([]);
-
-  const { balances } = useAppSelector(balanceData);
-  const { user } = useAppSelector(userData);
-
-  useEffect(() => {
-    const currencyCode =
-      balances.find(({ name }) => name === selectedBalance)?.currency ??
-      user.preferredCurrency ??
-      '';
-
-    setStatistics(
-      calculateStatisticsForDiagram({
-        statistics: rangeStatistics,
-        totallySpent,
-        hovered,
-        currencyCode: currencyCode,
-      }),
-    );
-  }, [rangeStatistics, totallySpent, hovered]);
-
   if (totallySpent <= 0) {
     return null;
   }
 
   return (
-    <div data-tip="" data-for="chart">
-      <PieChart
-        data={statistics}
-        style={{ height: '300px', width: '100%' }}
-        lineWidth={30}
-        paddingAngle={statistics.length > 1 ? 2 : 0}
-        label={() => formatSum(totallySpent)}
-        totalValue={totallySpent}
-        labelPosition={0}
-        labelStyle={{
-          fontSize: '10px',
-          fill: '#F3C709',
-        }}
-        onMouseOver={(_el, index) => {
-          setHovered(index);
-        }}
-        onMouseOut={() => {
-          setHovered(null);
-        }}
-        segmentsStyle={{ transition: 'stroke .3s', cursor: 'pointer' }}
-      />
-      <ReactTooltip
-        id="chart"
-        getContent={() =>
-          typeof hovered == 'number' ? statistics[hovered]?.tooltip : null
-        }
-      />
-    </div>
+    <DonutChart
+      labelsType="percent"
+      withLabels
+      data={formatStatisticsForChart({
+        statistics: rangeStatistics,
+        totallySpent,
+      })}
+      size={250}
+      thickness={20}
+      w="100%"
+    />
   );
 };
 

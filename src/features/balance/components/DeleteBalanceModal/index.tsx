@@ -35,7 +35,7 @@ const DeleteBalanceModal: FC<DeleteBalanceModalProps> = ({
         </Title>
       }
       centered>
-      <Stack gap="md">
+      <Stack>
         <Button variant="light" color="red" onClick={handleDelete} fullWidth>
           {t('delete')}
         </Button>

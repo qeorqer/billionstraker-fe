@@ -42,7 +42,7 @@ const GuidePageView: FC<GuidePageViewProps> = ({
 }) => (
   <Box component="main" bg="dark" c="white">
     <Container size="lg" py="xl">
-      <Stack align="center" gap="md">
+      <Stack align="center">
         <Title c="primary" ta="center" order={2} size="h1">
           {t('here comes the usage guide')}
         </Title>

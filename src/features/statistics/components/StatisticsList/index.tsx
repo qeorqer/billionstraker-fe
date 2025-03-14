@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { RangeStatisticsItem } from 'features/statistics/types';
 import StatisticsListItem from 'features/statistics/components/StatisticsListItem';
 import { TransactionType } from 'features/transaction';
+import { Stack, Text } from '@mantine/core';
 
-type propsType = {
+type StatisticsListProps = {
   statisticForRange: RangeStatisticsItem[];
   totalSpent: number;
-  selectedBalance: string;
+  selectedBalance: string | null;
   monthsRange: [Date, Date];
   fieldToGroupBy: 'balance' | 'category';
   transactionType: TransactionType;
@@ -20,7 +21,7 @@ export type listForRangeItem = {
   percentage: number | string;
 };
 
-export const StatisticsList: FC<propsType> = ({
+export const StatisticsList: FC<StatisticsListProps> = ({
   statisticForRange,
   totalSpent,
   selectedBalance,
@@ -37,10 +38,8 @@ export const StatisticsList: FC<propsType> = ({
   }));
 
   return (
-    <div>
-      <p style={{ fontSize: '14px' }}>
-        {t('click on item to see transactions')}
-      </p>
+    <Stack align="center" w="100%">
+      <Text ta="center">{t('click on item to see transactions')}</Text>
       {dataForRange
         .sort((a, b) => b.value - a.value)
         .map((listItem) => (
@@ -53,6 +52,6 @@ export const StatisticsList: FC<propsType> = ({
             transactionType={transactionType}
           />
         ))}
-    </div>
+    </Stack>
   );
 };

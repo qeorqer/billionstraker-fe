@@ -21,7 +21,7 @@ type propsType = {
 const AboutPageView: FC<propsType> = ({ t, handleCheckOutClick }) => (
   <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
     <Container py="md" size="lg">
-      <Stack component="section" align="center" gap="md">
+      <Stack component="section" align="center">
         <Title c="primary" ta="center" order={1}>
           {t('what does this app do')}
         </Title>

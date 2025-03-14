@@ -29,7 +29,7 @@ const BalancesList: FC<BalanceListProps> = ({ showMenu = false }) => {
   }
 
   return (
-    <Stack gap="md">
+    <Stack>
       <Title order={2} ta="center" fw={500}>
         {t('all your balances')}
       </Title>

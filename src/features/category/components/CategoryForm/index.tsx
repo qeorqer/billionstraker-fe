@@ -87,7 +87,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
         setFieldValue,
       }: FormikProps<CategoryFormFields>) => (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <Stack gap="md">
+          <Stack>
             <Field name="name">
               {({ field }: FieldProps) => (
                 <TextInput

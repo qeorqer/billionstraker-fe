@@ -11,24 +11,38 @@ const AuthForm = () => {
 
   if (showSignIn) {
     return (
-      <Stack gap="md" align="center">
-        <Title order={2} fw={700} fz={35}>{t('Sign in')}</Title>
+      <Stack align="center">
+        <Title order={2} fw={700} fz={35}>
+          {t('Sign in')}
+        </Title>
         <LoginForm />
-        <Text onClick={() => setShowSignIn(false)} style={{ cursor: 'pointer' }} ta="center">
+        <Text
+          onClick={() => setShowSignIn(false)}
+          style={{ cursor: 'pointer' }}
+          ta="center">
           {t('New to billionstracker')}?{' '}
-          <Text span fw={700} component="span">{t('Sign up')}</Text>
+          <Text span fw={700} component="span">
+            {t('Sign up')}
+          </Text>
         </Text>
       </Stack>
     );
   }
 
   return (
-    <Stack gap="md" align="center">
-      <Title order={2} fw={700} fz={35}>{t('Sign up')}</Title>
+    <Stack align="center">
+      <Title order={2} fw={700} fz={35}>
+        {t('Sign up')}
+      </Title>
       <SignUpForm />
-      <Text onClick={() => setShowSignIn(true)} style={{ cursor: 'pointer' }} ta="center">
+      <Text
+        onClick={() => setShowSignIn(true)}
+        style={{ cursor: 'pointer' }}
+        ta="center">
         {t('Already on billionstracker')}?{' '}
-        <Text span fw={700} component="span">{t('Sign in')}</Text>
+        <Text span fw={700} component="span">
+          {t('Sign in')}
+        </Text>
       </Text>
     </Stack>
   );

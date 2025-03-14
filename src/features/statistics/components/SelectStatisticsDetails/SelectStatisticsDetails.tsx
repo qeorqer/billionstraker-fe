@@ -31,11 +31,13 @@ const SelectStatisticsDetails: FC<SelectStatisticsDetailsProps> = ({
   }
 
   return (
-    <Stack gap="md" align="center">
+    <Stack align="center">
       <Title order={2} fw={500} ta="center">
         {t('Configure to see detailed statistics')}
       </Title>
       <DatePickerInput
+        maw="420px"
+        w="100%"
         type="range"
         label={t('Select range')}
         value={monthsRange}
@@ -45,13 +47,14 @@ const SelectStatisticsDetails: FC<SelectStatisticsDetailsProps> = ({
         maxDate={new Date()}
       />
       <Select
+        maw="420px"
+        w="100%"
         label={t('select balance')}
         placeholder={t('select balance')}
-        data={[t('select balance'), ...balances.map(({ name }) => name)]}
+        data={balances.map(({ name }) => name)}
         value={balanceName}
-        onChange={(val) =>
-          setBalanceName(val === t('select balance') ? null : val)
-        }
+        onChange={setBalanceName}
+        clearable
       />
     </Stack>
   );

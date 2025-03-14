@@ -1,8 +1,6 @@
 import { FC } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import '@wojtekmaj/react-daterange-picker/dist/DateRangePicker.css';
-import 'react-calendar/dist/Calendar.css';
 import { useTranslation } from 'react-i18next';
+import { Flex, Stack, Title } from '@mantine/core';
 
 import Loader from 'components/Shared/Loader';
 import { useAppSelector } from 'store/hooks';
@@ -11,11 +9,9 @@ import StatisticsViewItem from 'features/statistics/components/StatisticsViewIte
 import CreateTransactionFirstButton from 'features/transaction/components/CreateTransactionFirstButton';
 import ExchangeStatistics from 'features/statistics/components/ExchangeStatistics';
 
-import './styles.scss';
-
 type StatisticsViewProps = {
   monthsRange: [Date, Date];
-  balanceName: string;
+  balanceName: string | null;
 };
 
 const StatisticsView: FC<StatisticsViewProps> = ({
@@ -38,29 +34,34 @@ const StatisticsView: FC<StatisticsViewProps> = ({
   }
 
   return (
-    <Row className="rangeHolder mt-3 text-center">
+    <Stack gap="md" align="center">
       <ExchangeStatistics
         selectedBalance={balanceName}
         monthsRange={monthsRange}
       />
-      <p className="fw-bold h5">{t('profit expense statistics')}</p>
-      <Col xs={12} md={6} className="mb-5 mb-md-0">
+      <Title order={3} fw={500} ta="center">
+        {t('profit expense statistics')}
+      </Title>
+      <Flex
+        gap="md"
+        direction={{ base: 'column', sm: 'row' }}
+        align="flex-start"
+        justify="center"
+        w="100%">
         <StatisticsViewItem
           selectedBalance={balanceName}
           monthsRange={monthsRange}
           statistics={statistics.expenses}
           type="expense"
         />
-      </Col>
-      <Col xs={12} md={6}>
         <StatisticsViewItem
           selectedBalance={balanceName}
           monthsRange={monthsRange}
           statistics={statistics.profits}
           type="profit"
         />
-      </Col>
-    </Row>
+      </Flex>
+    </Stack>
   );
 };
 

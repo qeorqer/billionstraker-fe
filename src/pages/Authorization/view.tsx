@@ -40,13 +40,13 @@ const AuthorizationPageView: FC<PropsType> = ({ t }) => (
         </Grid.Col>
 
         <Grid.Col span={{ base: 12, sm: 6 }}>
-          <Stack align="center" gap="md">
+          <Stack align="center">
             <AuthForm />
             <Anchor component={NavLink as any} to="/about" c="primary" fw={500}>
               {t('what is this')}
             </Anchor>
             <Center>
-                <LanguageSwitcher />
+              <LanguageSwitcher />
             </Center>
           </Stack>
         </Grid.Col>

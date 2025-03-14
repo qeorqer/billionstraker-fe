@@ -29,7 +29,7 @@ const StatisticsPage: FC = () => {
     new Date(initialDateTo || new Date()),
   ]);
   const [balanceName, setBalanceName] = useState<string | null>(
-    initialBalance || '',
+    initialBalance || null,
   );
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const StatisticsPage: FC = () => {
   }, []);
 
   if (isLoadingBalances) {
-    return <Loader />;
+    return <Loader fullHeight />;
   }
 
   return (

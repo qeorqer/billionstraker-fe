@@ -21,6 +21,7 @@
     "@dotmind/react-use-pwa": "github:dotmind/react-use-pwa",
     "@emotion/react": "^11.14.0",
     "@mantine/carousel": "^7.17.1",
+    "@mantine/charts": "^7.17.2",
     "@mantine/core": "^7.17.1",
     "@mantine/dates": "^7.17.2",
     "@mantine/hooks": "^7.17.1",
@@ -52,6 +53,7 @@
     "react-router-dom": "^5.2.0",
     "react-toastify": "^8.0.2",
     "react-tooltip": "^4.2.21",
+    "recharts": "2",
     "swiper": "^11.0.6",
     "typescript": "^5.3.3",
     "yup": "^0.32.9"

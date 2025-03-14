@@ -15,7 +15,6 @@ const CategoryPageView: FC<CategoryPageViewProps> = ({ t }) => (
         <CategoriesList />
         <Stack
           align="center"
-          gap="md"
           maw="420px"
           w="100%"
           style={{ alignSelf: 'center' }}>

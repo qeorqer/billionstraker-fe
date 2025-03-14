@@ -36,7 +36,7 @@ const DeleteCategoryModal: FC<DeleteCategoryModalProps> = ({
           })}
         </Title>
       }>
-      <Stack gap="md">
+      <Stack>
         <Button variant="light" color="red" onClick={handleDelete}>
           {t('delete')}
         </Button>

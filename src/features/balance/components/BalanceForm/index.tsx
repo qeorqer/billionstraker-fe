@@ -121,7 +121,7 @@ const BalanceForm: FC<BalanceFormProps> = ({
         setFieldValue,
       }: FormikProps<BalanceFormFields>) => (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <Stack gap="md">
+          <Stack>
             <Field name="name">
               {({ field }: FieldProps) => (
                 <TextInput
