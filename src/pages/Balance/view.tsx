@@ -12,7 +12,7 @@ type BalancePageViewProps = {
 const BalancePageView: FC<BalancePageViewProps> = ({ t }) => (
   <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
     <Container size="lg" py="xl">
-      <Stack gap="md">
+      <Stack>
         <BalancesList showMenu />
         <Stack
           align="center"

@@ -1,8 +1,8 @@
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import * as Yup from 'yup';
-import { Field, FieldProps, Formik, FormikProps } from 'formik';
+import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
 import {
   TextInput,
   NumberInput,
@@ -10,7 +10,6 @@ import {
   Stack,
   Autocomplete,
 } from '@mantine/core';
-import { TypeaheadRef } from 'react-bootstrap-typeahead';
 
 import { currenciesLabelsList } from 'features/currency';
 import {
@@ -48,7 +47,6 @@ const BalanceForm: FC<BalanceFormProps> = ({
   balance = null,
   onSuccess = () => {},
 }) => {
-  const typeaheadRef = useRef<TypeaheadRef>();
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { balances, isLoadingBalances } = useAppSelector(balanceData);
@@ -102,7 +100,6 @@ const BalanceForm: FC<BalanceFormProps> = ({
         }
 
         resetForm();
-        typeaheadRef.current?.clear();
       }
     } catch (err) {
       console.log(err);
@@ -120,13 +117,13 @@ const BalanceForm: FC<BalanceFormProps> = ({
         handleSubmit,
         setFieldValue,
       }: FormikProps<BalanceFormFields>) => (
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <Form onSubmit={handleSubmit} className={styles.form}>
           <Stack>
             <Field name="name">
               {({ field }: FieldProps) => (
                 <TextInput
-                  size="md"
                   {...field}
+                  size="md"
                   placeholder={t('name the balance')}
                   error={touched.name && errors.name ? t(errors.name) : null}
                 />
@@ -178,7 +175,7 @@ const BalanceForm: FC<BalanceFormProps> = ({
               {t(buttonText)}
             </Button>
           </Stack>
-        </form>
+        </Form>
       )}
     </Formik>
   );
