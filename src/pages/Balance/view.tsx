@@ -12,9 +12,14 @@ type BalancePageViewProps = {
 const BalancePageView: FC<BalancePageViewProps> = ({ t }) => (
   <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
     <Container size="lg" py="xl">
-      <Stack gap="md" align="center">
+      <Stack gap="md">
         <BalancesList showMenu />
-        <Stack align="center" gap="md" maw="420px" w="100%">
+        <Stack
+          align="center"
+          gap="md"
+          maw="420px"
+          w="100%"
+          style={{ alignSelf: 'center' }}>
           <Title order={2} fw={500} ta="center">
             {t('Select main currency')}
           </Title>

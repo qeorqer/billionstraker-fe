@@ -1677,6 +1677,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/dates@npm:^7.17.2":
+  version: 7.17.2
+  resolution: "@mantine/dates@npm:7.17.2"
+  dependencies:
+    clsx: ^2.1.1
+  peerDependencies:
+    "@mantine/core": 7.17.2
+    "@mantine/hooks": 7.17.2
+    dayjs: ">=1.0.0"
+    react: ^18.x || ^19.x
+    react-dom: ^18.x || ^19.x
+  checksum: 93dace8813682c5a4b2e023cf8e5d632691663314d1b4afe4d56e66bae522de70fb422d8d9d76768519fe5dde591d231c18bf9c7c11c6dc83639fccd85925b68
+  languageName: node
+  linkType: hard
+
 "@mantine/hooks@npm:^7.17.1":
   version: 7.17.1
   resolution: "@mantine/hooks@npm:7.17.1"
@@ -3166,6 +3181,7 @@ __metadata:
     "@emotion/react": ^11.14.0
     "@mantine/carousel": ^7.17.1
     "@mantine/core": ^7.17.1
+    "@mantine/dates": ^7.17.2
     "@mantine/hooks": ^7.17.1
     "@reduxjs/toolkit": ^1.6.1
     "@tabler/icons-react": ^3.31.0
@@ -3186,6 +3202,7 @@ __metadata:
     bootstrap: ^5.1.0
     bootstrap-icons: ^1.11.1
     date-fns: ^2.23.0
+    dayjs: ^1.11.13
     decimal.js: ^10.4.0
     embla-carousel-react: ^8.5.2
     eslint: ^7.32.0
@@ -3648,6 +3665,13 @@ __metadata:
   dependencies:
     "@babel/runtime": ^7.21.0
   checksum: f7be01523282e9bb06c0cd2693d34f245247a29098527d4420628966a2d9aad154bd0e90a6b1cf66d37adcb769cd108cf8a7bd49d76db0fb119af5cdd13644f4
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.13":
+  version: 1.11.13
+  resolution: "dayjs@npm:1.11.13"
+  checksum: f388db88a6aa93956c1f6121644e783391c7b738b73dbc54485578736565c8931bdfba4bb94e9b1535c6e509c97d5deb918bbe1ae6b34358d994de735055cca9
   languageName: node
   linkType: hard
 

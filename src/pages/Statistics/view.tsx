@@ -1,15 +1,15 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import { Container, Stack } from 'react-bootstrap';
 
 import StatisticsView from 'features/statistics/components/StatisticsView';
 import NetWorthView from 'features/statistics/components/NetWorth';
 import SelectStatisticsDetails from 'features/statistics/components/SelectStatisticsDetails/SelectStatisticsDetails';
+import { Box, Container, Stack } from '@mantine/core';
 
 type StatisticsPageViewProps = {
   monthsRange: [Date, Date];
   setMonthsRange: Dispatch<SetStateAction<[Date, Date]>>;
-  balanceName: string;
-  setBalanceName: Dispatch<SetStateAction<string>>;
+  balanceName: string | null;
+  setBalanceName: Dispatch<SetStateAction<string | null>>;
 };
 
 const StatisticsPageView: FC<StatisticsPageViewProps> = ({
@@ -18,18 +18,20 @@ const StatisticsPageView: FC<StatisticsPageViewProps> = ({
   balanceName,
   setBalanceName,
 }) => (
-  <Container className="py-md-4 my-4 pb-5 pb-sm-0">
-    <Stack gap={2}>
-      <NetWorthView />
-      <SelectStatisticsDetails
-        balanceName={balanceName}
-        setBalanceName={setBalanceName}
-        setMonthsRange={setMonthsRange}
-        monthsRange={monthsRange}
-      />
-      <StatisticsView monthsRange={monthsRange} balanceName={balanceName} />
-    </Stack>
-  </Container>
+  <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
+    <Container size="lg" py="xl">
+      <Stack gap="md">
+        <NetWorthView />
+        <SelectStatisticsDetails
+          balanceName={balanceName}
+          setBalanceName={setBalanceName}
+          setMonthsRange={setMonthsRange}
+          monthsRange={monthsRange}
+        />
+        <StatisticsView monthsRange={monthsRange} balanceName={balanceName} />
+      </Stack>
+    </Container>
+  </Box>
 );
 
 export default StatisticsPageView;

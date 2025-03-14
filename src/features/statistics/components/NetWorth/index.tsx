@@ -8,8 +8,8 @@ import { getNetWorthThunk } from 'features/statistics/store/thunks';
 import { statisticsData } from 'features/statistics/store/selector';
 import EditMainCurrencyModal from 'features/currency/components/EditMainCurrencyModal';
 import { userData } from 'features/user';
-
-import './styles.scss';
+import { Group, Title, Text, Tooltip, ActionIcon } from '@mantine/core';
+import { IconPencil, IconQuestionMark } from '@tabler/icons-react';
 
 const NetWorthView = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,25 +29,37 @@ const NetWorthView = () => {
 
   return (
     <>
-      <p className="h3 fw-bold text-center next-worth-text">
-        {t('Your total net worth')}
-        <span className="fst-italic yellowText">
-          {` ${formatSum(netWorth.value)} ${netWorth.currency.toUpperCase()} `}
-        </span>
-        <span
-          className="cursor-pointer"
-          data-tip={t('You can change main currency on the balances page')}
-          data-for="question"
-        >
-          <i className="bi bi-question-circle" />
-        </span>
-        <span
-          onClick={() => setIsModalOpen(true)}
-          className="balance-action-button"
-        >
-          <i className="bi bi-pencil text-dark  mx-2 cursor-pointer" />
-        </span>
-      </p>
+      <Group gap="sm" style={{ alignSelf: 'center' }} justify="center">
+        <Title order={2} fw={500} ta="center">
+          {t('Your total net worth')}
+          <Text c="primary" component="span" size="xl" fw={500} fs="italic">
+            {` ${formatSum(
+              netWorth.value,
+            )} ${netWorth.currency.toUpperCase()} `}
+          </Text>
+        </Title>
+
+        <Group gap="sm">
+          <Tooltip
+            label={t('You can change main currency on the balances page')}>
+            <ActionIcon variant="light" color="white">
+              <IconQuestionMark style={{ width: '70%', height: '70%' }} />
+            </ActionIcon>
+          </Tooltip>
+
+          <Tooltip label={t('edit currency')}>
+            <ActionIcon
+              variant="light"
+              color="white"
+              onClick={() => setIsModalOpen(true)}>
+              <IconPencil
+                style={{ width: '70%', height: '70%' }}
+                stroke={1.5}
+              />
+            </ActionIcon>
+          </Tooltip>
+        </Group>
+      </Group>
       <ReactTooltip id="question" effect="solid" />
       <EditMainCurrencyModal
         isOpen={isModalOpen}

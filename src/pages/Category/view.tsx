@@ -11,9 +11,14 @@ type CategoryPageViewProps = {
 const CategoryPageView: FC<CategoryPageViewProps> = ({ t }) => (
   <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
     <Container size="lg" py="xl">
-      <Stack gap="xl" align="center">
+      <Stack gap="xl">
         <CategoriesList />
-        <Stack align="center" gap="md" maw="420px" w="100%">
+        <Stack
+          align="center"
+          gap="md"
+          maw="420px"
+          w="100%"
+          style={{ alignSelf: 'center' }}>
           <Title order={2} fw={500} ta="center">
             {t('add new category')}
           </Title>

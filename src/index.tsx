@@ -5,6 +5,8 @@ import { registerSW } from 'virtual:pwa-register';
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+import '@mantine/dates/styles.css';
+import 'dayjs/locale/ru';
 
 import App from './App';
 import store from './store';
