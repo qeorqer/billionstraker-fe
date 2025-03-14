@@ -41,20 +41,6 @@ body {
   width: 100%;
 }
 
-.languagesController {
-  background-color: transparent !important;
-
-  span {
-    cursor: pointer;
-    transition: .3s;
-    opacity: .7;
-
-    &:hover, &.activeLang {
-      opacity: 1;
-    }
-  }
-}
-
 .cursor-pointer {
   cursor: pointer;
 }

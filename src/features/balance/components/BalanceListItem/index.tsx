@@ -52,14 +52,14 @@ const BalanceListItem: FC<BalanceListItemProps> = ({
             <Stack gap={4}>
               <ActionIcon
                 variant="subtle"
-                color="gray"
+                color="white"
                 onClick={() => setIsEditBalanceModalOpen(true)}
                 size="sm">
                 <IconPencil style={{ width: '70%', height: '70%' }} />
               </ActionIcon>
               <ActionIcon
                 variant="subtle"
-                color="gray"
+                color="white"
                 onClick={() => setIsDeleteBalanceModalOpen(true)}
                 size="sm">
                 <IconX style={{ width: '70%', height: '70%' }} />

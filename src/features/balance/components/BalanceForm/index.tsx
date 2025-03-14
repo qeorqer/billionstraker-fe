@@ -12,7 +12,7 @@ import {
 } from '@mantine/core';
 import { TypeaheadRef } from 'react-bootstrap-typeahead';
 
-import { currenciesList } from 'features/currency';
+import { currenciesLabelsList } from 'features/currency';
 import {
   Balance,
   balanceData,
@@ -22,6 +22,7 @@ import {
 import { updateUserThunk, userData } from 'features/user';
 
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
+import { getCurrencyValue } from 'features/currency/utils/getCurrencyValue';
 import styles from './styles.module.css';
 
 type BalanceFormProps = {
@@ -68,10 +69,7 @@ const BalanceForm: FC<BalanceFormProps> = ({
       .required('Amount value is required'),
     currency: Yup.string()
       .nullable(true)
-      .oneOf(
-        currenciesList.map(({ label }) => label),
-        'Must be a value from the list',
-      )
+      .oneOf(currenciesLabelsList, 'Must be a value from the list')
       .required('Currency is required'),
   });
 
@@ -83,9 +81,7 @@ const BalanceForm: FC<BalanceFormProps> = ({
       const payload = {
         balance: {
           ...values,
-          currency: currenciesList.find(
-            (currency) => currency.label === values.currency,
-          )!.value,
+          currency: getCurrencyValue(values.currency)!,
         } as Partial<Balance>,
       };
 
@@ -164,32 +160,23 @@ const BalanceForm: FC<BalanceFormProps> = ({
                       ? t(errors.currency)
                       : null
                   }
-                  // todo: refactor
                   value={
-                    currenciesList
-                      .map(({ label }) => label)
-                      .includes(field.value)
+                    currenciesLabelsList.includes(field.value)
                       ? field.value
                       : getCurrencyLabel(field.value)
                   }
                   onChange={(selected) =>
                     setFieldValue('currency', selected ?? '')
                   }
-                  comboboxProps={{ zIndex: 1 }}
-                  data={currenciesList.map(({ label }) => label)}
+                  comboboxProps={{ zIndex: 1000 }}
+                  data={currenciesLabelsList}
                 />
               )}
             </Field>
 
-            <div className="text-center">
-              <Button
-                type="submit"
-                variant="warning"
-                className="w300Px text-white"
-                disabled={isLoadingBalances}>
-                {t(buttonText)}
-              </Button>
-            </div>
+            <Button type="submit" disabled={isLoadingBalances}>
+              {t(buttonText)}
+            </Button>
           </Stack>
         </form>
       )}

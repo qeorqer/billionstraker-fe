@@ -157,7 +157,7 @@
   "Amount value is required": "Сумма обязательна",
   "Currency is required": "Нужно выбрать валюту",
   "Name must be unique": "Имя должно быть уникальным",
-  "Select main currency": "Выбери основную валюту",
+  "Select main currency": "Основная валюта",
   "currency": "Валюта",
   "do you want to delete balance": "Удалить счет {{balanceName}}?",
   "delete": "Удалить",
@@ -189,5 +189,6 @@
   "Search by Name": "Поиск по названию",
   "Start typing a transaction name": "Вводи название транзакции",
   "Show more filters": "▼ Больше фильтров ▼",
-  "Show less filters": "▲ Меньше фильтров ▲"
+  "Show less filters": "▲ Меньше фильтров ▲",
+  "Must be a value from the list": "Выбери значение из списка"
 }

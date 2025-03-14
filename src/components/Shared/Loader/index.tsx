@@ -1,22 +1,19 @@
 import { FC } from 'react';
 
-import loaderImage from 'assets/common/loader.gif';
+import { Center, Loader as MantineLoader } from '@mantine/core';
 
-import 'components/Shared/Loader/styles.scss';
-
-type propsType = {
+type LoaderProps = {
   fullHeight?: boolean;
 };
 
-const Loader: FC<propsType> = ({ fullHeight }) => {
+const Loader: FC<LoaderProps> = ({ fullHeight = false }) => {
   return (
-    <div
-      className={`d-flex align-items-center justify-content-center pt-2
-    ${fullHeight ? 'fullHeight' : ''} 
-    `}
-    >
-      <img src={loaderImage} alt="loader img" />
-    </div>
+    <Center
+      py={10}
+      bg="dark"
+      style={{ minHeight: fullHeight ? '100vh' : undefined }}>
+      <MantineLoader />
+    </Center>
   );
 };
 
