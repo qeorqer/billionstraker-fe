@@ -1,4 +1,15 @@
-import { Button, Container } from 'react-bootstrap';
+import { FC } from 'react';
+import {
+  Box,
+  Container,
+  Button,
+  Stack,
+  Title,
+  Text,
+  Image,
+  Alert,
+} from '@mantine/core';
+import { IconInfoCircle } from '@tabler/icons-react';
 
 import guide1 from 'assets/guide/guide-1.png';
 import guide2 from 'assets/guide/guide-2.png';
@@ -12,7 +23,7 @@ import guide9 from 'assets/guide/guide-9.png';
 
 import './styles.scss';
 
-type propsType = {
+type GuidePageViewProps = {
   t: (text: string) => string;
   handleCreateBalance: () => void;
   handleCreateCategory: () => void;
@@ -21,7 +32,7 @@ type propsType = {
   handleCheckStatistics: () => void;
 };
 
-const GuidePageView: React.FC<propsType> = ({
+const GuidePageView: FC<GuidePageViewProps> = ({
   t,
   handleCreateBalance,
   handleCreateCategory,
@@ -29,94 +40,195 @@ const GuidePageView: React.FC<propsType> = ({
   handleExploreProfile,
   handleCheckStatistics,
 }) => (
-  <>
-    <Container className="pt-4 text-center guide pb-5 pb-sm-0">
-      <h1 className="yellowText fs-2 mb-0">
-        {t('here comes the usage guide')}
-      </h1>
-      <p className="fs-6 mt-0">
-        {t('first of all, you can always return to this page')}
-      </p>
-      <p className="fs-5 mt-2 mb-3">{t('the main parts of the app are')}</p>
-      <p className="fs-6 my-2 yellowText">
-        {t('the balance page is used for')}
-      </p>
-      <img src={guide1} alt="balance page" />
-      <Button
-        variant="warning"
-        className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateBalance}
-      >
-        {t('create balance')}
-      </Button>
-      <p className="fs-5 mt-2 mb-3">
-        {t("after that let's create some categories")}
-      </p>
-      <p className="fs-6 my-2 yellowText">
-        {t('the categories page is used for')}
-      </p>
-      <img src={guide2} alt="category page" />
-      <Button
-        variant="warning"
-        className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateCategory}
-      >
-        {t('create category')}
-      </Button>
-      <p className="fs-5 mt-2 mb-3">{t('now we are ready for transactions')}</p>
-      <p className="fs-6 my-2 yellowText">{t('expense example')}</p>
-      <img src={guide3} alt="expense example" />
-      <p className="fs-6 my-2 yellowText">{t('income example')}</p>
-      <img src={guide4} alt="income example" />
-      <p className="fs-6 my-2 yellowText">{t('exchange example')}</p>
-      <img src={guide5} alt="exchange example" />
-      <Button
-        variant="warning"
-        className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateTransaction}
-      >
-        {t('create transaction')}
-      </Button>
-      <p className="fs-5 mt-2 mb-3">{t('time to explore the profile page')}</p>
-      <p className="fs-6 my-2 yellowText">
-        {t('the profile page is used for')}
-      </p>
-      <img src={guide6} alt="profile page" />
-      <Button
-        variant="warning"
-        className="w300Px text-white mt-2 mb-3"
-        onClick={handleExploreProfile}
-      >
-        {t('explore profile')}
-      </Button>
-      <p className="fs-5 mt-2 mb-3">{t('the last but not least')}</p>
-      <p className="fs-6 my-2 yellowText">
-        {t('select dates range and balance')}
-      </p>
-      <img src={guide7} alt="statistics page" />
-      <p className="fs-5 my-2">{t('by default statistics is shown')}</p>
-      <img src={guide8} alt="statistics page2" />
-      <Button
-        variant="warning"
-        className="w300Px text-white mt-2 mb-3"
-        onClick={handleCheckStatistics}
-      >
-        {t('check out statistics')}
-      </Button>
-      <p className="fs-5 mt-3 mb-2">{t('pro tip')}</p>
-      <p className="fs-6 my-2 yellowText">{t('get pwa')}</p>
-      <img src={guide9} alt="get PWA" className="max-width-220" />
-      <p className="fs-5 mt-2 mb-3">{t('that is all for the guidance')}</p>
-      <p className="fs-6 mt-3 mb-2">{t('if you read here')}</p>
-      <Button
-        variant="warning"
-        className="w300Px text-white mt-2 mb-3"
-        onClick={handleCreateBalance}
-      >
-        {t('create balance')}
-      </Button>
+  <Box component="main" bg="dark" c="white">
+    <Container size="lg" py="xl">
+      <Stack align="center" gap="md">
+        <Title c="primary" ta="center" order={2} size="h1">
+          {t('here comes the usage guide')}
+        </Title>
+
+        <Alert variant="light" icon={<IconInfoCircle />} maw={700}>
+          {t('first of all, you can always return to this page')}
+        </Alert>
+
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('the main parts of the app are')}
+        </Text>
+
+        <Text component="p" size="md" c="dimmed" maw={700} ta="center">
+          {t('the balance page is used for')}
+        </Text>
+
+        <Box
+          component="figure"
+          style={{
+            border: '4px solid var(--mantine-color-primary-filled)',
+            borderRadius: 'var(--mantine-radius-md)',
+          }}>
+          <Image src={guide1} alt="balance page" mih="250px" />
+        </Box>
+
+        <Button onClick={handleCreateBalance} maw="320px" fullWidth>
+          {t('create balance')}
+        </Button>
+
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t("after that let's create some categories")}
+        </Text>
+
+        <Text component="p" size="md" c="dimmed" maw={700} ta="center">
+          {t('the categories page is used for')}
+        </Text>
+
+        <Box
+          component="figure"
+          style={{
+            border: '4px solid var(--mantine-color-primary-filled)',
+            borderRadius: 'var(--mantine-radius-md)',
+          }}>
+          <Image src={guide2} alt="category page" mih="250px" />
+        </Box>
+
+        <Button onClick={handleCreateCategory} maw="320px" fullWidth>
+          {t('create category')}
+        </Button>
+
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('now we are ready for transactions')}
+        </Text>
+
+        <Stack gap="xs">
+          <Text component="p" size="lg" ta="center" c="primary">
+            {t('expense example')}:
+          </Text>
+          <Box
+            component="figure"
+            style={{
+              border: '4px solid var(--mantine-color-primary-filled)',
+              borderRadius: 'var(--mantine-radius-md)',
+            }}>
+            <Image src={guide3} alt="expense example" mih="250px" />
+          </Box>
+        </Stack>
+
+        <Stack gap="xs">
+          <Text component="p" size="lg" ta="center" c="primary">
+            {t('income example')}:
+          </Text>
+          <Box
+            component="figure"
+            style={{
+              border: '4px solid var(--mantine-color-primary-filled)',
+              borderRadius: 'var(--mantine-radius-md)',
+            }}>
+            <Image src={guide4} alt="income example" mih="250px" />
+          </Box>
+        </Stack>
+
+        <Stack gap="xs">
+          <Text component="p" size="lg" ta="center" c="primary">
+            {t('exchange example')}:
+          </Text>
+          <Box
+            component="figure"
+            style={{
+              border: '4px solid var(--mantine-color-primary-filled)',
+              borderRadius: 'var(--mantine-radius-md)',
+            }}>
+            <Image src={guide5} alt="exchange example" mih="250px" />
+          </Box>
+        </Stack>
+
+        <Button maw="320px" fullWidth onClick={handleCreateTransaction}>
+          {t('create transaction')}
+        </Button>
+
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('time to explore the profile page')}
+        </Text>
+
+        <Text component="p" size="md" c="dimmed" maw={700} ta="center">
+          {t('the profile page is used for')}
+        </Text>
+
+        <Box
+          component="figure"
+          style={{
+            border: '4px solid var(--mantine-color-primary-filled)',
+            borderRadius: 'var(--mantine-radius-md)',
+          }}>
+          <Image src={guide6} alt="profile page" mih="250px" />
+        </Box>
+
+        <Button onClick={handleExploreProfile} maw="320px" fullWidth>
+          {t('explore profile')}
+        </Button>
+
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('the last but not least')}
+        </Text>
+
+        <Text component="p" size="md" c="dimmed" maw={700} ta="center">
+          {t('select dates range and balance')}
+        </Text>
+
+        <Box
+          component="figure"
+          style={{
+            border: '4px solid var(--mantine-color-primary-filled)',
+            borderRadius: 'var(--mantine-radius-md)',
+          }}>
+          <Image src={guide7} alt="statistics page" mih="250px" />
+        </Box>
+
+        <Text component="p" size="md" c="dimmed" maw={700} ta="center">
+          {t('by default statistics is shown')}
+        </Text>
+
+        <Box
+          component="figure"
+          style={{
+            border: '4px solid var(--mantine-color-primary-filled)',
+            borderRadius: 'var(--mantine-radius-md)',
+          }}>
+          <Image src={guide8} alt="statistics page2" mih="250px" />
+        </Box>
+
+        <Button maw="320px" fullWidth onClick={handleCheckStatistics}>
+          {t('check out statistics')}
+        </Button>
+
+        <Alert
+          variant="light"
+          icon={<IconInfoCircle />}
+          title={t('pro tip')}
+          maw={700}>
+          {t('get pwa')}
+        </Alert>
+
+        <Box
+          component="figure"
+          style={{
+            border: '4px solid var(--mantine-color-primary-filled)',
+            borderRadius: 'var(--mantine-radius-md)',
+          }}>
+          <Image src={guide9} alt="get PWA" maw="220px" mih="250px" />
+        </Box>
+
+        <Text component="p" size="lg" maw={700} ta="center">
+          {t('that is all for the guidance')}
+        </Text>
+
+        <Text component="p" size="md" c="dimmed" maw={700} ta="center">
+          {t('if you read here')}
+        </Text>
+
+        <Button onClick={handleCreateBalance} maw="320px" fullWidth>
+          {t('create balance')}
+        </Button>
+      </Stack>
     </Container>
-  </>
+  </Box>
 );
 
 export default GuidePageView;
