@@ -3,19 +3,23 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 import { registerSW } from 'virtual:pwa-register';
 import { MantineProvider } from '@mantine/core';
+import dayjs from 'dayjs';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/charts/styles.css';
+import '@mantine/notifications/styles.css';
 import 'dayjs/locale/ru';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
 import App from './App';
 import store from './store';
 import { theme } from './theme';
 import './i18n';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'swiper/css';
+dayjs.extend(relativeTime);
+dayjs.extend(localizedFormat);
 
 // Register service worker
 if ('serviceWorker' in navigator) {

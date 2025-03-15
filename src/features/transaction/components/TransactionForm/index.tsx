@@ -348,7 +348,7 @@ const TransactionForm: FC<TransactionFormProps> = ({
                   disabled={isLoadingTransactions}
                   maw="320px"
                   w="100%">
-                  {t('Submit')}
+                  {transaction ? t('update') : t('Submit')}
                 </Button>
               </Grid.Col>
             </Grid>

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import i18next from 'i18next';
 import { AuthError, User } from 'features/user/types';
 import {
@@ -13,6 +12,7 @@ import {
   clearDataFromLocalStorage,
   saveAuthDataToLocalStorage,
 } from 'features/user/store/utils';
+import { notifications } from '@mantine/notifications';
 
 export type UserState = {
   user: User;
@@ -53,8 +53,10 @@ const userReducer = createSlice({
     builder.addCase(signUpThunk.rejected, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(i18next.t((action.payload as AuthError)?.message!), {
-        type: 'error',
+      notifications.show({
+        message: i18next.t((action.payload as AuthError)?.message!) as string,
+        withBorder: true,
+        color: 'red',
       });
     });
 
@@ -77,8 +79,10 @@ const userReducer = createSlice({
     builder.addCase(logInThunk.rejected, (state, action) => {
       state.isSignUpSignInLoading = false;
 
-      toast(i18next.t((action.payload as AuthError)?.message!), {
-        type: 'error',
+      notifications.show({
+        message: i18next.t((action.payload as AuthError)?.message!) as string,
+        withBorder: true,
+        color: 'red',
       });
     });
 

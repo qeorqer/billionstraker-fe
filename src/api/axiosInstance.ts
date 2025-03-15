@@ -4,7 +4,7 @@ import {
   logOutRequest,
   refreshTokenRequest,
 } from 'features/user';
-import { toast } from 'react-toastify';
+import { notifications } from '@mantine/notifications';
 import { clearDataFromLocalStorage } from 'features/user/store/utils';
 import i18next from 'i18next';
 
@@ -55,8 +55,10 @@ axiosInstance.interceptors.response.use(
 
         return axiosInstance.request(originalRequest);
       } catch (e) {
-        toast(i18next.t('your session has expired'), {
-          type: 'warning',
+        notifications.show({
+          message: i18next.t('your session has expired') as string,
+          withBorder: true,
+          color: 'red',
         });
 
         logOutRequest();

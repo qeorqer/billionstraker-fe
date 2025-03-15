@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import { notifications } from '@mantine/notifications';
 import i18next from 'i18next';
 
 import {
@@ -44,8 +44,10 @@ const categoryReducer = createSlice({
 
     builder.addCase(createCategoryThunk.fulfilled, (state, action) => {
       state.isLoadingCategories = false;
-      toast(i18next.t('creating category success'), {
-        type: 'success',
+
+      notifications.show({
+        message: i18next.t('creating category success') as string,
+        withBorder: true,
       });
 
       state.categories = [...state.categories, action.payload.data.category];
@@ -56,8 +58,9 @@ const categoryReducer = createSlice({
     });
 
     builder.addCase(updateCategoryThunk.fulfilled, (state, action) => {
-      toast(i18next.t('updating category success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('updating category success') as string,
+        withBorder: true,
       });
 
       const updatedCategory = action.payload.data.category;
@@ -67,8 +70,9 @@ const categoryReducer = createSlice({
     });
 
     builder.addCase(deleteCategoryThunk.fulfilled, (state, action) => {
-      toast(i18next.t('deleting category success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('deleting category success') as string,
+        withBorder: true,
       });
 
       const deletedCategoryId = action.payload.data.categoryId;

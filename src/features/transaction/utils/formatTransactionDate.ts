@@ -1,8 +1,7 @@
-import moment from 'moment';
-import 'moment/locale/ru';
+import dayjs from 'dayjs';
 
 export const formatTransactionDate = (date: Date, lang = 'en') => {
-  const formattedDate = moment(date).locale(lang);
+  const formattedDate = dayjs(date).locale(lang);
 
   if (formattedDate.isSame(new Date(), 'week')) {
     return formattedDate.fromNow();

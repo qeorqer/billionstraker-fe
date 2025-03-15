@@ -1714,6 +1714,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/notifications@npm:^7.17.2":
+  version: 7.17.2
+  resolution: "@mantine/notifications@npm:7.17.2"
+  dependencies:
+    "@mantine/store": 7.17.2
+    react-transition-group: 4.4.5
+  peerDependencies:
+    "@mantine/core": 7.17.2
+    "@mantine/hooks": 7.17.2
+    react: ^18.x || ^19.x
+    react-dom: ^18.x || ^19.x
+  checksum: 418e6007e19aba51dad88396e3cc48b3b9e63fdf6d7b132e565244665b50712cde056ec8d617c1853c39a7d7f8fa35caf7e69a452097e19c0b354da0d62ea5e4
+  languageName: node
+  linkType: hard
+
+"@mantine/store@npm:7.17.2":
+  version: 7.17.2
+  resolution: "@mantine/store@npm:7.17.2"
+  peerDependencies:
+    react: ^18.x || ^19.x
+  checksum: 0cad31c8d2a781fca0aa7557b47326022ed5443a5bac85c111b1457788b6e396b142131c5c7ce29a83601a035e07909d275055d16660906318f4309d444024ac
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -3266,6 +3290,7 @@ __metadata:
     "@mantine/core": ^7.17.1
     "@mantine/dates": ^7.17.2
     "@mantine/hooks": ^7.17.1
+    "@mantine/notifications": ^7.17.2
     "@reduxjs/toolkit": ^1.6.1
     "@tabler/icons-react": ^3.31.0
     "@types/react": ^18.2.48
@@ -7325,7 +7350,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-transition-group@npm:^4.4.5":
+"react-transition-group@npm:4.4.5, react-transition-group@npm:^4.4.5":
   version: 4.4.5
   resolution: "react-transition-group@npm:4.4.5"
   dependencies:

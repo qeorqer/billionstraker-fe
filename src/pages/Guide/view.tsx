@@ -21,8 +21,6 @@ import guide7 from 'assets/guide/guide-7.png';
 import guide8 from 'assets/guide/guide-8.png';
 import guide9 from 'assets/guide/guide-9.png';
 
-import './styles.scss';
-
 type GuidePageViewProps = {
   t: (text: string) => string;
   handleCreateBalance: () => void;

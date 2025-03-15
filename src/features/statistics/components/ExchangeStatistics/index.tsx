@@ -69,9 +69,12 @@ const ExchangeStatistics: FC<ExchangeStatisticsProps> = ({
           </Text>
         </Text>
       </Group>
-      <Button onClick={handleViewTransaction} size="sm" variant="light">
-        {t('view transaction')}
-      </Button>
+      {statistics.exchanges.totallyReceived > 0 ||
+      statistics.exchanges.totallySend > 0 ? (
+        <Button onClick={handleViewTransaction} size="sm" variant="light">
+          {t('view transaction')}
+        </Button>
+      ) : null}
     </Stack>
   );
 };

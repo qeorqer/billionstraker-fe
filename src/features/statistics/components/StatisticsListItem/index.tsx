@@ -34,15 +34,16 @@ const StatisticsListItem: FC<StatisticsListItemProps> = ({
       dateFrom: monthsRange[0].toISOString(),
       dateTo: monthsRange[1].toISOString(),
       transactionType,
-      ...(fieldToGroupBy === 'category' && { balance: selectedBalance! }),
+      ...(fieldToGroupBy === 'category' &&
+        selectedBalance && { balance: selectedBalance }),
     });
 
     const homeQueryString = new URLSearchParams({
       // @ts-ignore
-      balance: selectedBalance,
       dateFrom: monthsRange[0].toISOString(),
       dateTo: monthsRange[1].toISOString(),
       transactionType,
+      ...(selectedBalance && { balance: selectedBalance }),
       ...(fieldToGroupBy === 'balance'
         ? { balance: listItem.title }
         : { category: listItem.title }),

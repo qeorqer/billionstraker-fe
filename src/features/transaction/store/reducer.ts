@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import i18next from 'i18next';
 import { Transaction } from 'features/transaction/types';
 import {
@@ -8,6 +7,7 @@ import {
   getTransactionsThunk,
   updateTransactionThunk,
 } from 'features/transaction/store/thunks';
+import { notifications } from '@mantine/notifications';
 
 export type TransactionState = {
   isLoadingTransactions: boolean;
@@ -60,16 +60,19 @@ const reducer = createSlice({
         action.payload.data.transaction,
       ];
 
-      toast(i18next.t('transaction created successfully'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('transaction created successfully') as string,
+        withBorder: true,
       });
     });
 
     builder.addCase(createTransactionThunk.rejected, (state, _action) => {
       state.isLoadingTransactions = false;
 
-      toast(i18next.t('failed to create transaction'), {
-        type: 'error',
+      notifications.show({
+        message: i18next.t('failed to create transaction') as string,
+        withBorder: true,
+        color: 'red',
       });
     });
 
@@ -80,8 +83,9 @@ const reducer = createSlice({
     builder.addCase(deleteTransactionThunk.fulfilled, (state, action) => {
       state.isLoadingTransactions = false;
 
-      toast(i18next.t('deleting transaction success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('deleting transaction success') as string,
+        withBorder: true,
       });
 
       const deletedTransactionId = action.payload.data.transactionId;
@@ -93,8 +97,10 @@ const reducer = createSlice({
     builder.addCase(deleteTransactionThunk.rejected, (state, _action) => {
       state.isLoadingTransactions = false;
 
-      toast(i18next.t('deleting transaction failed'), {
-        type: 'error',
+      notifications.show({
+        message: i18next.t('deleting transaction failed') as string,
+        withBorder: true,
+        color: 'red',
       });
     });
 
@@ -110,16 +116,19 @@ const reducer = createSlice({
         balance._id === updatedBalance._id ? updatedBalance : balance,
       );
 
-      toast(i18next.t('updating transaction success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('updating transaction success') as string,
+        withBorder: true,
       });
     });
 
     builder.addCase(updateTransactionThunk.rejected, (state, _action) => {
       state.isLoadingTransactions = false;
 
-      toast(i18next.t('updating transaction failed'), {
-        type: 'error',
+      notifications.show({
+        message: i18next.t('updating transaction failed') as string,
+        withBorder: true,
+        color: 'red',
       });
     });
   },

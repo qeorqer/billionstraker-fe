@@ -11,12 +11,13 @@ import {
   Title,
   Menu,
   Burger,
+  List,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
   IconHeadset,
   IconWallet,
-  IconLabel,
+  IconTag,
   IconBook,
   IconDeviceTabletDown,
   IconLogout,
@@ -63,7 +64,7 @@ const Header = () => {
       title: 'categories',
       onClick: () => history.push('/category'),
       isShown: true,
-      Icon: IconLabel,
+      Icon: IconTag,
     },
     {
       title: 'usage guide',
@@ -95,7 +96,7 @@ const Header = () => {
     <Box
       component="header"
       bg="dark"
-      py={20}
+      py={15}
       style={{ borderBottom: '1px solid var(--mantine-color-dark-4)' }}>
       <Container size="lg">
         <Grid align="center">
@@ -104,10 +105,11 @@ const Header = () => {
               <Anchor
                 component={NavLink as any}
                 to="/"
-                className="d-flex align-items-center"
                 underline="never"
                 c="primary"
-                fw={700}>
+                display="inline-flex"
+                fw={700}
+                style={{ width: '100%', alignItems: 'center' }}>
                 <Image src={logo} alt="app logo" maw={30} mr={5} />
                 Billionstracker
               </Anchor>
@@ -117,7 +119,7 @@ const Header = () => {
             span={{ base: 12, md: 6 }}
             order={{ base: 1, md: 0 }}
             className={styles.menu}>
-            <ul className="m-0 p-0">
+            <List>
               {tabMenuItems.map(({ title, Component, link }) => (
                 <li key={title}>
                   <Anchor
@@ -130,7 +132,7 @@ const Header = () => {
                   </Anchor>
                 </li>
               ))}
-            </ul>
+            </List>
           </Grid.Col>
           <Grid.Col span={{ base: 6, md: 3 }} ta="right">
             <Menu

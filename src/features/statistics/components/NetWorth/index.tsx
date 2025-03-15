@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import ReactTooltip from 'react-tooltip';
 
 import { formatSum } from 'features/transaction/utils/formatSum';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -60,7 +59,6 @@ const NetWorthView = () => {
           </Tooltip>
         </Group>
       </Group>
-      <ReactTooltip id="question" effect="solid" />
       <EditMainCurrencyModal
         isOpen={isModalOpen}
         handleClose={() => setIsModalOpen(false)}

@@ -9,8 +9,6 @@ import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
 import DeleteBalanceModal from 'features/balance/components/DeleteBalanceModal';
 import { formatSum } from 'features/transaction/utils/formatSum';
 
-import './styles.scss';
-
 type BalanceListItemProps = {
   balance: Balance;
   showMenu?: boolean;

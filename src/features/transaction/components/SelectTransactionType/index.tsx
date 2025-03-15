@@ -7,14 +7,12 @@ import { SegmentedControl, Stack, Title } from '@mantine/core';
 type SelectTransactionTypeProps = {
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
-  isModal?: boolean;
   initialValues?: Transaction | null;
 };
 
 const SelectTransactionType: FC<SelectTransactionTypeProps> = ({
   transactionType,
   setTransactionType,
-  isModal = false,
   initialValues = null,
 }) => {
   const { t } = useTranslation();

@@ -1,8 +1,8 @@
-import { FC, Fragment, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { Stack, Title } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { useTranslation } from 'react-i18next';
 import InfiniteScroll from 'react-infinite-scroller';
-import { Stack } from 'react-bootstrap';
 
 import TransactionListItem from 'features/transaction/components/TransactionListItem';
 import Loader from 'components/Shared/Loader';
@@ -12,7 +12,6 @@ import { getCategoriesThunk } from 'features/category';
 import CreateTransactionFirstButton from 'features/transaction/components/CreateTransactionFirstButton';
 
 import { formTransactionsSections } from './utils';
-import './styles.scss';
 
 type TransactionsListProps = {
   handleLoadMoreTransactions: () => void;
@@ -49,24 +48,27 @@ const TransactionsList: FC<TransactionsListProps> = ({
   }
 
   return (
-    <Stack gap={1}>
-      <p className="text-center fw-bold fs-4 mb-0">{t('Your transactions')}</p>
+    <Stack>
+      <Title order={2} fw={500} ta="center">
+        {t('Your transactions')}
+      </Title>
       <InfiniteScroll
         initialLoad={false}
         loadMore={handleLoadMoreTransactions}
         hasMore={hasMore}
-        loader={<Loader key={0} />}
-      >
+        loader={<Loader key={0} />}>
         {transactionsSections.map((section) => (
-          <Fragment key={section.title}>
-            <p className="sectionTitle fs-5 w-75 mx-auto">{section.title}</p>
+          <Stack key={section.title} mb="md">
+            <Title order={3} size="h4" ta="center" fw={500}>
+              {section.title}
+            </Title>
             {section.data.map((transaction) => (
               <TransactionListItem
                 key={transaction._id}
                 transaction={transaction}
               />
             ))}
-          </Fragment>
+          </Stack>
         ))}
       </InfiniteScroll>
     </Stack>

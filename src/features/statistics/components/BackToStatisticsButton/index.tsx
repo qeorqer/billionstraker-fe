@@ -7,7 +7,7 @@ const BackToStatisticsButton = () => {
   const { goBack } = useHistory();
 
   return (
-    <Affix position={{ top: 30, right: 20 }}>
+    <Affix position={{ top: 75, right: 20 }}>
       <Button onClick={goBack} size="sm" variant="light">
         {t('back to statistics')}
       </Button>

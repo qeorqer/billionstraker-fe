@@ -1,10 +1,8 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import { Container, Stack } from 'react-bootstrap';
+import { Box, Container, Stack } from '@mantine/core';
 
 import TransactionsList from 'features/transaction/components/TransactionsList';
 import BalancesList from 'features/balance/components/BalancesList';
-
-import './styles.scss';
 import SelectTransactionsDetails from 'features/transaction/components/SelectTransactionsDetails';
 import { TransactionTypeToShow } from 'features/transaction';
 import BackToStatisticsButton from 'features/statistics/components/BackToStatisticsButton';
@@ -40,28 +38,30 @@ const ProfilePageView: FC<ProfilePageViewProps> = ({
   transactionName,
   setTransactionName,
 }) => (
-  <Container className="py-4 mb-4 mb-sm-0">
-    <Stack gap={2}>
-      <BalancesList />
-      <SelectTransactionsDetails
-        shownTransactionsTypes={shownTransactionsTypes}
-        categoriesToShow={categoriesToShow}
-        balancesToShow={balancesToShow}
-        setCategoriesToShow={setCategoriesToShow}
-        setBalancesToShow={setBalancesToShow}
-        setShownTransactionsTypes={setShownTransactionsTypes}
-        setMonthsRange={setMonthsRange}
-        monthsRange={monthsRange}
-        transactionName={transactionName}
-        setTransactionName={setTransactionName}
-      />
-      <TransactionsList
-        handleLoadMoreTransactions={handleLoadMoreTransactions}
-        hasMore={hasMoreTransactions}
-      />
-      {isBackToStatisticsShown && <BackToStatisticsButton />}
-    </Stack>
-  </Container>
+  <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
+    <Container size="lg" py="xl">
+      <Stack>
+        <BalancesList />
+        <SelectTransactionsDetails
+          shownTransactionsTypes={shownTransactionsTypes}
+          categoriesToShow={categoriesToShow}
+          balancesToShow={balancesToShow}
+          setCategoriesToShow={setCategoriesToShow}
+          setBalancesToShow={setBalancesToShow}
+          setShownTransactionsTypes={setShownTransactionsTypes}
+          setMonthsRange={setMonthsRange}
+          monthsRange={monthsRange}
+          transactionName={transactionName}
+          setTransactionName={setTransactionName}
+        />
+        <TransactionsList
+          handleLoadMoreTransactions={handleLoadMoreTransactions}
+          hasMore={hasMoreTransactions}
+        />
+        {isBackToStatisticsShown && <BackToStatisticsButton />}
+      </Stack>
+    </Container>
+  </Box>
 );
 
 export default ProfilePageView;

@@ -1,23 +1,23 @@
-import {
-  Button,
-  Col,
-  Collapse,
-  FormControl,
-  Row,
-  Stack,
-} from 'react-bootstrap';
-import CustomSelect from 'components/Shared/CustomSelect';
 import { Category, categoryData } from 'features/category';
 import { Balance, balanceData } from 'features/balance';
 import { transactionTypesToShow } from 'features/transaction/components/TransactionsList/utils';
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import { useAppSelector } from 'store/hooks';
 import { transactionData } from 'features/transaction/store/selector';
 import { TransactionTypeToShow } from 'features/transaction/types';
 import { useTranslation } from 'react-i18next';
 import { userData } from 'features/user';
 import { useBreakpoints } from 'hooks/useBreakpoints';
+import {
+  Title,
+  Stack,
+  Grid,
+  TextInput,
+  Select,
+  Collapse,
+  Button,
+} from '@mantine/core';
+import { DatePickerInput } from '@mantine/dates';
 
 type SelectTransactionsDetailsProps = {
   shownTransactionsTypes: TransactionTypeToShow;
@@ -26,7 +26,7 @@ type SelectTransactionsDetailsProps = {
   balancesToShow: string;
   setCategoriesToShow: Dispatch<SetStateAction<string>>;
   setBalancesToShow: Dispatch<SetStateAction<string>>;
-  setMonthsRange: React.Dispatch<React.SetStateAction<[Date, Date]>>;
+  setMonthsRange: Dispatch<SetStateAction<[Date, Date]>>;
   monthsRange: [Date, Date];
   transactionName: string;
   setTransactionName: Dispatch<SetStateAction<string>>;
@@ -44,10 +44,6 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
   transactionName,
   setTransactionName,
 }) => {
-  const [isDateRangeOpen, setIsDateRangeOpen] = useState<boolean>(false);
-  const [dateRangeMaxDetail, setDateRangeMaxDetail] = useState<
-    'year' | 'month'
-  >('year');
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
   const { lang, user } = useAppSelector(userData);
@@ -60,115 +56,76 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
 
   const renderFilters = () => (
     <>
-      <Col xs="6" md="4" className="p-1">
-        <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-          {t('categories')}:
-        </p>
-        <CustomSelect
-          defaultButtonText={t('show all')}
-          defaultButtonValue="all"
-          data={categories
-            .filter((category: Category) => {
-              if (shownTransactionsTypes === 'all transactions') {
-                return category;
-              }
-
-              return category.categoryType === shownTransactionsTypes;
-            })
-            .map((category: Category) => ({
-              _id: category._id!,
-              name: category.name,
-            }))}
-          selectedValue={categoriesToShow}
-          setSelectedValue={setCategoriesToShow}
-          fieldToSelect="name"
-          withTranslate
-          disabled={shownTransactionsTypes === 'exchange'}
-          className="mx-auto"
-        />
-      </Col>
-      <Col xs="6" md="4" className="p-1">
-        <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-          {t('balances')}:
-        </p>
-        <CustomSelect
-          defaultButtonText={t('show all')}
-          defaultButtonValue="all"
-          data={balances.map((balance: Balance) => ({
-            _id: balance._id,
-            name: balance.name,
-          }))}
-          selectedValue={balancesToShow}
-          setSelectedValue={setBalancesToShow}
-          fieldToSelect="name"
-          withTranslate
-          className="mx-auto"
-        />
-      </Col>
-      <Col xs="6" md="4" className="p-1">
-        <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-          {t('transactions types')}:
-        </p>
-        <CustomSelect
-          defaultButtonText={t('show all')}
-          defaultButtonValue="all transactions"
-          data={transactionTypesToShow.map((type, index) => ({
-            _id: String(index),
-            name: type,
-          }))}
-          selectedValue={shownTransactionsTypes}
-          setSelectedValue={
-            setShownTransactionsTypes as Dispatch<SetStateAction<string>>
-          }
-          fieldToSelect="name"
-          withTranslate
-          className="mx-auto"
-        />
-      </Col>
-      <Col xs="6" md="4" className="p-1">
-        <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-          {t('range detail')}:
-        </p>
-        <CustomSelect
-          defaultButtonText={t('year')}
-          defaultButtonValue="year"
+      <Grid.Col span={{ base: 6, sm: 4 }}>
+        <Select
+          size="md"
+          value={shownTransactionsTypes}
+          label={t('transactions types')}
+          placeholder={t('transaction type')}
           data={[
-            { name: 'year', _id: 'year' },
-            { name: 'month', _id: 'month' },
+            { label: t('show all'), value: 'all transactions' },
+            ...transactionTypesToShow.map((type) => ({
+              label: type,
+              value: type,
+            })),
           ]}
-          selectedValue={dateRangeMaxDetail}
-          setSelectedValue={
-            setDateRangeMaxDetail as Dispatch<SetStateAction<string>>
+          onChange={(val) =>
+            setShownTransactionsTypes(val as TransactionTypeToShow)
           }
-          fieldToSelect="name"
-          withTranslate
-          showDefaultValue={false}
-          className="mx-auto"
         />
-      </Col>
-      <Col xs="12" md="4" className="text-center p-1">
-        <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-          {t('Select range')}:
-        </p>
-        <DateRangePicker
-          autoFocus={false}
-          onChange={(newValue) => setMonthsRange(newValue as [Date, Date])}
-          maxDetail={dateRangeMaxDetail}
+      </Grid.Col>
+
+      <Grid.Col span={{ base: 6, sm: 4 }}>
+        <Select
+          size="md"
+          value={balancesToShow}
+          label={t('balances')}
+          placeholder={t('Select balance')}
+          data={[
+            { label: t('show all'), value: 'all' },
+            ...balances.map(({ name }: Balance) => ({
+              label: name,
+              value: name,
+            })),
+          ]}
+          onChange={(val) => setBalancesToShow(val!)}
+        />
+      </Grid.Col>
+
+      <Grid.Col span={{ base: 12, sm: 6 }}>
+        <Select
+          size="md"
+          value={categoriesToShow}
+          label={t('categories')}
+          placeholder={t('Select category')}
+          data={[
+            { label: t('show all'), value: 'all' },
+            ...categories
+              .filter((category: Category) => {
+                if (shownTransactionsTypes === 'all transactions') {
+                  return category;
+                }
+
+                return category.categoryType === shownTransactionsTypes;
+              })
+              .map(({ name }: Category) => ({ label: name, value: name })),
+          ]}
+          onChange={(val) => setCategoriesToShow(val!)}
+        />
+      </Grid.Col>
+
+      <Grid.Col span={{ base: 12, sm: 6 }}>
+        <DatePickerInput
+          size="md"
+          type="range"
+          label={t('Select range')}
           value={monthsRange}
+          onChange={(newValue) => setMonthsRange(newValue as [Date, Date])}
           locale={lang}
-          calendarIcon={null}
-          clearIcon={null}
-          format="MM.y"
-          minDetail="year"
           minDate={new Date(user.created)}
           maxDate={new Date()}
-          className="data-range-picker w-100"
-          onFocus={(e: any) => (e.target.readOnly = true)}
-          onClick={() => setIsDateRangeOpen(true)}
-          onCalendarClose={() => setIsDateRangeOpen(false)}
-          isOpen={isDateRangeOpen}
         />
-      </Col>
+      </Grid.Col>
     </>
   );
 
@@ -183,43 +140,43 @@ const SelectTransactionsDetails: FC<SelectTransactionsDetailsProps> = ({
   }
 
   return (
-    <Stack gap={1}>
-      <p className="text-center fw-bold fs-4 mb-0">{t('apply filters')}</p>
-      <Row className="mb-3 align-items-center justify-content-center">
-        <Col xs="12" md="4" className="p-1">
-          <p className="mb-1 fs-6 text-center w-100 white-space-nowrap">
-            {t('Search by Name')}:
-          </p>
-          <FormControl
+    <Stack align="center">
+      <Title order={2} fw={500}>
+        {t('apply filters')}
+      </Title>
+      <Grid gutter="lg">
+        <Grid.Col span={{ base: 12, sm: 4 }}>
+          <TextInput
+            size="md"
+            label={t('Search by Name')}
+            placeholder={t('Start typing a transaction name')}
             value={transactionName}
             onChange={(e) => setTransactionName(e.target.value)}
-            type="text"
-            placeholder={t('Start typing a transaction name')}
-            className="mx-auto"
           />
-        </Col>
+        </Grid.Col>
         {breakpoint === 'xs' || breakpoint === 'sm' ? (
           <>
             <Collapse in={isFiltersVisible}>
-              <Row>{renderFilters()}</Row>
+              <Grid gutter="lg">{renderFilters()}</Grid>
             </Collapse>
-            <Col xs="12" className="text-center p-1 d-md-none">
+            <Grid.Col span={12} ta="center">
               <Button
-                variant="link"
+                maw="320px"
+                w="100%"
+                style={{ alignSelf: 'center' }}
+                variant="light"
                 size="sm"
-                className="text-decoration-none text-dark fw-bold"
-                onClick={() => setIsFiltersVisible(!isFiltersVisible)}
-              >
+                onClick={() => setIsFiltersVisible(!isFiltersVisible)}>
                 {isFiltersVisible
                   ? t('Show less filters')
                   : t('Show more filters')}
               </Button>
-            </Col>
+            </Grid.Col>
           </>
         ) : (
           renderFilters()
         )}
-      </Row>
+      </Grid>
     </Stack>
   );
 };
