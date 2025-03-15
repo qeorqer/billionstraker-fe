@@ -8,6 +8,7 @@ import {
   Text,
   Image,
   Alert,
+  Card,
 } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 
@@ -39,7 +40,7 @@ const GuidePageView: FC<GuidePageViewProps> = ({
   handleCheckStatistics,
 }) => (
   <Box component="main" bg="dark" c="white">
-    <Container size="lg" py="xl">
+    <Container size="lg" pt="xl" pb={{ base: 70, sm: 'xl' }}>
       <Stack align="center">
         <Title c="primary" ta="center" order={2} size="h1">
           {t('here comes the usage guide')}
@@ -57,14 +58,9 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           {t('the balance page is used for')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
-          <Image src={guide1} alt="balance page" mih="250px" />
-        </Box>
+        <Card withBorder p={0}>
+          <Image src={guide1} alt="balance page" />
+        </Card>
 
         <Button onClick={handleCreateBalance} maw="320px" fullWidth>
           {t('create balance')}
@@ -78,14 +74,9 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           {t('the categories page is used for')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
-          <Image src={guide2} alt="category page" mih="250px" />
-        </Box>
+        <Card withBorder p={0}>
+          <Image src={guide2} alt="category page" />
+        </Card>
 
         <Button onClick={handleCreateCategory} maw="320px" fullWidth>
           {t('create category')}
@@ -99,42 +90,30 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           <Text component="p" size="lg" ta="center" c="primary">
             {t('expense example')}:
           </Text>
-          <Box
-            component="figure"
-            style={{
-              border: '4px solid var(--mantine-color-primary-filled)',
-              borderRadius: 'var(--mantine-radius-md)',
-            }}>
-            <Image src={guide3} alt="expense example" mih="250px" />
-          </Box>
+
+          <Card withBorder p={0}>
+            <Image src={guide3} alt="expense example" />
+          </Card>
         </Stack>
 
         <Stack gap="xs">
           <Text component="p" size="lg" ta="center" c="primary">
             {t('income example')}:
           </Text>
-          <Box
-            component="figure"
-            style={{
-              border: '4px solid var(--mantine-color-primary-filled)',
-              borderRadius: 'var(--mantine-radius-md)',
-            }}>
-            <Image src={guide4} alt="income example" mih="250px" />
-          </Box>
+
+          <Card withBorder p={0}>
+            <Image src={guide4} alt="income example" />
+          </Card>
         </Stack>
 
         <Stack gap="xs">
           <Text component="p" size="lg" ta="center" c="primary">
             {t('exchange example')}:
           </Text>
-          <Box
-            component="figure"
-            style={{
-              border: '4px solid var(--mantine-color-primary-filled)',
-              borderRadius: 'var(--mantine-radius-md)',
-            }}>
-            <Image src={guide5} alt="exchange example" mih="250px" />
-          </Box>
+
+          <Card withBorder p={0}>
+            <Image src={guide5} alt="exchange example" />
+          </Card>
         </Stack>
 
         <Button maw="320px" fullWidth onClick={handleCreateTransaction}>
@@ -155,7 +134,7 @@ const GuidePageView: FC<GuidePageViewProps> = ({
             border: '4px solid var(--mantine-color-primary-filled)',
             borderRadius: 'var(--mantine-radius-md)',
           }}>
-          <Image src={guide6} alt="profile page" mih="250px" />
+          <Image src={guide6} alt="profile page" />
         </Box>
 
         <Button onClick={handleExploreProfile} maw="320px" fullWidth>
@@ -176,7 +155,7 @@ const GuidePageView: FC<GuidePageViewProps> = ({
             border: '4px solid var(--mantine-color-primary-filled)',
             borderRadius: 'var(--mantine-radius-md)',
           }}>
-          <Image src={guide7} alt="statistics page" mih="250px" />
+          <Image src={guide7} alt="statistics page" />
         </Box>
 
         <Text component="p" size="md" c="dimmed" maw={700} ta="center">
@@ -189,7 +168,7 @@ const GuidePageView: FC<GuidePageViewProps> = ({
             border: '4px solid var(--mantine-color-primary-filled)',
             borderRadius: 'var(--mantine-radius-md)',
           }}>
-          <Image src={guide8} alt="statistics page2" mih="250px" />
+          <Image src={guide8} alt="statistics page2" />
         </Box>
 
         <Button maw="320px" fullWidth onClick={handleCheckStatistics}>
@@ -210,7 +189,7 @@ const GuidePageView: FC<GuidePageViewProps> = ({
             border: '4px solid var(--mantine-color-primary-filled)',
             borderRadius: 'var(--mantine-radius-md)',
           }}>
-          <Image src={guide9} alt="get PWA" maw="220px" mih="250px" />
+          <Image src={guide9} alt="get PWA" maw="220px" />
         </Box>
 
         <Text component="p" size="lg" maw={700} ta="center">

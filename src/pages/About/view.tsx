@@ -7,6 +7,7 @@ import {
   Stack,
   Button,
   Box,
+  Card,
 } from '@mantine/core';
 
 import about1 from 'assets/about/about-1.png';
@@ -30,41 +31,25 @@ const AboutPageView: FC<propsType> = ({ t, handleCheckOutClick }) => (
           {t('the main idea of the app')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
+        <Card withBorder p={0}>
           <Image src={about1} alt="transactions" />
-        </Box>
+        </Card>
 
         <Text component="p" size="lg" maw={700} ta="center">
           {t('about statistics')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
+        <Card withBorder p={0}>
           <Image src={about2} alt="statistics" />
-        </Box>
+        </Card>
 
         <Text component="p" size="lg" maw={700} ta="center">
           {t('more over the has mobile version')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}
-          maw={375}>
+        <Card withBorder p={0}>
           <Image src={about3} alt="mobile version" />
-        </Box>
+        </Card>
 
         <Text component="p" size="lg" maw={700} ta="center">
           {t('so there is no reason not to check it out')}

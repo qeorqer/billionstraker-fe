@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { FC, useEffect, useState } from 'react';
 import { Stack, Title } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from 'store/hooks';

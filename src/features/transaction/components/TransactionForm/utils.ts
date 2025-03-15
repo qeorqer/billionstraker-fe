@@ -48,7 +48,7 @@ export const formatPayloadForProfitOrExpense = ({
   if (
     type === 'expense' &&
     !selectedTransaction &&
-    (balance as Balance).amount < values.sum
+    Number((balance as Balance).amount) < Number(values.sum)
   ) {
     notifications.show({
       message: i18next.t("You don't have this much") as string,
@@ -105,7 +105,7 @@ export const formatPayloadForExchange = ({
 
   if (
     !selectedTransaction &&
-    (balanceToSubtract as Balance).amount < values.sum
+    Number((balanceToSubtract as Balance).amount) < Number(values.sum)
   ) {
     notifications.show({
       message: i18next.t("You don't have this much") as string,
