@@ -168,7 +168,7 @@ const TransactionForm: FC<TransactionFormProps> = ({
               selectedType={selectedTransactionType}
               transaction={transaction}
             />
-            <Grid gutter="lg">
+            <Grid gutter="lg" justify="center">
               <Grid.Col span={{ base: 12, sm: isModal ? 12 : 4 }}>
                 <Field name="balanceId">
                   {({ field: { value, name: fieldName } }: FieldProps) => (
@@ -290,6 +290,7 @@ const TransactionForm: FC<TransactionFormProps> = ({
                   {({ field }: FieldProps) => (
                     <NumberInput
                       {...field}
+                      inputMode="numeric"
                       size="md"
                       label={t(
                         selectedTransactionType === 'exchange'
@@ -316,6 +317,7 @@ const TransactionForm: FC<TransactionFormProps> = ({
                     {({ field }: FieldProps) => (
                       <NumberInput
                         {...field}
+                        inputMode="numeric"
                         size="md"
                         label={t('receive')}
                         onChange={(sum) => setFieldValue('sum2', sum)}
@@ -345,12 +347,13 @@ const TransactionForm: FC<TransactionFormProps> = ({
                   )}
                 </Field>
               </Grid.Col>
-              <Grid.Col span={12} ta="center">
+              <Grid.Col
+                span={{ base: 12, sm: isModal ? 12 : 4 }}
+                style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
                   type="submit"
                   disabled={isLoadingTransactions}
-                  maw="320px"
-                  w="100%">
+                  fullWidth>
                   {transaction ? t('update') : t('Submit')}
                 </Button>
               </Grid.Col>

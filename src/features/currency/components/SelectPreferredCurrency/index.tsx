@@ -46,6 +46,9 @@ const SelectPreferredCurrency = () => {
       rightSection={
         <Tooltip
           label={t('Main currency is used for calculating the net worth')}
+          multiline
+          withArrow
+          w={{ base: 220, sm: undefined }}
           events={{ hover: true, focus: true, touch: true }}>
           <ActionIcon variant="light" color="white">
             <IconQuestionMark

@@ -108,7 +108,11 @@ const BalanceForm: FC<BalanceFormProps> = ({
 
   return (
     <Formik
-      initialValues={balance ? {...balance, currency: getCurrencyLabel(balance.currency)!} : initialValues}
+      initialValues={
+        balance
+          ? { ...balance, currency: getCurrencyLabel(balance.currency)! }
+          : initialValues
+      }
       validationSchema={validationSchema}
       onSubmit={onSubmit}>
       {({
@@ -133,10 +137,11 @@ const BalanceForm: FC<BalanceFormProps> = ({
             <Field name="amount">
               {({ field }: FieldProps) => (
                 <NumberInput
-                  size="md"
                   {...field}
+                  size="md"
                   onChange={(value) => setFieldValue('amount', value)}
                   placeholder={t('set amount')}
+                  inputMode="numeric"
                   error={
                     touched.amount && errors.amount ? t(errors.amount) : null
                   }
