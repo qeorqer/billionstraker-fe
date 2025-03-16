@@ -67,7 +67,7 @@ const LoginForm = () => {
           onVisibilityChange={setIsPasswordShown}
         />
 
-        <Button type="submit" disabled={formik.isSubmitting || !formik.isValid}>
+        <Button type="submit" disabled={formik.isSubmitting}>
           {t('Sign in')}
         </Button>
       </Stack>

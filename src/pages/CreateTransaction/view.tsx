@@ -2,7 +2,6 @@ import { Dispatch, FC, SetStateAction } from 'react';
 
 import { TransactionType } from 'features/transaction/types';
 import BalancesList from 'features/balance/components/BalancesList';
-import 'react-datepicker/dist/react-datepicker.css';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
 import TransactionForm from 'features/transaction/components/TransactionForm';
 import CannotCreateTransactionButtons from 'features/transaction/components/CannotCreateTransactionButtons';

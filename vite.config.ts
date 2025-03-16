@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
-import * as sass from 'sass';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
@@ -53,7 +52,7 @@ export default defineConfig({
         background_color: "#ffffff"
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api\.*/i,
@@ -70,16 +69,6 @@ export default defineConfig({
       }
     })
   ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        implementation: sass,
-        sassOptions: {
-          includePaths: [path.resolve(__dirname, 'src')]
-        }
-      }
-    }
-  },
   resolve: {
     alias: [
       { find: '@', replacement: path.resolve(__dirname, './src') },
@@ -98,6 +87,7 @@ export default defineConfig({
     ]
   },
   base: process.env.NODE_ENV === 'production' ? '/billionstraker-fe/' : '/',
+  publicDir: 'public',
   server: {
     port: 3000
   },

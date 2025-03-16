@@ -92,7 +92,7 @@ const SignUpForm = () => {
         <Button
           type="submit"
           variant="filled"
-          disabled={formik.isSubmitting || !formik.isValid}
+          disabled={formik.isSubmitting}
           h={40}
           fz="md"
           fw={700}>
