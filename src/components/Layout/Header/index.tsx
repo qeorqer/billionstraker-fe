@@ -96,12 +96,12 @@ const Header = () => {
     <Box
       component="header"
       bg="dark"
-      py={15}
+      py={{ base: 10, sm: 15 }}
       style={{ borderBottom: '1px solid var(--mantine-color-dark-4)' }}>
       <Container size="lg">
         <Grid align="center">
           <Grid.Col span={{ base: 6, md: 3 }}>
-            <Title order={1}>
+            <Title order={1} style={{ display: 'flex', alignItems: 'center' }}>
               <Anchor
                 component={NavLink as any}
                 to="/"

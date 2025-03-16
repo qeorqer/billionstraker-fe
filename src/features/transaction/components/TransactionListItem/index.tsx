@@ -181,7 +181,8 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
             transitionProps={{
               transition: 'fade-down',
               duration: 150,
-            }}>
+            }}
+            >
             <Menu.Target>
               <ActionIcon
                 color="white"

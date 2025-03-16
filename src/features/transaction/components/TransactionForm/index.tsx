@@ -173,9 +173,10 @@ const TransactionForm: FC<TransactionFormProps> = ({
                 <Field name="balanceId">
                   {({ field: { value, name: fieldName } }: FieldProps) => (
                     <Select
+                      key={`balance-${selectedTransactionType}`}
                       clearable
                       size="md"
-                      value={value}
+                      value={value || null}
                       w="100%"
                       label={t(
                         selectedTransactionType === 'exchange'
@@ -206,9 +207,10 @@ const TransactionForm: FC<TransactionFormProps> = ({
                   <Field name="balanceId2">
                     {({ field: { value, name: fieldName } }: FieldProps) => (
                       <Select
+                        key={`balance2-${selectedTransactionType}`}
                         clearable
                         size="md"
-                        value={value}
+                        value={value || null}
                         w="100%"
                         label={t('select balance (receive)')}
                         placeholder={t('select balance')}
@@ -236,9 +238,10 @@ const TransactionForm: FC<TransactionFormProps> = ({
                   <Field name="categoryId">
                     {({ field: { value, name: fieldName } }: FieldProps) => (
                       <Select
+                        key={`category-${selectedTransactionType}`}
                         clearable
                         size="md"
-                        value={value}
+                        value={value || null}
                         w="100%"
                         label={t('Select category')}
                         placeholder={t('Select category')}

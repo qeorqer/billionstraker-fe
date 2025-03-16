@@ -63,6 +63,7 @@ const reducer = createSlice({
       notifications.show({
         message: i18next.t('transaction created successfully') as string,
         withBorder: true,
+        color: 'green',
       });
     });
 
@@ -86,6 +87,7 @@ const reducer = createSlice({
       notifications.show({
         message: i18next.t('deleting transaction success') as string,
         withBorder: true,
+        color: 'green',
       });
 
       const deletedTransactionId = action.payload.data.transactionId;
@@ -119,6 +121,7 @@ const reducer = createSlice({
       notifications.show({
         message: i18next.t('updating transaction success') as string,
         withBorder: true,
+        color: 'green',
       });
     });
 

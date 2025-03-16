@@ -48,6 +48,7 @@ const categoryReducer = createSlice({
       notifications.show({
         message: i18next.t('creating category success') as string,
         withBorder: true,
+        color: 'green',
       });
 
       state.categories = [...state.categories, action.payload.data.category];
@@ -61,6 +62,7 @@ const categoryReducer = createSlice({
       notifications.show({
         message: i18next.t('updating category success') as string,
         withBorder: true,
+        color: 'green',
       });
 
       const updatedCategory = action.payload.data.category;
@@ -73,6 +75,7 @@ const categoryReducer = createSlice({
       notifications.show({
         message: i18next.t('deleting category success') as string,
         withBorder: true,
+        color: 'green',
       });
 
       const deletedCategoryId = action.payload.data.categoryId;

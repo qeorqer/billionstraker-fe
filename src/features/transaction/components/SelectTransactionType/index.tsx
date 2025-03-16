@@ -29,7 +29,7 @@ const SelectTransactionType: FC<SelectTransactionTypeProps> = ({
         {t('Select operation type')}
       </Title>
       <SegmentedControl
-        fullWidth
+        w={{base: '100%', sm: '420px'}}
         size="md"
         value={transactionType}
         onChange={(newValue) => setTransactionType(newValue as TransactionType)}

@@ -40,6 +40,7 @@ const balanceReducer = createSlice({
       notifications.show({
         message: i18next.t('creating balance success') as string,
         withBorder: true,
+        color: 'green',
       });
 
       state.balances = [...state.balances, action.payload.data.balance];
@@ -66,6 +67,7 @@ const balanceReducer = createSlice({
       notifications.show({
         message: i18next.t('updating balance success') as string,
         withBorder: true,
+        color: 'green',
       });
 
       const updatedBalance = action.payload.data.balance;
@@ -78,6 +80,7 @@ const balanceReducer = createSlice({
       notifications.show({
         message: i18next.t('deleting balance success') as string,
         withBorder: true,
+        color: 'green',
       });
 
       const deletedBalanceId = action.payload.data.balanceId;

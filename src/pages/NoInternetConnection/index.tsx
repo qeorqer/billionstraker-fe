@@ -7,7 +7,7 @@ const NoInternetConnectionPage = () => {
   const { t } = useTranslation();
 
   return (
-    <Stack component="main" h="100vh" justify="center" align="center" px={10}>
+    <Stack component="main" h="100%" justify="center" align="center" px={10}>
       <Image src={logo} alt="app logo" w={300} />
       <Text component="h1" size="lg" fw={500} ta="center">
         {t('No internet connection')}

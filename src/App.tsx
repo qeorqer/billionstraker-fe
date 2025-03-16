@@ -39,7 +39,7 @@ const App = () => {
     <>
       {isAuth && <Header />}
       <AppRouter />
-      <Notifications limit={1} position="top-right" autoClose={2000} />
+      <Notifications limit={1} position="top-right" autoClose={2500} transitionDuration={500} />
     </>
   );
 };

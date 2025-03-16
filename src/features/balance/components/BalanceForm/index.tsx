@@ -108,7 +108,7 @@ const BalanceForm: FC<BalanceFormProps> = ({
 
   return (
     <Formik
-      initialValues={balance ?? initialValues}
+      initialValues={balance ? {...balance, currency: getCurrencyLabel(balance.currency)!} : initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}>
       {({
@@ -156,11 +156,6 @@ const BalanceForm: FC<BalanceFormProps> = ({
                     touched.currency && errors.currency
                       ? t(errors.currency)
                       : null
-                  }
-                  value={
-                    currenciesLabelsList.includes(field.value)
-                      ? field.value
-                      : getCurrencyLabel(field.value)
                   }
                   onChange={(selected) =>
                     setFieldValue('currency', selected ?? '')

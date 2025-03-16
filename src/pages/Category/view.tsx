@@ -9,8 +9,8 @@ type CategoryPageViewProps = {
 };
 
 const CategoryPageView: FC<CategoryPageViewProps> = ({ t }) => (
-  <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
-    <Container size="lg" py="xl">
+  <Box component="main" bg="dark" c="white" h="100%">
+    <Container size="lg" pt="xl" pb={{ base: 70, sm: 'xl' }}>
       <Stack gap="xl">
         <CategoriesList />
         <Stack

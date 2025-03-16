@@ -18,7 +18,7 @@ const StatisticsPageView: FC<StatisticsPageViewProps> = ({
   balanceName,
   setBalanceName,
 }) => (
-  <Box component="main" bg="dark" c="white" style={{ minHeight: '100vh' }}>
+  <Box component="main" bg="dark" c="white"  h="100%">
     <Container size="lg" pt="xl" pb={{ base: 70, sm: 'xl' }}>
       <Stack>
         <NetWorthView />
