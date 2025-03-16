@@ -15,20 +15,16 @@ const RevalidateFormOnTypeChange: FC<RevalidateFormOnTypeChangeProps> = ({
   selectedType,
   transaction,
 }) => {
-  const { setFieldValue } = useFormikContext<TransactionFormData>();
+  const { setTouched, setFieldValue } = useFormikContext<TransactionFormData>();
 
   useEffect(() => {
     if (!transaction || transaction.transactionType !== selectedType) {
-      if (selectedType === 'exchange') {
-        setFieldValue('categoryId', null, false);
-      } else {
-        setFieldValue('balanceId2', null, false);
-        setFieldValue('sum2', '', false);
-      }
-      setFieldValue('sum', '', false);
+      setTouched({}, true);
+      setFieldValue('categoryId', '');
+      setFieldValue('balanceId2', '');
+      setFieldValue('sum2', '');
     }
   }, [selectedType]);
-
   return null;
 };
 

@@ -128,14 +128,9 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           {t('the profile page is used for')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
+        <Card withBorder p={0}>
           <Image src={guide6} alt="profile page" />
-        </Box>
+        </Card>
 
         <Button onClick={handleExploreProfile} maw="320px" fullWidth>
           {t('explore profile')}
@@ -149,27 +144,17 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           {t('select dates range and balance')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
+        <Card withBorder p={0}>
           <Image src={guide7} alt="statistics page" />
-        </Box>
+        </Card>
 
         <Text component="p" size="md" c="dimmed" maw={700} ta="center">
           {t('by default statistics is shown')}
         </Text>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
+        <Card withBorder p={0}>
           <Image src={guide8} alt="statistics page2" />
-        </Box>
+        </Card>
 
         <Button maw="320px" fullWidth onClick={handleCheckStatistics}>
           {t('check out statistics')}
@@ -183,14 +168,9 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           {t('get pwa')}
         </Alert>
 
-        <Box
-          component="figure"
-          style={{
-            border: '4px solid var(--mantine-color-primary-filled)',
-            borderRadius: 'var(--mantine-radius-md)',
-          }}>
+        <Card withBorder p={0}>
           <Image src={guide9} alt="get PWA" maw="220px" />
-        </Box>
+        </Card>
 
         <Text component="p" size="lg" maw={700} ta="center">
           {t('that is all for the guidance')}
