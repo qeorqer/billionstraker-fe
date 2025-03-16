@@ -40,13 +40,16 @@ const NetWorthView = () => {
 
         <Group gap="sm">
           <Tooltip
-            label={t('You can change main currency on the balances page')}>
+            label={t('You can change main currency on the balances page')}
+            events={{ hover: true, focus: true, touch: true }}>
             <ActionIcon variant="light" color="white">
               <IconQuestionMark style={{ width: '70%', height: '70%' }} />
             </ActionIcon>
           </Tooltip>
 
-          <Tooltip label={t('edit currency')}>
+          <Tooltip
+            label={t('edit currency')}
+            events={{ hover: true, focus: true, touch: true }}>
             <ActionIcon
               variant="light"
               color="white"

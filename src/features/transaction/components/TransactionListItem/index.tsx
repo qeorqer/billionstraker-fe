@@ -91,7 +91,7 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
             <Center>
               <Group gap="xs">
                 <Text ta="center">
-                  <Text ta="center" size="sm">
+                  <Text ta="center" size="sm" maw={100}>
                     {transaction.balanceToSubtract}
                   </Text>
                   <Text
@@ -107,7 +107,7 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
                 </Text>
                 <IconArrowsRightLeft size={15} />
                 <Text>
-                  <Text ta="center" size="sm">
+                  <Text ta="center" size="sm" maw={100}>
                     {transaction.balance}
                   </Text>
                   <Text
@@ -181,8 +181,7 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
             transitionProps={{
               transition: 'fade-down',
               duration: 150,
-            }}
-            >
+            }}>
             <Menu.Target>
               <ActionIcon
                 color="white"

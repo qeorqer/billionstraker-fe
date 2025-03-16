@@ -45,7 +45,8 @@ const SelectPreferredCurrency = () => {
       data={currenciesLabelsList}
       rightSection={
         <Tooltip
-          label={t('Main currency is used for calculating the net worth')}>
+          label={t('Main currency is used for calculating the net worth')}
+          events={{ hover: true, focus: true, touch: true }}>
           <ActionIcon variant="light" color="white">
             <IconQuestionMark
               style={{ width: '70%', height: '70%' }}
