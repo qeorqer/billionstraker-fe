@@ -12,7 +12,7 @@ const AuthForm = () => {
   if (showSignIn) {
     return (
       <Stack align="center">
-        <Title order={2} fw={700} fz={35}>
+        <Title order={2} fw={700}>
           {t('Sign in')}
         </Title>
         <LoginForm />
@@ -31,7 +31,7 @@ const AuthForm = () => {
 
   return (
     <Stack align="center">
-      <Title order={2} fw={700} fz={35}>
+      <Title order={2} fw={700}>
         {t('Sign up')}
       </Title>
       <SignUpForm />

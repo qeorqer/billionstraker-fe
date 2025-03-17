@@ -94,7 +94,6 @@ const SignUpForm = () => {
           variant="filled"
           disabled={formik.isSubmitting}
           h={40}
-          fz="md"
           fw={700}>
           {t('Sign up')}
         </Button>
