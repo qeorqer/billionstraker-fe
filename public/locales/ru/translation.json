@@ -188,7 +188,7 @@
   "Try again": "Попробовать еще раз",
   "Search by Name": "Поиск по названию",
   "Start typing a transaction name": "Вводи название транзакции",
-  "Show more filters": "▼ Больше фильтров ▼",
-  "Show less filters": "▲ Меньше фильтров ▲",
+  "Show more filters": "Больше фильтров",
+  "Show less filters": "Меньше фильтров",
   "Must be a value from the list": "Выбери значение из списка"
 }
