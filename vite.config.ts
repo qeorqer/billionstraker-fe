@@ -48,8 +48,9 @@ export default defineConfig({
         ],
         start_url: ".",
         display: "standalone",
-        theme_color: "#FFFFFF",
-        background_color: "#333333"
+        theme_color: "#333333",
+        background_color: "#333333",
+        categories: ["finance", "productivity"]
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
