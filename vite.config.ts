@@ -48,7 +48,7 @@ export default defineConfig({
         ],
         start_url: ".",
         display: "standalone",
-        theme_color: "#333333",
+        theme_color: "#242424",
         background_color: "#333333",
         categories: ["finance", "productivity"]
       },
