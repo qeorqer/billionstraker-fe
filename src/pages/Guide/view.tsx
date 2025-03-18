@@ -13,14 +13,23 @@ import {
 import { IconInfoCircle } from '@tabler/icons-react';
 
 import guide1 from 'assets/guide/guide-1.png';
+import guideMobile1 from 'assets/guide/guide-mobile-1.png';
 import guide2 from 'assets/guide/guide-2.png';
+import guideMobile2 from 'assets/guide/guide-mobile-2.png';
 import guide3 from 'assets/guide/guide-3.png';
+import guideMobile3 from 'assets/guide/guide-mobile-3.png';
 import guide4 from 'assets/guide/guide-4.png';
+import guideMobile4 from 'assets/guide/guide-mobile-4.png';
 import guide5 from 'assets/guide/guide-5.png';
+import guideMobile5 from 'assets/guide/guide-mobile-5.png';
 import guide6 from 'assets/guide/guide-6.png';
+import guideMobile6 from 'assets/guide/guide-mobile-6.png';
 import guide7 from 'assets/guide/guide-7.png';
+import guideMobile7 from 'assets/guide/guide-mobile-7.png';
 import guide8 from 'assets/guide/guide-8.png';
+import guideMobile8 from 'assets/guide/guide-mobile-8.png';
 import guide9 from 'assets/guide/guide-9.png';
+import guideMobile9 from 'assets/guide/guide-mobile-9.png';
 
 type GuidePageViewProps = {
   t: (text: string) => string;
@@ -59,7 +68,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
         </Text>
 
         <Card withBorder p={0}>
-          <Image src={guide1} alt="balance page" />
+          <Image src={guide1} display={{ base: 'none', sm: 'block' }} alt="balance page" />
+          <Image src={guideMobile1} display={{ base: 'block', sm: 'none' }} alt="balance page" />
         </Card>
 
         <Button onClick={handleCreateBalance} maw="320px" fullWidth>
@@ -75,7 +85,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
         </Text>
 
         <Card withBorder p={0}>
-          <Image src={guide2} alt="category page" />
+          <Image src={guide2} display={{ base: 'none', sm: 'block' }} alt="category page" />
+          <Image src={guideMobile2} display={{ base: 'block', sm: 'none' }} alt="category page" />
         </Card>
 
         <Button onClick={handleCreateCategory} maw="320px" fullWidth>
@@ -92,7 +103,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           </Text>
 
           <Card withBorder p={0}>
-            <Image src={guide3} alt="expense example" />
+            <Image src={guide3} display={{ base: 'none', sm: 'block' }} alt="expense example" />
+            <Image src={guideMobile3} display={{ base: 'block', sm: 'none' }} alt="expense example" />
           </Card>
         </Stack>
 
@@ -102,7 +114,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           </Text>
 
           <Card withBorder p={0}>
-            <Image src={guide4} alt="income example" />
+            <Image src={guide4} display={{ base: 'none', sm: 'block' }} alt="income example" />
+            <Image src={guideMobile4} display={{ base: 'block', sm: 'none' }} alt="income example" />
           </Card>
         </Stack>
 
@@ -112,7 +125,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
           </Text>
 
           <Card withBorder p={0}>
-            <Image src={guide5} alt="exchange example" />
+            <Image src={guide5} display={{ base: 'none', sm: 'block' }} alt="exchange example" />
+            <Image src={guideMobile5} display={{ base: 'block', sm: 'none' }} alt="exchange example" />
           </Card>
         </Stack>
 
@@ -129,7 +143,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
         </Text>
 
         <Card withBorder p={0}>
-          <Image src={guide6} alt="profile page" />
+          <Image src={guide6} display={{ base: 'none', sm: 'block' }} alt="profile page" />
+          <Image src={guideMobile6} display={{ base: 'block', sm: 'none' }} alt="profile page" />
         </Card>
 
         <Button onClick={handleExploreProfile} maw="320px" fullWidth>
@@ -145,7 +160,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
         </Text>
 
         <Card withBorder p={0}>
-          <Image src={guide7} alt="statistics page" />
+          <Image src={guide7} display={{ base: 'none', sm: 'block' }} alt="statistics page" />
+          <Image src={guideMobile7} display={{ base: 'block', sm: 'none' }} alt="statistics page" />
         </Card>
 
         <Text component="p" size="md" c="dimmed" maw={700} ta="center">
@@ -153,7 +169,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
         </Text>
 
         <Card withBorder p={0}>
-          <Image src={guide8} alt="statistics page2" />
+          <Image src={guide8} display={{ base: 'none', sm: 'block' }} alt="statistics page2" />
+          <Image src={guideMobile8} display={{ base: 'block', sm: 'none' }} alt="statistics page2" />
         </Card>
 
         <Button maw="320px" fullWidth onClick={handleCheckStatistics}>
@@ -169,7 +186,8 @@ const GuidePageView: FC<GuidePageViewProps> = ({
         </Alert>
 
         <Card withBorder p={0}>
-          <Image src={guide9} alt="get PWA" maw="220px" />
+          <Image src={guide9} display={{ base: 'none', sm: 'block' }} alt="get PWA" />
+          <Image src={guideMobile9} display={{ base: 'block', sm: 'none' }} alt="get PWA" />
         </Card>
 
         <Text component="p" size="lg" maw={700} ta="center">
