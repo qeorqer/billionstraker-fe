@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { TransactionType } from 'features/transaction/types';
 import { Stack, Title, Button, Flex } from '@mantine/core';
@@ -13,11 +13,11 @@ const CannotCreateTransactionButtons: FC<
   CannotCreateTransactionButtonsProps
 > = ({ transactionType }) => {
   const { t } = useTranslation();
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
-  const handleCreateBalance = () => push('balance');
+  const handleCreateBalance = () => navigate('/balance');
 
-  const handleCreateCategory = () => push('category');
+  const handleCreateCategory = () => navigate('/category');
 
   if (transactionType === 'exchange') {
     return (

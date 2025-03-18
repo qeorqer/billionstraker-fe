@@ -1,4 +1,4 @@
-import { Text, Stack, SegmentedControl, Switch } from '@mantine/core';
+import { Text, Stack, SegmentedControl, Switch, Group } from '@mantine/core';
 import { FC, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -59,13 +59,15 @@ const StatisticsViewItem: FC<StatisticsViewItemProps> = ({
           />
         </Stack>
       )}
-      <Text ta="center">
-        {t(
-          type === 'expense'
-            ? 'Spent during this period'
-            : 'Earned during this period',
-        )}
-        <Text c="primary">
+      <Group gap="xs" align="center">
+        <Text ta="center">
+          {t(
+            type === 'expense'
+              ? 'Spent during this period'
+              : 'Earned during this period',
+          )}
+        </Text>
+        <Text c="primary" component="span">
           {selectedBalance
             ? formatSumByBalanceName(statistics.total, selectedBalance)
             : formatSumByCurrencyCode(
@@ -73,7 +75,7 @@ const StatisticsViewItem: FC<StatisticsViewItemProps> = ({
                 user.preferredCurrency ?? '',
               )}
         </Text>
-      </Text>
+      </Group>
 
       {statisticsType === 'chart' ? (
         <DiagramStatistics

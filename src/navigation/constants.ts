@@ -13,12 +13,12 @@ type Route = {
   Component: FC;
 };
 
-export type Routes = {
+type RoutesConfig = {
   routes: Route[];
   redirect: string;
 };
 
-export const AuthRoutes: Routes = {
+export const AuthRoutes: RoutesConfig = {
   routes: [
     { path: '/home', Component: ProfilePage },
     { path: '/createTransaction', Component: CreateTransaction },
@@ -30,7 +30,7 @@ export const AuthRoutes: Routes = {
   redirect: '/home',
 };
 
-export const NoAuthRoutes: Routes = {
+export const NoAuthRoutes: RoutesConfig = {
   routes: [
     { path: '/authorization', Component: AuthorizationPage },
     { path: '/about', Component: AboutPage },

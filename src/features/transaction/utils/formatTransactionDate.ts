@@ -7,5 +7,5 @@ export const formatTransactionDate = (date: Date, lang = 'en') => {
     return formattedDate.fromNow();
   }
 
-  return formattedDate.format('LL');
+  return formattedDate.format('DD.MM.YYYY');
 };

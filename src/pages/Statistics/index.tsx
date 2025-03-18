@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import Loader from 'components/Shared/Loader';

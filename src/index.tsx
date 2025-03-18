@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter } from 'react-router';
 import { registerSW } from 'virtual:pwa-register';
 import { MantineProvider } from '@mantine/core';
 import dayjs from 'dayjs';
@@ -34,9 +34,9 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>
     <MantineProvider theme={theme} forceColorScheme="dark">
-      <Router>
+      <HashRouter>
         <App />
-      </Router>
+      </HashRouter>
     </MantineProvider>
   </Provider>,
 );

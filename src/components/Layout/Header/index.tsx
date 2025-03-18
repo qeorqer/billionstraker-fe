@@ -1,5 +1,5 @@
 import { ForwardRefExoticComponent, RefAttributes } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { usePwa } from '@dotmind/react-use-pwa';
 import {
@@ -42,7 +42,7 @@ type DropdownMenuItem = {
 
 const Header = () => {
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [opened, { toggle }] = useDisclosure();
 
@@ -50,25 +50,26 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logOutThunk());
-    history.push('/authorization');
+    navigate('/authorization');
   };
 
+  //TODO: rewrite onClicks to be proper links or something
   const dropdownMenuItems: DropdownMenuItem[] = [
     {
       title: 'balances',
-      onClick: () => history.push('/balance'),
+      onClick: () => navigate('/balance'),
       isShown: true,
       Icon: IconWallet,
     },
     {
       title: 'categories',
-      onClick: () => history.push('/category'),
+      onClick: () => navigate('/category'),
       isShown: true,
       Icon: IconTag,
     },
     {
       title: 'usage guide',
-      onClick: () => history.push('/guide'),
+      onClick: () => navigate('/guide'),
       isShown: true,
       Icon: IconBook,
     },
@@ -122,14 +123,16 @@ const Header = () => {
             <List>
               {tabMenuItems.map(({ title, Component, link }) => (
                 <li key={title}>
-                  <Anchor
-                    component={NavLink as any}
+                  <NavLink
                     to={link}
-                    underline="never"
-                    activeClassName={styles.active}>
-                    <Component />
-                    {t(title)}
-                  </Anchor>
+                    className={({ isActive }) =>
+                      isActive ? styles.active : ''
+                    }>
+                    <>
+                      <Component />
+                      {t(title)}
+                    </>
+                  </NavLink>
                 </li>
               ))}
             </List>

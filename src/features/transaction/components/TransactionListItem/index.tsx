@@ -74,7 +74,7 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
       h="100%"
       w="100%"
       style={{ justifyContent: 'center' }}>
-      <Grid>
+      <Grid align="center">
         <Grid.Col
           span={{ base: 6, sm: 3 }}
           order={1}
@@ -90,7 +90,7 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
           {transaction.transactionType === 'exchange' ? (
             <Center>
               <Group gap="xs">
-                <Text ta="center">
+                <Stack align="center" gap={-4}>
                   <Text ta="center" size="sm" maw={100}>
                     {transaction.balanceToSubtract}
                   </Text>
@@ -104,9 +104,9 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
                       transaction?.balanceToSubtract!,
                     )}
                   </Text>
-                </Text>
+                </Stack>
                 <IconArrowsRightLeft size={15} />
-                <Text>
+                <Stack align="center" gap={-4}>
                   <Text ta="center" size="sm" maw={100}>
                     {transaction.balance}
                   </Text>
@@ -120,7 +120,7 @@ const TransactionListItem: FC<TransactionListItemProps> = ({ transaction }) => {
                       transaction.balance,
                     )}
                   </Text>
-                </Text>
+                </Stack>
               </Group>
             </Center>
           ) : (

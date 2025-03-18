@@ -9,7 +9,7 @@ import {
   Center,
   Text,
 } from '@mantine/core';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { FC } from 'react';
 
 import logo from 'assets/common/logo.png';

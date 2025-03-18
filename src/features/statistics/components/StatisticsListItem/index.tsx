@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { listForRangeItem } from 'features/statistics/components/StatisticsList';
 import { TransactionType } from 'features/transaction';
@@ -24,7 +24,7 @@ const StatisticsListItem: FC<StatisticsListItemProps> = ({
   fieldToGroupBy,
   transactionType,
 }) => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const { formatSumByBalanceName } = useFormatSumByBalanceName();
   const { user } = useAppSelector(userData);
@@ -49,11 +49,11 @@ const StatisticsListItem: FC<StatisticsListItemProps> = ({
         : { category: listItem.title }),
     });
 
-    push({
+    navigate({
       pathname: '/statistics',
       search: statisticsQueryString.toString(),
     });
-    push({
+    navigate({
       pathname: '/home',
       search: homeQueryString.toString(),
     });

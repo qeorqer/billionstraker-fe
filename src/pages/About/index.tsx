@@ -1,14 +1,14 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import AboutPageView from './view';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 
 const AboutPage: FC = () => {
   const { t } = useTranslation();
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
-  const handleCheckOutClick = () => push('/authorization');
+  const handleCheckOutClick = () => navigate('/authorization');
 
   return <AboutPageView t={t} handleCheckOutClick={handleCheckOutClick} />;
 };

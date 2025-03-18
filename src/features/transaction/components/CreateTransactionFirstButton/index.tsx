@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Button, Stack, Title } from '@mantine/core';
 
 type CreateTransactionFirstButtonProps = {
@@ -11,9 +11,9 @@ const CreateTransactionFirstButton: FC<CreateTransactionFirstButtonProps> = ({
   text,
 }) => {
   const { t } = useTranslation();
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
-  const handleCreateTransaction = () => push('createTransaction');
+  const handleCreateTransaction = () => navigate('/createTransaction');
 
   return (
     <Stack align="center">

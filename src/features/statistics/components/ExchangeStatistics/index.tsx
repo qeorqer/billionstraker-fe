@@ -1,7 +1,7 @@
 import { useAppSelector } from 'store/hooks';
 import { statisticsData } from 'features/statistics/store/selector';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { FC } from 'react';
 import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
 import { Title, Stack, Text, Group, Button } from '@mantine/core';
@@ -18,7 +18,7 @@ const ExchangeStatistics: FC<ExchangeStatisticsProps> = ({
   const { statistics } = useAppSelector(statisticsData);
 
   const { t } = useTranslation();
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const { formatSumByBalanceName } = useFormatSumByBalanceName();
 
@@ -30,11 +30,11 @@ const ExchangeStatistics: FC<ExchangeStatisticsProps> = ({
       transactionType: 'exchange',
     });
 
-    push({
+    navigate({
       pathname: '/statistics',
       search: queryString.toString(),
     });
-    push({
+    navigate({
       pathname: '/home',
       search: queryString.toString(),
     });

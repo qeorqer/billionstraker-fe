@@ -1,14 +1,14 @@
 import { Affix, Button } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const BackToStatisticsButton = () => {
   const { t } = useTranslation();
-  const { goBack } = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Affix position={{ top: 75, right: 20 }}>
-      <Button onClick={goBack} size="sm" variant="light">
+      <Button onClick={() => navigate(-1)} size="sm" variant="light">
         {t('back to statistics')}
       </Button>
     </Affix>
