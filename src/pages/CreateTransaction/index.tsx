@@ -53,7 +53,7 @@ const CreateTransactionPage = () => {
   }, []);
 
   if (isLoadingCategories && isLoadingBalances) {
-    return <Loader fullHeight />;
+    return <Loader />;
   }
 
   return (

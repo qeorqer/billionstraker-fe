@@ -47,7 +47,7 @@ const StatisticsPage: FC = () => {
   }, []);
 
   if (isLoadingBalances) {
-    return <Loader fullHeight />;
+    return <Loader />;
   }
 
   return (

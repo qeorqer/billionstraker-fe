@@ -11,7 +11,7 @@ const Loader: FC<LoaderProps> = ({ fullHeight = false }) => {
     <Center
       py={10}
       bg="dark"
-      style={{ height: fullHeight ? '100%' : undefined }}>
+      style={{ minHeight: fullHeight ? '100vh' : undefined }}>
       <MantineLoader />
     </Center>
   );
