@@ -188,7 +188,7 @@
   "Try again": "Try again",
   "Search by Name": "Search by Name",
   "Start typing a transaction name": "Type a transaction name",
-  "Show more filters": "▼ More filters ▼",
-  "Show less filters": "▲ Less filters ▲",
+  "Show more filters": "More filters",
+  "Show less filters": "Less filters",
   "Must be a value from the list": "Select value from the list"
 }
