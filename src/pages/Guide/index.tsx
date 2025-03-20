@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { updateUserThunk, userData } from 'features/user';
@@ -11,18 +11,18 @@ const GuidePage = () => {
   const { user } = useAppSelector(userData);
   const dispatch = useAppDispatch();
 
-  const { push } = useHistory();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const handleCreateBalance = () => push('/balance');
+  const handleCreateBalance = () => navigate('/balance');
 
-  const handleCreateCategory = () => push('/category');
+  const handleCreateCategory = () => navigate('/category');
 
-  const handleCreateTransaction = () => push('/createTransaction');
+  const handleCreateTransaction = () => navigate('/createTransaction');
 
-  const handleExploreProfile = () => push('/profile');
+  const handleExploreProfile = () => navigate('/profile');
 
-  const handleCheckStatistics = () => push('/statistics');
+  const handleCheckStatistics = () => navigate('/statistics');
 
   useEffect(() => {
     if (user.isFirstEnter) {

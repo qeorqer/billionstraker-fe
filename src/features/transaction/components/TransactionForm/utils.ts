@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import i18next from 'i18next';
 
 import {
@@ -9,6 +8,7 @@ import {
 } from 'features/transaction/types';
 import { Balance } from 'features/balance';
 import { Category } from 'features/category';
+import { notifications } from '@mantine/notifications';
 
 type FormatTransactionOptions = {
   values: TransactionFormData;
@@ -36,8 +36,10 @@ export const formatPayloadForProfitOrExpense = ({
   const category = findById(categories, values.categoryId!);
 
   if (!balance) {
-    toast(i18next.t('the balance does not exist'), {
-      type: 'error',
+    notifications.show({
+      message: i18next.t('the balance does not exist') as string,
+      withBorder: true,
+      color: 'red',
     });
 
     return null;
@@ -46,18 +48,22 @@ export const formatPayloadForProfitOrExpense = ({
   if (
     type === 'expense' &&
     !selectedTransaction &&
-    (balance as Balance).amount < values.sum
+    Number((balance as Balance).amount) < Number(values.sum)
   ) {
-    toast(i18next.t("You don't have this much"), {
-      type: 'error',
+    notifications.show({
+      message: i18next.t("You don't have this much") as string,
+      withBorder: true,
+      color: 'red',
     });
 
     return null;
   }
 
   if (!category) {
-    toast(i18next.t('there is no category with such id'), {
-      type: 'error',
+    notifications.show({
+      message: i18next.t('there is no category with such id') as string,
+      withBorder: true,
+      color: 'red',
     });
 
     return null;
@@ -88,8 +94,10 @@ export const formatPayloadForExchange = ({
   const balanceToAdd = findById(balances, values.balanceId2!);
 
   if (!balanceToSubtract || !balanceToAdd) {
-    toast(i18next.t('the balance does not exist'), {
-      type: 'error',
+    notifications.show({
+      message: i18next.t('the balance does not exist') as string,
+      withBorder: true,
+      color: 'red',
     });
 
     return null;
@@ -97,10 +105,12 @@ export const formatPayloadForExchange = ({
 
   if (
     !selectedTransaction &&
-    (balanceToSubtract as Balance).amount < values.sum
+    Number((balanceToSubtract as Balance).amount) < Number(values.sum)
   ) {
-    toast(i18next.t("You don't have this much"), {
-      type: 'error',
+    notifications.show({
+      message: i18next.t("You don't have this much") as string,
+      withBorder: true,
+      color: 'red',
     });
 
     return null;

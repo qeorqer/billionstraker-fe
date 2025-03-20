@@ -1,9 +1,8 @@
-import React from 'react';
-import { Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Title, Stack, Box } from '@mantine/core';
+import { Carousel } from '@mantine/carousel';
 
-import { Category, categoryData } from 'features/category';
+import { categoryData } from 'features/category';
 import CategoryListItem from 'features/category/components/CategoryListItem';
 import { useAppSelector } from 'store/hooks';
 
@@ -13,41 +12,34 @@ const CategoriesList = () => {
 
   if (!categories.length) {
     return (
-      <p className="fs-4 fw-bold text-center py-2">
+      <Title order={2} ta="center" py="md" fw={500}>
         {t('your categories will be here')}
-      </p>
+      </Title>
     );
   }
 
   return (
-    <Row className="mb-3  justify-content-center d-flex">
-      <p className="fs-4 fw-bold text-center py-2">
+    <Stack>
+      <Title order={2} ta="center" fw={500}>
         {t('all your categories')}
-      </p>
+      </Title>
 
-      <Swiper
-        spaceBetween={15}
-        slidesPerView={2}
-        className="justify-content-center d-flex px-2"
-        breakpoints={{
-          400: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 4,
-          },
-          1200: {
-            slidesPerView: 5,
-          },
-        }}
-        centerInsufficientSlides>
-        {categories.map((category) => (
-          <SwiperSlide key={category._id}>
-            <CategoryListItem category={category} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Row>
+      <Box px={8}>
+        <Carousel
+          slideSize={{ base: '50%', xs: '33.333333%', md: '25%', lg: '20%' }}
+          slideGap="md"
+          align="start"
+          withControls={false}
+          slidesToScroll={1}
+          containScroll="keepSnaps">
+          {categories.map((category) => (
+            <Carousel.Slide key={category._id}>
+              <CategoryListItem category={category} />
+            </Carousel.Slide>
+          ))}
+        </Carousel>
+      </Box>
+    </Stack>
   );
 };
 

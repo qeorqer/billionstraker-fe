@@ -1,41 +1,37 @@
-import React, { Dispatch, ForwardedRef, SetStateAction } from 'react';
-import { Col, Container, Row, Stack } from 'react-bootstrap';
+import { FC } from 'react';
+import { Container, Box, Title, Stack } from '@mantine/core';
 
-import { Balance } from 'features/balance/types';
 import BalancesList from 'features/balance/components/BalancesList';
 import BalanceForm from 'features/balance/components/BalanceForm';
-import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
-import { TypeaheadRef } from 'react-bootstrap-typeahead';
-import { CurrencyOption } from 'features/currency';
-import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
 import SelectPreferredCurrency from 'features/currency/components/SelectPreferredCurrency';
 
 type BalancePageViewProps = {
   t: (text: string) => string;
-  hasBalances: boolean;
 };
 
-const BalancePageView: React.FC<BalancePageViewProps> = ({
-  t,
-  hasBalances,
-}) => (
-  <Container className="py-4">
-    {!hasBalances && (
-      <p className="fs-4 fw-bold text-center py-2">
-        {t(hasBalances ? 'all your balances' : 'your balances will be here')}
-      </p>
-    )}
-    <Stack gap={3}>
-      <BalancesList showMenu />
-      <SelectPreferredCurrency />
-      <Row>
-        <Col xs="12" lg="6" className="mb-3 mb-lg-0 mx-auto">
-          <p className="fs-5 fw-bold text-center">{t('add new balance')}:</p>
+const BalancePageView: FC<BalancePageViewProps> = ({ t }) => (
+  <Box component="main" bg="dark" c="white"  h="100%">
+    <Container size="lg" pt="xl" pb={{ base: 70, sm: 'xl' }}>
+      <Stack>
+        <BalancesList showMenu />
+        <Stack
+          align="center"
+          gap="md"
+          maw="420px"
+          w="100%"
+          style={{ alignSelf: 'center' }}>
+          <Title order={2} fw={500} ta="center">
+            {t('Select main currency')}
+          </Title>
+          <SelectPreferredCurrency />
+          <Title order={2} fw={500} ta="center">
+            {t('add new balance')}
+          </Title>
           <BalanceForm buttonText="create" />
-        </Col>
-      </Row>
-    </Stack>
-  </Container>
+        </Stack>
+      </Stack>
+    </Container>
+  </Box>
 );
 
 export default BalancePageView;

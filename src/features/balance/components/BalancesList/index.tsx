@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
-import { Row } from 'react-bootstrap';
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { balanceData, getBalancesThunk } from 'features/balance';
-import BalanceListItem from 'features/balance/components/BalanceListItem';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Title, Stack, Box } from '@mantine/core';
+import { Carousel } from '@mantine/carousel';
+
+import { balanceData, getBalancesThunk } from 'features/balance';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import BalanceListItem from '../BalanceListItem';
 
 type BalanceListProps = {
   showMenu?: boolean;
 };
 
-const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
+const BalancesList: FC<BalanceListProps> = ({ showMenu = false }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { balances } = useAppSelector(balanceData);
@@ -21,45 +21,35 @@ const BalancesList: React.FC<BalanceListProps> = ({ showMenu = false }) => {
   }, []);
 
   if (!balances.length) {
-    return null;
+    return (
+      <Title order={2} ta="center" py="md" fw={500}>
+        {t('your balances will be here')}
+      </Title>
+    );
   }
 
   return (
-    <Row>
-      {Boolean(balances.length) && (
-        <p className="fs-4 fw-bold text-center pt-2">
-          {t('all your balances')}
-        </p>
-      )}
+    <Stack>
+      <Title order={2} ta="center" fw={500}>
+        {t('all your balances')}
+      </Title>
 
-      <Swiper
-        spaceBetween={15}
-        slidesPerView={2}
-        className="justify-content-center d-flex px-2"
-        breakpoints={{
-          500: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 4,
-          },
-          1200: {
-            slidesPerView: 5,
-          },
-        }}
-        centerInsufficientSlides>
-        {balances.map((balance) => (
-          <SwiperSlide key={balance._id}>
-            <BalanceListItem balance={balance} showMenu={showMenu} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </Row>
+      <Box px={8}>
+        <Carousel
+          slideSize={{ base: '70%', xs: '50%', sm: '33.3%', lg: '20%' }}
+          slideGap="md"
+          align="start"
+          withControls={false}
+          slidesToScroll={1}>
+          {balances.map((balance) => (
+            <Carousel.Slide key={balance._id}>
+              <BalanceListItem balance={balance} showMenu={showMenu} />
+            </Carousel.Slide>
+          ))}
+        </Carousel>
+      </Box>
+    </Stack>
   );
-};
-
-BalancesList.defaultProps = {
-  showMenu: false,
 };
 
 export default BalancesList;

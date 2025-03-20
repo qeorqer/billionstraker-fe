@@ -1,20 +1,14 @@
-import { Card } from 'react-bootstrap';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Card, Text, Group, Stack, ActionIcon } from '@mantine/core';
+import { IconPencil, IconX } from '@tabler/icons-react';
 
 import { Category } from 'features/category/types';
 import DeleteCategoryModal from 'features/category/components/DeleteCategoryModal';
 import EditCategoryModal from 'features/category/components/EditСategoryModal';
 
-import './styles.scss';
-
 type CategoryListItemProps = {
   category: Category;
-};
-
-type ActionOption = {
-  onClick: () => void;
-  classes: string;
 };
 
 const CategoryListItem: FC<CategoryListItemProps> = ({ category }) => {
@@ -24,40 +18,40 @@ const CategoryListItem: FC<CategoryListItemProps> = ({ category }) => {
 
   const { t } = useTranslation();
 
-  const options: ActionOption[] = [
-    {
-      classes: 'bi bi-pencil text-dark mx-1',
-      onClick: () => setIsEditCategoryModalOpen(true),
-    },
-    {
-      classes: 'bi bi-x-lg text-dark',
-      onClick: () => setIsDeleteCategoryModalOpen(true),
-    },
-  ];
-
   return (
     <>
-      <Card className="h-100">
-        <Card.Body className="d-flex justify-content-between category-card-body-content">
-          <div className="pr-1 flex-grow-1">
-            <Card.Title className="category-card-body-title" as="p">
+      <Card
+        withBorder
+        radius="md"
+        p="sm"
+        h="100%"
+        style={{ justifyContent: 'center' }}>
+        <Group justify="space-between" align="center" wrap="nowrap">
+          <Stack gap={4}>
+            <Text fw={500} size="sm" lineClamp={2}>
               {category.name}
-            </Card.Title>
-            <Card.Text className="category-card-body-type">
+            </Text>
+            <Text size="xs" c="dimmed" fs="italic">
               {`${t('category type')}: ${t(category.categoryType)}`}
-            </Card.Text>
-          </div>
-          <div className="d-flex flex-column align-items-end justify-content-center">
-            {options.map(({ classes, onClick }, index) => (
-              <div
-                key={index}
-                onClick={onClick}
-                className="category-action-button">
-                <i className={classes} />
-              </div>
-            ))}
-          </div>
-        </Card.Body>
+            </Text>
+          </Stack>
+          <Stack gap={4}>
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              onClick={() => setIsEditCategoryModalOpen(true)}
+              size="sm">
+              <IconPencil style={{ width: '70%', height: '70%' }} />
+            </ActionIcon>
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              onClick={() => setIsDeleteCategoryModalOpen(true)}
+              size="sm">
+              <IconX style={{ width: '70%', height: '70%' }} />
+            </ActionIcon>
+          </Stack>
+        </Group>
       </Card>
       <EditCategoryModal
         isOpen={isEditCategoryModalOpen}

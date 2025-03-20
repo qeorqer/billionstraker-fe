@@ -1,10 +1,10 @@
-import { Button, Modal, Stack } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch } from 'store/hooks';
 import { Transaction } from 'features/transaction/types';
 import { deleteTransactionThunk } from 'features/transaction/store/thunks';
+import { Button, Modal, Stack, Title } from '@mantine/core';
 
 type DeleteBalanceModalProps = {
   isOpen: boolean;
@@ -28,24 +28,25 @@ const DeleteTransactionModal: FC<DeleteBalanceModalProps> = ({
   };
 
   return (
-    <Modal show={isOpen} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>
+    <Modal
+      opened={isOpen}
+      onClose={handleClose}
+      centered
+      title={
+        <Title order={3} c="white" size="h4">
           {t('do you want to delete transaction', {
             transactionName: transaction.title,
           })}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Stack gap={2}>
-          <Button variant="danger" onClick={handleDelete}>
-            {t('delete')}
-          </Button>
-          <Button variant="outline-dark" onClick={handleClose}>
-            {t('cancel')}
-          </Button>
-        </Stack>
-      </Modal.Body>
+        </Title>
+      }>
+      <Stack>
+        <Button variant="light" color="red" onClick={handleDelete}>
+          {t('delete')}
+        </Button>
+        <Button variant="default" onClick={handleClose}>
+          {t('cancel')}
+        </Button>
+      </Stack>
     </Modal>
   );
 };

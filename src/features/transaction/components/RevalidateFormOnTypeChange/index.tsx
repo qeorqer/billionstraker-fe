@@ -21,6 +21,8 @@ const RevalidateFormOnTypeChange: FC<RevalidateFormOnTypeChangeProps> = ({
     if (!transaction || transaction.transactionType !== selectedType) {
       setTouched({}, true);
       setFieldValue('categoryId', '');
+      setFieldValue('balanceId2', '');
+      setFieldValue('sum2', '');
     }
   }, [selectedType]);
   return null;

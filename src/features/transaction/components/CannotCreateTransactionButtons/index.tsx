@@ -1,9 +1,9 @@
-import { Button } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { TransactionType } from 'features/transaction/types';
+import { Stack, Title, Button, Flex } from '@mantine/core';
 
 type CannotCreateTransactionButtonsProps = {
   transactionType: TransactionType;
@@ -13,42 +13,56 @@ const CannotCreateTransactionButtons: FC<
   CannotCreateTransactionButtonsProps
 > = ({ transactionType }) => {
   const { t } = useTranslation();
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
-  const handleCreateBalance = () => push('balance');
+  const handleCreateBalance = () => navigate('/balance');
 
-  const handleCreateCategory = () => push('category');
+  const handleCreateCategory = () => navigate('/category');
 
   if (transactionType === 'exchange') {
     return (
-      <div className="text-center mt-2">
-        <p className="fw-bold">{t('you need to have two balance')}</p>
+      <Stack align="center">
+        <Title order={3} fw={500} ta="center">
+          {t('you need to have two balance')}
+        </Title>
         <Button
-          variant="warning"
-          className="w300Px text-white"
-          onClick={handleCreateBalance}>
+          onClick={handleCreateBalance}
+          maw="320px"
+          fullWidth
+          variant="light">
           {t('create balance')}
         </Button>
-      </div>
+      </Stack>
     );
   }
 
   return (
-    <div className="text-center mt-2">
-      <p className="fw-bold">{t('you need to have one balance')}</p>
-      <Button
-        variant="warning"
-        className="w300Px text-white mx-1"
-        onClick={handleCreateBalance}>
-        {t('create balance')}
-      </Button>
-      <Button
-        variant="warning"
-        className="w300Px text-white mx-1 my-2 my-md-0"
-        onClick={handleCreateCategory}>
-        {t('create category')}
-      </Button>
-    </div>
+    <Stack align="center">
+      <Title order={3} fw={500} ta="center">
+        {t('you need to have one balance')}
+      </Title>
+      <Flex
+        direction={{ base: 'column', sm: 'row' }}
+        gap="md"
+        w="100%"
+        justify="center"
+        align="center">
+        <Button
+          onClick={handleCreateBalance}
+          maw="320px"
+          fullWidth
+          variant="light">
+          {t('create balance')}
+        </Button>
+        <Button
+          onClick={handleCreateCategory}
+          maw="320px"
+          fullWidth
+          variant="light">
+          {t('create category')}
+        </Button>
+      </Flex>
+    </Stack>
   );
 };
 

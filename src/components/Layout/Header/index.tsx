@@ -1,113 +1,182 @@
-import React from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { ForwardRefExoticComponent, RefAttributes } from 'react';
+import { NavLink, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 import { usePwa } from '@dotmind/react-use-pwa';
+import {
+  Container,
+  Grid,
+  Anchor,
+  Box,
+  Image,
+  Title,
+  Menu,
+  Burger,
+  List,
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import {
+  IconHeadset,
+  IconWallet,
+  IconTag,
+  IconBook,
+  IconDeviceTabletDown,
+  IconLogout,
+  Icon,
+  IconProps,
+} from '@tabler/icons-react';
 
 import logo from 'assets/common/logo.png';
 import { useAppDispatch } from 'store/hooks';
 import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
-import CustomToggle from 'components/Shared/CustomToggle';
 import { logOutThunk } from 'features/user';
 
-import './styles.scss';
+import styles from './styles.module.css';
 import { tabMenuItems } from './constants';
 
 type DropdownMenuItem = {
   title: string;
   onClick: () => void;
   isShown: boolean;
+  Icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
 };
 
 const Header = () => {
-  const dispatch = useAppDispatch();
-  const history = useHistory();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [opened, { toggle }] = useDisclosure();
 
   const { installPrompt, canInstall } = usePwa();
 
   const handleLogout = () => {
     dispatch(logOutThunk());
-    history.push('/authorization');
+    navigate('/authorization');
   };
 
+  //TODO: rewrite onClicks to be proper links or something
   const dropdownMenuItems: DropdownMenuItem[] = [
     {
       title: 'balances',
-      onClick: () => history.push('/balance'),
+      onClick: () => navigate('/balance'),
       isShown: true,
+      Icon: IconWallet,
     },
     {
       title: 'categories',
-      onClick: () => history.push('/category'),
+      onClick: () => navigate('/category'),
       isShown: true,
+      Icon: IconTag,
     },
     {
       title: 'usage guide',
-      onClick: () => history.push('/guide', '_blank'),
+      onClick: () => navigate('/guide'),
       isShown: true,
+      Icon: IconBook,
     },
     {
       title: 'Support',
       onClick: () => window.open('https://t.me/qeorqe', '_blank'),
       isShown: true,
+      Icon: IconHeadset,
     },
     {
       title: 'install PWA',
       onClick: installPrompt,
       isShown: canInstall,
+      Icon: IconDeviceTabletDown,
     },
     {
       title: 'Log out',
       onClick: handleLogout,
       isShown: true,
+      Icon: IconLogout,
     },
   ];
 
   return (
-    <header>
-      <Container>
-        <Row className="align-items-center">
-          <Col md="3" xs="6" className="logo">
-            <Link to="/">
-              <img src={logo} alt="app logo" />
-              Billionstracker
-            </Link>
-          </Col>
-          <Col md="6" xs="12" className="menu order-1 order-md-0">
-            <ul className="m-0 p-0">
+    <Box
+      component="header"
+      bg="dark"
+      py={{ base: 10, sm: 15 }}
+      style={{ borderBottom: '1px solid var(--mantine-color-dark-4)' }}>
+      <Container size="lg">
+        <Grid align="center">
+          <Grid.Col span={{ base: 6, md: 3 }}>
+            <Title order={1} style={{ display: 'flex', alignItems: 'center' }}>
+              <Anchor
+                component={NavLink as any}
+                to="/"
+                underline="never"
+                c="primary"
+                display="inline-flex"
+                fw={700}
+                style={{ width: '100%', alignItems: 'center' }}>
+                <Image src={logo} alt="app logo" maw={30} mr={5} />
+                Billionstracker
+              </Anchor>
+            </Title>
+          </Grid.Col>
+          <Grid.Col
+            span={{ base: 12, md: 6 }}
+            order={{ base: 1, md: 0 }}
+            className={styles.menu}>
+            <List>
               {tabMenuItems.map(({ title, Component, link }) => (
                 <li key={title}>
-                  <NavLink to={link}>
-                    <Component />
-                    {t(title)}
+                  <NavLink
+                    to={link}
+                    className={({ isActive }) =>
+                      isActive ? styles.active : ''
+                    }>
+                    <>
+                      <Component />
+                      {t(title)}
+                    </>
                   </NavLink>
                 </li>
               ))}
-            </ul>
-          </Col>
-          <Col md="3" xs="6">
-            <Dropdown>
-              <Dropdown.Toggle as={CustomToggle} />
-              <Dropdown.Menu variant="dark">
-                <Dropdown.Item
-                  as="span"
-                  className="d-flex justify-content-around languagesController">
+            </List>
+          </Grid.Col>
+          <Grid.Col span={{ base: 6, md: 3 }} ta="right">
+            <Menu
+              opened={opened}
+              onChange={toggle}
+              position="bottom-end"
+              shadow="md"
+              transitionProps={{
+                transition: 'fade-down',
+                duration: 150,
+              }}>
+              <Menu.Target>
+                <Burger
+                  size="md"
+                  color="primary"
+                  opened={opened}
+                  onClick={toggle}
+                />
+              </Menu.Target>
+
+              <Menu.Dropdown>
+                <Box component="li" py={5} style={{ listStyle: 'none' }}>
                   <LanguageSwitcher />
-                </Dropdown.Item>
+                </Box>
+                <Menu.Divider />
                 {dropdownMenuItems
                   .filter(({ isShown }) => isShown)
-                  .map(({ title, onClick }) => (
-                    <Dropdown.Item as="span" key={title} onClick={onClick}>
+                  .map(({ title, Icon, onClick }) => (
+                    <Menu.Item
+                      key={title}
+                      onClick={onClick}
+                      leftSection={<Icon size={20} />}>
                       {t(title)}
-                    </Dropdown.Item>
+                    </Menu.Item>
                   ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Col>
-        </Row>
+              </Menu.Dropdown>
+            </Menu>
+          </Grid.Col>
+        </Grid>
       </Container>
-    </header>
+    </Box>
   );
 };
 

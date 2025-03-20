@@ -1,6 +1,4 @@
-import { CurrencyOption } from 'features/currency';
-
-export const currenciesList: CurrencyOption[] = [
+export const currenciesList = [
   { value: 'uah', label: 'Ukrainian Hryvnia (UAH)' },
   { value: 'usd', label: 'US Dollar (USD)' },
   { value: 'eur', label: 'Euro (EUR)' },
@@ -539,3 +537,5 @@ export const currenciesList: CurrencyOption[] = [
   { value: 'zwd', label: 'Zimbabwean Dollar (ZWD)' },
   { value: 'zwl', label: 'Zimbabwean Dollar (ZWL)' },
 ];
+
+export const currenciesLabelsList = currenciesList.map(({ label }) => label);

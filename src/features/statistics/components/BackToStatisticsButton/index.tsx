@@ -1,18 +1,17 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Affix, Button } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
-
-import './styles.scss';
+import { useNavigate } from 'react-router';
 
 const BackToStatisticsButton = () => {
   const { t } = useTranslation();
-  const { goBack } = useHistory();
+  const navigate = useNavigate();
 
   return (
-    <Button variant="warning backToStatisticsButton" onClick={goBack}>
-      {t('back to statistics')}
-    </Button>
+    <Affix position={{ top: 75, right: 20 }}>
+      <Button onClick={() => navigate(-1)} size="sm" variant="light">
+        {t('back to statistics')}
+      </Button>
+    </Affix>
   );
 };
 

@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Slide, ToastContainer } from 'react-toastify';
+import { useEffect } from 'react';
+import { Notifications } from '@mantine/notifications';
 
-import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import Header from 'components/Layout/Header';
 import AppRouter from 'navigation/AppRouter';
@@ -10,8 +8,6 @@ import { refreshTokenThunk, setAuth, userData } from 'features/user';
 import { checkIsAccessTokenExpired } from 'features/user/utils/checkIsAccessTokenExpired';
 import NoInternetConnectionPage from 'pages/NoInternetConnection';
 import { usePwa } from '@dotmind/react-use-pwa';
-
-import './App.scss';
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -43,15 +39,7 @@ const App = () => {
     <>
       {isAuth && <Header />}
       <AppRouter />
-      <ToastContainer
-        transition={Slide}
-        position="top-right"
-        autoClose={2000}
-        theme="dark"
-        hideProgressBar
-        closeOnClick
-        limit={1}
-      />
+      <Notifications limit={1} position="top-right" autoClose={2500} transitionDuration={500} />
     </>
   );
 };

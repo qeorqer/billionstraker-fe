@@ -1,12 +1,11 @@
-import moment from 'moment';
-
 import {
   TransactionsSections,
   Transaction,
-  TransactionTypeToShow,
+  TransactionType,
 } from 'features/transaction/types';
+import dayjs from 'dayjs';
 
-export const transactionTypesToShow: TransactionTypeToShow[] = [
+export const transactionTypesToShow: TransactionType[] = [
   'profit',
   'expense',
   'exchange',
@@ -19,7 +18,7 @@ export const formTransactionsSections = (
   const result: TransactionsSections = [];
 
   transactions.forEach((transaction) => {
-    const date = moment(transaction.date).locale(lang).format('LL');
+    const date = dayjs(transaction.date).locale(lang).format('LL');
     const isSectionExists = result.find((section) => section.title === date);
 
     if (isSectionExists) {

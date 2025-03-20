@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import i18next from 'i18next';
 
 import {
@@ -14,6 +13,7 @@ import {
   deleteTransactionThunk,
   updateTransactionThunk,
 } from 'features/transaction';
+import { notifications } from '@mantine/notifications';
 
 export type BalanceState = {
   balances: Balance[];
@@ -36,14 +36,17 @@ const balanceReducer = createSlice({
 
     builder.addCase(createBalanceThunk.fulfilled, (state, action) => {
       state.isLoadingBalances = false;
-      toast(i18next.t('creating balance success'), {
-        type: 'success',
+
+      notifications.show({
+        message: i18next.t('creating balance success') as string,
+        withBorder: true,
+        color: 'green',
       });
 
       state.balances = [...state.balances, action.payload.data.balance];
     });
 
-    builder.addCase(createBalanceThunk.rejected, (state, action) => {
+    builder.addCase(createBalanceThunk.rejected, (state, _action) => {
       state.isLoadingBalances = false;
     });
 
@@ -61,8 +64,10 @@ const balanceReducer = createSlice({
     });
 
     builder.addCase(updateBalanceThunk.fulfilled, (state, action) => {
-      toast(i18next.t('updating balance success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('updating balance success') as string,
+        withBorder: true,
+        color: 'green',
       });
 
       const updatedBalance = action.payload.data.balance;
@@ -72,8 +77,10 @@ const balanceReducer = createSlice({
     });
 
     builder.addCase(deleteBalanceThunk.fulfilled, (state, action) => {
-      toast(i18next.t('deleting balance success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('deleting balance success') as string,
+        withBorder: true,
+        color: 'green',
       });
 
       const deletedBalanceId = action.payload.data.balanceId;
@@ -90,7 +97,7 @@ const balanceReducer = createSlice({
           (item) => item._id === balance._id,
         );
 
-        return balanceForUpdate ? balanceForUpdate : balance;
+        return balanceForUpdate || balance;
       });
     });
 
@@ -102,7 +109,7 @@ const balanceReducer = createSlice({
           (item) => item._id === balance._id,
         );
 
-        return balanceForUpdate ? balanceForUpdate : balance;
+        return balanceForUpdate || balance;
       });
     });
 
@@ -114,7 +121,7 @@ const balanceReducer = createSlice({
           (item) => item._id === balance._id,
         );
 
-        return balanceForUpdate ? balanceForUpdate : balance;
+        return balanceForUpdate || balance;
       });
     });
   },

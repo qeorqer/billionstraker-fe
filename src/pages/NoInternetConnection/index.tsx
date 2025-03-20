@@ -1,32 +1,21 @@
-import { Button, Col, Container, Row, Stack } from 'react-bootstrap';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Stack, Image, Text, Button } from '@mantine/core';
 
 import logo from 'assets/common/logo.png';
-
-import './styles.scss';
 
 const NoInternetConnectionPage = () => {
   const { t } = useTranslation();
 
   return (
-    <Container className="vh-100">
-      <Row className="h-100">
-        <Col xs={12} className="no-internet">
-          <Stack
-            gap={3}
-            className="justify-content-center align-items-center h-100">
-            <img src={logo} alt="app logo" />
-            <p className="fs-5 fw-bold mb-0 text-center">
-              {t('No internet connection')}
-            </p>
-            <Button variant="outline-warning" onClick={() => {}}>
-              {t('Try again')}
-            </Button>
-          </Stack>
-        </Col>
-      </Row>
-    </Container>
+    <Stack component="main" h="100%" justify="center" align="center" px={10}>
+      <Image src={logo} alt="app logo" w={300} />
+      <Text component="h1" size="lg" fw={500} ta="center">
+        {t('No internet connection')}
+      </Text>
+      <Button color="primary" w={280} onClick={() => window.location.reload()}>
+        {t('Try again')}
+      </Button>
+    </Stack>
   );
 };
 

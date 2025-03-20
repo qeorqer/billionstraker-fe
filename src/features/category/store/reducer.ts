@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import { notifications } from '@mantine/notifications';
 import i18next from 'i18next';
 
 import {
@@ -38,26 +38,31 @@ const categoryReducer = createSlice({
       state.isLoadingCategories = false;
     });
 
-    builder.addCase(createCategoryThunk.pending, (state, action) => {
+    builder.addCase(createCategoryThunk.pending, (state, _action) => {
       state.isLoadingCategories = true;
     });
 
     builder.addCase(createCategoryThunk.fulfilled, (state, action) => {
       state.isLoadingCategories = false;
-      toast(i18next.t('creating category success'), {
-        type: 'success',
+
+      notifications.show({
+        message: i18next.t('creating category success') as string,
+        withBorder: true,
+        color: 'green',
       });
 
       state.categories = [...state.categories, action.payload.data.category];
     });
 
-    builder.addCase(createCategoryThunk.rejected, (state, action) => {
+    builder.addCase(createCategoryThunk.rejected, (state, _action) => {
       state.isLoadingCategories = false;
     });
 
     builder.addCase(updateCategoryThunk.fulfilled, (state, action) => {
-      toast(i18next.t('updating category success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('updating category success') as string,
+        withBorder: true,
+        color: 'green',
       });
 
       const updatedCategory = action.payload.data.category;
@@ -67,8 +72,10 @@ const categoryReducer = createSlice({
     });
 
     builder.addCase(deleteCategoryThunk.fulfilled, (state, action) => {
-      toast(i18next.t('deleting category success'), {
-        type: 'success',
+      notifications.show({
+        message: i18next.t('deleting category success') as string,
+        withBorder: true,
+        color: 'green',
       });
 
       const deletedCategoryId = action.payload.data.categoryId;

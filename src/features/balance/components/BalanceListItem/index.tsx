@@ -1,69 +1,70 @@
-import { Card } from 'react-bootstrap';
-import { formatSum } from 'features/transaction/utils/formatSum';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Card, Text, Group, Stack, ActionIcon } from '@mantine/core';
+import { IconPencil, IconX } from '@tabler/icons-react';
+
 import { Balance } from 'features/balance/types';
 import EditBalanceModal from 'features/balance/components/EditBalanceModal';
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
 import DeleteBalanceModal from 'features/balance/components/DeleteBalanceModal';
-
-import './styles.scss';
+import { formatSum } from 'features/transaction/utils/formatSum';
 
 type BalanceListItemProps = {
   balance: Balance;
-  showMenu: boolean;
+  showMenu?: boolean;
 };
 
-type ActionOption = {
-  onClick: () => void;
-  classes: string;
-};
-
-const BalanceListItem: FC<BalanceListItemProps> = ({ balance, showMenu }) => {
+const BalanceListItem: FC<BalanceListItemProps> = ({
+  balance,
+  showMenu = true,
+}) => {
   const [isEditBalanceModalOpen, setIsEditBalanceModalOpen] = useState(false);
   const [isDeleteBalanceModalOpen, setIsDeleteBalanceModalOpen] =
     useState(false);
 
-  const options: ActionOption[] = [
-    {
-      classes: 'bi bi-pencil text-dark mx-1',
-      onClick: () => setIsEditBalanceModalOpen(true),
-    },
-    {
-      classes: 'bi bi-x-lg text-dark',
-      onClick: () => setIsDeleteBalanceModalOpen(true),
-    },
-  ];
+  const { t } = useTranslation();
 
   return (
     <>
-      <Card className="h-100">
-        <Card.Body className="d-flex justify-content-between balance-card-body-content">
-          <div className="pr-1 flex-grow-1">
-            <Card.Title className="balance-card-body-title" as="p">
+      <Card
+        withBorder
+        radius="md"
+        p="sm"
+        h="100%"
+        style={{ justifyContent: 'center' }}>
+        <Group justify="space-between" align="center" wrap="nowrap">
+          <Stack gap={4}>
+            <Text fw={500} size="sm" lineClamp={2}>
               {balance.name}
-            </Card.Title>
-            <Card.Text className="balance-card-body-amount">
-              {`💰: ${formatSum(balance.amount)}`}
-            </Card.Text>
+            </Text>
+            <Text size="xs" c="dimmed" fs="italic">
+              {t('value')}: {formatSum(balance.amount)}
+            </Text>
             {balance.currency && (
-              <Card.Text className="balance-card-body-currency">
-                {`💲: ${getCurrencyLabel(balance.currency)}`}
-              </Card.Text>
+              <Text size="xs" c="dimmed" fs="italic">
+                {t('currency')}: {getCurrencyLabel(balance.currency)}
+              </Text>
             )}
-          </div>
+          </Stack>
           {showMenu && (
-            <div className="d-flex flex-column align-items-end justify-content-center">
-              {options.map(({ classes, onClick }, index) => (
-                <div
-                  key={index}
-                  onClick={onClick}
-                  className="balance-action-button">
-                  <i className={classes} />
-                </div>
-              ))}
-            </div>
+            <Stack gap={4}>
+              <ActionIcon
+                variant="subtle"
+                color="white"
+                onClick={() => setIsEditBalanceModalOpen(true)}
+                size="sm">
+                <IconPencil style={{ width: '70%', height: '70%' }} />
+              </ActionIcon>
+              <ActionIcon
+                variant="subtle"
+                color="white"
+                onClick={() => setIsDeleteBalanceModalOpen(true)}
+                size="sm">
+                <IconX style={{ width: '70%', height: '70%' }} />
+              </ActionIcon>
+            </Stack>
           )}
-        </Card.Body>
+        </Group>
       </Card>
       <EditBalanceModal
         isOpen={isEditBalanceModalOpen}

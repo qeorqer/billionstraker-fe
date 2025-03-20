@@ -1,0 +1,8 @@
+.button {
+    transition: .3s all;
+
+    &:hover{
+    color: var(--mantine-color-white)!important;
+        opacity: 0.9;
+    }
+}

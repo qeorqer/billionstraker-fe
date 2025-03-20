@@ -1,7 +1,7 @@
-import { Button } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import { Button, Stack, Title } from '@mantine/core';
 
 type CreateTransactionFirstButtonProps = {
   text: string;
@@ -11,20 +11,19 @@ const CreateTransactionFirstButton: FC<CreateTransactionFirstButtonProps> = ({
   text,
 }) => {
   const { t } = useTranslation();
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
-  const handleCreateTransaction = () => push('createTransaction');
+  const handleCreateTransaction = () => navigate('/createTransaction');
 
   return (
-    <div className="d-flex justify-content-center align-items-center h-100 fw-bold my-3 flex-column">
-      <p className="mb-2">{t(text)}</p>
-      <Button
-        variant="warning"
-        className="w300Px text-white"
-        onClick={handleCreateTransaction}>
+    <Stack align="center">
+      <Title order={3} fw={500}>
+        {t(text)}
+      </Title>
+      <Button onClick={handleCreateTransaction}>
         {t('create transaction')}
       </Button>
-    </div>
+    </Stack>
   );
 };
 

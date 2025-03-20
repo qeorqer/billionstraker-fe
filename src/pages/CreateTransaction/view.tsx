@@ -1,15 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { Button, Container } from 'react-bootstrap';
+import { Dispatch, FC, SetStateAction } from 'react';
 
-import {
-  CreateTransactionPayload,
-  TransactionType,
-} from 'features/transaction/types';
+import { TransactionType } from 'features/transaction/types';
 import BalancesList from 'features/balance/components/BalancesList';
-import 'react-datepicker/dist/react-datepicker.css';
 import SelectTransactionType from 'features/transaction/components/SelectTransactionType';
 import TransactionForm from 'features/transaction/components/TransactionForm';
 import CannotCreateTransactionButtons from 'features/transaction/components/CannotCreateTransactionButtons';
+import { Box, Container, Stack } from '@mantine/core';
 
 type CreateTransactionPageViewProps = {
   transactionType: TransactionType;
@@ -17,26 +13,30 @@ type CreateTransactionPageViewProps = {
   canCreateTransaction: boolean;
 };
 
-const CreateTransactionPageView: React.FC<CreateTransactionPageViewProps> = ({
+const CreateTransactionPageView: FC<CreateTransactionPageViewProps> = ({
   transactionType,
   setTransactionType,
   canCreateTransaction,
 }) => (
-  <Container className="py-md-4 my-4 pb-5 pb-sm-0">
-    <SelectTransactionType
-      transactionType={transactionType}
-      setTransactionType={setTransactionType}
-    />
+  <Box component="main" bg="dark" c="white"  h="100%">
+    <Container size="lg" pt="xl" pb={{ base: 70, sm: 'xl' }}>
+      <Stack>
+        {canCreateTransaction && <BalancesList />}
+        <Stack align="center">
+          <SelectTransactionType
+            transactionType={transactionType}
+            setTransactionType={setTransactionType}
+          />
 
-    {canCreateTransaction ? (
-      <>
-        <BalancesList />
-        <TransactionForm selectedTransactionType={transactionType} />
-      </>
-    ) : (
-      <CannotCreateTransactionButtons transactionType={transactionType} />
-    )}
-  </Container>
+          {canCreateTransaction ? (
+            <TransactionForm selectedTransactionType={transactionType} />
+          ) : (
+            <CannotCreateTransactionButtons transactionType={transactionType} />
+          )}
+        </Stack>
+      </Stack>
+    </Container>
+  </Box>
 );
 
 export default CreateTransactionPageView;

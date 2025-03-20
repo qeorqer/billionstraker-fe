@@ -1,32 +1,30 @@
-import React, { FC } from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { FC } from 'react';
+import { useNavigate } from 'react-router';
 
-import { formatSum } from 'features/transaction/utils/formatSum';
 import { listForRangeItem } from 'features/statistics/components/StatisticsList';
-import 'features/statistics/components/StatisticsListItem/styles.scss';
 import { TransactionType } from 'features/transaction';
 import { useFormatSumByBalanceName } from 'features/currency/hooks/useFormatSumByBalanceName';
 import { useAppSelector } from 'store/hooks';
 import { userData } from 'features/user';
 import { formatSumByCurrencyCode } from 'features/statistics/utils/formatSumByCurrencyCode';
+import { Grid, Card, Text } from '@mantine/core';
 
-type propsType = {
+type StatisticsListItemProps = {
   listItem: listForRangeItem;
-  selectedBalance: string;
+  selectedBalance: string | null;
   monthsRange: [Date, Date];
   fieldToGroupBy: 'balance' | 'category';
   transactionType: TransactionType;
 };
 
-const StatisticsListItem: FC<propsType> = ({
+const StatisticsListItem: FC<StatisticsListItemProps> = ({
   listItem,
   selectedBalance,
   monthsRange,
   fieldToGroupBy,
   transactionType,
 }) => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const { formatSumByBalanceName } = useFormatSumByBalanceName();
   const { user } = useAppSelector(userData);
@@ -36,25 +34,26 @@ const StatisticsListItem: FC<propsType> = ({
       dateFrom: monthsRange[0].toISOString(),
       dateTo: monthsRange[1].toISOString(),
       transactionType,
-      ...(fieldToGroupBy === 'category' && { balance: selectedBalance }),
+      ...(fieldToGroupBy === 'category' &&
+        selectedBalance && { balance: selectedBalance }),
     });
 
     const homeQueryString = new URLSearchParams({
       // @ts-ignore
-      balance: selectedBalance,
       dateFrom: monthsRange[0].toISOString(),
       dateTo: monthsRange[1].toISOString(),
       transactionType,
+      ...(selectedBalance && { balance: selectedBalance }),
       ...(fieldToGroupBy === 'balance'
         ? { balance: listItem.title }
         : { category: listItem.title }),
     });
 
-    push({
+    navigate({
       pathname: '/statistics',
       search: statisticsQueryString.toString(),
     });
-    push({
+    navigate({
       pathname: '/home',
       search: homeQueryString.toString(),
     });
@@ -62,28 +61,31 @@ const StatisticsListItem: FC<propsType> = ({
 
   return (
     <Card
-      className="mb-3 mx-auto text-center statisticsListItem cursor-pointer"
-      bg="light"
-      text="dark"
+      withBorder
+      radius="md"
+      p="sm"
+      h="100%"
+      w="100%"
+      style={{ justifyContent: 'center' }}
       onClick={handleItemClick}>
-      <Card.Body>
-        <Row>
-          <Col xs="6" lg="4">
+      <Grid>
+        <Grid.Col span={{ base: 6, md: 4 }}>
+          <Text ta="center">
             {selectedBalance
               ? formatSumByBalanceName(listItem.value, selectedBalance)
               : formatSumByCurrencyCode(
                   listItem.value,
                   user.preferredCurrency ?? '',
                 )}
-          </Col>
-          <Col xs="12" lg="5" className="mb-2 mb-sm-0 title">
-            {listItem.title}
-          </Col>
-          <Col xs="6" lg="3">
-            {listItem.percentage}%
-          </Col>
-        </Row>
-      </Card.Body>
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={{ base: 12, md: 5 }} order={{ base: -1, sm: 0 }}>
+          <Text ta="center">{listItem.title}</Text>
+        </Grid.Col>
+        <Grid.Col span={{ base: 6, md: 3 }}>
+          <Text ta="center">{listItem.percentage}%</Text>
+        </Grid.Col>
+      </Grid>
     </Card>
   );
 };

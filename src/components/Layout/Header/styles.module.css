@@ -1,0 +1,117 @@
+  .menu {
+    @media (max-width: 480px) {
+      position: fixed;
+      bottom: 0;
+      z-index: 1;
+      background: var(--mantine-color-dark-7);
+      border-top: 1px solid var(--mantine-color-dark-4);
+      left: 0;
+      right: 0;
+      height: 60px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+      width: 100%;
+      justify-content: center;
+      gap: 24px;
+
+      @media(max-width: 1000px) {
+        font-size: 12px;
+      }
+
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px !important;
+        padding-bottom: 10px !important;
+      }
+
+      @media (max-width: 480px) {
+        margin: 0 !important;
+        padding: 0 16px !important;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: nowrap;
+        gap: 0;
+      }
+    }
+
+    li {
+      list-style: none;
+      margin: 0;
+
+      @media (max-width: 480px) {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    a {
+      color: var(--mantine-color-white);
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: .3s;
+      width: 100%;
+
+      &:after {
+        content: "";
+        width: 0;
+        height: 2px;
+        background-color: var(--mantine-color-primary-filled);
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: -10px;
+        opacity: 0;
+        transition: inherit;
+        border-radius: var(--mantine-radius-sm);
+      }
+
+      &.active, &:hover {
+        color: var(--mantine-color-primary-filled);
+
+        &:after {
+          width: 65%;
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 480px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 10px;
+
+        svg {
+          fill: var(--mantine-color-white);
+          height: 20px;
+          width: 20px;
+          transition: .3s;
+        }
+
+        &.active, &:hover {
+          svg {
+            fill: var(--mantine-color-primary-filled);
+          }
+        }
+
+        &:after {
+          display: none;
+        }
+      }
+
+      @media (min-width: 480px) {
+        svg {
+          display: none;
+        }
+      }
+    }
+  }

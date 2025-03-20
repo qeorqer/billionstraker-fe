@@ -33,15 +33,15 @@ const options = {
 };
 
 i18n
-  .use(Backend) // load translation using xhr -> see /public/locales. We will add locales in the next step
-
-  .use(LanguageDetector) // detect user language
-
-  .use(initReactI18next) // pass the i18n instance to react-i18next.
-
+  .use(Backend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     backend: {
-      loadPath: '/billionstraker-fe/locales/{{lng}}/{{ns}}.json',
+      loadPath:
+        process.env.NODE_ENV === 'production'
+          ? '/billionstraker-fe/locales/{{lng}}/{{ns}}.json'
+          : '/locales/{{lng}}/{{ns}}.json',
     },
     lng: localStorage.getItem('i18nextLng') || 'en',
     fallbackLng,

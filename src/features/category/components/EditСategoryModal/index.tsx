@@ -1,8 +1,6 @@
-import { Modal } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Balance } from 'features/balance/types';
-import BalanceForm from 'features/balance/components/BalanceForm';
+import { Modal, Title } from '@mantine/core';
 import { Category } from 'features/category/types';
 import CategoryForm from 'features/category/components/CategoryForm';
 
@@ -20,17 +18,20 @@ const EditCategoryModal: FC<EditCategoryModalProps> = ({
   const { t } = useTranslation();
 
   return (
-    <Modal show={isOpen} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>{t('edit category')}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <CategoryForm
-          buttonText="update"
-          category={category}
-          onSuccess={handleClose}
-        />
-      </Modal.Body>
+    <Modal
+      opened={isOpen}
+      onClose={handleClose}
+      title={
+        <Title order={3} c="white" size="h4">
+          {t('edit category')}
+        </Title>
+      }
+      centered>
+      <CategoryForm
+        buttonText="update"
+        category={category}
+        onSuccess={handleClose}
+      />
     </Modal>
   );
 };

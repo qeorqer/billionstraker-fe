@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { TransactionType } from 'features/transaction';
 import { balanceData, getBalancesThunk } from 'features/balance';
-import { categoryData, getCategoriesThunk } from 'features/category';
+import { Category, categoryData, getCategoriesThunk } from 'features/category';
 import Loader from 'components/Shared/Loader';
 
 import CreateTransactionPageView from './view';
@@ -26,7 +26,7 @@ const CreateTransactionPage = () => {
           Boolean(
             balances.length &&
               categories.some(
-                (category) => category.categoryType === 'expense',
+                (category: Category) => category.categoryType === 'expense',
               ),
           ),
         );
@@ -35,7 +35,9 @@ const CreateTransactionPage = () => {
         setCanCreateTransaction(
           Boolean(
             balances.length &&
-              categories.some((category) => category.categoryType === 'profit'),
+              categories.some(
+                (category: Category) => category.categoryType === 'profit',
+              ),
           ),
         );
         break;

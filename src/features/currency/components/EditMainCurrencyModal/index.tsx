@@ -1,7 +1,7 @@
-import { Container, Modal } from 'react-bootstrap';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import SelectPreferredCurrency from 'features/currency/components/SelectPreferredCurrency';
+import { Modal, Title } from '@mantine/core';
 
 type EditMainCurrencyModalProps = {
   isOpen: boolean;
@@ -15,15 +15,16 @@ const EditMainCurrencyModal: FC<EditMainCurrencyModalProps> = ({
   const { t } = useTranslation();
 
   return (
-    <Modal show={isOpen} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>{t('edit currency')}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Container>
-          <SelectPreferredCurrency isModal />
-        </Container>
-      </Modal.Body>
+    <Modal
+      opened={isOpen}
+      onClose={handleClose}
+      title={
+        <Title order={3} c="white" size="h4">
+          {t('edit currency')}
+        </Title>
+      }
+      centered>
+      <SelectPreferredCurrency />
     </Modal>
   );
 };

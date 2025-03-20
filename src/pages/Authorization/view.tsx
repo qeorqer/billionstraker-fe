@@ -1,42 +1,58 @@
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import {
+  Container,
+  Grid,
+  Stack,
+  Title,
+  Box,
+  Image,
+  Anchor,
+  Center,
+  Text,
+} from '@mantine/core';
+import { NavLink } from 'react-router';
+import { FC } from 'react';
 
 import logo from 'assets/common/logo.png';
 import LanguageSwitcher from 'components/Shared/LanguageSwitcher';
-
-import './styles.scss';
 import AuthForm from 'features/authorization/components/AuthForm/authForm';
 
-type propsType = {
+type PropsType = {
   t: (text: string) => string;
 };
 
-const AuthorizationPageView: React.FC<propsType> = ({ t }) => (
-  <section className="signUp align-items-md-center d-flex">
-    <Container>
-      <Row className="h-100">
-        <Col xs="12" sm="6" className="text-center mt-5 mt-sm-0">
-          <img src={logo} alt="logo" />
-          <h1 className="yellowText">Billionstracker</h1>
-          <p>{t('Powerful app for controlling your budget')}</p>
-        </Col>
-        <Col xs="12" sm="6" className="authFormContainer mt-sm-3">
-          <AuthForm />
-          <p>
-            <NavLink to="/about" className="fw-bold fs-6">
+const AuthorizationPageView: FC<PropsType> = ({ t }) => (
+  <Box
+    bg="dark"
+    c="white"
+    style={{ minHeight: '100vh', display: 'flex', alignItems: 'center' }}>
+    <Container w="100%" py={20}>
+      <Grid align="center" w="100%">
+        <Grid.Col span={{ base: 12, sm: 6 }}>
+          <Stack align="center" gap="xs">
+            <Image src={logo} alt="logo" w={200} />
+            <Title order={1} c="primary">
+              Billionstracker
+            </Title>
+            <Text ta="center" c="white" fw={500}>
+              {t('Powerful app for controlling your budget')}
+            </Text>
+          </Stack>
+        </Grid.Col>
+
+        <Grid.Col span={{ base: 12, sm: 6 }}>
+          <Stack align="center">
+            <AuthForm />
+            <Anchor component={NavLink as any} to="/about" c="primary" fw={500}>
               {t('what is this')}
-            </NavLink>
-          </p>
-          <div
-            className="d-flex justify-content-around languagesController pb-3"
-            style={{ width: '100px', margin: '0 auto' }}>
-            <LanguageSwitcher />
-          </div>
-        </Col>
-      </Row>
+            </Anchor>
+            <Center>
+              <LanguageSwitcher />
+            </Center>
+          </Stack>
+        </Grid.Col>
+      </Grid>
     </Container>
-  </section>
+  </Box>
 );
 
 export default AuthorizationPageView;

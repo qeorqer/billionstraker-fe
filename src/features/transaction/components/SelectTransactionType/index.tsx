@@ -1,21 +1,19 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Transaction, TransactionType } from 'features/transaction/types';
+import { SegmentedControl, Stack, Title } from '@mantine/core';
 
 type SelectTransactionTypeProps = {
   transactionType: TransactionType;
   setTransactionType: Dispatch<SetStateAction<TransactionType>>;
-  isModal?: boolean;
   initialValues?: Transaction | null;
 };
 
-const SelectTransactionType: React.FC<SelectTransactionTypeProps> = ({
+const SelectTransactionType: FC<SelectTransactionTypeProps> = ({
   transactionType,
   setTransactionType,
-  isModal,
-  initialValues,
+  initialValues = null,
 }) => {
   const { t } = useTranslation();
 
@@ -26,49 +24,23 @@ const SelectTransactionType: React.FC<SelectTransactionTypeProps> = ({
   }, [initialValues]);
 
   return (
-    <Row>
-      <p className="mb-2 fs-4 text-center fw-bold">
-        {t('Select operation type')}:
-      </p>
-      <Col xs="12" lg={isModal ? '12' : '4'} className="mx-auto d-flex">
-        <div className="w-50 text-center">
-          <Button
-            className="w-100"
-            variant={
-              transactionType === 'expense' ? 'danger' : 'outline-danger'
-            }
-            onClick={() => setTransactionType('expense')}>
-            {t('expense')}
-          </Button>
-        </div>
-        <div className="w-50 text-center mx-2">
-          <Button
-            className="w-100"
-            variant={
-              transactionType === 'profit' ? 'success' : 'outline-success'
-            }
-            onClick={() => setTransactionType('profit')}>
-            {t('profit')}
-          </Button>
-        </div>
-
-        <div className="w-50 text-center">
-          <Button
-            className="w-100"
-            variant={
-              transactionType === 'exchange' ? 'primary' : 'outline-primary'
-            }
-            onClick={() => setTransactionType('exchange')}>
-            {t('exchange')}
-          </Button>
-        </div>
-      </Col>
-    </Row>
+    <Stack align="center" style={{ width: '100%' }}>
+      <Title order={2} fw={500} ta="center">
+        {t('Select operation type')}
+      </Title>
+      <SegmentedControl
+        w={{base: '100%', sm: '420px'}}
+        size="md"
+        value={transactionType}
+        onChange={(newValue) => setTransactionType(newValue as TransactionType)}
+        data={[
+          { value: 'expense', label: t('expense') },
+          { value: 'profit', label: t('profit') },
+          { value: 'exchange', label: t('exchange') },
+        ]}
+      />
+    </Stack>
   );
-};
-
-SelectTransactionType.defaultProps = {
-  isModal: false,
 };
 
 export default SelectTransactionType;

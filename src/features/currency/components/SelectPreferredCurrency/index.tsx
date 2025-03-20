@@ -1,22 +1,15 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ActionIcon, Autocomplete, Tooltip } from '@mantine/core';
+import { IconQuestionMark } from '@tabler/icons-react';
+
 import { updateUserThunk, userData } from 'features/user';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { Col, Row } from 'react-bootstrap';
-import SelectCurrencyTypeahead from 'features/currency/components/SelectCurrencyTypeahead';
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
-import React, { FC, ForwardedRef, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { CurrencyOption } from 'features/currency/types';
-import { Option } from 'react-bootstrap-typeahead/types/types';
-import { TypeaheadRef } from 'react-bootstrap-typeahead';
-import ReactTooltip from 'react-tooltip';
+import { currenciesLabelsList } from 'features/currency';
+import { getCurrencyValue } from 'features/currency/utils/getCurrencyValue';
 
-type SelectPreferredCurrencyProps = {
-  isModal?: boolean;
-};
-
-const SelectPreferredCurrency: FC<SelectPreferredCurrencyProps> = ({
-  isModal = false,
-}) => {
+const SelectPreferredCurrency = () => {
   const { user } = useAppSelector(userData);
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -27,17 +20,14 @@ const SelectPreferredCurrency: FC<SelectPreferredCurrencyProps> = ({
       : undefined,
   );
 
-  const typeaheadRef = useRef<TypeaheadRef>();
+  const handleValueSelect = (value: string) => {
+    setCurrency(value);
 
-  const handleValueSelect = (selectedOptions: Option[]) => {
-    const selectedCurrency = (selectedOptions as CurrencyOption[])[0];
-    setCurrency(selectedCurrency?.label ?? '');
-
-    if (selectedOptions.length && selectedCurrency?.value) {
+    if (currenciesLabelsList.includes(value)) {
       dispatch(
         updateUserThunk({
           updatedFields: {
-            preferredCurrency: selectedCurrency.value,
+            preferredCurrency: getCurrencyValue(value),
           },
         }),
       );
@@ -45,28 +35,30 @@ const SelectPreferredCurrency: FC<SelectPreferredCurrencyProps> = ({
   };
 
   return (
-    <Row>
-      <Col xs="12" lg={isModal ? '12' : '6'} className="mb-3 mb-lg-0 mx-auto">
-        <p className="fs-5 fw-bold text-center ">
-          {t('Select main currency')}:
-        </p>
-        <div className="d-flex justify-content-between align-items-center">
-          <SelectCurrencyTypeahead
-            id="preferred-currency-typeahead"
-            ref={typeaheadRef as ForwardedRef<TypeaheadRef>}
-            onChange={handleValueSelect}
-            value={currency}
-          />
-          <span
-            className="cursor-pointer align-middle mx-2"
-            data-tip={t('Main currency is used for calculating the net worth')}
-            data-for="question">
-            <i className="bi bi-question-circle" />
-          </span>
-          <ReactTooltip id="question" />
-        </div>
-      </Col>
-    </Row>
+    <Autocomplete
+      w="100%"
+      size="md"
+      placeholder={t('select currency')}
+      value={currency}
+      comboboxProps={{ zIndex: 10000, withinPortal: true }}
+      onChange={handleValueSelect}
+      data={currenciesLabelsList}
+      rightSection={
+        <Tooltip
+          label={t('Main currency is used for calculating the net worth')}
+          multiline
+          withArrow
+          w={{ base: 220, sm: undefined }}
+          events={{ hover: true, focus: true, touch: true }}>
+          <ActionIcon variant="light" color="white">
+            <IconQuestionMark
+              style={{ width: '70%', height: '70%' }}
+              stroke={1.5}
+            />
+          </ActionIcon>
+        </Tooltip>
+      }
+    />
   );
 };
 

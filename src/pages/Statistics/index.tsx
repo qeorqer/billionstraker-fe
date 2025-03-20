@@ -1,15 +1,14 @@
-import React, { FC, useEffect, useState } from 'react';
-import moment from 'moment';
-import { useLocation } from 'react-router-dom';
+import { FC, useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import Loader from 'components/Shared/Loader';
 import { balanceData, getBalancesThunk } from 'features/balance';
 import { getStatisticsThunk } from 'features/statistics';
-import 'moment/locale/ru';
-
-import StatisticsPageView from './view';
 import { userData } from 'features/user';
+
+import dayjs from 'dayjs';
+import StatisticsPageView from './view';
 
 const StatisticsPage: FC = () => {
   const { isLoadingBalances } = useAppSelector(balanceData);
@@ -24,19 +23,21 @@ const StatisticsPage: FC = () => {
   const initialDateFrom = params.get('dateFrom');
   const initialDateTo = params.get('dateTo');
 
-  const startOfMonth = new Date(moment().startOf('month').toISOString());
+  const startOfMonth = new Date(dayjs().startOf('month').toISOString());
   const [monthsRange, setMonthsRange] = useState<[Date, Date]>([
     new Date(initialDateFrom || startOfMonth),
     new Date(initialDateTo || new Date()),
   ]);
-  const [balanceName, setBalanceName] = useState<string>(initialBalance || '');
+  const [balanceName, setBalanceName] = useState<string | null>(
+    initialBalance || null,
+  );
 
   useEffect(() => {
     dispatch(
       getStatisticsThunk({
         from: monthsRange[0],
         to: monthsRange[1],
-        balance: balanceName ? balanceName : null,
+        balance: balanceName,
       }),
     );
   }, [monthsRange, balanceName, user]);
