@@ -38,7 +38,9 @@ const SignUpForm = () => {
     initialValues,
     validationSchema,
     onSubmit: ({ login, password }) => {
-      dispatch(signUpThunk({ login: login.trim().toLowerCase(), password }));
+      return dispatch(
+        signUpThunk({ login: login.trim().toLowerCase(), password }),
+      );
     },
   });
 
