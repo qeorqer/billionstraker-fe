@@ -94,12 +94,12 @@ const TransactionForm: FC<TransactionFormProps> = ({
         ['title', 'sum', 'sum2'].map((name) => setFieldValue(name, '', false));
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   const validationSchema = Yup.object().shape({
-    title: Yup.string().required('Title is required'),
+    title: Yup.string(),
     sum: Yup.number()
       .min(0, 'Must be a positive value')
       .required('Sum is required'),

@@ -71,7 +71,7 @@ export type TransactionTypeToShow =
   | 'exchange';
 
 export type TransactionFormData = {
-  title: string;
+  title?: string;
   sum: number | '';
   sum2?: number | '';
   categoryId?: string;
