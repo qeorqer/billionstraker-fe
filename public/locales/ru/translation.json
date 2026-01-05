@@ -190,5 +190,6 @@
   "Start typing a transaction name": "Вводи название транзакции",
   "Show more filters": "Больше фильтров",
   "Show less filters": "Меньше фильтров",
-  "Must be a value from the list": "Выбери значение из списка"
+  "Must be a value from the list": "Выбери значение из списка",
+  "Expressions are supported": "Поддерживаются операторы +, -, *, /"
 }

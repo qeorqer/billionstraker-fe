@@ -3,13 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import * as Yup from 'yup';
 import { Field, FieldProps, Form, Formik, FormikProps } from 'formik';
-import {
-  TextInput,
-  NumberInput,
-  Button,
-  Stack,
-  Autocomplete,
-} from '@mantine/core';
+import { TextInput, Button, Stack, Autocomplete } from '@mantine/core';
 
 import { currenciesLabelsList } from 'features/currency';
 import {
@@ -23,6 +17,7 @@ import { updateUserThunk, userData } from 'features/user';
 import { getCurrencyLabel } from 'features/currency/utils/getCurrencyLabel';
 import { getCurrencyValue } from 'features/currency/utils/getCurrencyValue';
 import styles from './styles.module.css';
+import NumberInputWithCalc from 'features/transaction/components/NumberInputWithCalc';
 
 type BalanceFormProps = {
   buttonText: string;
@@ -135,18 +130,17 @@ const BalanceForm: FC<BalanceFormProps> = ({
             </Field>
 
             <Field name="amount">
-              {({ field }: FieldProps) => (
-                <NumberInput
-                  {...field}
-                  size="md"
-                  onChange={(value) => setFieldValue('amount', value)}
+              {(fieldObj: FieldProps) => (
+                <NumberInputWithCalc
+                  label={t('set amount')}
                   placeholder={t('set amount')}
-                  inputMode="numeric"
                   error={
                     touched.amount && errors.amount ? t(errors.amount) : null
                   }
-                  allowNegative={false}
-                  hideControls
+                  fieldObj={fieldObj}
+                  setValue={(value: number | '') => {
+                    setFieldValue('amount', value);
+                  }}
                 />
               )}
             </Field>

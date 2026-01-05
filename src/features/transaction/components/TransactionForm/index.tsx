@@ -1,4 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
+import { Button, Grid, Select, TextInput } from '@mantine/core';
+import { DateInput } from '@mantine/dates';
 import { useTranslation } from 'react-i18next';
 import {
   CreateTransactionPayload,
@@ -24,8 +26,7 @@ import {
   formatPayloadForProfitOrExpense,
   transformTransactionIntoFormData,
 } from 'features/transaction/components/TransactionForm/utils';
-import { Button, Grid, NumberInput, Select, TextInput } from '@mantine/core';
-import { DateInput } from '@mantine/dates';
+import NumberInputWithCalc from 'features/transaction/components/NumberInputWithCalc';
 
 type TransactionFormProps = {
   selectedTransactionType: TransactionType;
@@ -104,6 +105,7 @@ const TransactionForm: FC<TransactionFormProps> = ({
       .min(0, 'Must be a positive value')
       .required('Sum is required'),
     sum2: Yup.number()
+      .min(0, 'Must be a positive value')
       .test('requiredIfExchange', 'Sum is required', (value) => {
         if (selectedTransactionType === 'exchange') {
           return Boolean(value);
@@ -285,54 +287,54 @@ const TransactionForm: FC<TransactionFormProps> = ({
                   )}
                 </Field>
               </Grid.Col>
-              <Grid.Col span={6}>
+              <Grid.Col span={{ base: 12, sm: 6 }}>
                 <Field name="sum">
-                  {({ field }: FieldProps) => (
-                    <NumberInput
-                      {...field}
-                      inputMode="numeric"
-                      size="md"
+                  {(fieldObj: FieldProps) => (
+                    <NumberInputWithCalc
                       label={t(
                         selectedTransactionType === 'exchange'
                           ? 'send'
                           : 'Transaction sum',
                       )}
-                      onChange={(sum) => setFieldValue('sum', sum)}
                       placeholder={t(
                         selectedTransactionType === 'exchange'
                           ? 'send'
                           : 'Transaction sum',
                       )}
                       error={touched.sum && errors.sum ? t(errors.sum) : null}
-                      allowNegative={false}
-                      hideControls
+                      fieldObj={fieldObj}
+                      setValue={(value: number | '') => {
+                        setFieldValue('sum', value);
+                      }}
                     />
                   )}
                 </Field>
               </Grid.Col>
 
               {selectedTransactionType === 'exchange' && (
-                <Grid.Col span={6}>
+                <Grid.Col span={{ base: 12, sm: 6 }}>
                   <Field name="sum2">
-                    {({ field }: FieldProps) => (
-                      <NumberInput
-                        {...field}
-                        inputMode="numeric"
-                        size="md"
+                    {(fieldObj: FieldProps) => (
+                      <NumberInputWithCalc
                         label={t('receive')}
-                        onChange={(sum) => setFieldValue('sum2', sum)}
                         placeholder={t('receive')}
+                        fieldObj={fieldObj}
+                        setValue={(value: number | '') => {
+                          setFieldValue('sum2', value);
+                        }}
                         error={
                           touched.sum2 && errors.sum2 ? t(errors.sum2) : null
                         }
-                        allowNegative={false}
-                        hideControls
                       />
                     )}
                   </Field>
                 </Grid.Col>
               )}
-              <Grid.Col span={selectedTransactionType === 'exchange' ? 12 : 6}>
+              <Grid.Col
+                span={{
+                  base: 12,
+                  sm: selectedTransactionType === 'exchange' ? 12 : 6,
+                }}>
                 <Field name="title">
                   {({ field }: FieldProps) => (
                     <TextInput
