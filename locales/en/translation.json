@@ -34,8 +34,8 @@
   "Transaction sum": "Sum",
   "send": "Send",
   "receive": "Receive",
-  "login": "login",
-  "password": "password",
+  "login": "Login",
+  "password": "Password",
   "Confirm password": "Confirm password",
   "Select range": "Select range",
   "Pie chart": "Pie chart",
@@ -157,7 +157,7 @@
   "Amount value is required": "Amount is required",
   "Currency is required": "Currency is required",
   "Name must be unique": "Name must be unique",
-  "Select main currency": "Select main currency",
+  "Select main currency": "Select the main currency",
   "currency": "Currency",
   "do you want to delete balance": "Permanently delete balance {{balanceName}}?",
   "delete": "Delete",
@@ -174,7 +174,7 @@
   "Date is required": "Date is required",
   "Balance is required": "Balance is required",
   "Category name is required": "Category name is required",
-  "edit currency": "Change main currency",
+  "edit currency": "Change the main currency",
   "exchange statistics": "Exchange statistics for the selected balance",
   "sent": "Sent",
   "received": "Received",
@@ -190,5 +190,6 @@
   "Start typing a transaction name": "Type a transaction name",
   "Show more filters": "More filters",
   "Show less filters": "Less filters",
-  "Must be a value from the list": "Select value from the list"
+  "Must be a value from the list": "Select value from the list",
+  "Expressions are supported": "Expressions with +, -, *, / operators are supported"
 }
