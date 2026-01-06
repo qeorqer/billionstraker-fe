@@ -16,6 +16,7 @@ import {
   normalizeExpression,
   shouldShowPreview,
 } from 'features/transaction/components/NumberInputWithCalc/utils';
+import { useKeyboardOffset } from 'hooks/useKeyboardOffset';
 
 type NumberInputWithCalcProps = {
   label: string;
@@ -35,6 +36,7 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
   const { t } = useTranslation();
   const [expression, setExpression] = useState('');
   const [isCalcOpened, setIsCalcOpened] = useState(false);
+  const keyboardOffset = useKeyboardOffset();
 
   const isMobileDevice = useMediaQuery('(max-width: 767px)');
 
@@ -140,7 +142,7 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
           align="center"
           gap="xs"
           pos="fixed"
-          bottom={0}
+          bottom={keyboardOffset || 0}
           left={0}
           w="100%"
           bg="dark.7"
@@ -148,7 +150,7 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
           h="60px"
           style={{
             borderTop: '1px solid var(--mantine-color-dark-4)',
-            zIndex: 1,
+            zIndex: 1000,
           }}>
           <ActionIcon
             variant="light"
