@@ -45,7 +45,7 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
 
   const getRightSectionContent = () => {
     if (shouldShowPreview(expression)) {
-      return <Text px={4}>{`= ${field.value}`}</Text>;
+      return <Text pl={4} pr="14px">{`= ${field.value}`}</Text>;
     } else if (!isMobileDevice) {
       return (
         <Tooltip

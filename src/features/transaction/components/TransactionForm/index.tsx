@@ -103,10 +103,10 @@ const TransactionForm: FC<TransactionFormProps> = ({
     title: Yup.string(),
     sum: Yup.number()
       .min(0, 'Must be a positive value')
-      .required('Sum is required'),
+      .required('Amount value is required'),
     sum2: Yup.number()
       .min(0, 'Must be a positive value')
-      .test('requiredIfExchange', 'Sum is required', (value) => {
+      .test('requiredIfExchange', 'Amount value is required', (value) => {
         if (selectedTransactionType === 'exchange') {
           return Boolean(value);
         }
