@@ -1,18 +1,5 @@
-import {
-  ActionIcon,
-  Flex,
-  Popover,
-  TextInput,
-  Tooltip,
-  Text,
-} from '@mantine/core';
+import { ActionIcon, Flex, TextInput, Tooltip, Text } from '@mantine/core';
 import { FC, useEffect, useRef, useState } from 'react';
-import {
-  evaluateExpression,
-  isExpressionValid,
-  normalizeExpression,
-  shouldShowPreview,
-} from 'features/transaction/components/NumberInputWithCalc/utils';
 import { FieldProps } from 'formik';
 import {
   IconCalculator,
@@ -22,6 +9,13 @@ import {
   IconDivide,
 } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
+import { useMediaQuery } from '@mantine/hooks';
+import {
+  evaluateExpression,
+  isExpressionValid,
+  normalizeExpression,
+  shouldShowPreview,
+} from 'features/transaction/components/NumberInputWithCalc/utils';
 
 type NumberInputWithCalcProps = {
   label: string;
@@ -40,10 +34,34 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
 }) => {
   const { t } = useTranslation();
   const [expression, setExpression] = useState('');
-  const [isPopoverOpened, setIsPopoverOpened] = useState(false);
+  const [isCalcOpened, setIsCalcOpened] = useState(false);
 
-  const popoverRef = useRef<HTMLDivElement>(null);
+  const isMobileDevice = useMediaQuery('(max-width: 767px)');
+
+  const flexRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const getRightSectionContent = () => {
+    if (shouldShowPreview(expression)) {
+      return <Text px={4}>{`= ${field.value}`}</Text>;
+    } else if (!isMobileDevice) {
+      return (
+        <Tooltip
+          label={t('Expressions are supported')}
+          multiline
+          withArrow
+          w={{ base: 220, sm: undefined }}
+          events={{ hover: true, focus: true, touch: true }}>
+          <IconCalculator
+            style={{ width: '70%', height: '70%' }}
+            stroke={1.5}
+          />
+        </Tooltip>
+      );
+    }
+
+    return null;
+  };
 
   const handleValueChange = (raw: string) => {
     if (raw === '') {
@@ -83,12 +101,12 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
 
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        popoverRef.current &&
-        !popoverRef.current.contains(event.target as Node) &&
+        flexRef.current &&
+        !flexRef.current.contains(event.target as Node) &&
         inputRef.current &&
         !inputRef.current.contains(event.target as Node)
       ) {
-        setIsPopoverOpened(false);
+        setIsCalcOpened(false);
       }
     };
 
@@ -97,58 +115,41 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
   }, []);
 
   return (
-    <Popover
-      position="top"
-      withArrow
-      shadow="md"
-      width="target"
-      offset={0}
-      opened={isPopoverOpened}>
-      <Popover.Target>
-        <TextInput
-          {...field}
-          ref={inputRef}
-          value={expression}
-          inputMode="numeric"
-          size="md"
-          label={label}
-          leftSection={
-            <Tooltip
-              label={t('Expressions are supported')}
-              disabled={isPopoverOpened}
-              multiline
-              withArrow
-              w={{ base: 220, sm: undefined }}
-              events={{ hover: true, focus: true, touch: true }}>
-              <ActionIcon
-                variant="light"
-                color="white"
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setIsPopoverOpened((cur) => !cur);
-                }}>
-                <IconCalculator
-                  style={{ width: '70%', height: '70%' }}
-                  stroke={1.5}
-                />
-              </ActionIcon>
-            </Tooltip>
-          }
-          rightSection={
-            shouldShowPreview(expression) ? (
-              <Text px={4}>{`= ${field.value}`}</Text>
-            ) : null
-          }
-          rightSectionPointerEvents="none"
-          rightSectionWidth="auto"
-          onChange={(event) => handleValueChange(event.currentTarget.value)}
-          placeholder={placeholder}
-          error={error}
-        />
-      </Popover.Target>
-      <Popover.Dropdown p={0} ref={popoverRef}>
-        <Flex justify="space-between" align="center" gap={'xs'}>
+    <>
+      <TextInput
+        {...field}
+        ref={inputRef}
+        value={expression}
+        inputMode="numeric"
+        size="md"
+        label={label}
+        rightSection={getRightSectionContent()}
+        rightSectionPointerEvents={
+          shouldShowPreview(expression) ? 'none' : 'auto'
+        }
+        rightSectionWidth="auto"
+        onChange={(event) => handleValueChange(event.currentTarget.value)}
+        placeholder={placeholder}
+        error={error}
+        onFocus={() => setIsCalcOpened(true)}
+      />
+      {isMobileDevice && isCalcOpened && (
+        <Flex
+          ref={flexRef}
+          justify="space-between"
+          align="center"
+          gap="xs"
+          pos="fixed"
+          bottom={0}
+          left={0}
+          w="100%"
+          bg="dark.7"
+          px="10px"
+          h="60px"
+          style={{
+            borderTop: '1px solid var(--mantine-color-dark-4)',
+            zIndex: 1,
+          }}>
           <ActionIcon
             variant="light"
             color="white"
@@ -186,8 +187,8 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
             <IconDivide style={{ width: '70%', height: '70%' }} stroke={1.5} />
           </ActionIcon>
         </Flex>
-      </Popover.Dropdown>
-    </Popover>
+      )}
+    </>
   );
 };
 
