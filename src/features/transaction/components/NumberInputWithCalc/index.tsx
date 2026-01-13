@@ -100,20 +100,6 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
     if (field.value) {
       setExpression(String(field.value));
     }
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        flexRef.current &&
-        !flexRef.current.contains(event.target as Node) &&
-        inputRef.current &&
-        !inputRef.current.contains(event.target as Node)
-      ) {
-        setIsCalcOpened(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
@@ -134,6 +120,7 @@ const NumberInputWithCalc: FC<NumberInputWithCalcProps> = ({
         placeholder={placeholder}
         error={error}
         onFocus={() => setIsCalcOpened(true)}
+        onBlur={() => setIsCalcOpened(false)}
       />
       {isMobileDevice && isCalcOpened && (
         <Flex
