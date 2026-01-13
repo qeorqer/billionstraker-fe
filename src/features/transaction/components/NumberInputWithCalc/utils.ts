@@ -1,13 +1,4 @@
-import { Parser } from 'expr-eval';
-
-const parser = new Parser({
-  operators: {
-    logical: false,
-    comparison: false,
-    in: false,
-    assignment: false,
-  },
-});
+import { evaluate } from 'decimal-eval';
 
 const OPERATORS = /[+\-*/]/;
 
@@ -64,7 +55,7 @@ export const isExpressionValid = (value: string) => {
 
 export const evaluateExpression = (value: string): number | null => {
   try {
-    const result = parser.evaluate(value);
+    const result = Number(evaluate(value));
     return Number.isFinite(result) ? result : null;
   } catch {
     return null;

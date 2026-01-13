@@ -1124,6 +1124,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.14.0":
+  version: 7.28.6
+  resolution: "@babel/runtime@npm:7.28.6"
+  checksum: 42d8a868c2fc2e9a77927945a6daa7ec03c7ea49e611e0d15442933cdabb12f20e3a6849c729259076c10a4247adec229331d1f94c2d0073ea0979d7853e29fd
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.25.9, @babel/template@npm:^7.26.9":
   version: 7.26.9
   resolution: "@babel/template@npm:7.26.9"
@@ -3005,6 +3012,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bignumber.js@npm:^9.0.1":
+  version: 9.3.1
+  resolution: "bignumber.js@npm:9.3.1"
+  checksum: 6ab100271a23a75bb8b99a4b1a34a1a94967ac0b9a52a198147607bd91064e72c6f356380d7a09cd687bf50d81ad2ed1a0a8edfaa90369c9003ed8bb2440d7f0
+  languageName: node
+  linkType: hard
+
 "billionstracker-fe@workspace:.":
   version: 0.0.0-use.local
   resolution: "billionstracker-fe@workspace:."
@@ -3031,6 +3045,7 @@ __metadata:
     axios: ^1.13.2
     date-fns: ^2.23.0
     dayjs: ^1.11.13
+    decimal-eval: ^0.1.1
     decimal.js: ^10.4.0
     embla-carousel-react: ^8.5.2
     eslint: ^9.22.0
@@ -3043,7 +3058,6 @@ __metadata:
     eslint-plugin-prettier: ^5.2.3
     eslint-plugin-react: ^7.37.4
     eslint-plugin-react-hooks: ^5.2.0
-    expr-eval: ^2.0.2
     formik: ^2.2.9
     gh-pages: ^6.3.0
     i18next: ^20.6.1
@@ -3548,6 +3562,16 @@ __metadata:
   dependencies:
     ms: ^2.1.1
   checksum: b3d8c5940799914d30314b7c3304a43305fd0715581a919dacb8b3176d024a782062368405b47491516d2091d6462d4d11f2f4974a405048094f8bfebfa3071c
+  languageName: node
+  linkType: hard
+
+"decimal-eval@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "decimal-eval@npm:0.1.1"
+  dependencies:
+    "@babel/runtime": ^7.14.0
+    bignumber.js: ^9.0.1
+  checksum: d2fb72afcd6c2e5080fd0db02d299d993b7dd45c2f492b778d7c56e5ccd889a5fa601bfc0b7c85d9f4020ef712e898b7ae4f4e58c29e541318fb8afe05ed4241
   languageName: node
   linkType: hard
 
@@ -4365,13 +4389,6 @@ __metadata:
   version: 3.1.2
   resolution: "exponential-backoff@npm:3.1.2"
   checksum: 7e191e3dd6edd8c56c88f2c8037c98fbb8034fe48778be53ed8cb30ccef371a061a4e999a469aab939b92f8f12698f3b426d52f4f76b7a20da5f9f98c3cbc862
-  languageName: node
-  linkType: hard
-
-"expr-eval@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "expr-eval@npm:2.0.2"
-  checksum: 01862f09b50b17b45a6268b1153280afede99e1b51752a323661f7f4010eaed34cd6c682bf439b7f8a92df6aa82f326f0ce0aa20964d175feee97377fe53921d
   languageName: node
   linkType: hard
 
