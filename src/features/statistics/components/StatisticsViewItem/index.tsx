@@ -51,12 +51,14 @@ const StatisticsViewItem: FC<StatisticsViewItemProps> = ({
               { value: 'list', label: t('List') },
             ]}
           />
-          <Switch
-            defaultChecked
-            checked={useBalanceRange}
-            label={t('use balances')}
-            onChange={() => setUseBalanceRange(!useBalanceRange)}
-          />
+          {!selectedBalance && (
+            <Switch
+              defaultChecked
+              checked={useBalanceRange}
+              label={t('use balances')}
+              onChange={() => setUseBalanceRange(!useBalanceRange)}
+            />
+          )}
         </Stack>
       )}
       <Group gap="xs" align="center">

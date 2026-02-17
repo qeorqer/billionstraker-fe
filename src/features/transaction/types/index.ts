@@ -3,7 +3,7 @@ import { Balance } from 'features/balance/types';
 export type TransactionType = 'expense' | 'profit' | 'exchange';
 
 export type Transaction = {
-  title: string;
+  title?: string;
   ownerId?: string;
   sum: number;
   sumToSubtract?: number;
@@ -71,7 +71,7 @@ export type TransactionTypeToShow =
   | 'exchange';
 
 export type TransactionFormData = {
-  title: string;
+  title?: string;
   sum: number | '';
   sum2?: number | '';
   categoryId?: string;
